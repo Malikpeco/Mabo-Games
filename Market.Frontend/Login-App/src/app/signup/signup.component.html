@@ -1,0 +1,50 @@
+<video class="bg-video" autoplay muted loop playsinline preload="auto">
+    <source src="assets/signup-bg1.mp4" type="video/mp4" />
+</video>
+
+
+<div class="signup-container">
+
+    <div class="signup-form">
+        <form>
+            <header class="form-header">
+                <p id="welcome-message">Sign Up Today</p>
+                <p id="signup-instructions">Library of games at your fingertips, sign up now!.</p>
+            </header>
+
+            <label for="username">Create Username</label>
+            <div class="form-input">
+                <input id="username" type="text" placeholder="Enter Username" required />
+            </div>
+
+            <label for="password">Create Password</label>
+            <div class="form-input">
+                <input id="password" type="password" placeholder="Enter Password (We wont tell anyone)" required />
+            </div>
+
+            <div class="passowrd-strength"></div>
+
+            <label for="email">Reenter your Password</label>
+            <div class="form-input">
+                <input id="email" type="password" placeholder="You haven't forgot already?" required />
+            </div>
+
+            <label for="email">Email</label>
+            <div class="form-input">
+                <input id="email" type="email" placeholder="Enter your email" required />
+            </div>
+
+            <label for="phone">Phone Number</label>
+            <div class="form-input">
+                <input id="phone" type="tel" placeholder="(Optional)" />
+            </div>
+
+
+
+            <button type="submit" class="signup-button">Sign Up</button>
+
+
+            <p class="signup-section">Already have an account? <a routerLink="/login"> Log in</a></p>
+        </form>
+    </div>
+</div>
