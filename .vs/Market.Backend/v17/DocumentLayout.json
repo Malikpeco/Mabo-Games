@@ -1,0 +1,98 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\identity\\marketuserentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\identity\\marketuserentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.application\\modules\\auth\\commands\\login\\logincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|solutionrelative:market.application\\modules\\auth\\commands\\login\\logincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.application\\abstractions\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|solutionrelative:market.application\\abstractions\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\seeders\\dynamicdataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\seeders\\dynamicdataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Modules\\Auth\\Commands\\Login\\LoginCommandHandler.cs",
+              "RelativeDocumentMoniker": "Market.Application\\Modules\\Auth\\Commands\\Login\\LoginCommandHandler.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Modules\\Auth\\Commands\\Login\\LoginCommandHandler.cs",
+              "RelativeToolTip": "Market.Application\\Modules\\Auth\\Commands\\Login\\LoginCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T20:23:39.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DynamicDataSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T19:37:42.452Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IJwtTokenService.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Abstractions\\IJwtTokenService.cs",
+              "RelativeDocumentMoniker": "Market.Application\\Abstractions\\IJwtTokenService.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Abstractions\\IJwtTokenService.cs",
+              "RelativeToolTip": "Market.Application\\Abstractions\\IJwtTokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T19:37:24.06Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MarketUserEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Identity\\MarketUserEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Identity\\MarketUserEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Identity\\MarketUserEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Identity\\MarketUserEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T19:36:17.552Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
