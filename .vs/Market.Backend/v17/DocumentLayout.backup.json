@@ -3,16 +3,188 @@
   "WorkspaceRootPath": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\identity\\marketuserentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\identity\\marketuserentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010851_Init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Market.Infrastructure\\Migrations\\20251128010851_Init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.application\\abstractions\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|solutionrelative:market.application\\abstractions\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\reviewconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\reviewconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010659_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Market.Infrastructure\\Migrations\\20251128010659_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010503_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Market.Infrastructure\\Migrations\\20251128010503_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\gameconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\gameconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\identity\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\identity\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\usergameconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\usergameconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\usersecurityquestionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\usersecurityquestionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\paymentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\paymentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\orderitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\orderitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\orderconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\orderconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\notificationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\notificationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\cartitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\cartitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\common\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\common\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128002002_newUpdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Market.Infrastructure\\Migrations\\20251128002002_newUpdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128001326_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Market.Infrastructure\\Migrations\\20251128001326_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\reviewentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\reviewentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\usergameentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\usergameentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\userachievementconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\userachievementconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\seeders\\dynamicdataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\seeders\\dynamicdataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\identity\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\identity\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\countryentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\countryentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\countryconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\countryconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1F8EDA9-8DE6-4273-AE6F-050AD5E1205F}|Market.API\\Market.API.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D1F8EDA9-8DE6-4273-AE6F-050AD5E1205F}|Market.API\\Market.API.csproj|solutionrelative:market.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\securityquestionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\securityquestionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.application\\modules\\catalog\\countries\\commands\\create\\createcountrycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|solutionrelative:market.application\\modules\\catalog\\countries\\commands\\create\\createcountrycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\userachievemententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\userachievemententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\favouriteconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\favouriteconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\usersecurityquestionentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\usersecurityquestionentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\orderentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\orderentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\notificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\notificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\favouriteentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\favouriteentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\screenshotconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\screenshotconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\publisherconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\publisherconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\gamegenreconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\gamegenreconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\genreconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\genreconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\cityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\cityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\database\\configurations\\catalog\\achievementconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\database\\configurations\\catalog\\achievementconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\cartentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\cartentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.infrastructure\\globalusings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D66E507-3657-40DB-BF88-D246F14ACA25}|Market.Infrastructure\\Market.Infrastructure.csproj|solutionrelative:market.infrastructure\\globalusings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.application\\modules\\auth\\commands\\login\\logincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|solutionrelative:market.application\\modules\\auth\\commands\\login\\logincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.application\\abstractions\\iappdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|solutionrelative:market.application\\abstractions\\iappdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.domain\\entities\\catalog\\cityentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38B39B3A-A209-4CBA-A139-76C6E4057A69}|Market.Domain\\Market.Domain.csproj|solutionrelative:market.domain\\entities\\catalog\\cityentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|c:\\users\\bojan\\desktop\\mabo-games\\market.application\\abstractions\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADBF014-BCDB-4D43-9E49-02DB418F4834}|Market.Application\\Market.Application.csproj|solutionrelative:market.application\\abstractions\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +194,580 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20251128010851_Init.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010851_Init.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Migrations\\20251128010851_Init.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010851_Init.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Migrations\\20251128010851_Init.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T01:08:51.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20251128010659_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010659_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Migrations\\20251128010659_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010659_InitialCreate.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Migrations\\20251128010659_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T01:06:59.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20251128010503_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010503_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Migrations\\20251128010503_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128010503_InitialCreate.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Migrations\\20251128010503_InitialCreate.cs",
+              "ViewState": "AgIAAMcCAAAAAAAAAAAAABIDAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T01:05:03.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserGameConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\UserGameConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\UserGameConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\UserGameConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\UserGameConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:06.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OrderConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\OrderConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\OrderConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\OrderConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\OrderConfiguration.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAADgvxoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:37.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderItemConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\OrderItemConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\OrderItemConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\OrderItemConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\OrderItemConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:48:36.03Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PaymentConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\PaymentConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\PaymentConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\PaymentConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\PaymentConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:41.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserSecurityQuestionConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\UserSecurityQuestionConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\UserSecurityQuestionConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\UserSecurityQuestionConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\UserSecurityQuestionConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:46:56.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReviewConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\ReviewConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\ReviewConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\ReviewConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\ReviewConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:49:01.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "NotificationConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\NotificationConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\NotificationConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\NotificationConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\NotificationConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:49:10.203Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Identity\\UserConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Identity\\UserConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Identity\\UserConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Identity\\UserConfiguration.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAhwD8AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:39:33.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\GameConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\GameConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\GameConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\GameConfiguration.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAgwEMAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:46:34.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CartItemConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\CartItemConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\CartItemConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\CartItemConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\CartItemConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBQAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:46:23.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "JwtTokenService.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Common\\JwtTokenService.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Common\\JwtTokenService.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Common\\JwtTokenService.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Common\\JwtTokenService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAASwCQAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:49:30.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "20251128002002_newUpdate.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128002002_newUpdate.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Migrations\\20251128002002_newUpdate.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128002002_newUpdate.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Migrations\\20251128002002_newUpdate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T00:20:03.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "20251128001326_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128001326_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Migrations\\20251128001326_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Migrations\\20251128001326_InitialCreate.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Migrations\\20251128001326_InitialCreate.cs",
+              "ViewState": "AgIAAPcCAAAAAAAAAAAAAAIDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T00:13:26.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ReviewEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\ReviewEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\ReviewEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\ReviewEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\ReviewEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T00:05:33.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "UserGameEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\UserGameEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\UserGameEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\UserGameEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\UserGameEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:34:12.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "DatabaseContext.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\DatabaseContext.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\DatabaseContext.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\DatabaseContext.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\DatabaseContext.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA4wBwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:36:48.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DynamicDataSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowDcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T19:37:42.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "UserEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Identity\\UserEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Identity\\UserEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Identity\\UserEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Identity\\UserEntity.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA2wCUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T19:36:17.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CountryEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\CountryEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\CountryEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\CountryEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\CountryEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:27:53.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UserAchievementConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\UserAchievementConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\UserAchievementConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\UserAchievementConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\UserAchievementConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:48:19.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CountryConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\CountryConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\CountryConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\CountryConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\CountryConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:21.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.API\\appsettings.json",
+              "RelativeDocumentMoniker": "Market.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.API\\appsettings.json",
+              "RelativeToolTip": "Market.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAACOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-27T23:51:19.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "SecurityQuestionConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\SecurityQuestionConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\SecurityQuestionConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\SecurityQuestionConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\SecurityQuestionConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:49:14.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CreateCountryCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Modules\\Catalog\\Countries\\Commands\\Create\\CreateCountryCommandHandler.cs",
+              "RelativeDocumentMoniker": "Market.Application\\Modules\\Catalog\\Countries\\Commands\\Create\\CreateCountryCommandHandler.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Modules\\Catalog\\Countries\\Commands\\Create\\CreateCountryCommandHandler.cs",
+              "RelativeToolTip": "Market.Application\\Modules\\Catalog\\Countries\\Commands\\Create\\CreateCountryCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:49:06.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "UserAchievementEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\UserAchievementEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\UserAchievementEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\UserAchievementEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\UserAchievementEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:48:44.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "UserSecurityQuestionEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\UserSecurityQuestionEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\UserSecurityQuestionEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\UserSecurityQuestionEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\UserSecurityQuestionEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:48:09.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "OrderEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\OrderEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\OrderEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\OrderEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\OrderEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:48:06.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "FavouriteConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\FavouriteConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\FavouriteConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\FavouriteConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\FavouriteConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:46:29.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "NotificationEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\NotificationEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\NotificationEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\NotificationEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\NotificationEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:48:02.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "FavouriteEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\FavouriteEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\FavouriteEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\FavouriteEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\FavouriteEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:58.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ScreenshotConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\ScreenshotConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\ScreenshotConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\ScreenshotConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\ScreenshotConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:49.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "PublisherConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\PublisherConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\PublisherConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\PublisherConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\PublisherConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:45.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "GameGenreConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\GameGenreConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\GameGenreConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\GameGenreConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\GameGenreConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:34.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "GenreConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\GenreConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\GenreConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\GenreConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\GenreConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:47:25.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "CityConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\CityConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\CityConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\CityConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\CityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:46:17.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "CartConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\CartConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\CartConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\CartConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\CartConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:46:13.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "AchievementConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\AchievementConfiguration.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Configurations\\Catalog\\AchievementConfiguration.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Configurations\\Catalog\\AchievementConfiguration.cs",
+              "RelativeToolTip": "Market.Infrastructure\\Database\\Configurations\\Catalog\\AchievementConfiguration.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAIA1wBsAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:46:07.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "CartEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\CartEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\CartEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\CartEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\CartEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:45:30.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "GlobalUsings.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\GlobalUsings.cs",
+              "RelativeDocumentMoniker": "Market.Infrastructure\\GlobalUsings.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\GlobalUsings.cs",
+              "RelativeToolTip": "Market.Infrastructure\\GlobalUsings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:36:04.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "IAppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Abstractions\\IAppDbContext.cs",
+              "RelativeDocumentMoniker": "Market.Application\\Abstractions\\IAppDbContext.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Abstractions\\IAppDbContext.cs",
+              "RelativeToolTip": "Market.Application\\Abstractions\\IAppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:33:32.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "CityEntity.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\CityEntity.cs",
+              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Catalog\\CityEntity.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Catalog\\CityEntity.cs",
+              "RelativeToolTip": "Market.Domain\\Entities\\Catalog\\CityEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:27:43.808Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -38,20 +782,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DynamicDataSeeder.cs",
-              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
-              "RelativeDocumentMoniker": "Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
-              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
-              "RelativeToolTip": "Market.Infrastructure\\Database\\Seeders\\DynamicDataSeeder.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 42,
+              "Title": "LoginCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Modules\\Auth\\Commands\\Login\\LoginCommandHandler.cs",
+              "RelativeDocumentMoniker": "Market.Application\\Modules\\Auth\\Commands\\Login\\LoginCommandHandler.cs",
+              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Modules\\Auth\\Commands\\Login\\LoginCommandHandler.cs",
+              "RelativeToolTip": "Market.Application\\Modules\\Auth\\Commands\\Login\\LoginCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T19:37:42.452Z",
+              "WhenOpened": "2025-11-25T20:23:39.517Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 45,
               "Title": "IJwtTokenService.cs",
               "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Application\\Abstractions\\IJwtTokenService.cs",
               "RelativeDocumentMoniker": "Market.Application\\Abstractions\\IJwtTokenService.cs",
@@ -60,19 +804,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-25T19:37:24.06Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MarketUserEntity.cs",
-              "DocumentMoniker": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Identity\\MarketUserEntity.cs",
-              "RelativeDocumentMoniker": "Market.Domain\\Entities\\Identity\\MarketUserEntity.cs",
-              "ToolTip": "C:\\Users\\bojan\\Desktop\\Mabo-Games\\Market.Domain\\Entities\\Identity\\MarketUserEntity.cs",
-              "RelativeToolTip": "Market.Domain\\Entities\\Identity\\MarketUserEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAawAQAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T19:36:17.552Z",
               "EditorCaption": ""
             }
           ]

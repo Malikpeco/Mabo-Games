@@ -1,7 +1,0 @@
-C:\Users\bojan\Desktop\Mabo-Games\Market.API\obj\Debug\net8.0\Market.API.csproj.AssemblyReference.cache
-C:\Users\bojan\Desktop\Mabo-Games\Market.API\obj\Debug\net8.0\Market.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\bojan\Desktop\Mabo-Games\Market.API\obj\Debug\net8.0\Market.API.AssemblyInfoInputs.cache
-C:\Users\bojan\Desktop\Mabo-Games\Market.API\obj\Debug\net8.0\Market.API.AssemblyInfo.cs
-C:\Users\bojan\Desktop\Mabo-Games\Market.API\obj\Debug\net8.0\Market.API.csproj.CoreCompileInputs.cache
-C:\Users\bojan\Desktop\Mabo-Games\Market.API\obj\Debug\net8.0\Market.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\bojan\Desktop\Mabo-Games\Market.API\obj\Debug\net8.0\Market.API.sourcelink.json
