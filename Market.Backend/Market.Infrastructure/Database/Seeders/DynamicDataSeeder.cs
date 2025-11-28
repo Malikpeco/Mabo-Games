@@ -47,10 +47,10 @@ public static class DynamicDataSeeder
 
         var admin = new UserEntity
         {
-            Username = "BojanAdmin",
-            Email = "bojanadmin@market.com",
-            FirstName = "Bojan",
-            LastName = "Kozina",
+            Username = "Admin",
+            Email = "admin@market.com",
+            FirstName = "Admin",
+            LastName = "Admin",
             IsAdmin = true,
             IsEnabled = true,
             CreationDate = DateTime.UtcNow,
@@ -62,10 +62,10 @@ public static class DynamicDataSeeder
 
         var user = new UserEntity
         {
-            Username = "MalikUser",
-            Email = "malikuser@market.com",
-            FirstName = "Malik",
-            LastName = "Peco",
+            Username = "User",
+            Email = "User@market.com",
+            FirstName = "User",
+            LastName = "User",
             IsAdmin = false,
             IsEnabled = true,
             CreationDate = DateTime.UtcNow,
