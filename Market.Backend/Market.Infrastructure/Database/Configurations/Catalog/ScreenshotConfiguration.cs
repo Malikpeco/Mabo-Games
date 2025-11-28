@@ -16,6 +16,7 @@ namespace Market.Infrastructure.Database.Configurations
                    .WithMany(g => g.Screenshots)
                    .HasForeignKey(s => s.GameId)
                    .IsRequired()
+                   .OnDelete(DeleteBehavior.Cascade)
                    ;
         }
     }

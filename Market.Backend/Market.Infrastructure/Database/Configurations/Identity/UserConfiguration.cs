@@ -40,22 +40,21 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
                .WithMany(c => c.Users)
                .HasForeignKey(u => u.CountryId)
                .IsRequired()
+               .OnDelete(DeleteBehavior.NoAction);
                ;
-        // Restrict: cannot delete a Country if users exist
 
         builder.HasOne(u => u.City)
-               .WithMany()
+               .WithMany(c => c.Users)
                .HasForeignKey(u => u.CityId)
-               .IsRequired(false);
-
-        // Restrict: cannot delete a City if users exist
-
-
+               .IsRequired(false)
+               .OnDelete(DeleteBehavior.NoAction)
+               ;
+        
         builder.HasOne(u => u.Cart)
                .WithOne(c => c.User)
                .HasForeignKey<CartEntity>(c => c.UserId)
                .OnDelete(DeleteBehavior.Cascade);
-        // Cascade: deleting user deletes their cart
+
 
 
         builder.HasMany(u => u.UserGames)
@@ -64,41 +63,39 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
                .OnDelete(DeleteBehavior.NoAction);
 
 
-        // Relationship: User → UserAchievements (one-to-many)
+
         builder.HasMany(u => u.UserAchievements)
                .WithOne(ua => ua.User)
                .HasForeignKey(ua => ua.UserId)
                .IsRequired()
                ;
 
-        // Relationship: User → Favourites (one-to-many)
+
         builder.HasMany(u => u.Favourites)
                .WithOne(f => f.User)
                .HasForeignKey(f => f.UserId)
                .IsRequired();
 
-        // Relationship: User → Notifications (one-to-many)
         builder.HasMany(u => u.Notifications)
                .WithOne(n => n.User)
                .HasForeignKey(n => n.UserId)
                .IsRequired()
                .OnDelete(DeleteBehavior.NoAction);
 
-        // Relationship: User → Orders (one-to-many)
+
         builder.HasMany(u => u.Orders)
                .WithOne(o => o.User)
                .HasForeignKey(o => o.UserId)
                .IsRequired()
                ;
 
-        // Relationship: User → UserSecurityQuestions (one-to-many)
         builder.HasMany(u => u.UserSecurityQuestions)
                .WithOne(usq => usq.User)
                .HasForeignKey(usq => usq.UserId)
                .IsRequired()
                ;
 
-        // Roles
+
         builder.Property(x => x.IsAdmin)
             .HasDefaultValue(false);
 
@@ -108,7 +105,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
         builder.Property(x => x.IsEnabled)
             .HasDefaultValue(true);
 
-        // Navigation
+     
         builder.HasMany(x => x.RefreshTokens)
             .WithOne(x => x.User)
             .HasForeignKey(x => x.UserId);

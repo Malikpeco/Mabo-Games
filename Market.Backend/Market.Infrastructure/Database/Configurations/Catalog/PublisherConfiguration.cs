@@ -16,15 +16,16 @@ namespace Market.Infrastructure.Database.Configurations
                    .WithMany(c => c.Publishers)
                    .HasForeignKey(p => p.CountryId)
                    .IsRequired()
+                   .OnDelete(DeleteBehavior.NoAction)
                    ;
-            // Restrict: can't delete a country if it has publishers
+            
 
             builder.HasMany(p => p.Games)
                    .WithOne(g => g.Publisher)
                    .HasForeignKey(g => g.PublisherId)
                    .IsRequired()
                    ;
-            // Restrict: can't delete a publisher if it has games
+            
         }
     }
 }

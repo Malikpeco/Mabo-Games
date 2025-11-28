@@ -25,7 +25,8 @@ namespace Market.Infrastructure.Database.Configurations
             builder.HasOne(c => c.Country)
                    .WithMany(co => co.Cities)
                    .HasForeignKey(c => c.CountryId)
-                   .IsRequired()       
+                   .IsRequired()
+                   .OnDelete(DeleteBehavior.Cascade)
                    ;
         }
     }

@@ -18,7 +18,7 @@ namespace Market.Infrastructure.Database.Configurations
                    .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(usq => usq.SecurityQuestion)
-                   .WithMany()
+                   .WithMany(u=>u.UserSecurityQuestions)
                    .HasForeignKey(usq => usq.SecurityQuestionId)
                    .OnDelete(DeleteBehavior.NoAction);
         }

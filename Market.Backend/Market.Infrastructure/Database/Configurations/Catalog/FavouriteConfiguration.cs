@@ -15,7 +15,7 @@ namespace Market.Infrastructure.Database.Configurations
                    .WithMany(u => u.Favourites)
                    .HasForeignKey(f => f.UserId)
                    .IsRequired()
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade);
 
 
 

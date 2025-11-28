@@ -26,7 +26,8 @@ namespace Market.Infrastructure.Database.Configurations
             builder.HasOne(n => n.User)
                    .WithMany(u => u.Notifications)
                    .HasForeignKey(n => n.UserId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade)
+                   ;
         }
     }
 }

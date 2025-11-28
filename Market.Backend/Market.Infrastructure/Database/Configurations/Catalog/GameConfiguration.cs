@@ -30,6 +30,7 @@ namespace Market.Infrastructure.Database.Configurations
                    .WithMany(p => p.Games)
                    .HasForeignKey(g => g.PublisherId)
                    .IsRequired()
+                   .OnDelete(DeleteBehavior.NoAction)
                    ; 
 
 

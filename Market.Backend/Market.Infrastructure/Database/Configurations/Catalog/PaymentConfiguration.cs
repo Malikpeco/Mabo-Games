@@ -27,7 +27,7 @@ namespace Market.Infrastructure.Database.Configurations
                    .WithOne(o => o.Payment)
                    .HasForeignKey<PaymentEntity>(p => p.OrderId)
                    .OnDelete(DeleteBehavior.Cascade);
-            // Cascade: deleting an order deletes its payment
+
         }
     }
 }
