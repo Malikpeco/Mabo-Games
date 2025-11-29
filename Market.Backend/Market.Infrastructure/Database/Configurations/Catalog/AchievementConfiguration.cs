@@ -25,10 +25,10 @@ namespace Market.Infrastructure.Database.Configurations
                 .HasMaxLength(300);
 
             builder
-                .HasMany(x => x.UserAchievements) //one Achievement can have many UserAchievement entries.
-                .WithOne(x => x.Achievement) //each UserAchievement points to one Achievement.
-                .HasForeignKey(x => x.AchievementId) //specifies which property in UserAchievementEntity stores the foreign key.
-                ; //if an achievement is deleted, all related UserAchievement rows are automatically deleted.
+                .HasMany(x => x.UserAchievements) 
+                .WithOne(x => x.Achievement) 
+                .HasForeignKey(x => x.AchievementId) 
+                ; 
         }
     }
 }
