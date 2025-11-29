@@ -1,4 +1,5 @@
-﻿using Market.Application.Modules.Auth.Commands.RegisterUser.Dto;
+﻿
+using Market.Application.Modules.RegisterUser.Dto;
 
 namespace Market.Application.Modules.Auth.Commands.Register.Commands
 {

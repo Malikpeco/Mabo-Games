@@ -1,7 +1,8 @@
 ﻿using Market.Application.Modules.Auth.Commands.Register.Commands;
-using Market.Application.Modules.Auth.Commands.RegisterUser.Dto;
+
 using Market.Application.Modules.Countries.Commands.Create;
 using Market.Application.Modules.Countries.Queries.List;
+using Market.Application.Modules.RegisterUser.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

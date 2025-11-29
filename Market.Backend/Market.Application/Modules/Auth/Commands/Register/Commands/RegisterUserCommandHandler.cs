@@ -1,7 +1,8 @@
 ﻿using Market.Application.Abstractions;
+using Market.Application.Modules.RegisterUser.Dto;
 using Market.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
-using Market.Application.Modules.Auth.Commands.RegisterUser.Dto;
+
 
 namespace Market.Application.Modules.Auth.Commands.Register.Commands;
 
