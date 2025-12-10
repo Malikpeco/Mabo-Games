@@ -1,7 +1,7 @@
 ﻿namespace Market.Application.Modules.SecurityQuestions.Queries.List
 {
-    public sealed class ListSecurityQuestionsQuery : BasePagedQuery<ListSecurityQuestionsQueryDto>
+    public sealed class ListSecurityQuestionsQuery : IRequest<List<ListSecurityQuestionsQueryDto>>
     {
-        // TODO: Add properties here
+
     }
 }

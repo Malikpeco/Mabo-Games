@@ -16,7 +16,7 @@ namespace Market.Application.Modules.Countries.Commands.Create
 
             var country = new CountryEntity()
             {
-                Name = request.Name
+                Name = request.Name!.Trim()
             };
 
             context.Countries.Add(country);

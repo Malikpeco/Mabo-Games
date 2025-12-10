@@ -12,7 +12,7 @@ namespace Market.API.Controllers
     [Route("[controller]")]
     public class RegisterUserController(ISender sender) : ControllerBase
     {
-        // POST /countries      
+           
         [HttpPost]
         [AllowAnonymous]
         

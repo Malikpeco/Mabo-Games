@@ -1,7 +1,9 @@
-﻿namespace Market.Application.Modules.SecurityQuestions.Commands.Delete
+﻿using Market.Application.Modules.SecurityQuestions.Dto;
+
+namespace Market.Application.Modules.SecurityQuestions.Commands.Delete
 {
-    public sealed class DeleteSecurityQuestionsCommand : IRequest<Unit>
+    public sealed class DeleteSecurityQuestionsCommand : IRequest<DeleteSecurityQuestionResultDto>
     {
-        // TODO: Add properties here
+        public int Id { get; set; }
     }
 }

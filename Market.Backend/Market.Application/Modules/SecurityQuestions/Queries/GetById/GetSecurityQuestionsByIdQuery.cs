@@ -2,6 +2,6 @@
 {
     public sealed class GetSecurityQuestionsByIdQuery : IRequest<GetSecurityQuestionsByIdQueryDto>
     {
-        // TODO: Add properties here
+        public int Id { get; set; }
     }
 }

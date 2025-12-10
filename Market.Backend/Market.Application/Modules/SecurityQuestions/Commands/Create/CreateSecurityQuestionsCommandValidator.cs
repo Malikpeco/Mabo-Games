@@ -4,7 +4,9 @@
     {
         public CreateSecurityQuestionsCommandValidator()
         {
-            // TODO: Add validation
+            RuleFor(x => x.Question)
+               .NotEmpty()
+               .MinimumLength(10);
         }
     }
 }

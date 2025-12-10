@@ -4,7 +4,10 @@
     {
         public GetSecurityQuestionsByIdQueryValidator()
         {
-            // TODO: Add validation
+            RuleFor(x => x.Id)
+                .GreaterThan(0)
+                .WithMessage("Id must be a positive value!");
+                
         }
     }
 }

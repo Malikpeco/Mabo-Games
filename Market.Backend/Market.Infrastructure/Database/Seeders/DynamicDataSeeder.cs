@@ -43,7 +43,7 @@ public static class DynamicDataSeeder
 
         var questionOne = new SecurityQuestionEntity
         {
-            Question = "What was the name of your firs pet?"
+            Question = "What was the name of your first pet?"
         };
 
         var questionTwo = new SecurityQuestionEntity

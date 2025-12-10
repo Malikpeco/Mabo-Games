@@ -1,7 +1,9 @@
-﻿namespace Market.Application.Modules.SecurityQuestions.Commands.Create
+﻿using Market.Application.Modules.SecurityQuestions.Dto;
+
+namespace Market.Application.Modules.SecurityQuestions.Commands.Create
 {
-    public sealed class CreateSecurityQuestionsCommand : IRequest<int>
+    public sealed class CreateSecurityQuestionsCommand : IRequest<CreateSecurityQuestionResultDto>
     {
-        // TODO: Add properties here
+        public string Question { get; set; }
     }
 }
