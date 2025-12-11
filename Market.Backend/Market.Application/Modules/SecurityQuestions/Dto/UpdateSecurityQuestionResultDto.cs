@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.SecurityQuestions.Dto
 {
-    public sealed class DeleteSecurityQuestionResultDto
+    public sealed class UpdateSecurityQuestionResultDto
     {
+
         public int Id { get; set; }
 
-        public string Question {  get; set; }
+        public string OldQuestion {  get; set; }
+        public string NewQuestion { get; set; }
 
     }
 }

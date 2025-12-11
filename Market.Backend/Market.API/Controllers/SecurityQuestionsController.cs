@@ -2,6 +2,7 @@
 using Market.Application.Modules.Countries.Queries.List;
 using Market.Application.Modules.SecurityQuestions.Commands.Create;
 using Market.Application.Modules.SecurityQuestions.Commands.Delete;
+using Market.Application.Modules.SecurityQuestions.Commands.Update;
 using Market.Application.Modules.SecurityQuestions.Dto;
 using Market.Application.Modules.SecurityQuestions.Queries.GetById;
 using Market.Application.Modules.SecurityQuestions.Queries.List;
@@ -23,6 +24,27 @@ namespace Market.API.Controllers
             return Ok(resultDto);
         }
 
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<UpdateSecurityQuestionResultDto>> Update(int id, UpdateSecurityQuestionsCommand command, CancellationToken ct)
+        {
+            command.Id = id;
+            var result =await sender.Send(command, ct);
+
+            return Ok(result);
+
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<DeleteSecurityQuestionResultDto>> Delete(int id, CancellationToken ct)
+        {
+            var result = await sender.Send(new DeleteSecurityQuestionsCommand { Id = id }, ct);
+
+            return Ok(result);
+        }
+
+
+
         [HttpGet]
 
         public async Task<List<ListSecurityQuestionsQueryDto>> GetAll(CancellationToken ct)
@@ -38,18 +60,6 @@ namespace Market.API.Controllers
             var result = await sender.Send(new GetSecurityQuestionsByIdQuery { Id = id }, ct);
             return result; // if NotFoundException -> 404 via middleware
         }
-
-
-
-        [HttpDelete]
-        public async Task<ActionResult<DeleteSecurityQuestionResultDto>> Delete(int id, CancellationToken ct)
-        {
-            var result = await sender.Send(new DeleteSecurityQuestionsCommand { Id = id }, ct);
-
-            return Ok(result);
-        }
-
-
 
     }
 }
