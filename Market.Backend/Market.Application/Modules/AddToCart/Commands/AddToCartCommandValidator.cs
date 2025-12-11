@@ -12,7 +12,7 @@ namespace Market.Application.Modules.AddToCart.Commands
         public AddToCartCommandValidator()
         {
 
-            RuleFor(x => x.Id).NotEmpty().WithMessage("GameId is required.");
+            RuleFor(x => x.GameId).NotEmpty().WithMessage("GameId is required.");
         }
     }
 }

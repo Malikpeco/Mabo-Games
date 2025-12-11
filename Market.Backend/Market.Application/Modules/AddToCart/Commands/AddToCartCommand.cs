@@ -9,6 +9,6 @@ namespace Market.Application.Modules.AddToCart.Commands
 {
     public sealed class AddToCartCommand : IRequest<Unit>
     {
-        required public int Id { get; set; }
+        required public int GameId { get; set; }
     }
 }
