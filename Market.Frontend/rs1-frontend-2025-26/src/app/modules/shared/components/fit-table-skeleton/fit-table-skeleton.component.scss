@@ -1,0 +1,107 @@
+// Table Skeleton Component Styles
+// Matches your existing table card design
+
+$primary-lighter: #e8f0f9;
+$border-color: rgba(73, 118, 181, 0.15);
+$skeleton-bg: #e0e0e0;
+
+.skeleton-table {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(73, 118, 181, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid $border-color;
+
+  .skeleton-header {
+    display: flex;
+    gap: 16px;
+    padding: 20px 16px;
+    background: linear-gradient(135deg, $primary-lighter 0%, #f5f9fd 100%);
+    border-bottom: 2px solid rgba(73, 118, 181, 0.15);
+
+    .skeleton-cell {
+      flex: 1;
+      height: 24px;
+      border-radius: 4px;
+      background: rgba(73, 118, 181, 0.1);
+    }
+  }
+
+  .skeleton-row {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border-bottom: 1px solid $border-color;
+
+    .skeleton-cell {
+      flex: 1;
+
+      .skeleton-text {
+        height: 20px;
+        border-radius: 4px;
+        background: $skeleton-bg;
+        width: 80%;
+      }
+
+      .skeleton-actions {
+        display: flex;
+        gap: 8px;
+
+        .skeleton-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          background: $skeleton-bg;
+        }
+      }
+    }
+  }
+}
+
+// Shimmer animation
+.skeleton-shine {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 20%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.3) 80%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .skeleton-table {
+    .skeleton-header,
+    .skeleton-row {
+      padding: 12px;
+
+      .skeleton-cell {
+        .skeleton-button {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+  }
+}

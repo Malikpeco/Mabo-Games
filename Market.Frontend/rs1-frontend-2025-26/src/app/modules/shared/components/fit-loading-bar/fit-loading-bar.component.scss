@@ -1,0 +1,49 @@
+.loading-bar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none; /* Don't block clicks */
+}
+
+.loading-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+      90deg,
+      #4976b5 0%,
+      #6b96d1 25%,
+      #7ba7db 50%,
+      #6b96d1 75%,
+      #4976b5 100%
+  );
+  background-size: 200% 100%;
+  animation: loading-wave 1.5s ease-in-out infinite;
+  box-shadow: 0 2px 8px rgba(73, 118, 181, 0.4);
+}
+
+@keyframes loading-wave {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optional: Fade in/out animation */
+.loading-bar-container {
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

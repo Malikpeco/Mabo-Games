@@ -1,0 +1,187 @@
+// src/app/modules/shared/components/fit-confirm-dialog/fit-fit-confirm-dialog.component.scss
+
+// Glavne boje - teget paleta #4976b5
+$primary-color: #4976b5;
+$primary-light: #6b96d1;
+$primary-lighter: #e8f0f9;
+$primary-dark: #3a5e91;
+
+$success-color: #66bb6a;
+$error-color: #ef5350;
+$warning-color: #ffa726;
+$info-color: #42a5f5;
+
+$text-primary: #2c3e50;
+$text-secondary: #546e7a;
+$border-color: rgba(73, 118, 181, 0.15);
+
+.confirm-dialog {
+  padding: 8px;
+  min-width: 400px;
+
+  // Icon Container
+  .dialog-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: scaleIn 0.3s ease-out;
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: white;
+    }
+
+    &.icon-success {
+      background: linear-gradient(135deg, $success-color 0%, darken($success-color, 10%) 100%);
+      box-shadow: 0 4px 20px rgba($success-color, 0.3);
+    }
+
+    &.icon-error {
+      background: linear-gradient(135deg, $error-color 0%, darken($error-color, 10%) 100%);
+      box-shadow: 0 4px 20px rgba($error-color, 0.3);
+    }
+
+    &.icon-warning {
+      background: linear-gradient(135deg, $warning-color 0%, darken($warning-color, 10%) 100%);
+      box-shadow: 0 4px 20px rgba($warning-color, 0.3);
+    }
+
+    &.icon-question {
+      background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+      box-shadow: 0 4px 20px rgba($primary-color, 0.3);
+    }
+
+    &.icon-info {
+      background: linear-gradient(135deg, $info-color 0%, darken($info-color, 10%) 100%);
+      box-shadow: 0 4px 20px rgba($info-color, 0.3);
+    }
+  }
+
+  // Title
+  h2[mat-dialog-title] {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 16px;
+  }
+
+  // Content
+  mat-dialog-content {
+    text-align: center;
+    padding: 0 24px 24px;
+
+    .dialog-message {
+      color: $text-secondary;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  // Actions
+  mat-dialog-actions {
+    padding: 16px 24px 24px;
+    gap: 12px;
+    justify-content: center;
+
+    .dialog-button {
+      min-width: 120px;
+      height: 44px;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+
+      mat-icon {
+        margin-right: 8px;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+
+      // Raised buttons
+      &[mat-raised-button] {
+        box-shadow: 0 4px 12px rgba(73, 118, 181, 0.25);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(73, 118, 181, 0.35);
+        }
+
+        &.mat-warn {
+          box-shadow: 0 4px 12px rgba($error-color, 0.25);
+
+          &:hover {
+            box-shadow: 0 6px 16px rgba($error-color, 0.35);
+          }
+        }
+      }
+
+      // Stroked buttons
+      &[mat-stroked-button] {
+        border: 2px solid $border-color;
+
+        &:hover {
+          background-color: rgba(73, 118, 181, 0.04);
+          border-color: $text-secondary;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+// Animation
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .confirm-dialog {
+    min-width: 100%;
+
+    .dialog-icon {
+      width: 64px;
+      height: 64px;
+
+      mat-icon {
+        font-size: 36px;
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    h2[mat-dialog-title] {
+      font-size: 20px;
+    }
+
+    mat-dialog-content .dialog-message {
+      font-size: 14px;
+    }
+
+    mat-dialog-actions {
+      flex-direction: column;
+
+      .dialog-button {
+        width: 100%;
+      }
+    }
+  }
+}

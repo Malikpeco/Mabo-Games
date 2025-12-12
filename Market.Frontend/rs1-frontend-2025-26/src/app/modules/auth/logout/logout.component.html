@@ -1,0 +1,26 @@
+<div class="logout-wrapper" @fadeInUp>
+  <mat-card class="logout-card">
+    <mat-card-header>
+      <div class="header-icon">
+        <mat-icon>logout</mat-icon>
+      </div>
+      <mat-card-title>{{ 'AUTH.LOGOUT.TITLE' | translate }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="logout-icon-container">
+        <mat-icon class="logout-icon">check_circle</mat-icon>
+      </div>
+
+      <p class="logout-message">{{ 'AUTH.LOGOUT.MESSAGE' | translate }}</p>
+
+      <div class="logout-progress">
+        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+        <div class="logout-countdown">
+          <mat-icon class="countdown-icon">schedule</mat-icon>
+          <span>{{ 'AUTH.LOGOUT.REDIRECT_IN' | translate : { seconds: countdownSeconds } }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
