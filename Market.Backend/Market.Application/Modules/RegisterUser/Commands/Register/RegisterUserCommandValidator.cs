@@ -5,12 +5,6 @@ namespace Market.Application.Modules.RegisterUser.Commands.Register;
 public sealed class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
 {
 
-    static bool doesExist(string userName,string emailAdress, IAppDbContext context, CancellationToken ct)
-    {
-
-        return true;
-    }
-
     public RegisterUserCommandValidator()
     {
 

@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Market.Application.Modules.RegisterUser.Commands.Register;
 
-public sealed class RegisterUserCommandHandler(
-    IAppDbContext context
-    ) : IRequestHandler<RegisterUserCommand, RegisterUserResultDto>
+public sealed class RegisterUserCommandHandler(IAppDbContext context) 
+    : IRequestHandler<RegisterUserCommand, RegisterUserResultDto>
 {
     public async Task<RegisterUserResultDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
