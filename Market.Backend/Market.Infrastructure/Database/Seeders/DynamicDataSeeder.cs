@@ -13,12 +13,19 @@ public static class DynamicDataSeeder
         await SeedCountriesAsync(context);
         await SeedUsersAsync(context);
         await SeedSecurityQuestionsAsync(context);
+        await SeedPublishersAsync(context);
+        await SeedGamesAsync(context);
     }
 
     private static async Task SeedCountriesAsync(DatabaseContext context)
     {
         if (await context.Countries.AnyAsync())
             return;
+
+        var usa = new CountryEntity
+        {
+            Name = "USA"
+        };
 
         var bih = new CountryEntity
         {
@@ -31,6 +38,7 @@ public static class DynamicDataSeeder
         };
 
         context.Countries.AddRange(bih, cro);
+        context.Countries.Add(usa);
         await context.SaveChangesAsync();
 
         Console.WriteLine("Dynamic seed: Countries added.");
@@ -104,13 +112,68 @@ public static class DynamicDataSeeder
 
         user.PasswordHash = hasher.HashPassword(user, "User123!");
 
+
+
         // Assign carts (required)
         admin.Cart = new CartEntity { User = admin };
         user.Cart = new CartEntity { User = user };
 
         context.Users.AddRange(admin, user);
+
         await context.SaveChangesAsync();
 
         Console.WriteLine("Dynamic seed: demo users added.");
+    }
+
+    private static async Task SeedPublishersAsync(DatabaseContext context)
+    {
+        if (await context.Publishers.AnyAsync())
+            return;
+
+        var pub1 = new PublisherEntity
+        {
+            Name = "Rockstar Games",
+            CountryId=1
+        };
+
+        var pub2 = new PublisherEntity
+        {
+            Name = "EA",
+            CountryId = 1
+        };
+
+        context.Publishers.AddRange(pub1, pub2);
+        await context.SaveChangesAsync();
+
+        Console.WriteLine("Dynamic seed: Publishers added.");
+    }
+
+    private static async Task SeedGamesAsync(DatabaseContext context)
+    {
+        if (await context.Games.AnyAsync())
+            return;
+
+        var gtaSanAndreas = new GameEntity
+        {
+            Name = "Grand Theft Auto 'San Andreas'",
+            PublisherId = 1,
+            Price = 59.99m,
+            ReleaseDate = new DateTime(2013, 9, 17),
+            Description = "An open-world action-adventure game following three criminals in the fictional state of San Andreas."
+        };
+
+        var fifa19 = new GameEntity
+        {
+            Name = "FIFA 19",
+            PublisherId = 2,
+            Price = 59.99m,
+            ReleaseDate = new DateTime(2018, 9, 28),
+            Description = "A football simulation game featuring realistic gameplay, official leagues and teams, and the conclusion of The Journey story mode."
+        };
+
+        context.Games.AddRange(gtaSanAndreas, fifa19);
+        await context.SaveChangesAsync();
+        Console.WriteLine("Dynamic seed: Games added.");
+
     }
 }
