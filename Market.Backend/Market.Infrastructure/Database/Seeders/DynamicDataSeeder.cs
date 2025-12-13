@@ -36,7 +36,8 @@ public static class DynamicDataSeeder
             Name = "Hrvatska"
         };
 
-        context.Countries.AddRange(bih, cro, usa);
+        context.Countries.AddRange(bih, cro);
+        context.Countries.Add(usa);
         await context.SaveChangesAsync();
 
         Console.WriteLine("Dynamic seed: Countries added.");
