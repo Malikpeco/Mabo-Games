@@ -1,0 +1,63 @@
+<div class="paginator-bar" *ngIf="vm.totalItems > 0">
+  <div class="paginator-container">
+    <!-- Info Section -->
+    <div class="paginator-info">
+      <mat-icon class="info-icon">info_outline</mat-icon>
+      <span class="info-text">
+        Stranica <strong>{{ vm.request.paging.page }}</strong> od
+        <strong>{{ vm.totalPages || 1 }}</strong>
+      </span>
+      <span class="info-divider">•</span>
+      <span class="info-total">
+        Ukupno: <strong>{{ vm.totalItems }}</strong> zapisa
+      </span>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="paginator-actions">
+      <!-- Page Size Selector -->
+      <div class="page-size-selector">
+        <span class="selector-label">Po stranici:</span>
+        <mat-form-field appearance="fill" class="page-size-field">
+          <mat-select
+            [value]="vm.request.paging.pageSize"
+            (selectionChange)="vm.changePageSize($event.value)"
+            [disabled]="vm.isLoading"
+          >
+            <mat-option [value]="5">5</mat-option>
+            <mat-option [value]="10">10</mat-option>
+            <mat-option [value]="20">20</mat-option>
+            <mat-option [value]="50">50</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="nav-buttons">
+        <button
+          mat-stroked-button
+          class="nav-btn prev-btn"
+          (click)="vm.prevPage()"
+          [disabled]="vm.request.paging.page <= 1 || vm.isLoading"
+        >
+          <mat-icon>chevron_left</mat-icon>
+          <span>Prethodna</span>
+        </button>
+
+        <div class="page-indicator">
+          {{ vm.request.paging.page }}
+        </div>
+
+        <button
+          mat-stroked-button
+          class="nav-btn next-btn"
+          (click)="vm.nextPage()"
+          [disabled]="(vm.totalPages && vm.request.paging.page >= vm.totalPages) || vm.isLoading"
+        >
+          <span>Sljedeća</span>
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

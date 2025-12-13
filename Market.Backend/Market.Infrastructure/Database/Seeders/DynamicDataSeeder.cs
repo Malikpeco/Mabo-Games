@@ -12,6 +12,7 @@ public static class DynamicDataSeeder
 
         await SeedCountriesAsync(context);
         await SeedUsersAsync(context);
+        await SeedSecurityQuestionsAsync(context);
         await SeedPublishersAsync(context);
         await SeedGamesAsync(context);
     }
@@ -42,6 +43,35 @@ public static class DynamicDataSeeder
 
         Console.WriteLine("Dynamic seed: Countries added.");
     }
+
+    private static async Task SeedSecurityQuestionsAsync(DatabaseContext context)
+    {
+        if (await context.SecurityQuestions.AnyAsync())
+            return;
+
+        var questionOne = new SecurityQuestionEntity
+        {
+            Question = "What was the name of your first pet?"
+        };
+
+        var questionTwo = new SecurityQuestionEntity
+        {
+            Question = "What was your childhood nickname?"
+        };
+
+        var questionThree = new SecurityQuestionEntity
+        {
+            Question = "In what city were you born?"
+            
+        };
+
+
+        context.SecurityQuestions.AddRange(questionOne,questionTwo,questionThree );
+        await context.SaveChangesAsync();
+
+        Console.WriteLine("Dynamic seed: Security Questions added.");
+    }
+
 
     private static async Task SeedUsersAsync(DatabaseContext context)
     {

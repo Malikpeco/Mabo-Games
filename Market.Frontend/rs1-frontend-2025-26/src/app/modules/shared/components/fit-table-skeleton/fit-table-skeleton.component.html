@@ -1,0 +1,24 @@
+<div class="skeleton-table">
+  <!-- Header -->
+  <div class="skeleton-header">
+    <div
+      class="skeleton-cell skeleton-shine"
+      *ngFor="let col of columnsArray">
+    </div>
+  </div>
+
+  <!-- Rows -->
+  <div class="skeleton-row" *ngFor="let row of rowsArray">
+    <div class="skeleton-cell" *ngFor="let col of columnsArray">
+      <div class="skeleton-text skeleton-shine"></div>
+    </div>
+
+    <!-- Actions column (optional) -->
+    <div class="skeleton-cell" *ngIf="showActions">
+      <div class="skeleton-actions">
+        <div class="skeleton-button skeleton-shine"></div>
+        <div class="skeleton-button skeleton-shine"></div>
+      </div>
+    </div>
+  </div>
+</div>

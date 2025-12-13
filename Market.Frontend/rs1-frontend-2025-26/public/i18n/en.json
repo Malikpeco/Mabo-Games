@@ -1,0 +1,372 @@
+{
+  "APP": {
+    "TITLE": "Welcome to our app",
+    "DESCRIPTION": "This is an example of localization."
+  },
+  "AUTH": {
+    "LOGIN": {
+      "TITLE": "Login",
+      "EMAIL_LABEL": "Email",
+      "EMAIL_PLACEHOLDER": "Enter email",
+      "PASSWORD_LABEL": "Password",
+      "PASSWORD_PLACEHOLDER": "Enter password",
+      "REMEMBER_ME": "Remember me",
+      "BUTTON": "Login",
+      "LOADING": "Logging in..."
+    },
+    "LOGOUT": {
+      "TITLE": "Logout",
+      "MESSAGE": "Logging you out of the system...",
+      "REDIRECT_IN": "Redirecting in {{seconds}}s"
+    }
+  },
+  "ADMIN_PANEL": {
+    "TITLE": "Admin Panel",
+    "ROLES": {
+      "ADMIN": "Administrator",
+      "MANAGER": "Manager",
+      "EMPLOYEE": "Employee"
+    },
+    "MENU": {
+      "CATALOG": "CATALOG",
+      "CATEGORIES": "Product Categories",
+      "PRODUCTS": "Products",
+      "ORDERS_SECTION": "ORDERS",
+      "ORDERS": "Orders Overview",
+      "SYSTEM": "SYSTEM",
+      "SETTINGS": "Settings",
+      "LOGOUT": "Logout"
+    }
+  },
+  "PRODUCT_CATEGORIES": {
+    "TITLE": "Product Categories",
+    "SUBTITLE": "Manage product categories",
+    "SEARCH_PLACEHOLDER": "Search categories",
+    "SEARCH_INPUT_PLACEHOLDER": "Enter category name...",
+    "ONLY_ENABLED": "Only Active",
+    "NEW_CATEGORY": "New Category",
+    "ADD_NEW": "Add Category",
+    "LOADING": "Loading categories...",
+    "NO_DATA": "No categories to display",
+    "NO_DATA_FILTER": "No results found for search",
+    "TABLE": {
+      "NAME": "Name",
+      "STATUS": "Status",
+      "ENABLED": "Active",
+      "DISABLED": "Inactive",
+      "ACTIONS": "Actions"
+    },
+    "ACTIONS": {
+      "EDIT_TOOLTIP": "Edit category",
+      "DELETE_TOOLTIP": "Delete category"
+    },
+    "FORM": {
+      "NAME": "Category Name",
+      "NAME_PLACEHOLDER": "Enter category name",
+      "LOADING": "Loading...",
+      "CANCEL": "Cancel",
+      "SAVE": "Save",
+      "UPDATE": "Update"
+    },
+    "DIALOGS": {
+      "DELETE_TITLE": "Delete Category",
+      "DELETE_MESSAGE": "Are you sure you want to delete category \"{{name}}\"? This will also delete all products in this category.",
+      "CONFIRM_ENABLE": "Are you sure you want to enable category \"{{name}}\"?",
+      "CONFIRM_DISABLE": "Are you sure you want to disable category \"{{name}}\"?",
+      "SUCCESS_CREATE": "Category created successfully.",
+      "SUCCESS_UPDATE": "Category updated successfully.",
+      "SUCCESS_DELETE": "Category deleted successfully.",
+      "SUCCESS_ENABLE": "Category \"{{name}}\" has been enabled successfully.",
+      "SUCCESS_DISABLE": "Category \"{{name}}\" has been disabled successfully.",
+      "ERROR_CREATE": "Error creating category.",
+      "ERROR_UPDATE": "Error updating category.",
+      "ERROR_DELETE": "Error deleting category.",
+      "ERROR_TOGGLE": "Error changing status of category \"{{name}}\"."
+    }
+  },
+  "PRODUCTS": {
+    "TITLE": "Products",
+    "SUBTITLE": "Manage products",
+    "SEARCH_PLACEHOLDER": "Search products",
+    "SEARCH_INPUT_PLACEHOLDER": "Enter product name...",
+    "NEW_PRODUCT": "New Product",
+    "ADD_NEW": "Add Product",
+    "LOADING": "Loading products...",
+    "NO_DATA": "No products to display",
+    "NO_DATA_FILTER": "No results found for search",
+    "TABLE": {
+      "NAME": "Name",
+      "CATEGORY": "Category",
+      "PRICE": "Price (KM)",
+      "STOCK": "Stock",
+      "ACTIVE": "Active",
+      "ACTIONS": "Actions"
+    },
+    "ACTIONS": {
+      "EDIT_TOOLTIP": "Edit product",
+      "DELETE_TOOLTIP": "Delete product"
+    },
+    "ADD": {
+      "TITLE": "Add New Product",
+      "SAVING": "Saving product..."
+    },
+    "EDIT": {
+      "TITLE": "Edit Product",
+      "LOADING": "Loading product..."
+    },
+    "FORM": {
+      "NAME": "Product Name",
+      "NAME_PLACEHOLDER": "Enter product name",
+      "DESCRIPTION": "Description",
+      "DESCRIPTION_PLACEHOLDER": "Enter product description",
+      "PRICE": "Price",
+      "PRICE_PLACEHOLDER": "0.00",
+      "CATEGORY": "Category",
+      "STOCK": "Stock",
+      "STOCK_PLACEHOLDER": "0",
+      "CANCEL": "Cancel",
+      "SAVE": "Save",
+      "UPDATE": "Update"
+    },
+    "DIALOGS": {
+      "DELETE_TITLE": "Delete Product",
+      "DELETE_MESSAGE": "Are you sure you want to delete product \"{{name}}\"?",
+      "SUCCESS_CREATE": "Product created successfully.",
+      "SUCCESS_UPDATE": "Product updated successfully.",
+      "SUCCESS_DELETE": "Product deleted successfully.",
+      "ERROR_CREATE": "Error creating product.",
+      "ERROR_UPDATE": "Error updating product.",
+      "ERROR_DELETE": "Error deleting product.",
+      "UNSAVED_CHANGES": "You have unsaved changes in the form.",
+      "CONFIRM_CANCEL": "Do you want to cancel changes and go back?"
+    }
+  },
+  "ORDERS": {
+    "TITLE": "Orders",
+    "FILTER_STATUS": "Filter by Status",
+    "ALL_STATUSES": "All Statuses",
+    "SEARCH_PLACEHOLDER": "Search orders...",
+    "SEARCH_INPUT_PLACEHOLDER": "Order number, customer name, address...",
+    "SEARCH_MIN_LENGTH": "Enter at least 3 characters to search",
+    "CLEAR_FILTERS": "Clear Filters",
+    "LOADING": "Loading orders...",
+    "RETRY": "Retry",
+    "ERROR_TITLE": "Error Loading Orders",
+    "NO_DATA": "No orders found",
+    "NO_DATA_FILTER": "No orders match your filters",
+    "STATUS": {
+      "DRAFT": "Draft",
+      "CONFIRMED": "Confirmed",
+      "PAID": "Paid",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled",
+      "UNKNOWN": "Unknown"
+    },
+    "STATUS_DESCRIPTION": {
+      "DRAFT": "Order is created but not yet confirmed",
+      "CONFIRMED": "Order is confirmed and awaiting payment",
+      "PAID": "Payment received and order is being processed",
+      "COMPLETED": "Order has been shipped or delivered",
+      "CANCELLED": "Order has been cancelled"
+    },
+    "TABLE": {
+      "ORDER_NUMBER": "Order #",
+      "CUSTOMER": "Customer",
+      "TOTAL_AMOUNT": "Total",
+      "STATUS": "Status",
+      "ORDER_DATE": "Order Date",
+      "PAID_DATE": "Paid Date",
+      "ACTIONS": "Actions"
+    },
+    "ACTIONS": {
+      "VIEW_DETAILS": "View Details",
+      "CHANGE_STATUS": "Change Status"
+    },
+    "DETAILS": {
+      "TITLE": "Order Details",
+      "LOADING": "Loading order details...",
+      "ORDERED_AT": "Ordered At",
+      "PAID_AT": "Paid At",
+      "CUSTOMER_INFO": "Customer Information",
+      "CUSTOMER_NAME": "Name",
+      "ADDRESS": "Address",
+      "ORDER_ITEMS": "Order Items",
+      "PRODUCT": "Product",
+      "QUANTITY": "Quantity",
+      "UNIT_PRICE": "Unit Price",
+      "DISCOUNT": "Discount",
+      "TOTAL": "Total",
+      "ORDER_TOTAL": "Order Total",
+      "NOTE": "Order Note"
+    },
+    "CHANGE_STATUS": {
+      "TITLE": "Change Order Status",
+      "CURRENT_STATUS": "Current Status",
+      "NEW_STATUS": "New Status",
+      "NO_TRANSITIONS": "No status transitions available for this order",
+      "CANCEL_WARNING": "Warning: Cancelling an order cannot be undone!"
+    },
+    "MESSAGES": {
+      "STATUS_UPDATED": "Order status updated successfully",
+      "CANNOT_CHANGE_STATUS": "This order status cannot be changed"
+    }
+  },
+  "COMMON": {
+    "YES": "Yes",
+    "NO": "No",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "CREATE": "Create",
+    "SEARCH": "Search",
+    "LOADING": "Loading...",
+    "ERROR": "An error occurred",
+    "SUCCESS": "Success",
+    "WARNING": "Warning",
+    "INFO": "Information",
+    "CLOSE": "Close",
+    "CONFIRM": "Confirm",
+    "REFRESH": "Refresh",
+    "RETRY": "Retry",
+    "CLEAR": "Clear",
+    "RESET": "Reset",
+    "APPLY": "Apply",
+    "FILTER": "Filter",
+    "SORT": "Sort",
+    "EXPORT": "Export",
+    "IMPORT": "Import",
+    "DOWNLOAD": "Download",
+    "UPLOAD": "Upload",
+    "VIEW": "View",
+    "DETAILS": "Details",
+    "BACK": "Back",
+    "NEXT": "Next",
+    "PREVIOUS": "Previous",
+    "FINISH": "Finish",
+    "SUBMIT": "Submit",
+    "UPDATE": "Update",
+    "ADD": "Add",
+    "REMOVE": "Remove",
+    "SELECT": "Select",
+    "SELECT_ALL": "Select All",
+    "DESELECT_ALL": "Deselect All",
+    "ACTIONS": "Actions",
+    "STATUS": "Status",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "ENABLED": "Enabled",
+    "DISABLED": "Disabled",
+    "NAME": "Name",
+    "DESCRIPTION": "Description",
+    "PRICE": "Price",
+    "TOTAL": "Total",
+    "SUBTOTAL": "Subtotal",
+    "DISCOUNT": "Discount",
+    "QUANTITY": "Quantity",
+    "DATE": "Date",
+    "TIME": "Time",
+    "CREATED": "Created",
+    "UPDATED": "Updated",
+    "DELETED": "Deleted",
+    "CREATED_AT": "Created At",
+    "UPDATED_AT": "Updated At",
+    "DELETED_AT": "Deleted At",
+    "CREATED_BY": "Created By",
+    "UPDATED_BY": "Updated By",
+    "ALL": "All",
+    "NONE": "None",
+    "OTHER": "Other",
+    "UNKNOWN": "Unknown",
+    "N_A": "N/A",
+    "OPTIONAL": "Optional",
+    "REQUIRED": "Required"
+  },
+  "DIALOGS": {
+    "TYPES": {
+      "INFO": "Information",
+      "SUCCESS": "Success",
+      "ERROR": "Error",
+      "WARNING": "Warning",
+      "QUESTION": "Question"
+    },
+    "BUTTONS": {
+      "OK": "OK",
+      "CANCEL": "Cancel",
+      "YES": "Yes",
+      "NO": "No",
+      "CLOSE": "Close",
+      "DELETE": "Delete",
+      "SAVE": "Save",
+      "CONTINUE": "Continue",
+      "BACK": "Back"
+    },
+    "TITLES": {
+      "CONFIRM_DELETE": "Confirm Deletion",
+      "CONFIRM_ACTION": "Confirm Action",
+      "UNSAVED_CHANGES": "Unsaved Changes",
+      "SUCCESS": "Success",
+      "ERROR": "Error",
+      "WARNING": "Warning",
+      "INFO": "Information"
+    },
+    "MESSAGES": {
+      "DELETE_CONFIRM": "Are you sure you want to delete \"{{name}}\"?",
+      "DELETE_WARNING": "This action cannot be undone.",
+      "UNSAVED_CHANGES": "You have unsaved changes. Do you want to continue?",
+      "SUCCESS_SAVE": "Data saved successfully.",
+      "SUCCESS_DELETE": "Item deleted successfully.",
+      "SUCCESS_UPDATE": "Data updated successfully.",
+      "ERROR_GENERIC": "An error occurred. Please try again.",
+      "ERROR_NETWORK": "Network error. Please check your internet connection.",
+      "ARE_YOU_SURE": "Are you sure?"
+    }
+  },
+  "PAGINATION": {
+    "ITEMS_PER_PAGE": "Items per page",
+    "FIRST_PAGE": "First page",
+    "LAST_PAGE": "Last page",
+    "NEXT_PAGE": "Next page",
+    "PREVIOUS_PAGE": "Previous page",
+    "PAGE": "Page",
+    "OF": "of",
+    "SHOWING": "Showing",
+    "TO": "to",
+    "RESULTS": "results",
+    "NO_ITEMS": "No items to display"
+  },
+  "VALIDATION": {
+    "REQUIRED": "This field is required",
+    "REQUIRED_FIELD": "{{field}} is required",
+    "EMAIL": "Please enter a valid email address",
+    "MIN_LENGTH": "Minimum length is {{min}} characters",
+    "MAX_LENGTH": "Maximum length is {{max}} characters",
+    "MIN_VALUE": "Minimum value is {{min}}",
+    "MAX_VALUE": "Maximum value is {{max}}",
+    "PATTERN": "Invalid format",
+    "NUMBER": "Please enter a valid number",
+    "INTEGER": "Please enter a whole number",
+    "POSITIVE": "Value must be positive",
+    "NEGATIVE": "Value must be negative",
+    "URL": "Please enter a valid URL",
+    "DATE": "Please enter a valid date",
+    "TIME": "Please enter a valid time",
+    "PHONE": "Please enter a valid phone number",
+    "PASSWORD_MATCH": "Passwords do not match",
+    "UNIQUE": "This value already exists",
+    "CUSTOM": "Validation error"
+  },
+  "ERRORS": {
+    "GENERIC": "An error occurred. Please try again.",
+    "NETWORK": "Network error. Please check your connection.",
+    "TIMEOUT": "Request timeout. Please try again.",
+    "UNAUTHORIZED": "You are not authorized to perform this action.",
+    "FORBIDDEN": "Access forbidden.",
+    "NOT_FOUND": "Resource not found.",
+    "SERVER_ERROR": "Server error. Please try again later.",
+    "BAD_REQUEST": "Invalid request.",
+    "CONFLICT": "This action conflicts with existing data.",
+    "VALIDATION": "Please check the form for errors.",
+    "UNKNOWN": "Unknown error occurred."
+  }
+}

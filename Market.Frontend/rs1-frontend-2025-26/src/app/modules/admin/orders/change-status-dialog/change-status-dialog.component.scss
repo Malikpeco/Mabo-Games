@@ -1,0 +1,201 @@
+@import '../admin-orders-status-styles.scss';
+
+$primary-color: #4976b5;
+$text-primary: #2c3e50;
+$text-secondary: #546e7a;
+$text-muted: #90a4ae;
+$border-color: rgba(73, 118, 181, 0.15);
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+}
+
+// Header
+.dialog-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid $border-color;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .header-icon {
+      color: $primary-color;
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: $text-primary;
+    }
+  }
+}
+
+// Content
+.dialog-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// Order Info
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(73, 118, 181, 0.05);
+  border-radius: 8px;
+
+  .order-ref,
+  .customer-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    mat-icon {
+      color: $primary-color;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+
+    span {
+      font-size: 14px;
+      color: $text-primary;
+      font-weight: 500;
+    }
+  }
+
+  .order-ref span {
+    font-weight: 600;
+    color: $primary-color;
+  }
+}
+
+// Status Sections
+.current-status-section,
+.new-status-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Arrow
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+
+  mat-icon {
+    color: $primary-color;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+// Status Radio Group
+.status-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .status-radio-option {
+    padding: 12px;
+    border: 2px solid $border-color;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(73, 118, 181, 0.03);
+      border-color: rgba(73, 118, 181, 0.3);
+    }
+
+    ::ng-deep {
+      .mat-radio-label {
+        margin: 0;
+        width: 100%;
+      }
+
+      .mat-radio-container {
+        margin-right: 12px;
+      }
+    }
+
+    &.mat-radio-checked {
+      background-color: rgba(73, 118, 181, 0.08);
+      border-color: $primary-color;
+    }
+  }
+}
+
+// No Transitions
+.no-transitions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: $text-muted;
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+  }
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+// Warning Message
+.warning-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: #fff3e0;
+  border: 1px solid #ffb74d;
+  border-radius: 8px;
+
+  mat-icon {
+    color: #f57c00;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  p {
+    margin: 0;
+    color: #e65100;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+// Dialog Actions
+.dialog-actions {
+  padding: 16px 24px;
+  border-top: 1px solid $border-color;
+  justify-content: flex-end;
+  gap: 12px;
+}

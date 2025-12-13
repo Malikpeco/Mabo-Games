@@ -1,0 +1,372 @@
+{
+  "APP": {
+    "TITLE": "Dobrodošli u našu aplikaciju",
+    "DESCRIPTION": "Ovo je primjer lokalizacije."
+  },
+  "AUTH": {
+    "LOGIN": {
+      "TITLE": "Prijava",
+      "EMAIL_LABEL": "Email",
+      "EMAIL_PLACEHOLDER": "Unesite email",
+      "PASSWORD_LABEL": "Lozinka",
+      "PASSWORD_PLACEHOLDER": "Unesite lozinku",
+      "REMEMBER_ME": "Zapamti me",
+      "BUTTON": "Prijavi se",
+      "LOADING": "Prijavljivanje..."
+    },
+    "LOGOUT": {
+      "TITLE": "Odjava",
+      "MESSAGE": "Odjavljivanje sa sistema...",
+      "REDIRECT_IN": "Preusmjeravanje za {{seconds}}s"
+    }
+  },
+  "ADMIN_PANEL": {
+    "TITLE": "Admin Panel",
+    "ROLES": {
+      "ADMIN": "Administrator",
+      "MANAGER": "Menadžer",
+      "EMPLOYEE": "Zaposlenik"
+    },
+    "MENU": {
+      "CATALOG": "KATALOG",
+      "CATEGORIES": "Kategorije Proizvoda",
+      "PRODUCTS": "Proizvodi",
+      "ORDERS_SECTION": "NARUDŽBE",
+      "ORDERS": "Pregled Narudžbi",
+      "SYSTEM": "SISTEM",
+      "SETTINGS": "Postavke",
+      "LOGOUT": "Odjava"
+    }
+  },
+  "PRODUCT_CATEGORIES": {
+    "TITLE": "Kategorije Proizvoda",
+    "SUBTITLE": "Upravljanje kategorijama proizvoda",
+    "SEARCH_PLACEHOLDER": "Pretraži kategorije",
+    "SEARCH_INPUT_PLACEHOLDER": "Unesite naziv kategorije...",
+    "ONLY_ENABLED": "Samo Aktivne",
+    "NEW_CATEGORY": "Nova Kategorija",
+    "ADD_NEW": "Dodaj Kategoriju",
+    "LOADING": "Učitavanje kategorija...",
+    "NO_DATA": "Nema kategorija za prikaz",
+    "NO_DATA_FILTER": "Nema rezultata za pretragu",
+    "TABLE": {
+      "NAME": "Naziv",
+      "STATUS": "Status",
+      "ENABLED": "Aktivna",
+      "DISABLED": "Neaktivna",
+      "ACTIONS": "Akcije"
+    },
+    "ACTIONS": {
+      "EDIT_TOOLTIP": "Uredi kategoriju",
+      "DELETE_TOOLTIP": "Obriši kategoriju"
+    },
+    "FORM": {
+      "NAME": "Naziv Kategorije",
+      "NAME_PLACEHOLDER": "Unesite naziv kategorije",
+      "LOADING": "Učitavanje...",
+      "CANCEL": "Otkaži",
+      "SAVE": "Sačuvaj",
+      "UPDATE": "Ažuriraj"
+    },
+    "DIALOGS": {
+      "DELETE_TITLE": "Brisanje Kategorije",
+      "DELETE_MESSAGE": "Da li ste sigurni da želite obrisati kategoriju \"{{name}}\"? Ovo će također obrisati sve proizvode u ovoj kategoriji.",
+      "CONFIRM_ENABLE": "Da li ste sigurni da želite aktivirati kategoriju \"{{name}}\"?",
+      "CONFIRM_DISABLE": "Da li ste sigurni da želite deaktivirati kategoriju \"{{name}}\"?",
+      "SUCCESS_CREATE": "Kategorija uspješno kreirana.",
+      "SUCCESS_UPDATE": "Kategorija uspješno ažurirana.",
+      "SUCCESS_DELETE": "Kategorija uspješno obrisana.",
+      "SUCCESS_ENABLE": "Kategorija \"{{name}}\" je uspješno aktivirana.",
+      "SUCCESS_DISABLE": "Kategorija \"{{name}}\" je uspješno deaktivirana.",
+      "ERROR_CREATE": "Greška pri kreiranju kategorije.",
+      "ERROR_UPDATE": "Greška pri ažuriranju kategorije.",
+      "ERROR_DELETE": "Greška pri brisanju kategorije.",
+      "ERROR_TOGGLE": "Greška pri promjeni statusa kategorije \"{{name}}\"."
+    }
+  },
+  "PRODUCTS": {
+    "TITLE": "Proizvodi",
+    "SUBTITLE": "Upravljanje proizvodima",
+    "SEARCH_PLACEHOLDER": "Pretraži proizvode",
+    "SEARCH_INPUT_PLACEHOLDER": "Unesite naziv proizvoda...",
+    "NEW_PRODUCT": "Novi Proizvod",
+    "ADD_NEW": "Dodaj Proizvod",
+    "LOADING": "Učitavanje proizvoda...",
+    "NO_DATA": "Nema proizvoda za prikaz",
+    "NO_DATA_FILTER": "Nema rezultata za pretragu",
+    "TABLE": {
+      "NAME": "Naziv",
+      "CATEGORY": "Kategorija",
+      "PRICE": "Cijena (KM)",
+      "STOCK": "Zaliha",
+      "ACTIVE": "Aktivan",
+      "ACTIONS": "Akcije"
+    },
+    "ACTIONS": {
+      "EDIT_TOOLTIP": "Uredi proizvod",
+      "DELETE_TOOLTIP": "Obriši proizvod"
+    },
+    "ADD": {
+      "TITLE": "Dodaj Novi Proizvod",
+      "SAVING": "Čuvanje proizvoda..."
+    },
+    "EDIT": {
+      "TITLE": "Uredi Proizvod",
+      "LOADING": "Učitavanje proizvoda..."
+    },
+    "FORM": {
+      "NAME": "Naziv Proizvoda",
+      "NAME_PLACEHOLDER": "Unesite naziv proizvoda",
+      "DESCRIPTION": "Opis",
+      "DESCRIPTION_PLACEHOLDER": "Unesite opis proizvoda",
+      "PRICE": "Cijena",
+      "PRICE_PLACEHOLDER": "0.00",
+      "CATEGORY": "Kategorija",
+      "STOCK": "Zaliha",
+      "STOCK_PLACEHOLDER": "0",
+      "CANCEL": "Otkaži",
+      "SAVE": "Sačuvaj",
+      "UPDATE": "Ažuriraj"
+    },
+    "DIALOGS": {
+      "DELETE_TITLE": "Brisanje Proizvoda",
+      "DELETE_MESSAGE": "Da li ste sigurni da želite obrisati proizvod \"{{name}}\"?",
+      "SUCCESS_CREATE": "Proizvod uspješno kreiran.",
+      "SUCCESS_UPDATE": "Proizvod uspješno ažuriran.",
+      "SUCCESS_DELETE": "Proizvod uspješno obrisan.",
+      "ERROR_CREATE": "Greška pri kreiranju proizvoda.",
+      "ERROR_UPDATE": "Greška pri ažuriranju proizvoda.",
+      "ERROR_DELETE": "Greška pri brisanju proizvoda.",
+      "UNSAVED_CHANGES": "Imate nesačuvane izmjene u formi.",
+      "CONFIRM_CANCEL": "Da li želite otkazati izmjene i vratiti se nazad?"
+    }
+  },
+  "ORDERS": {
+    "TITLE": "Narudžbe",
+    "FILTER_STATUS": "Filtriraj po Statusu",
+    "ALL_STATUSES": "Svi Statusi",
+    "SEARCH_PLACEHOLDER": "Pretraži narudžbe...",
+    "SEARCH_INPUT_PLACEHOLDER": "Broj narudžbe, ime kupca, adresa...",
+    "SEARCH_MIN_LENGTH": "Unesite najmanje 3 znaka za pretragu",
+    "CLEAR_FILTERS": "Očisti Filtere",
+    "LOADING": "Učitavanje narudžbi...",
+    "RETRY": "Pokušaj Ponovo",
+    "ERROR_TITLE": "Greška pri Učitavanju Narudžbi",
+    "NO_DATA": "Nema narudžbi",
+    "NO_DATA_FILTER": "Nema narudžbi koje odgovaraju filterima",
+    "STATUS": {
+      "DRAFT": "Nacrt",
+      "CONFIRMED": "Potvrđena",
+      "PAID": "Plaćena",
+      "COMPLETED": "Završena",
+      "CANCELLED": "Otkazana",
+      "UNKNOWN": "Nepoznato"
+    },
+    "STATUS_DESCRIPTION": {
+      "DRAFT": "Narudžba kreirana ali nije potvrđena",
+      "CONFIRMED": "Narudžba potvrđena i čeka plaćanje",
+      "PAID": "Plaćanje primljeno i narudžba se procesira",
+      "COMPLETED": "Narudžba isporučena",
+      "CANCELLED": "Narudžba otkazana"
+    },
+    "TABLE": {
+      "ORDER_NUMBER": "Broj Narudžbe",
+      "CUSTOMER": "Kupac",
+      "TOTAL_AMOUNT": "Ukupno",
+      "STATUS": "Status",
+      "ORDER_DATE": "Datum Narudžbe",
+      "PAID_DATE": "Datum Plaćanja",
+      "ACTIONS": "Akcije"
+    },
+    "ACTIONS": {
+      "VIEW_DETAILS": "Pogledaj Detalje",
+      "CHANGE_STATUS": "Promijeni Status"
+    },
+    "DETAILS": {
+      "TITLE": "Detalji Narudžbe",
+      "LOADING": "Učitavanje detalja narudžbe...",
+      "ORDERED_AT": "Naručeno",
+      "PAID_AT": "Plaćeno",
+      "CUSTOMER_INFO": "Informacije o Kupcu",
+      "CUSTOMER_NAME": "Ime",
+      "ADDRESS": "Adresa",
+      "ORDER_ITEMS": "Stavke Narudžbe",
+      "PRODUCT": "Proizvod",
+      "QUANTITY": "Količina",
+      "UNIT_PRICE": "Jedinična Cijena",
+      "DISCOUNT": "Popust",
+      "TOTAL": "Ukupno",
+      "ORDER_TOTAL": "Ukupna Narudžba",
+      "NOTE": "Napomena"
+    },
+    "CHANGE_STATUS": {
+      "TITLE": "Promijeni Status Narudžbe",
+      "CURRENT_STATUS": "Trenutni Status",
+      "NEW_STATUS": "Novi Status",
+      "NO_TRANSITIONS": "Nema dostupnih prijelaza statusa za ovu narudžbu",
+      "CANCEL_WARNING": "Upozorenje: Otkazivanje narudžbe ne može se poništiti!"
+    },
+    "MESSAGES": {
+      "STATUS_UPDATED": "Status narudžbe uspješno ažuriran",
+      "CANNOT_CHANGE_STATUS": "Status ove narudžbe ne može se promijeniti"
+    }
+  },
+  "COMMON": {
+    "YES": "Da",
+    "NO": "Ne",
+    "CANCEL": "Otkaži",
+    "SAVE": "Sačuvaj",
+    "DELETE": "Obriši",
+    "EDIT": "Uredi",
+    "CREATE": "Kreiraj",
+    "SEARCH": "Pretraži",
+    "LOADING": "Učitavanje...",
+    "ERROR": "Došlo je do greške",
+    "SUCCESS": "Uspjeh",
+    "WARNING": "Upozorenje",
+    "INFO": "Informacija",
+    "CLOSE": "Zatvori",
+    "CONFIRM": "Potvrdi",
+    "REFRESH": "Osvježi",
+    "RETRY": "Pokušaj Ponovo",
+    "CLEAR": "Očisti",
+    "RESET": "Resetuj",
+    "APPLY": "Primijeni",
+    "FILTER": "Filtriraj",
+    "SORT": "Sortiraj",
+    "EXPORT": "Izvezi",
+    "IMPORT": "Uvezi",
+    "DOWNLOAD": "Preuzmi",
+    "UPLOAD": "Učitaj",
+    "VIEW": "Pogledaj",
+    "DETAILS": "Detalji",
+    "BACK": "Nazad",
+    "NEXT": "Sljedeće",
+    "PREVIOUS": "Prethodno",
+    "FINISH": "Završi",
+    "SUBMIT": "Pošalji",
+    "UPDATE": "Ažuriraj",
+    "ADD": "Dodaj",
+    "REMOVE": "Ukloni",
+    "SELECT": "Odaberi",
+    "SELECT_ALL": "Odaberi Sve",
+    "DESELECT_ALL": "Poništi Sve",
+    "ACTIONS": "Akcije",
+    "STATUS": "Status",
+    "ACTIVE": "Aktivan",
+    "INACTIVE": "Neaktivan",
+    "ENABLED": "Omogućen",
+    "DISABLED": "Onemogućen",
+    "NAME": "Naziv",
+    "DESCRIPTION": "Opis",
+    "PRICE": "Cijena",
+    "TOTAL": "Ukupno",
+    "SUBTOTAL": "Međuzbroj",
+    "DISCOUNT": "Popust",
+    "QUANTITY": "Količina",
+    "DATE": "Datum",
+    "TIME": "Vrijeme",
+    "CREATED": "Kreirano",
+    "UPDATED": "Ažurirano",
+    "DELETED": "Obrisano",
+    "CREATED_AT": "Kreirano",
+    "UPDATED_AT": "Ažurirano",
+    "DELETED_AT": "Obrisano",
+    "CREATED_BY": "Kreirao",
+    "UPDATED_BY": "Ažurirao",
+    "ALL": "Sve",
+    "NONE": "Ništa",
+    "OTHER": "Ostalo",
+    "UNKNOWN": "Nepoznato",
+    "N_A": "N/D",
+    "OPTIONAL": "Opciono",
+    "REQUIRED": "Obavezno"
+  },
+  "DIALOGS": {
+    "TYPES": {
+      "INFO": "Informacija",
+      "SUCCESS": "Uspjeh",
+      "ERROR": "Greška",
+      "WARNING": "Upozorenje",
+      "QUESTION": "Pitanje"
+    },
+    "BUTTONS": {
+      "OK": "U redu",
+      "CANCEL": "Otkaži",
+      "YES": "Da",
+      "NO": "Ne",
+      "CLOSE": "Zatvori",
+      "DELETE": "Obriši",
+      "SAVE": "Sačuvaj",
+      "CONTINUE": "Nastavi",
+      "BACK": "Nazad"
+    },
+    "TITLES": {
+      "CONFIRM_DELETE": "Potvrdi Brisanje",
+      "CONFIRM_ACTION": "Potvrdi Akciju",
+      "UNSAVED_CHANGES": "Nesačuvane Izmjene",
+      "SUCCESS": "Uspjeh",
+      "ERROR": "Greška",
+      "WARNING": "Upozorenje",
+      "INFO": "Informacija"
+    },
+    "MESSAGES": {
+      "DELETE_CONFIRM": "Da li ste sigurni da želite obrisati \"{{name}}\"?",
+      "DELETE_WARNING": "Ova akcija se ne može poništiti.",
+      "UNSAVED_CHANGES": "Imate nesačuvane izmjene. Da li želite nastaviti?",
+      "SUCCESS_SAVE": "Podaci uspješno sačuvani.",
+      "SUCCESS_DELETE": "Stavka uspješno obrisana.",
+      "SUCCESS_UPDATE": "Podaci uspješno ažurirani.",
+      "ERROR_GENERIC": "Došlo je do greške. Molimo pokušajte ponovo.",
+      "ERROR_NETWORK": "Greška u mreži. Provjerite internet konekciju.",
+      "ARE_YOU_SURE": "Da li ste sigurni?"
+    }
+  },
+  "PAGINATION": {
+    "ITEMS_PER_PAGE": "Stavki po stranici",
+    "FIRST_PAGE": "Prva stranica",
+    "LAST_PAGE": "Posljednja stranica",
+    "NEXT_PAGE": "Sljedeća stranica",
+    "PREVIOUS_PAGE": "Prethodna stranica",
+    "PAGE": "Stranica",
+    "OF": "od",
+    "SHOWING": "Prikazano",
+    "TO": "do",
+    "RESULTS": "rezultata",
+    "NO_ITEMS": "Nema stavki za prikaz"
+  },
+  "VALIDATION": {
+    "REQUIRED": "Ovo polje je obavezno",
+    "REQUIRED_FIELD": "{{field}} je obavezno",
+    "EMAIL": "Unesite validnu email adresu",
+    "MIN_LENGTH": "Minimalna dužina je {{min}} znakova",
+    "MAX_LENGTH": "Maksimalna dužina je {{max}} znakova",
+    "MIN_VALUE": "Minimalna vrijednost je {{min}}",
+    "MAX_VALUE": "Maksimalna vrijednost je {{max}}",
+    "PATTERN": "Neispravan format",
+    "NUMBER": "Unesite validan broj",
+    "INTEGER": "Unesite cijeli broj",
+    "POSITIVE": "Vrijednost mora biti pozitivna",
+    "NEGATIVE": "Vrijednost mora biti negativna",
+    "URL": "Unesite validan URL",
+    "DATE": "Unesite validan datum",
+    "TIME": "Unesite validno vrijeme",
+    "PHONE": "Unesite validan broj telefona",
+    "PASSWORD_MATCH": "Lozinke se ne podudaraju",
+    "UNIQUE": "Ova vrijednost već postoji",
+    "CUSTOM": "Greška pri validaciji"
+  },
+  "ERRORS": {
+    "GENERIC": "Došlo je do greške. Pokušajte ponovo.",
+    "NETWORK": "Greška u mreži. Provjerite konekciju.",
+    "TIMEOUT": "Isteklo vrijeme zahtjeva. Pokušajte ponovo.",
+    "UNAUTHORIZED": "Niste autorizovani za ovu akciju.",
+    "FORBIDDEN": "Pristup zabranjen.",
+    "NOT_FOUND": "Resurs nije pronađen.",
+    "SERVER_ERROR": "Greška na serveru. Pokušajte kasnije.",
+    "BAD_REQUEST": "Neispravan zahtjev.",
+    "CONFLICT": "Ova akcija je u konfliktu sa postojećim podacima.",
+    "VALIDATION": "Provjerite formu za greške.",
+    "UNKNOWN": "Nepoznata greška."
+  }
+}

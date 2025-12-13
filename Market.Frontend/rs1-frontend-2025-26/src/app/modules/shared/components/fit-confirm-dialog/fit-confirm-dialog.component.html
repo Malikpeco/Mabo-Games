@@ -1,0 +1,45 @@
+<!-- src/app/modules/shared/components/fit-confirm-dialog/fit-fit-confirm-dialog.component.html -->
+
+<div class="confirm-dialog">
+  <!-- Icon -->
+  <div class="dialog-icon" [ngClass]="getIconClass()">
+    <mat-icon>{{ getDefaultIcon() }}</mat-icon>
+  </div>
+
+  <!-- Title -->
+  <h2 mat-dialog-title>{{ getTitle() }}</h2>
+
+  <!-- Content -->
+  <mat-dialog-content>
+    <p class="dialog-message">{{ getMessage() }}</p>
+  </mat-dialog-content>
+
+  <!-- Actions -->
+  <mat-dialog-actions align="end">
+    <ng-container *ngFor="let button of config.buttons">
+      <!-- Stroked buttons (Cancel, No, Close) -->
+      <button
+        *ngIf="button.type === 'cancel' || button.type === 'no' || button.type === 'close'"
+        mat-stroked-button
+        [color]="button.color || 'primary'"
+        (click)="onButtonClick(button.type, button.result)"
+        class="dialog-button"
+      >
+        <mat-icon>{{ getButtonIcon(button.type) }}</mat-icon>
+        <span>{{ getButtonLabel(button) }}</span>
+      </button>
+
+      <!-- Raised buttons (OK, Yes, Delete, Save) -->
+      <button
+        *ngIf="button.type !== 'cancel' && button.type !== 'no' && button.type !== 'close'"
+        mat-raised-button
+        [color]="button.color || (button.type === 'delete' ? 'warn' : 'primary')"
+        (click)="onButtonClick(button.type, button.result)"
+        class="dialog-button"
+      >
+        <mat-icon>{{ getButtonIcon(button.type) }}</mat-icon>
+        <span>{{ getButtonLabel(button) }}</span>
+      </button>
+    </ng-container>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,342 @@
+// Colors
+$primary-color: #4976b5;
+$primary-light: #6b92c9;
+$primary-dark: #365a8f;
+$accent-color: #5b9bd5;
+$success-color: #66bb6a;
+$error-color: #ef5350;
+$text-primary: #212121;
+$text-secondary: #757575;
+$text-light: #9e9e9e;
+$background-card: #ffffff;
+$background-light: #f5f8fc;
+$border-color: #e3e8ef;
+$shadow-md: 0 4px 12px rgba(73, 118, 181, 0.12);
+$shadow-lg: 0 8px 24px rgba(73, 118, 181, 0.16);
+
+// Dialog Container
+::ng-deep .product-category-dialog {
+  .mat-mdc-dialog-container {
+    padding: 0;
+    border-radius: 16px;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
+  }
+}
+
+// Dialog Header
+h2[mat-dialog-title] {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
+  color: $background-card;
+  margin: 0;
+  padding: 24px 32px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative element
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  // Icon
+  &::after {
+    content: 'category';
+    font-family: 'Material Icons';
+    font-size: 28px;
+    margin-right: 8px;
+    opacity: 0.9;
+  }
+}
+
+// Dialog Content
+mat-dialog-content {
+  padding: 32px;
+  min-height: 180px;
+  background-color: $background-light;
+
+  form {
+    .full-width {
+      margin-top: 50px;
+      width: 100%;
+    }
+
+    mat-form-field {
+      &.mat-form-field-appearance-outline {
+        .mat-mdc-form-field-flex {
+          background-color: $background-card;
+          border-radius: 12px;
+          padding: 4px 8px;
+          box-shadow: 0 2px 4px rgba(73, 118, 181, 0.06);
+          transition: all 0.3s ease;
+
+          &:hover {
+            box-shadow: 0 4px 8px rgba(73, 118, 181, 0.12);
+          }
+        }
+
+        &.mat-focused {
+          .mat-mdc-form-field-flex {
+            box-shadow: 0 4px 12px rgba(73, 118, 181, 0.18);
+          }
+
+          .mat-mdc-notched-outline {
+            .mat-mdc-notched-outline-leading,
+            .mat-mdc-notched-outline-notch,
+            .mat-mdc-notched-outline-trailing {
+              border-color: $primary-color !important;
+              border-width: 2px !important;
+            }
+          }
+
+          .mat-mdc-floating-label {
+            color: $primary-color !important;
+          }
+        }
+
+        .mat-mdc-notched-outline {
+          .mat-mdc-notched-outline-leading,
+          .mat-mdc-notched-outline-notch,
+          .mat-mdc-notched-outline-trailing {
+            border-color: $border-color;
+          }
+        }
+
+        .mat-mdc-floating-label {
+          color: $text-secondary;
+          font-weight: 500;
+        }
+
+        input {
+          color: $text-primary;
+          font-size: 15px;
+          padding: 12px 0;
+
+          &::placeholder {
+            color: $text-light;
+          }
+        }
+
+        mat-icon[matSuffix] {
+          color: $primary-color;
+          font-size: 22px;
+          width: 22px;
+          height: 22px;
+          opacity: 0.8;
+          transition: all 0.3s ease;
+        }
+
+        &:hover mat-icon[matSuffix] {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+
+        // Error State
+        &.mat-form-field-invalid {
+          .mat-mdc-notched-outline {
+            .mat-mdc-notched-outline-leading,
+            .mat-mdc-notched-outline-notch,
+            .mat-mdc-notched-outline-trailing {
+              border-color: $error-color !important;
+            }
+          }
+
+          mat-icon[matSuffix] {
+            color: $error-color;
+          }
+        }
+
+        mat-error {
+          color: $error-color;
+          font-size: 12px;
+          font-weight: 500;
+          margin-top: 4px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          &::before {
+            content: 'error';
+            font-family: 'Material Icons';
+            font-size: 16px;
+          }
+        }
+
+        mat-hint {
+          color: $text-secondary;
+          font-size: 12px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // Loading Container
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: $background-card;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(73, 118, 181, 0.08);
+
+    mat-spinner {
+      margin-bottom: 20px;
+
+      ::ng-deep circle {
+        stroke: $primary-color;
+      }
+    }
+
+    p {
+      color: $text-secondary;
+      font-size: 14px;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+}
+
+// Dialog Actions
+mat-dialog-actions {
+  padding: 20px 32px 24px;
+  margin: 0;
+  background-color: $background-card;
+  border-top: 1px solid $border-color;
+  gap: 12px;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    min-width: 120px;
+    height: 44px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+
+    // Cancel Button
+    &[mat-button] {
+      color: $text-secondary;
+      background-color: transparent;
+      border: 2px solid $border-color;
+
+      mat-icon {
+        color: $text-secondary;
+      }
+
+      &:hover:not([disabled]) {
+        background-color: $background-light;
+        border-color: $text-secondary;
+        color: $text-primary;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        mat-icon {
+          color: $text-primary;
+        }
+      }
+
+      &[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    // Submit Button
+    &[mat-raised-button] {
+      background: linear-gradient(135deg, $primary-color 0%, $accent-color 100%);
+      color: $background-card;
+      box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+      border: none;
+
+      mat-icon {
+        color: $background-card;
+      }
+
+      mat-spinner {
+        ::ng-deep circle {
+          stroke: $background-card;
+        }
+      }
+
+      &:hover:not([disabled]) {
+        background: linear-gradient(135deg, $primary-dark 0%, $primary-color 100%);
+        box-shadow: 0 6px 16px rgba($primary-color, 0.4);
+        transform: translateY(-2px);
+      }
+
+      &[disabled] {
+        background: linear-gradient(135deg, lighten($border-color, 5%) 0%, $border-color 100%);
+        color: $text-light;
+        box-shadow: none;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 600px) {
+  h2[mat-dialog-title] {
+    padding: 20px 24px;
+    font-size: 20px;
+  }
+
+  mat-dialog-content {
+    padding: 24px 20px;
+  }
+
+  mat-dialog-actions {
+    padding: 16px 20px 20px;
+    flex-direction: column-reverse;
+
+    button {
+      width: 100%;
+      margin: 4px 0;
+    }
+  }
+}
+
+// Animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+mat-dialog-content {
+  animation: fadeIn 0.3s ease-out;
+}
