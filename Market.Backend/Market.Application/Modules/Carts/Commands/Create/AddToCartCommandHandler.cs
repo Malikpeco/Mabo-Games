@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
 
-namespace Market.Application.Modules.AddToCart.Commands
+namespace Market.Application.Modules.Carts.Commands.Create
 {
     public class AddToCartCommandHandler : IRequestHandler<AddToCartCommand, Unit>
     {
         private readonly IAppDbContext _context;
-        private readonly IAppCurrentUser _currentUser; 
+        private readonly IAppCurrentUser _currentUser;
 
         public AddToCartCommandHandler(IAppDbContext context, IAppCurrentUser currentUser)
         {
@@ -53,7 +53,7 @@ namespace Market.Application.Modules.AddToCart.Commands
             var cartItem = new CartItemEntity
             {
                 CartId = cart.Id,
-                GameId = request.GameId    
+                GameId = request.GameId
             };
             _context.CartItems.Add(cartItem);
 
