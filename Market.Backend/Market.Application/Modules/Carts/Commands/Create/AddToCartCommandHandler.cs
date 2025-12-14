@@ -1,5 +1,6 @@
 ﻿using Market.Application.Modules.RegisterUser.Dto;
 using Market.Domain.Entities;
+using MediatR;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Market.Application.Modules.Carts.Commands.Create
 
             var cart = await _context.Carts
                 .Include(c => c.CartItems)
+                .ThenInclude(ci=>ci.Game)
                 .FirstOrDefaultAsync(c => c.UserId == userId, cancellationToken);
 
             if (cart == null)
@@ -57,6 +59,8 @@ namespace Market.Application.Modules.Carts.Commands.Create
             };
             _context.CartItems.Add(cartItem);
 
+            cart.TotalPrice += game.Price;
+            
             await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
