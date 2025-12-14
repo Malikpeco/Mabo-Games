@@ -21,6 +21,10 @@ namespace Market.Infrastructure.Database.Configurations
                 .WithOne(ci => ci.Cart)
                 .HasForeignKey(ci => ci.CartId)
                 ; //delete all cartItems if cart is deleted
+
+
+            builder.Property(c => c.TotalPrice)
+            .HasColumnType("decimal(18,2)");
         }
     }
 }

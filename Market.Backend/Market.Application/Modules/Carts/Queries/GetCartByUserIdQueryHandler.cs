@@ -1,23 +1,40 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using Market.Application.Modules.Carts.Dto;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace Market.Application.Modules.Carts.Queries
-//{
-//    public sealed class GetCartByUserIdQueryHandler(IAppDbContext context, IAppCurrentUser currentUser)
-//        : IRequestHandler<GetCartByUserIdQuery, Unit>
-//    {
+namespace Market.Application.Modules.Carts.Queries
+{
+    public sealed class GetCartByUserIdQueryHandler(IAppDbContext context, IAppCurrentUser currentUser)
+        : IRequestHandler<GetCartByUserIdQuery, CartDto>
+    {
 
-//        public async Task<Unit> Handle(GetCartByUserIdQuery request, CancellationToken ct)
-//        {
-//            var c = await context.Carts
-//                .Where(x => x.UserId == currentUser.UserId)
-//                .FirstOrDefaultAsync(ct);
+        public async Task<CartDto> Handle(GetCartByUserIdQuery request, CancellationToken ct)
+        {
+            var cart = await context.Carts.AsNoTracking()
+                .Where(c => c.UserId == currentUser.UserId)
+                .Select(c => new CartDto
+                {
+                    Id = c.Id,
+                    TotalPrice = c.TotalPrice,
+                    CartItems = c.CartItems
+                        .Select(ci => new CartItemDto
+                        {
+                            Id = ci.Id,
+                            GameId = ci.GameId,
+                            GameName = ci.Game.Name,
+                            Price = ci.Game.Price,
+                            AddedAt = ci.AddedAt,
+                            IsSaved = ci.IsSaved
+                        })
+                        .ToList()
+                })
+                .FirstOrDefaultAsync(ct);
 
-//            return c;
+            return cart ?? new CartDto();
 
-//        }
-//    }
-//}
+        }
+    }
+}
