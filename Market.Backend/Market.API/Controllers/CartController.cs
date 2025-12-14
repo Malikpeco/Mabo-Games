@@ -1,4 +1,6 @@
 ﻿using Market.Application.Modules.Carts.Commands.Create;
+using Market.Application.Modules.Carts.Dto;
+using Market.Application.Modules.Carts.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,5 +17,14 @@ namespace Market.API.Controllers
             await sender.Send(command, ct);
             return Ok();
         }
+
+
+
+        [HttpGet("GetCart")]
+        public async Task<CartDto> Get(CancellationToken ct)
+        {
+            return await sender.Send(new GetCartByUserIdQuery(), ct);
+        }
+
     }
 }
