@@ -4,6 +4,7 @@ using Market.Application.Modules.SecurityQuestions.Dto;
 using Market.Application.Modules.SecurityQuestions.Queries.GetById;
 using Market.Application.Modules.UserSecurityQuestions.Commands.Create;
 using Market.Application.Modules.UserSecurityQuestions.Queries.GetById;
+using Market.Application.Modules.UserSecurityQuestions.Queries.List;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Market.API.Controllers
@@ -21,12 +22,22 @@ namespace Market.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id }, new { id });
         }
 
+        [HttpGet]
+
+        public async Task<ActionResult<List<ListUserSecurityQuestionsQueryDto>>> List([FromQuery]ListUserSecurityQuestionsQuery query, CancellationToken ct)
+        {
+            var result = await sender.Send(query, ct);
+            return Ok(result);
+        }
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult<GetUserSecurityQuestionsByIdQueryDto>> GetById(int id, CancellationToken ct)
         {
             var result = await sender.Send(new GetUserSecurityQuestionsByIdQuery { Id = id }, ct);
             return Ok(result); 
         }
+
+
 
 
     }

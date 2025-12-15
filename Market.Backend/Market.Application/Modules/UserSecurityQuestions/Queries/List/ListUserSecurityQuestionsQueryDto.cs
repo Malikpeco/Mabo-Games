@@ -2,6 +2,7 @@
 {
     public sealed class ListUserSecurityQuestionsQueryDto
     {
-        // TODO: Add properties here
+        public int Id { get; set; }
+        public string Question {  get; set; }
     }
 }

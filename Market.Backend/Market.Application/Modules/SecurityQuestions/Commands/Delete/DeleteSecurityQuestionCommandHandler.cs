@@ -8,7 +8,7 @@ namespace Market.Application.Modules.SecurityQuestions.Commands.Delete
         public async Task<DeleteSecurityQuestionResultDto> Handle(DeleteSecurityQuestionCommand request, CancellationToken cancellationToken)
         {
             if (!appCurrentUser.IsAdmin)
-                throw new MarketBusinessRuleException("123", "Unauthorized access, you do not have admin privileges.");
+                throw new MarketForbiddenException();
 
             var securityQuestion = await context.SecurityQuestions
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);

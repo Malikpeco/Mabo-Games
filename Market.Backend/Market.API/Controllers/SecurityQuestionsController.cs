@@ -45,12 +45,12 @@ namespace Market.API.Controllers
 
 
 
-        [HttpGet]
 
-        public async Task<ActionResult<List<ListSecurityQuestionsQueryDto>>> GetAll(CancellationToken ct)
+        [HttpGet]
+        public async Task<PageResult<ListSecurityQuestionsQueryDto>> List([FromQuery] ListSecurityQuestionsQuery query, CancellationToken ct)
         {
-            var result = await sender.Send(new ListSecurityQuestionsQuery(), ct);
-            return Ok(result);
+            var result = await sender.Send(query, ct);
+            return result;
         }
 
 

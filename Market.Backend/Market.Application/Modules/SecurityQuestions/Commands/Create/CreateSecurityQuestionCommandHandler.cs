@@ -12,7 +12,7 @@ namespace Market.Application.Modules.SecurityQuestions.Commands.Create
         {
             //Only admins are allow to add security questions
             if (!appCurrentUser.IsAdmin)
-                throw new MarketBusinessRuleException("123", "Unauthorized access, you do not have admin privileges.");
+                throw new MarketForbiddenException();
 
             bool exists = await context.SecurityQuestions.AnyAsync(x => x.Question == request.Question);
 
