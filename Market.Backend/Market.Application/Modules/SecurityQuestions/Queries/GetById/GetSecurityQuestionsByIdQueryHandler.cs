@@ -7,6 +7,7 @@
 
 
             var q = await context.SecurityQuestions
+                .AsNoTracking()
                 .Where(x => x.Id == request.Id)
                 .Select(y=>new GetSecurityQuestionsByIdQueryDto
                 {
@@ -20,7 +21,6 @@
                 throw new MarketNotFoundException($"Security question with the id: {request.Id} was not found!");
 
             return q;
-
 
         }
     }

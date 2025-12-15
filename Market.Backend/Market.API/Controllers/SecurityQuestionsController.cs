@@ -12,21 +12,21 @@ namespace Market.API.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/security-questions")]
     public class SecurityQuestionsController(ISender sender) : ControllerBase
     {
 
         [HttpPost]
-        public async Task<ActionResult<CreateSecurityQuestionResultDto>> Create(CreateSecurityQuestionsCommand command, CancellationToken ct)
+        public async Task<ActionResult<CreateSecurityQuestionResultDto>> Create(CreateSecurityQuestionCommand command, CancellationToken ct)
         {
             var resultDto = await sender.Send(command, ct);
 
-            return Ok(resultDto);
+            return CreatedAtAction(nameof(GetById), new { id = resultDto.Id},resultDto);
         }
 
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<UpdateSecurityQuestionResultDto>> Update(int id, UpdateSecurityQuestionsCommand command, CancellationToken ct)
+        public async Task<ActionResult<UpdateSecurityQuestionResultDto>> Update(int id, UpdateSecurityQuestionCommand command, CancellationToken ct)
         {
             command.Id = id;
             var result =await sender.Send(command, ct);
@@ -35,10 +35,10 @@ namespace Market.API.Controllers
 
         }
 
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult<DeleteSecurityQuestionResultDto>> Delete(int id, CancellationToken ct)
         {
-            var result = await sender.Send(new DeleteSecurityQuestionsCommand { Id = id }, ct);
+            var result = await sender.Send(new DeleteSecurityQuestionCommand { Id = id }, ct);
 
             return Ok(result);
         }
@@ -47,18 +47,18 @@ namespace Market.API.Controllers
 
         [HttpGet]
 
-        public async Task<List<ListSecurityQuestionsQueryDto>> GetAll(CancellationToken ct)
+        public async Task<ActionResult<List<ListSecurityQuestionsQueryDto>>> GetAll(CancellationToken ct)
         {
             var result = await sender.Send(new ListSecurityQuestionsQuery(), ct);
-            return result;
+            return Ok(result);
         }
 
 
         [HttpGet("{id:int}")]
-        public async Task<GetSecurityQuestionsByIdQueryDto> GetById(int id, CancellationToken ct)
+        public async Task<ActionResult<GetSecurityQuestionsByIdQueryDto>> GetById(int id, CancellationToken ct)
         {
             var result = await sender.Send(new GetSecurityQuestionsByIdQuery { Id = id }, ct);
-            return result; // if NotFoundException -> 404 via middleware
+            return Ok(result); 
         }
 
     }

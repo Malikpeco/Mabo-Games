@@ -4,7 +4,7 @@ using Market.Application.Modules.Countries.Queries.List;
 namespace Market.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/countries")]
 public class CountriesController(ISender sender) : ControllerBase
 {
     // POST /countries      
