@@ -16,7 +16,7 @@ public interface IAppDbContext
     DbSet<GameGenreEntity> GameGenres { get; }
     DbSet<NotificationEntity> Notifications { get; }
     DbSet<OrderEntity> Orders { get; }
-    DbSet<OrderItemEntity> OrderItem { get; }
+    DbSet<OrderItemEntity> OrderItems { get; }
     DbSet<PaymentEntity> Payments { get; }
     DbSet<PublisherEntity> Publishers { get; }
     DbSet<ReviewEntity> Reviews { get; }
