@@ -11,7 +11,7 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace Market.Application.Modules.Carts.Commands.Create
 {
-    public class AddToCartCommandHandler : IRequestHandler<AddToCartCommand, Unit>
+    public sealed class AddToCartCommandHandler : IRequestHandler<AddToCartCommand, Unit>
     {
         private readonly IAppDbContext _context;
         private readonly IAppCurrentUser _currentUser;
