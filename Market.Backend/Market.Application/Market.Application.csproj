@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Market.Shared\Market.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modules\Carts\Commands\DeleteUnsavedCartItems\" />
+  </ItemGroup>
+
 </Project>

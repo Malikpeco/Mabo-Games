@@ -16,7 +16,7 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<GameGenreEntity> GameGenres=> Set<GameGenreEntity>();
     public DbSet<NotificationEntity> Notifications => Set<NotificationEntity>();
     public DbSet<OrderEntity> Orders=> Set<OrderEntity>();
-    public DbSet<OrderItemEntity> OrderItem=> Set<OrderItemEntity>();
+    public DbSet<OrderItemEntity> OrderItems=> Set<OrderItemEntity>();
     public DbSet<PaymentEntity> Payments=> Set<PaymentEntity>();
     public DbSet<PublisherEntity> Publishers => Set<PublisherEntity>();
     public DbSet<ReviewEntity> Reviews => Set<ReviewEntity>();

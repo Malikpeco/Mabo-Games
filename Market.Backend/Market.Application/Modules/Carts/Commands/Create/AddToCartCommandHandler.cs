@@ -25,6 +25,8 @@ namespace Market.Application.Modules.Carts.Commands.Create
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
             var userId = _currentUser.UserId;
+            
+            await EnsureNoPendingOrder(_context, userId.Value, cancellationToken);
 
             var cart = await _context.Carts
                 .Include(c => c.CartItems)
@@ -65,6 +67,16 @@ namespace Market.Application.Modules.Carts.Commands.Create
 
             return Unit.Value;
         }
+
+        private static async Task EnsureNoPendingOrder(IAppDbContext context, int userid, CancellationToken ct)
+        {
+            var hasPending = await context.Orders
+                .AnyAsync(o => o.UserId == userid && o.OrderStatus == "Pending", ct);
+
+            if (hasPending)
+                throw new ValidationException("Checkout in progress. Cart is locked.");
+        }
+
     }
 
 }

@@ -10,7 +10,7 @@ namespace Market.API.Controllers
     [ApiController]
     [Route("[controller]")]
     [Authorize]
-    public class CartController(ISender sender) : ControllerBase
+    public class CartsController(ISender sender) : ControllerBase
     {
         [HttpPost("AddToCart")]
         public async Task<ActionResult> Add(AddToCartCommand command, CancellationToken ct)

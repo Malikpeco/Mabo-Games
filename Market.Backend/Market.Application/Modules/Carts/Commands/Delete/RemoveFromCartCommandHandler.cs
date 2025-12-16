@@ -16,6 +16,9 @@ namespace Market.Application.Modules.Carts.Commands.Delete
                 .ThenInclude(ci=>ci.Game)
                 .FirstOrDefaultAsync(c => c.UserId == currentUser.UserId,ct);
 
+            await EnsureNoPendingOrder(context, currentUser.UserId.Value, ct);
+
+
             var cartitem = cart.CartItems.FirstOrDefault(ci => ci.GameId == request.GameId);
             if (cartitem == null)
             {
@@ -31,6 +34,15 @@ namespace Market.Application.Modules.Carts.Commands.Delete
             await context.SaveChangesAsync(ct);
             return Unit.Value;
 
+        }
+
+        private static async Task EnsureNoPendingOrder(IAppDbContext context, int userid, CancellationToken ct)
+        {
+            var hasPending = await context.Orders
+                .AnyAsync(o => o.UserId == userid && o.OrderStatus == "Pending", ct);
+
+            if (hasPending)
+                throw new ValidationException("Checkout in progress. Cart is locked.");
         }
     }
 }
