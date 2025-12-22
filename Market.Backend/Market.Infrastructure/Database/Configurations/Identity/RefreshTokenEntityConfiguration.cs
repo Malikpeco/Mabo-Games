@@ -20,7 +20,5 @@ public sealed class RefreshTokenEntityConfiguration : IEntityTypeConfiguration<R
         b.Property(x => x.IsRevoked)
             .HasDefaultValue(false);
 
-        b.Property(x => x.Fingerprint)
-            .HasMaxLength(200);
     }
 }

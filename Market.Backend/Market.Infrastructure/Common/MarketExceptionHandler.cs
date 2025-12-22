@@ -60,6 +60,7 @@ public sealed class MarketExceptionHandler(
         switch (ex)
         {
             case MarketNotFoundException:
+            case MarketForbiddenException:
             case MarketConflictException:
             case MarketBusinessRuleException:
                 code = "entity.error";

@@ -15,8 +15,4 @@ public sealed class LoginCommand : IRequest<LoginCommandDto>
     /// </summary>
     public string Password { get; init; }
 
-    /// <summary>
-    /// (Optional) Client "fingerprint" / device identifier for device-bound refresh tokens.
-    /// </summary>
-    public string? Fingerprint { get; init; }
 }
