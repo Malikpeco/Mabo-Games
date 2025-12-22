@@ -10,6 +10,7 @@ namespace Market.Domain.Entities
         public DateTime ReleaseDate { get; set; }
         public int PublisherId { get; set; }
         public PublisherEntity Publisher { get; set; }
+        public string? CoverImageURL { get; set; }
         public IReadOnlyCollection<UserGameEntity> UserGames { get; private set; } = new List<UserGameEntity>();
         public IReadOnlyCollection<FavouriteEntity> Favourites { get; private set; } = new List<FavouriteEntity>();
         public IReadOnlyCollection<CartItemEntity> CartItems { get; private set; } = new List<CartItemEntity>();

@@ -1,5 +1,4 @@
-﻿using Market.Application.Modules.RegisterUser.Dto;
-using Market.Domain.Entities;
+﻿using Market.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Options;
 using System;
