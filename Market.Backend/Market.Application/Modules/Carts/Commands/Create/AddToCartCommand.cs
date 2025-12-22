@@ -1,11 +1,4 @@
-﻿using Market.Application.Modules.RegisterUser.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Market.Application.Modules.Carts.Commands.Create
+﻿namespace Market.Application.Modules.Carts.Commands.Create
 {
     public sealed class AddToCartCommand : IRequest<Unit>
     {
