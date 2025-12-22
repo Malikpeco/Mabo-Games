@@ -24,13 +24,7 @@ public sealed class RefreshTokenCommandHandler(
         if (rt is null || rt.ExpiresAtUtc <= nowUtc)
             throw new MarketConflictException("Refresh token je nevažeći ili je istekao.");
 
-        // (optional) Fingerprint check
-        if (rt.Fingerprint is not null &&
-            request.Fingerprint is not null &&
-            rt.Fingerprint != request.Fingerprint)
-        {
-            throw new MarketConflictException("Neispravan klijentski otisak.");
-        }
+     
 
         var user = rt.User;
         if (user is null || !user.IsEnabled || user.IsDeleted)
@@ -48,8 +42,7 @@ public sealed class RefreshTokenCommandHandler(
         {
             TokenHash = pair.RefreshTokenHash,
             ExpiresAtUtc = pair.RefreshTokenExpiresAtUtc,
-            UserId = user.Id,
-            Fingerprint = request.Fingerprint,
+            UserId = user.Id
         };
 
         ctx.RefreshTokens.Add(newRt);

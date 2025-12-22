@@ -2,6 +2,6 @@
 {
     public sealed class ListUserSecurityQuestionsQuery : IRequest<List<ListUserSecurityQuestionsQueryDto>>
     {
-
+     
     }
 }

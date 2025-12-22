@@ -9,7 +9,9 @@
                 .GreaterThan(0);
 
             RuleFor(x => x.SecurityQuestionAnswer)
-                .NotEmpty();
+                .NotEmpty()
+                .MinimumLength(5)
+                .MaximumLength(100);
         }
     }
 }
