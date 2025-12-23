@@ -2,13 +2,12 @@
 
 namespace Market.Application.Modules.UserSecurityQuestions.Commands.Create
 {
-    public sealed class RegisterUserSecurityQuestionsCommandHandler(IAppDbContext context, IAppCurrentUser appCurrentUser)
+    public sealed class RegisterUserSecurityQuestionsCommandHandler
+        (IAppDbContext context, IAppCurrentUser appCurrentUser,IPasswordHasher<UserSecurityQuestionEntity> answerHasher)
         : IRequestHandler<RegisterUserSecurityQuestionsCommand, int>
     {
         public async Task<int> Handle(RegisterUserSecurityQuestionsCommand request, CancellationToken ct)
         {
-            var answerHasher = new PasswordHasher<UserSecurityQuestionEntity>();
-
 
             //User can only have two questions (not enforced in db, might have to change that later)
             int maxSecurityQuestionCount = await context.

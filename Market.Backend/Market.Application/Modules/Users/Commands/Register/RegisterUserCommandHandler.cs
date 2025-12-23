@@ -5,14 +5,12 @@ using Market.Application.Modules.Users.Dto;
 
 namespace Market.Application.Modules.Users.Commands.Register;
 
-public sealed class RegisterUserCommandHandler(IAppDbContext context) 
+public sealed class RegisterUserCommandHandler(IAppDbContext context, IPasswordHasher<UserEntity> passwordHasher) 
     : IRequestHandler<RegisterUserCommand, RegisterUserResultDto>
 {
     public async Task<RegisterUserResultDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
         bool exists = await context.Users.AnyAsync(x => x.Username == request.Username || x.Email==request.Email, cancellationToken);
-
-        var passwordHasher = new PasswordHasher<UserEntity>();
 
        
         if (exists)
