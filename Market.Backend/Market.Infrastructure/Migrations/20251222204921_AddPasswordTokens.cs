@@ -11,9 +11,9 @@ namespace Market.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Fingerprint",
-                table: "RefreshTokens");
+            //migrationBuilder.DropColumn(
+            //    name: "Fingerprint",
+            //    table: "RefreshTokens");
 
             migrationBuilder.CreateTable(
                 name: "PasswordResetTokens",
@@ -58,12 +58,13 @@ namespace Market.Infrastructure.Migrations
             migrationBuilder.DropTable(
                 name: "PasswordResetTokens");
 
-            migrationBuilder.AddColumn<string>(
-                name: "Fingerprint",
-                table: "RefreshTokens",
-                type: "nvarchar(200)",
-                maxLength: 200,
-                nullable: true);
+        //    migrationBuilder.AddColumn<string>(
+        //        name: "Fingerprint",
+        //        table: "RefreshTokens",
+        //        type: "nvarchar(200)",
+        //        maxLength: 200,
+        //        nullable: true);
+        //
         }
     }
 }

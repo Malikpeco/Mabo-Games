@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Games.Queries.GetStorefrontGames
 {
-    public sealed class GetStorefrontGamesHandler(IAppDbContext context)
+    public sealed class GetStorefrontGamesQueryHandler(IAppDbContext context)
         : IRequestHandler<GetStorefrontGamesQuery, PageResult<StorefrontGameDto>>
     {
         public async Task<PageResult<StorefrontGameDto>> Handle(GetStorefrontGamesQuery request, CancellationToken cancellationToken)
