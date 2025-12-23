@@ -20,7 +20,8 @@ namespace Market.Application.Modules.Carts.Queries
                     Id = c.Id,
                     TotalPrice = c.TotalPrice,
                     CartItems = c.CartItems
-                        .Select(ci => new CartItemDto
+                    //I MIGHT NEED TO UPDATE THIS TO INCLUDE MORE DETAILS ABOUT THE GAME (COVER_PHOTO, ETC.) --DO THIS AFTER THE GETGAMEDETAILS_QUERYHANDLER
+                        .Select(ci => new CartItemDto 
                         {
                             Id = ci.Id,
                             GameId = ci.GameId,
