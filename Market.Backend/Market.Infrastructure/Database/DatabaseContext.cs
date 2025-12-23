@@ -27,6 +27,7 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<UserGameEntity> UserGames  => Set<UserGameEntity>();
     public DbSet<UserSecurityQuestionEntity> UserSecurityQuestions  => Set<UserSecurityQuestionEntity>();
     public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
+    public DbSet<PasswordResetTokenEntity> PasswordResetTokens => Set<PasswordResetTokenEntity>();
 
     private readonly TimeProvider _clock;
     public DatabaseContext(DbContextOptions<DatabaseContext> options, TimeProvider clock) : base(options)

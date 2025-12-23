@@ -1,4 +1,6 @@
 ﻿using Market.Application.Abstractions;
+using Market.Application.Common.Email;
+using Market.Domain.Entities;
 using Market.Infrastructure.Common;
 using Market.Infrastructure.Database;
 using Market.Shared.Constants;
@@ -42,6 +44,7 @@ public static class DependencyInjection
 
         // Identity hasher
         services.AddScoped<IPasswordHasher<UserEntity>, PasswordHasher<UserEntity>>();
+        services.AddScoped<IPasswordHasher<UserSecurityQuestionEntity>, PasswordHasher<UserSecurityQuestionEntity>>();
 
         // Token service (reads JwtOptions via IOptions<JwtOptions>)
         services.AddTransient<IJwtTokenService, JwtTokenService>();
@@ -52,6 +55,10 @@ public static class DependencyInjection
 
         // TimeProvider (if used in handlers/services)
         services.AddSingleton<TimeProvider>(TimeProvider.System);
+
+        // Email sender via SMTP 
+        services.Configure<EmailSettings>(configuration.GetSection("Email"));
+        services.AddScoped<IEmailSender, SmtpEmailSender>();
 
         return services;
     }
