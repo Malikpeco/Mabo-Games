@@ -37,6 +37,9 @@ public static class DependencyInjection
 
             var cs = sp.GetRequiredService<IOptions<ConnectionStringsOptions>>().Value.Main;
             options.UseSqlServer(cs);
+
+            var auditLogInterceptor = sp.GetRequiredService<AuditLogInterceptor>();
+            options.AddInterceptors(auditLogInterceptor);
         });
 
         // IAppDbContext mapping
@@ -59,6 +62,9 @@ public static class DependencyInjection
         // Email sender via SMTP 
         services.Configure<EmailSettings>(configuration.GetSection("Email"));
         services.AddScoped<IEmailSender, SmtpEmailSender>();
+
+        // Audit log interceptor 
+        services.AddScoped<AuditLogInterceptor>();
 
         return services;
     }

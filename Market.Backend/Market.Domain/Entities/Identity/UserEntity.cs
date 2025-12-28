@@ -2,14 +2,21 @@
 
 // MarketUserEntity.cs
 using Market.Domain.Common;
+using Market.Domain.Common.Attributes;
 
 namespace Market.Domain.Entities.Identity;
 
 public sealed class UserEntity : BaseEntity
 {
     public string Username { get; set; }
+
+    [NoAudit]
     public string PasswordHash { get; set; }
+
+    [NoAudit]
     public string Email { get; set; }
+
+    [NoAudit]
     public string? PhoneNumber { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }

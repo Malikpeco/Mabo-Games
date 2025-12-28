@@ -1,5 +1,6 @@
 ﻿using Market.Application.Abstractions;
 using Market.Domain.Entities;
+using Market.Domain.Entities.Catalog;
 
 namespace Market.Infrastructure.Database;
 
@@ -28,6 +29,8 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<UserSecurityQuestionEntity> UserSecurityQuestions  => Set<UserSecurityQuestionEntity>();
     public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
     public DbSet<PasswordResetTokenEntity> PasswordResetTokens => Set<PasswordResetTokenEntity>();
+
+    public DbSet<AuditLogEntity> AuditLogs => Set<AuditLogEntity>();
 
     private readonly TimeProvider _clock;
     public DatabaseContext(DbContextOptions<DatabaseContext> options, TimeProvider clock) : base(options)
