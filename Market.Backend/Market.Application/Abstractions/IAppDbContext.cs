@@ -1,4 +1,5 @@
 ﻿using Market.Domain.Entities;
+using Market.Domain.Entities.Catalog;
 
 namespace Market.Application.Abstractions;
 
@@ -29,6 +30,6 @@ public interface IAppDbContext
     DbSet<RefreshTokenEntity> RefreshTokens { get; }
 
     DbSet<PasswordResetTokenEntity> PasswordResetTokens {get;}
-
+    DbSet<ProcessedWebhookEventEntity> ProcessedWebhookEvents { get; }
     Task<int> SaveChangesAsync(CancellationToken ct);
 }

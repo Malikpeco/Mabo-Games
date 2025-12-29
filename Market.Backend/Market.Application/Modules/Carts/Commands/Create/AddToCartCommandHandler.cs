@@ -45,6 +45,14 @@ namespace Market.Application.Modules.Carts.Commands.Create
                 throw new Exception("Game not found.");
             }
 
+            var alreadyOwned = await _context.UserGames.AnyAsync(ug => ug.UserId == userId.Value && ug.GameId == request.GameId);
+
+            if (alreadyOwned) 
+            {
+                throw new ValidationException("You already own this game!");
+            }
+
+
             var existingItem = cart.CartItems
                 .FirstOrDefault(i => i.GameId == request.GameId);
 

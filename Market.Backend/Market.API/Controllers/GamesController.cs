@@ -10,12 +10,15 @@ namespace Market.API.Controllers
     public sealed class GamesController(ISender sender) : ControllerBase
     {
         [HttpGet("storefront")]
+        [AllowAnonymous]
         public async Task<PageResult<StorefrontGameDto>> GetStorefront([FromQuery] GetStorefrontGamesQuery query, CancellationToken ct)
         {
             return await sender.Send(query, ct);
         }
 
+
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public async Task<GameDetailsDto> GetGameDetails([FromRoute] int id, CancellationToken ct)
         {
             return await sender.Send(new GetGameDetailsQuery { Id = id }, ct);
