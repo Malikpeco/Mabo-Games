@@ -39,6 +39,16 @@ namespace Market.API.Controllers
 
 
 
+        //TODO:
+        //When frontend is added, call this endpoint on user login, immediately after logging in, call this, to clear his cart, and leave only items with isSaved==true
+        [HttpPost("CartCleanup")]
+        public async Task<ActionResult> Cleanup(CancellationToken ct)
+        {
+            await sender.Send(new CartCleanupCommand(), ct);
+            return Ok();
+        }
+
+
 
     }
 }
