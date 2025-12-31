@@ -13,7 +13,8 @@ namespace Market.Application.Modules.Games.Commands.Create
         public async Task<int> Handle(CreateGameCommand request, CancellationToken ct)
         {
             if (!currentUser.IsAdmin)
-                throw new MarketForbiddenException();
+                throw new Exception("You must be an admin to do this!");
+
 
             var publisherExists = await context.Publishers.AnyAsync(p => p.Id == request.PublisherId, ct);
 

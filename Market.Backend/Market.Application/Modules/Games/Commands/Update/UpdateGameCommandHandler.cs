@@ -11,7 +11,7 @@ namespace Market.Application.Modules.Games.Commands.Update
         public async Task<Unit> Handle(UpdateGameCommand request, CancellationToken ct)
         {
             if (!currentUser.IsAdmin)
-                throw new MarketForbiddenException();
+                throw new Exception("You must be an admin to do this!");
 
             var game = await context.Games.FirstOrDefaultAsync(g=>g.Id == request.Id, ct);
             if (game is null)

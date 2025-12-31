@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Market.Shared\Market.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modules\Users\Commands\NewFolder\" />
+  </ItemGroup>
+
 </Project>
