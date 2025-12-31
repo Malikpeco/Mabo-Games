@@ -21,10 +21,9 @@ namespace Market.Application.Modules.Games.Queries.GetStorefrontGames
             }
 
 
-            if (request.GenreId.HasValue)
+            if (request.GenreIds is not null  && request.GenreIds.Count>0)
             {
-                var gid = request.GenreId.Value;
-                q=q.Where(x=>x.GameGenres.Any(gg=>gg.GenreId== gid));
+                q=q.Where(x=>x.GameGenres.Any(gg=>request.GenreIds.Contains(gg.GenreId)));
             }
 
 

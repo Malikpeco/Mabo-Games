@@ -11,6 +11,6 @@ namespace Market.Application.Modules.Games.Queries.GetStorefrontGames
     {
         public string? Search { get; init; }
         public string? Sort { get; init; } 
-        public int? GenreId { get; init; }
+        public List<int>? GenreIds{ get; init; }
     }
 }
