@@ -4,6 +4,8 @@ using Market.Domain.Entities.Identity;
 
 namespace Market.Domain.Entities
 {
+
+    
     public class UserSecurityQuestionEntity : BaseEntity
     {
         public int UserId { get; set; }
@@ -12,6 +14,7 @@ namespace Market.Domain.Entities
         public SecurityQuestionEntity SecurityQuestion { get; set; }
 
         [NoAudit]
+        [PreserveString]
         public string AnswerHash { get; set; }
     }
 }

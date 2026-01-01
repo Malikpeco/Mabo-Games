@@ -5,6 +5,7 @@ using Market.Domain.Entities.Identity;
 namespace Market.Domain.Entities
 {
     [NoAudit]
+    [PreserveString]
     public class NotificationEntity : BaseEntity
     {
         public string Title { get; set; }

@@ -16,6 +16,7 @@ namespace Market.Domain.Entities.Identity
         public UserEntity User { get; set; }
 
         [NoAudit]
+        [PreserveString]
         public string TokenHash { get; set; }
 
         public DateTime ExpiresAt { get; set; }

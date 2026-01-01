@@ -3,6 +3,7 @@ using Market.Domain.Common.Attributes;
 
 namespace Market.Domain.Entities
 {
+    [PreserveString]
     public class PaymentEntity : BaseEntity
     {
         public int OrderId { get; set; }

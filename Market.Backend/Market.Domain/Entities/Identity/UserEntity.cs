@@ -8,19 +8,30 @@ namespace Market.Domain.Entities.Identity;
 
 public sealed class UserEntity : BaseEntity
 {
+    [PreserveCapitalization]
     public string Username { get; set; }
 
     [NoAudit]
+    [PreserveString]
     public string PasswordHash { get; set; }
 
     [NoAudit]
     public string Email { get; set; }
 
     [NoAudit]
+    [PreserveString]
     public string? PhoneNumber { get; set; }
+
+    [PreserveCapitalization]
     public string FirstName { get; set; }
+
+    [PreserveCapitalization]
     public string LastName { get; set; }
+
+    [PreserveString]
     public string? ProfileImageURL { get; set; }
+
+    [PreserveString]
     public string? ProfileBio { get; set; }
     public int? CityId { get; set; }
     public CityEntity? City { get; set; }

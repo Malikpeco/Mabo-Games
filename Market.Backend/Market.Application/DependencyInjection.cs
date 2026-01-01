@@ -17,6 +17,7 @@ public static class DependencyInjection
         services.AddValidatorsFromAssembly(assembly);
 
         // Pipeline behaviors (npr. ValidationBehavior)
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(StringNormalizationBehavior<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         // TimeProvider — if used by handlers

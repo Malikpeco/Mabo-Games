@@ -11,6 +11,7 @@ namespace Market.Domain.Entities.Catalog
 {
 
     [NoAudit]
+    [PreserveString]
     public  class AuditLogEntity:BaseEntity
     {
 

@@ -1,4 +1,6 @@
-﻿namespace Market.Application.Modules.Auth.Commands.Login;
+﻿using Market.Domain.Common.Attributes;
+
+namespace Market.Application.Modules.Auth.Commands.Login;
 
 /// <summary>
 /// Command for user login and issuing an access/refresh token pair.
@@ -13,6 +15,8 @@ public sealed class LoginCommand : IRequest<LoginCommandDto>
     /// <summary>
     /// User's password.
     /// </summary>
+    /// 
+    [PreserveString]
     public string Password { get; init; }
 
 }

@@ -1,4 +1,5 @@
 ﻿using Market.Domain.Common;
+using Market.Domain.Common.Attributes;
 using Market.Domain.Entities.Identity;
 
 namespace Market.Domain.Entities
@@ -7,6 +8,8 @@ namespace Market.Domain.Entities
     {
         public DateTime Date { get; set; }
         public decimal TotalAmount { get; set; }
+
+        [PreserveString]
         public string OrderStatus { get; set; }
         public int UserId { get; set; }
         public UserEntity User { get; set; }
