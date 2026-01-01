@@ -10,7 +10,7 @@ namespace Market.Domain.Entities.Identity
 {
     public class PasswordResetTokenEntity :BaseEntity
     {
-
+        
         public int UserId { get; set; }
 
         public UserEntity User { get; set; }

@@ -1,8 +1,10 @@
 ﻿using Market.Domain.Common;
+using Market.Domain.Common.Attributes;
 using Market.Domain.Entities.Identity;
 
 namespace Market.Domain.Entities
 {
+    [NoAudit]
     public class NotificationEntity : BaseEntity
     {
         public string Title { get; set; }

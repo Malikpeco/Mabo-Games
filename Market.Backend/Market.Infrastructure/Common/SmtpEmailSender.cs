@@ -39,6 +39,7 @@ namespace Market.Infrastructure.Common
                 """
             };
             
+
             message.To.Add(recieverEmail);
 
             var client = new SmtpClient(_settings.Host, _settings.Port)

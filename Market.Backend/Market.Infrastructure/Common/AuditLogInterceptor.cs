@@ -47,7 +47,6 @@ namespace Market.Infrastructure.Common
 
             return base.SavingChangesAsync(eventData, interceptionResult, cancellationToken);
 
-
         }
 
 

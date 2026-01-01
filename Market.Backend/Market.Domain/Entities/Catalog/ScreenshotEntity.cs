@@ -1,7 +1,9 @@
 ﻿using Market.Domain.Common;
+using Market.Domain.Common.Attributes;
 
 namespace Market.Domain.Entities
 {
+    [NoAudit]
     public class ScreenshotEntity :BaseEntity
     {
         public string ImageURL { get; set; }
