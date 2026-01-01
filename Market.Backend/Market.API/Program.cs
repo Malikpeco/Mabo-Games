@@ -1,8 +1,10 @@
 ﻿using Market.API;
 using Market.API.Middleware;
 using Market.Application;
+using Market.Application.Abstractions;
 using Market.Infrastructure;
 using Serilog;
+using Stripe;
 
 public partial class Program
 {
@@ -48,6 +50,11 @@ public partial class Program
                 .AddAPI(builder.Configuration, builder.Environment)
                 .AddInfrastructure(builder.Configuration, builder.Environment)
                 .AddApplication();
+
+            builder.Services.Configure<StripeOptions>(
+                builder.Configuration.GetSection("Stripe"));
+            StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
 
             var app = builder.Build();
 

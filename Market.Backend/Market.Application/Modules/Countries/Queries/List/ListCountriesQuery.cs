@@ -2,5 +2,8 @@
 {
     public sealed class ListCountriesQuery : BasePagedQuery<ListCountriesQueryDto>
     {
+        public string? Search { get; set; }
+
     }
+    
 }

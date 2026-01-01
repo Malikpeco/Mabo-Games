@@ -10,6 +10,7 @@ namespace Market.Application.Modules.Carts.Dto
     {
         public int Id { get; set; }
         public int GameId { get; set; }
+        public string? CoverImageURL { get; set; }
         public string GameName { get; set; }
         public decimal Price { get; set; }
         public DateTime AddedAt { get; set; }

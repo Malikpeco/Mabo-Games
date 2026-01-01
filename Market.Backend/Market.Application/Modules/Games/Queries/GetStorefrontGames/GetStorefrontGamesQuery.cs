@@ -14,6 +14,6 @@ namespace Market.Application.Modules.Games.Queries.GetStorefrontGames
 
         [PreserveString] //Im not sure what this does but im just letting it do its thing
         public string? Sort { get; init; } 
-        public int? GenreId { get; init; }
+        public List<int>? GenreIds{ get; init; }
     }
 }

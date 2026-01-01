@@ -4,7 +4,7 @@ using Market.Application.Modules.Orders.Commands.Delete;
 namespace Market.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/orders")]
 
     public class OrdersController(ISender sender): ControllerBase
     {

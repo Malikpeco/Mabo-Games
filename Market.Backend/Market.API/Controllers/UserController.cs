@@ -17,6 +17,8 @@ namespace Market.API.Controllers
     public class UserController(ISender sender) : ControllerBase
     {
 
+        
+        
         [HttpPost("register")]
         [AllowAnonymous]
 
@@ -56,5 +58,11 @@ namespace Market.API.Controllers
             return Ok(new { message = "Password has been reset." });
 
         }
+
+
+
+
+
+
     }
 }

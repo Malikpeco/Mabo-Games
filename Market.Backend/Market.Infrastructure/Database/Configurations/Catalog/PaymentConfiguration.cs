@@ -8,10 +8,6 @@ namespace Market.Infrastructure.Database.Configurations
         {
             builder.ToTable("Payments");
 
-            builder.Property(p => p.StripeTransactionId)
-                   .IsRequired()
-                   .HasMaxLength(100);
-
             builder.Property(p => p.PaymentStatus)
                    .IsRequired()
                    .HasMaxLength(50);
