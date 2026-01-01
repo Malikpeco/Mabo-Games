@@ -15,7 +15,15 @@ namespace Market.Application.Modules.Achievements.Queries.List
             if (!currentUser.IsAdmin)
                 throw new Exception("You must be an admin to do this!");
 
-            var projectedQuery = context.Achievements.AsNoTracking().OrderBy(a => a.Id)
+            var q = context.Achievements.AsNoTracking();
+
+            if (!string.IsNullOrEmpty(request.Search))
+            {
+                q = q.Where(a => a.Name.ToLower().Contains((request.Search).ToLower()));
+            }
+
+
+            var projectedQuery = q.OrderBy(a => a.Id)
                 .Select(a => new ListAchievementsQueryDto
                 {
                     Id = a.Id,

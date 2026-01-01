@@ -45,6 +45,7 @@ public class CountriesController(ISender sender) : ControllerBase
         return NoContent();
     }
 
+
     [HttpGet("{id:int}")]
     public async Task<GetCountryByIdQueryDto> GetById([FromRoute] int id, CancellationToken ct)
     {

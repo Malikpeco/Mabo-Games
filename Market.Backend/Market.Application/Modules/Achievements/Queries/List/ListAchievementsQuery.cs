@@ -9,5 +9,6 @@ namespace Market.Application.Modules.Achievements.Queries.List
 {
     public sealed class ListAchievementsQuery : BasePagedQuery<ListAchievementsQueryDto>
     {
+        public string? Search {  get; set; }
     }
 }

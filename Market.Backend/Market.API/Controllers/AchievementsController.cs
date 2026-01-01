@@ -1,6 +1,7 @@
 ﻿using Market.Application.Modules.Achievements.Commands.Create;
 using Market.Application.Modules.Achievements.Commands.Delete;
 using Market.Application.Modules.Achievements.Commands.Update;
+using Market.Application.Modules.Achievements.Queries.GetById;
 using Market.Application.Modules.Achievements.Queries.List;
 using Market.Infrastructure.Database.Configurations;
 
@@ -42,5 +43,15 @@ namespace Market.API.Controllers
             return await sender.Send(query, ct);
             
         }
+
+
+
+        [HttpGet("{id:int}")]
+        public async Task<GetAchievementByIdQueryDto> GetById([FromRoute] int id, CancellationToken ct)
+        {
+            return await sender.Send(new GetAchievementByIdQuery { Id = id}, ct);
+        }
+
+
     }
 }
