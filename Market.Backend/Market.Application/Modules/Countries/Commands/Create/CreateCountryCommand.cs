@@ -1,6 +1,6 @@
 ﻿namespace Market.Application.Modules.Countries.Commands.Create
 {
-    public class CreateCountryCommand : IRequest<int>
+    public sealed class CreateCountryCommand : IRequest<Unit>
     {
         public required string Name { get; set; }
         
