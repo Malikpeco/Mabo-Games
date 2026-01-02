@@ -18,6 +18,9 @@ namespace Market.Application.Modules.Countries.Commands.Delete
             if (c is null)
                 throw new MarketNotFoundException("Country not found.");
 
+            if (await context.Publishers.AnyAsync(p => p.CountryId == request.Id, ct))
+                throw new MarketBusinessRuleException("400","Cannot delete since there are publishers from this country.");
+
 
             context.Countries.Remove(c);
             await context.SaveChangesAsync(ct);
