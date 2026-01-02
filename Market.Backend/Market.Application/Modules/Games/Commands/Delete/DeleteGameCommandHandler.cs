@@ -18,6 +18,10 @@ namespace Market.Application.Modules.Games.Commands.Delete
             if (game is null)
                 throw new MarketNotFoundException("Game doesnt exist");
 
+            if (await context.UserGames.AnyAsync(ug => ug.GameId == game.Id, ct))
+                throw new MarketBusinessRuleException("422", "Cannot delete a game that a user owns. Delete the UserGame first.");
+
+
             context.Games.Remove(game);
             await context.SaveChangesAsync(ct);
 
