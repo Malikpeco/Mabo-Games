@@ -1,5 +1,4 @@
 ﻿using Market.Domain.Entities;
-using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace Market.Application.Modules.Reviews.Commands.Create
     {
         public async Task<Unit> Handle(CreateReviewCommand request, CancellationToken ct)
         {
-            var userGame = await context.UserGames.FirstOrDefaultAsync(ug => ug.Id == request.UserGameId, ct);
+            var userGame = await context.UserGames.FirstOrDefaultAsync(ug => ug.Id == request.UserGameId && ug.UserId == currentUser.UserId.Value, ct);
 
             if (userGame is null)
             {

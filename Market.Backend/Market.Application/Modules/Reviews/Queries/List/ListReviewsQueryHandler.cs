@@ -38,7 +38,7 @@ namespace Market.Application.Modules.Reviews.Queries.List
                     },
                     PurchaseDate = r.UserGame.PurchaseDate,
                 }
-            });
+            }).OrderByDescending(r=>r.Date);
 
 
             return await PageResult<ListReviewsQueryDto>.FromQueryableAsync(projectedQuery,request.Paging, ct);
