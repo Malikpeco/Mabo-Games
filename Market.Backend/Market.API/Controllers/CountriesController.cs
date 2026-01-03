@@ -3,6 +3,7 @@ using Market.Application.Modules.Countries.Commands.Delete;
 using Market.Application.Modules.Countries.Commands.Update;
 using Market.Application.Modules.Countries.Queries.GetById;
 using Market.Application.Modules.Countries.Queries.List;
+using Market.Application.Modules.Countries.Queries.ListCountriesAutocomplete;
 
 namespace Market.API.Controllers;
 
@@ -53,5 +54,11 @@ public class CountriesController(ISender sender) : ControllerBase
         return result;
     }
 
+
+    [HttpGet("autocomplete")]
+    public async Task<List<ListCountriesAutocompleteQueryDto>> Autocomplete([FromQuery] string term, CancellationToken ct)
+    {
+        return await sender.Send(new ListCountriesAutocompleteQuery { Term = term }, ct);
+    }
 
 }

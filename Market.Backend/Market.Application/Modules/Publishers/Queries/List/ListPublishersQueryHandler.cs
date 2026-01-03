@@ -21,10 +21,10 @@ namespace Market.Application.Modules.Publishers.Queries.List
                 q = q.Where(p => p.Name.ToLower().Contains(request.Search.ToLower()));
             }
 
-            if(request.CountryId is not null)
-            {
-                q = q.Where(p => p.CountryId == request.CountryId.Value);
-            }
+            //if(request.CountryId is not null)
+            //{
+            //    q = q.Where(p => p.CountryId == request.CountryId.Value);
+            //}
 
             var projectedQuery = q
                 .Select(p => new ListPublishersQueryDto

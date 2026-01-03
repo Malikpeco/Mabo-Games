@@ -3,6 +3,7 @@ using Market.Application.Modules.Achievements.Commands.Delete;
 using Market.Application.Modules.Achievements.Commands.Update;
 using Market.Application.Modules.Achievements.Queries.GetById;
 using Market.Application.Modules.Achievements.Queries.List;
+using Market.Application.Modules.Achievements.Queries.ListAchievementsAutocomplete;
 using Market.Infrastructure.Database.Configurations;
 
 namespace Market.API.Controllers
@@ -52,6 +53,12 @@ namespace Market.API.Controllers
             return await sender.Send(new GetAchievementByIdQuery { Id = id}, ct);
         }
 
+
+        [HttpGet("autocomplete")]
+        public async Task<List<ListAchievementsAutocompleteQueryDto>> Autocomplete([FromQuery]string term, CancellationToken ct)
+        {
+            return await sender.Send(new ListAchievementsAutocompleteQuery { Term = term }, ct);
+        }
 
     }
 }
