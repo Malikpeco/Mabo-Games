@@ -3,6 +3,7 @@ using Market.Application.Modules.Cities.Commands.Delete;
 using Market.Application.Modules.Cities.Commands.Update;
 using Market.Application.Modules.Cities.Queries.GetById;
 using Market.Application.Modules.Cities.Queries.List;
+using Market.Application.Modules.Cities.Queries.ListCitiesAutocomplete;
 using Market.Application.Modules.Games.Dto;
 
 namespace Market.API.Controllers
@@ -53,6 +54,11 @@ namespace Market.API.Controllers
 
         }
 
+        [HttpGet("autocomplete")]
+        public async Task<List<ListCitiesAutocompleteQueryDto>> Autocomplete([FromQuery] string term, CancellationToken ct)
+        {
+            return await sender.Send(new ListCitiesAutocompleteQuery { Term = term }, ct);
+        }
 
     }
 }

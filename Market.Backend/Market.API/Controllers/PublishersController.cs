@@ -3,6 +3,7 @@ using Market.Application.Modules.Publishers.Commands.Delete;
 using Market.Application.Modules.Publishers.Commands.Update;
 using Market.Application.Modules.Publishers.Queries.GetById;
 using Market.Application.Modules.Publishers.Queries.List;
+using Market.Application.Modules.Publishers.Queries.ListPublishersAutocomplete;
 using System.Runtime.CompilerServices;
 
 namespace Market.API.Controllers
@@ -43,5 +44,12 @@ namespace Market.API.Controllers
         {
             return Ok(await sender.Send(new DeletePublisherCommand { Id = id }, ct));
         }
+
+        [HttpGet("autocomplete")]
+        public async Task<List<ListPublishersAutocompleteQueryDto>> Autocomplete([FromQuery] string term, CancellationToken ct)
+        {
+            return await sender.Send(new ListPublishersAutocompleteQuery { Term = term }, ct);
+        }
+
     }
 }

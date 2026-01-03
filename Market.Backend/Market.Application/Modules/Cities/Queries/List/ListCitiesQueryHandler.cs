@@ -23,10 +23,6 @@ namespace Market.Application.Modules.Cities.Queries.List
                 q = q.Where(c => c.Name.ToLower().Contains((request.Search.Trim()).ToLower()));
             }
 
-            if (request.CountryId.HasValue)
-            {
-                q=q.Where(c=>c.CountryId==request.CountryId.Value);
-            }
 
             var projectedQuery = q.Select(c => new ListCitiesQueryDto
             {

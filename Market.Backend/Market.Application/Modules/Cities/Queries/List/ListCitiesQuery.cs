@@ -10,6 +10,5 @@ namespace Market.Application.Modules.Cities.Queries.List
     public sealed class ListCitiesQuery : BasePagedQuery<ListCitiesQueryDto>
     {
         public string? Search {  get; set; }
-        public int? CountryId { get; set; }
     }
 }

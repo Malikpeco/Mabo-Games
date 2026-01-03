@@ -9,6 +9,5 @@ namespace Market.Application.Modules.Publishers.Queries.List
     public sealed class ListPublishersQuery : BasePagedQuery<ListPublishersQueryDto>
     {
         public string? Search { get; set; }
-        public int? CountryId { get; set; }
     }
 }
