@@ -1,12 +1,18 @@
 ﻿using Market.Domain.Common;
+using Market.Domain.Common.Attributes;
 
 namespace Market.Domain.Entities
 {
+    [PreserveString]
     public class PaymentEntity : BaseEntity
     {
         public int OrderId { get; set; }
         public OrderEntity Order { get; set; }
+
+
+        [NoAudit]
         public string? StripeCheckoutSessionId { get; set; }
+        [NoAudit]
         public string? StripePaymentIntentId { get; set; }
         public string PaymentStatus { get; set; }
         public decimal Total { get; set; }

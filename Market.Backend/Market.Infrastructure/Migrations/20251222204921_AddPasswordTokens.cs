@@ -11,9 +11,6 @@ namespace Market.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Fingerprint",
-                table: "RefreshTokens");
 
             migrationBuilder.CreateTable(
                 name: "PasswordResetTokens",

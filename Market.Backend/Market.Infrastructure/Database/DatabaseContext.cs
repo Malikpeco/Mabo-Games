@@ -31,6 +31,8 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<PasswordResetTokenEntity> PasswordResetTokens => Set<PasswordResetTokenEntity>();
     public DbSet<ProcessedWebhookEventEntity> ProcessedWebhookEvents => Set<ProcessedWebhookEventEntity>();
 
+    public DbSet<AuditLogEntity> AuditLogs => Set<AuditLogEntity>();
+
     private readonly TimeProvider _clock;
     public DatabaseContext(DbContextOptions<DatabaseContext> options, TimeProvider clock) : base(options)
     {

@@ -9,6 +9,8 @@ namespace Market.Application.Abstractions
     public  interface IEmailSender
     {
         Task SendPasswordRecoveryCode(string recieverEmail, string recoverCode, CancellationToken cancellationTokens);
+
+        
     }
     
 }
