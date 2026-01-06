@@ -8,7 +8,7 @@ namespace Market.Domain.Entities.Identity;
 
 public sealed class UserEntity : BaseEntity
 {
-    [PreserveCapitalization]
+    
     public string Username { get; set; }
 
     [NoAudit]
@@ -22,10 +22,10 @@ public sealed class UserEntity : BaseEntity
     [PreserveString]
     public string? PhoneNumber { get; set; }
 
-    [PreserveCapitalization]
+    
     public string FirstName { get; set; }
 
-    [PreserveCapitalization]
+    
     public string LastName { get; set; }
 
     [PreserveString]

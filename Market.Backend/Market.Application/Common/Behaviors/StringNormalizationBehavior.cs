@@ -12,8 +12,6 @@ namespace Market.Application.Common.Behaviors
     {
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-
-
             StringNormalization(request);
 
             return await next();
@@ -37,23 +35,21 @@ namespace Market.Application.Common.Behaviors
             {
                 var originalValue = property.GetValue(obj) as string;
 
-                if (string.IsNullOrWhiteSpace(originalValue) || Attribute.IsDefined(property, typeof(PreserveStringAttribute)))
+                if (Attribute.IsDefined(property, typeof(PreserveStringAttribute)))
                     continue;
 
-                bool toLower = !Attribute.IsDefined(property, typeof(PreserveCapitalizationAttribute));
+                string? normalizedValue;
 
-                var normalizedValue = originalValue.Trim();
+                if (string.IsNullOrWhiteSpace(originalValue))
+                    normalizedValue = null;
+                else
+                    normalizedValue = originalValue.Trim();
 
-                if (toLower)
-                    normalizedValue=normalizedValue.ToLower();
-
-                if(normalizedValue != originalValue)
+                if (normalizedValue != originalValue)
                     property.SetValue(obj, normalizedValue);
-                
-                
+
+
             }
-
-
 
         }
     }

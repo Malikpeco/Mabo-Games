@@ -5,7 +5,7 @@ namespace Market.Domain.Entities
 {
     public class AchievementEntity : BaseEntity
     {
-        [PreserveCapitalization]
+       
         public string Name { get; set; }
 
         [PreserveString]

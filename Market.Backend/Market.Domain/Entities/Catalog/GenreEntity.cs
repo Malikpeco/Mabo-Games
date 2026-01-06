@@ -5,7 +5,7 @@ namespace Market.Domain.Entities
 {
     public class GenreEntity : BaseEntity
     {
-        [PreserveCapitalization]
+        
         public string Name { get; set; }
         public IReadOnlyCollection<GameGenreEntity> GameGenres { get; private set; }
     }

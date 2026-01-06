@@ -5,7 +5,7 @@ namespace Market.Domain.Entities
 {
     public class GameEntity : BaseEntity
     {
-        [PreserveCapitalization]
+     
         public string Name { get; set; }
         public decimal Price { get; set; }
 

@@ -5,13 +5,13 @@ namespace Market.Application.Modules.Users.Commands.Register
 {
     public sealed class RegisterUserCommand : IRequest<RegisterUserResultDto>
     {
-        [PreserveCapitalization]
+        
         required public string FirstName {  get; set; }
 
-        [PreserveCapitalization]
+        
         required public string LastName { get; set; }
 
-        [PreserveCapitalization]
+        
         required public string Username {  get; set; }
 
         required public string Email { get; set; }

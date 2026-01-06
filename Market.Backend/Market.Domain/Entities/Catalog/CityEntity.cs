@@ -6,7 +6,7 @@ namespace Market.Domain.Entities
 {
     public class CityEntity : BaseEntity
     {
-        [PreserveCapitalization]
+     
         public string Name { get; set; }
         public int CountryId { get; set; }
         public CountryEntity Country { get; set; }

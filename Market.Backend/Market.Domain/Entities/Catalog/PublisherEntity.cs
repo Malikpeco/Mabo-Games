@@ -5,7 +5,7 @@ namespace Market.Domain.Entities
 {
     public class PublisherEntity : BaseEntity
     {
-        [PreserveCapitalization]
+        
         public string Name { get; set; }
         public int CountryId { get; set; }
         public CountryEntity Country { get; set; }
