@@ -4,6 +4,7 @@ using Market.Application.Modules.Games.Commands.Update;
 using Market.Application.Modules.Games.Dto;
 using Market.Application.Modules.Games.Queries.GetGameDetails;
 using Market.Application.Modules.Games.Queries.GetStorefrontGames;
+using Market.Application.Modules.Games.Queries.ListGamesAutocompleteQuery;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
@@ -62,6 +63,16 @@ namespace Market.API.Controllers
             await sender.Send(new DeleteGameCommand {Id = id}, ct);
             return NoContent();
         }
+
+
+        //autocomplete search
+        [AllowAnonymous]
+        [HttpGet("autocomplete")]
+        public async Task<List<ListGamesAutocompleteQueryDto>> Autocomplete([FromQuery] string term, [FromQuery] int? genreId, CancellationToken ct)
+        {
+            return await sender.Send(new ListGamesAutocompleteQuery { Term = term, GenreId = genreId }, ct);
+        } 
+
 
 
     }
