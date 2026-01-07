@@ -56,6 +56,20 @@ public partial class Program
             StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularDev",
+                    policy =>
+                    {
+                        policy
+                            .WithOrigins("http://localhost:4200") // kao string array može i više URL-ova
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                    });
+            });
+
+
             var app = builder.Build();
 
             // ---------------------------------------------------------
@@ -72,6 +86,9 @@ public partial class Program
             app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
             app.UseHttpsRedirection();
+            // UseCors ide prije UseAuthorization i UseAuthentification
+            app.UseCors("AllowAngularDev");
+
             app.UseAuthentication();
             app.UseAuthorization();
 
