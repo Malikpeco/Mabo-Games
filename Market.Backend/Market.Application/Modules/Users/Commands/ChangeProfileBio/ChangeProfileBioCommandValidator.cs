@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Users.Commands.ChangeBio
 {
-    internal class ChangeBioCommand
+    public sealed class ChangeProfileBioCommandValidator : AbstractValidator<ChangeProfileBioCommand>
     {
+
+        public ChangeProfileBioCommandValidator()
+        {
+
+        }
+
     }
 }

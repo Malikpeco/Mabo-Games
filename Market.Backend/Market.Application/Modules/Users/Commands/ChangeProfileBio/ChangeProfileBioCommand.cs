@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Users.Commands.ChangeBio
 {
-    internal class ChangeBioCommandHandler
+    public sealed class ChangeProfileBioCommand:IRequest<Unit>
     {
+        public string? NewBio {  get; set; }
+
     }
 }

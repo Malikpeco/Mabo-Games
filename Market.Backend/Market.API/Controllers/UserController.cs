@@ -1,6 +1,8 @@
 ﻿
 using Market.Application.Modules.Countries.Commands.Create;
 using Market.Application.Modules.Countries.Queries.List;
+using Market.Application.Modules.Users.Commands.ChangeBio;
+using Market.Application.Modules.Users.Commands.ChangePassword;
 using Market.Application.Modules.Users.Commands.ChangeUsername;
 using Market.Application.Modules.Users.Commands.PasswordReset;
 using Market.Application.Modules.Users.Commands.Register;
@@ -82,6 +84,23 @@ namespace Market.API.Controllers
         }
 
 
+        [HttpPut("password-change")]
+        public async Task<ActionResult<Unit>> ChangePassword(ChangePasswordCommand command, CancellationToken ct)
+        {
+            await sender.Send(command, ct);
+
+            return Ok(new { message = "Password has been changed." });
+
+        }
+
+        [HttpPut("profilebio-change")]
+        public async Task<ActionResult<Unit>> ChangeProfileBio(ChangeProfileBioCommand command, CancellationToken ct)
+        {
+            await sender.Send(command, ct);
+
+            return Ok(new { message = "Profile bio has been changed." });
+
+        }
 
 
     }

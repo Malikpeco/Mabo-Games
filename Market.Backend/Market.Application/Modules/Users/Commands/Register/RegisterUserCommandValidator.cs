@@ -21,12 +21,15 @@ public sealed class RegisterUserCommandValidator : AbstractValidator<RegisterUse
         
         RuleFor(x => x.Email).EmailAddress();
         
-        RuleFor(x => x.Password).NotEmpty()
+        RuleFor(x => x.Password)
+            .NotEmpty()
             .Matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
             .WithMessage("Password does not meet minimum requirements: \n1.Must be atleast 8 characters \n2.Must contain at least one uppercase and one lowercase letter \n3.Must contain at least one number and a special character");
         
-        RuleFor(x => x.ConfirmPassword).Equal(y => y.Password)
-        .WithMessage("The passwords do not match, try again.");
+        RuleFor(x => x.ConfirmPassword)
+            .NotEmpty()
+            .Equal(y => y.Password)
+            .WithMessage("The passwords do not match, try again.");
         
         RuleFor(x=> x.CountryId).NotEmpty();
         

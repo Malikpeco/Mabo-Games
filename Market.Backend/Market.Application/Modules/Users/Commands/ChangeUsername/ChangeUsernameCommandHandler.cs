@@ -40,7 +40,7 @@ namespace Market.Application.Modules.Users.Commands.ChangeUsername
 
 
             await emailSender.SendEmail(user.Email, "Username Change",
-                $"Hi {user.FirstName},\nYour username has been successfully changed from {oldUsername} to {request.NewUsername}" +
+                $"Hi {user.FirstName},\n\nYour username has been successfully changed from {oldUsername} to {request.NewUsername}" +
                 $"\n\nIf you did not request a username change, please contact our support team.",cancellationToken);
 
 
