@@ -13,7 +13,11 @@ public sealed class RegisterUserCommandValidator : AbstractValidator<RegisterUse
         
         RuleFor(x => x.LastName).NotEmpty();
         
-        RuleFor(x => x.Username).NotEmpty();
+        RuleFor(x => x.Username)
+            .NotEmpty()
+            .MinimumLength(3)
+            .MaximumLength(30)
+            ;
         
         RuleFor(x => x.Email).EmailAddress();
         

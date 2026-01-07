@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Users.Dto
 {
-    public sealed class RegisterUserResultDto
+    public sealed class UserRecentlyBoughtGameDto
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Email {  get; set; }
+        public int GameId { get; set; }
 
-   
+       public string CoverImageURL { get; set; }
+
+        public string Name { get; set; }
+
     }
 }

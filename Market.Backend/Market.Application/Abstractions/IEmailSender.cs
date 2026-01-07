@@ -10,7 +10,9 @@ namespace Market.Application.Abstractions
     {
         Task SendPasswordRecoveryCode(string recieverEmail, string recoverCode, CancellationToken cancellationTokens);
 
-        
+        Task SendEmail(string recieverEmail, string subject, string emailText, CancellationToken cancellationTokens);
+
+
     }
     
 }

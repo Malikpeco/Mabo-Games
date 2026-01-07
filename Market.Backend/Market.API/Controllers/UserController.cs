@@ -1,11 +1,13 @@
 ﻿
 using Market.Application.Modules.Countries.Commands.Create;
 using Market.Application.Modules.Countries.Queries.List;
+using Market.Application.Modules.Users.Commands.ChangeUsername;
 using Market.Application.Modules.Users.Commands.PasswordReset;
 using Market.Application.Modules.Users.Commands.Register;
 using Market.Application.Modules.Users.Commands.RequestPasswordResetBySecurityQuestion;
 using Market.Application.Modules.Users.Commands.ResetPassword;
 using Market.Application.Modules.Users.Dto;
+using Market.Application.Modules.Users.Queries.GetUserProfileQuery;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +61,25 @@ namespace Market.API.Controllers
 
         }
 
+        [HttpGet("{username}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<GetUserProfileQueryDto>> GetUserProfile(string username, CancellationToken ct)
+        {
+            var resultDto =
+                await sender.Send(new GetUserProfileQuery(username), ct);
 
+            return Ok(resultDto);
+        }
+
+
+        [HttpPut("username-change")]
+        public async Task<ActionResult<Unit>> ChangeUsername(ChangeUsernameCommand command, CancellationToken ct)
+        {
+            await sender.Send(command, ct);
+
+            return Ok(new { message = "Username has been changed." });
+
+        }
 
 
 
