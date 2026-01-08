@@ -1,0 +1,99 @@
+.storefront-page{
+  min-height: 100vh;
+  background-color: #121212;
+  padding-top: 64px;
+  color: #fff;
+}
+
+
+.topbar{
+
+  color: #fff;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 1000;
+
+  background: #0f0f0f;
+  border-bottom: 1px solid #222;
+
+  display: flex;
+  align-items: center;
+
+  .nav-left,
+  .nav-right,
+  .nav-center{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-center{
+    margin-left: 24px;
+    gap: 14px;
+  }
+
+  .spacer{
+    flex: 1;
+  }
+}
+
+.topbar a,
+.topbar button,
+.topbar mat-icon
+{
+  color: #fff;
+}
+
+.app-logo{
+  height: 28px;
+  width: auto;
+  display: block;
+  margin-left: 8px;
+}
+
+
+.user-button{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+
+
+
+
+
+.carousel-section{
+  max-width: 800px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.carousel-section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.carousel-placeholder{
+    height: 260px;
+    width: 100%;
+    border-radius: 14px;
+    background: #1e1e1e;
+    border: 1px solid #2a2a2a;
+}
+
+@media (max-width: 768px) {
+  .nav-center {
+    display: none; /* hide center nav on small screens for now */
+  }
+
+  .carousel-placeholder {
+    height: 200px;
+  }
+}

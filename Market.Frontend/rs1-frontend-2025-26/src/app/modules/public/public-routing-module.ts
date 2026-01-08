@@ -1,23 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PublicLayoutComponent } from './public-layout/public-layout.component';
+import { StorefrontComponent } from './storefront/storefront.component';
 import { SearchProductsComponent } from './search-products/search-products.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PublicLayoutComponent,
+    component: StorefrontComponent,
     children: [
-      {
-        path: '',
-        component: SearchProductsComponent
-      },
-      // kasnije može i ovako:
-      // { path: 'about', component: AboutComponent },
-      // { path: 'contact', component: ContactComponent },
-
-      { path: '**', redirectTo: '' }
+      { path: '**', redirectTo: '' }//if user goes to any url that doesnt exist, send them back to '/'
     ]
   }
 ];
