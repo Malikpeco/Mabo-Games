@@ -62,7 +62,7 @@ public partial class Program
                     policy =>
                     {
                         policy
-                            .WithOrigins("http://localhost:4200", "https://localhost:4200") // kao string array može i više URL-ova
+                            .WithOrigins("http://localhost:4200", "https://localhost:4200", "https://localhost:50870") // kao string array može i više URL-ova
                             .AllowAnyHeader()
                             .AllowAnyMethod()
                             .AllowCredentials();

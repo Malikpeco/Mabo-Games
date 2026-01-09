@@ -23,7 +23,7 @@ export class CurrentUserService {
     const user = this.snapshot;
     if (!user) return '/login';
 
-    if (user.isAdmin) return '/admin';
-    return '/client';
+    //if (user.isAdmin) return '/admin';
+    return '/';
   }
 }
