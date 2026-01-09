@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Market.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,15 @@ namespace Market.Application.Modules.Games.Dto
         public string? Description { get; init; }
         public string? CoverImageURL { get; init; }
         public PublisherDto Publisher { get; init; } = default!;
-        public IReadOnlyList<string> Screenshots { get; init; } = new List<string>();
+        public IReadOnlyList<GameScreenshotsDto> Screenshots { get; init; } = new List<GameScreenshotsDto>();
         public IReadOnlyList<GenreDto> Genres { get; init; } = new List<GenreDto>();
         public ReviewSummaryDto Reviews { get; init; } = new();
+    }
+
+    public class GameScreenshotsDto
+    {
+        public string ImageURL { get; set; }
+        public int GameId { get; set; }
     }
 
     public sealed class PublisherDto

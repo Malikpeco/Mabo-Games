@@ -15,5 +15,6 @@ namespace Market.Application.Modules.Games.Dto
         public string? CoverImageURL { get; init; }
         public int PublisherId { get; init; }
         public string PublisherName { get; init; } = default!;
+        public List<GameScreenshotsDto> Screenshots { get; set; } = new List<GameScreenshotsDto>();
     }
 }

@@ -48,6 +48,11 @@ namespace Market.Application.Modules.Games.Queries.GetStorefrontGames
                     CoverImageURL = x.CoverImageURL,
                     PublisherId = x.PublisherId,
                     PublisherName = x.Publisher!.Name,
+                    Screenshots = x.Screenshots.OrderBy(s=>s.Id).Select(s=>new GameScreenshotsDto
+                    {
+                        ImageURL= s.ImageURL,
+                        GameId=s.GameId,
+                    }).ToList(),
                 });
 
             return await PageResult<StorefrontGameDto>.FromQueryableAsync(projectedQuery, request.Paging, cancellationToken);

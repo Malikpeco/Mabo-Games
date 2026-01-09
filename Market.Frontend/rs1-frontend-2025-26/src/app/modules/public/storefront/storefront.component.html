@@ -37,22 +37,40 @@
   </mat-toolbar>
 
 
-  <section class="carousel-section">
-    <h2>Newest Releases</h2>
-    <div class="carousel-placeholder"></div>
-  </section>  
-  
-  <section class="carousel-section">
-    <h2>Cheapest</h2>
-    <div class="carousel-placeholder"></div>
-  </section>
-  
-  <section class="carousel-section">
-    <h2>Most Popular</h2>
-    <div class="carousel-placeholder"></div>
-  </section>
+    <section class="carousel-section">
+      <h2>Newest Releases</h2>
+      <div class="carousel" *ngIf="newestGames.length > 0; else newestEmpty">
+        <div class="carousel-item" *ngFor="let g of newestGames">
+          <img class="game-img" [src]="getGameImage(g)" [alt]="g.name" />
+          <div class="game-meta">
+            <div class="game-title">{{ g.name }}</div>
+            <div class="game-sub">{{ g.publisherName }}</div>
+            <div class="game-price">{{ g.price | number:'1.2-2' }} KM</div>
+          </div>
+        </div>
+      </div>
 
+      <ng-template #newestEmpty>
+        <div class="carousel-placeholder">No games yet.</div>
+      </ng-template>
+    </section>  
+    
+    <section class="carousel-section">
+      <h2>Cheapest</h2>
+      <div class="carousel-placeholder"></div>
+    </section>
+    
+    <section class="carousel-section">
+      <h2>Most Popular</h2>
+      <div class="carousel-placeholder"></div>
+    </section>
 
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/mabo_logo.png" alt="Mabo Games Logo">
+    <div class="footer-text">@{{currentYear}} MABO Games. All rights reserved.</div>
+  </div>
+</footer>
 
 
 </div>
