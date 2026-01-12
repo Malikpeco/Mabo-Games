@@ -8,6 +8,7 @@ import { FitConfirmDialogComponent } from './components/fit-confirm-dialog/fit-c
 import {DialogHelperService} from './services/dialog-helper.service';
 import { FitLoadingBarComponent } from './components/fit-loading-bar/fit-loading-bar.component';
 import { FitTableSkeletonComponent } from './components/fit-table-skeleton/fit-table-skeleton.component';
+import { PasswordStrenghtMeterComponent } from './components/password-strenght-meter/password-strenght-meter/password-strenght-meter.component';
 
 
 
@@ -16,7 +17,8 @@ import { FitTableSkeletonComponent } from './components/fit-table-skeleton/fit-t
     FitPaginatorBarComponent,
     FitConfirmDialogComponent,
     FitLoadingBarComponent,
-    FitTableSkeletonComponent
+    FitTableSkeletonComponent,
+    PasswordStrenghtMeterComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { FitTableSkeletonComponent } from './components/fit-table-skeleton/fit-t
     FormsModule,
     FitLoadingBarComponent,
     FitTableSkeletonComponent,
-    materialModules
+    materialModules,
+    PasswordStrenghtMeterComponent
   ]
 })
 export class SharedModule { }

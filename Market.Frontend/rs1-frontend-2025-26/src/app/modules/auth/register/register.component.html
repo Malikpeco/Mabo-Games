@@ -1,50 +1,77 @@
-<video class="bg-video" autoplay muted loop playsinline preload="auto">
-    <source src="assets/signup-bg1.mp4" type="video/mp4" />
-</video>
-
-
 <div class="signup-container">
 
     <div class="signup-form">
-        <form>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <header class="form-header">
                 <p id="welcome-message">Sign Up Today</p>
-                <p id="signup-instructions">Library of games at your fingertips, sign up now!.</p>
+                <p id="signup-instructions">
+                    Library of games at your fingertips, sign up now!
+                </p>
             </header>
 
-            <label for="username">Create Username</label>
+            <label>Username</label>
             <div class="form-input">
-                <input id="username" type="text" placeholder="Enter Username" required />
+                <input type="text" placeholder="Enter Username" formControlName="username"
+                    />
+            </div>
+            <div class="error-message" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
+                <small *ngIf="form.get('username')?.errors?.['required']">Username is required</small>
+                <small *ngIf="form.get('username')?.errors?.['minlength']">Username is too short</small>
             </div>
 
-            <label for="password">Create Password</label>
+            <label>Password</label>
             <div class="form-input">
-                <input id="password" type="password" placeholder="Enter Password (We wont tell anyone)" required />
+                <input type="password" placeholder="Enter Password" formControlName="password"
+                    />
             </div>
 
-            <div class="passowrd-strength"></div>
+            <app-password-strenght-meter [password]="form.get('password')?.value ?? ''"></app-password-strenght-meter>
 
-            <label for="email">Reenter your Password</label>
-            <div class="form-input">
-                <input id="email" type="password" placeholder="You haven't forgot already?" required />
-            </div>
-
-            <label for="email">Email</label>
-            <div class="form-input">
-                <input id="email" type="email" placeholder="Enter your email" required />
-            </div>
-
-            <label for="phone">Phone Number</label>
-            <div class="form-input">
-                <input id="phone" type="tel" placeholder="(Optional)" />
+            <div class="error-message" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+                <small *ngIf="form.get('password')?.errors?.['required']">Password is required</small>
             </div>
 
 
 
-            <button type="submit" class="signup-button">Sign Up</button>
+            <label>Reenter your Password</label>
+            <div class="form-input">
+                <input type="password" placeholder="You haven't forgot already?" formControlName="confirmPassword"
+                     />
+            </div>
+
+            <div class="error-message"
+                *ngIf="form.get('confirmPassword')?.touched && form.errors?.['passwordMismatch']">
+                <small>Passwords do not match</small>
+            </div>
+
+            <label>Email</label>
+            <div class="form-input">
+                <input type="email" placeholder="Enter your email" formControlName="email" />
+            </div>
+            <div class="error-message" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                <small *ngIf="form.get('email')?.errors?.['required']">Email is required</small>
+                <small *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email address</small>
+            </div>
 
 
-            <p class="signup-section">Already have an account? <a routerLink="/auth/login"> Log in</a></p>
+            <label>Phone Number</label>
+            <div class="form-input">
+                <input type="tel" placeholder="Phone number (Optional)" formControlName="phone"
+                    />
+            </div>
+            <div class="error-message" *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
+                <small *ngIf="form.get('phone')?.errors?.['pattern']">Please enter a valid phone number</small>
+            </div>
+
+
+            <button type="submit" class="signup-button" [disabled]="form.invalid || isLoading">
+                Sign Up
+            </button>
+
+            <p class="signup-section">
+                Already have an account?
+                <a routerLink="/auth/login">Log in</a>
+            </p>
         </form>
     </div>
 </div>

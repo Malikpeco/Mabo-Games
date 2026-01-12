@@ -92,7 +92,6 @@ public static class DynamicDataSeeder
             IsAdmin = true,
             IsEnabled = true,
             CreationDate = DateTime.UtcNow,
-            CountryId = defaultCountry.Id
         };
 
         admin.PasswordHash = hasher.HashPassword(admin, "Admin123!");
@@ -107,7 +106,6 @@ public static class DynamicDataSeeder
             IsAdmin = false,
             IsEnabled = true,
             CreationDate = DateTime.UtcNow,
-            CountryId = defaultCountry.Id
         };
 
         user.PasswordHash = hasher.HashPassword(user, "User123!");

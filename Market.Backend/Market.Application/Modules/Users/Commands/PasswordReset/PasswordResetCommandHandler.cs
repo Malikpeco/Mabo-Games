@@ -17,7 +17,7 @@ namespace Market.Application.Modules.Users.Commands.PasswordReset
             DateTime currentTime = DateTime.UtcNow;
 
 
-            string hashedRequestToken = SimpleHasher.Hash(request.PasswordResetCode);
+            string hashedRequestToken = SimpleHasher.Hash(request.RecoveryCode);
 
 
             var tokenEntity = await context.PasswordResetTokens

@@ -35,8 +35,8 @@ public sealed class UserEntity : BaseEntity
     public string? ProfileBio { get; set; }
     public int? CityId { get; set; }
     public CityEntity? City { get; set; }
-    public int CountryId {  get; set; }
-    public CountryEntity Country { get; set; }
+    public int? CountryId {  get; set; }
+    public CountryEntity? Country { get; set; }
     public DateTime CreationDate { get; set; }
     public bool IsAdmin { get; set; }
     public CartEntity Cart { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace Market.Application.Modules.UserSecurityQuestions.Queries.List
+﻿namespace Market.Application.Modules.UserSecurityQuestions.Queries.ListByEmail
 {
     public sealed class ListUserSecurityQuestionsByEmailQueryHandler(IAppDbContext context, IAppCurrentUser appCurrentUser)
         : IRequestHandler<ListUserSecurityQuestionsByEmailQuery,List<ListUserSecurityQuestionsByEmailQueryDto>>
@@ -6,13 +6,20 @@
         public async Task<List<ListUserSecurityQuestionsByEmailQueryDto>> Handle(ListUserSecurityQuestionsByEmailQuery request, CancellationToken ct)
         {
 
-            var q = context.UserSecurityQuestions.
+            var userQ = await context.Users.AsNoTracking()
+                .FirstAsync(x => x.Email == request.userEmail,ct);
+
+            if (userQ == null)
+                throw new MarketNotFoundException("User was not found");
+
+
+            var questionsQ = context.UserSecurityQuestions.
                 AsNoTracking();
-               
+        
 
             return await 
-                q.
-                Where(x=>x.UserId==appCurrentUser.UserId).
+                questionsQ.AsNoTracking().
+                Where(x=>x.UserId==userQ.Id).
                 OrderBy(x=>x.Id).
                 Select(x=> new ListUserSecurityQuestionsByEmailQueryDto 
                 {

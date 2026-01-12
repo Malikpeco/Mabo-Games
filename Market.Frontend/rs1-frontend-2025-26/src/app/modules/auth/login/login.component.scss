@@ -11,6 +11,12 @@ $text-lighter: #6b7280;
 }
 
 
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
 .login-container {
     margin-top: 100px;

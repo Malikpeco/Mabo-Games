@@ -1,7 +1,4 @@
-﻿
-using Market.Application.Modules.Countries.Commands.Create;
-using Market.Application.Modules.Countries.Queries.List;
-using Market.Application.Modules.Users.Commands.ChangeBio;
+﻿using Market.Application.Modules.Users.Commands.ChangeBio;
 using Market.Application.Modules.Users.Commands.ChangePassword;
 using Market.Application.Modules.Users.Commands.ChangeUsername;
 using Market.Application.Modules.Users.Commands.PasswordReset;
@@ -9,10 +6,9 @@ using Market.Application.Modules.Users.Commands.Register;
 using Market.Application.Modules.Users.Commands.RequestPasswordResetBySecurityQuestion;
 using Market.Application.Modules.Users.Commands.ResetPassword;
 using Market.Application.Modules.Users.Dto;
+using Market.Application.Modules.Users.Queries.CheckRecoveryOptions;
 using Market.Application.Modules.Users.Queries.GetUserProfileQuery;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
+using Market.Application.Modules.Users.Queries.VerifyResetCode;
 
 namespace Market.API.Controllers
 {
@@ -53,7 +49,7 @@ namespace Market.API.Controllers
 
         }
 
-        [HttpPut("password-reset/email")]
+        [HttpPut("password-reset/change")]
         [AllowAnonymous]
         public async Task<ActionResult<Unit>> PasswordReset(PasswordResetCommand command, CancellationToken ct)
         {
@@ -69,6 +65,26 @@ namespace Market.API.Controllers
         {
             var resultDto =
                 await sender.Send(new GetUserProfileQuery(username), ct);
+
+            return Ok(resultDto);
+        }
+
+        [HttpGet("check-recovery-options")]
+        [AllowAnonymous]
+        public async Task<ActionResult<CheckRecoveryOptionsDto>> CheckRecoveryOptions(string recoveryEmail, CancellationToken ct)
+        {
+            var resultDto =
+                await sender.Send(new CheckRecoveryOptionsQuery(recoveryEmail), ct);
+
+            return Ok(resultDto);
+        }
+
+        [HttpGet("verify-reset-code")]
+        [AllowAnonymous]
+        public async Task<ActionResult<CheckRecoveryOptionsDto>> VerifyResetCode(string resetCode, string userEmail, CancellationToken ct)
+        {
+            var resultDto =
+                await sender.Send(new VerifyResetCodeQuery(resetCode,userEmail), ct);
 
             return Ok(resultDto);
         }

@@ -9,6 +9,7 @@ import {LogoutComponent} from './logout/logout.component';
 import {SharedModule} from '../shared/shared-module';
 
 
+
 @NgModule({
   declarations: [
     AuthLayoutComponent,
@@ -16,6 +17,7 @@ import {SharedModule} from '../shared/shared-module';
     RegisterComponent,
     ForgotPasswordComponent,
     LogoutComponent
+  
   ],
   imports: [
     AuthRoutingModule,

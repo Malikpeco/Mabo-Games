@@ -1,4 +1,4 @@
-﻿namespace Market.Application.Modules.UserSecurityQuestions.Queries.List
+﻿namespace Market.Application.Modules.UserSecurityQuestions.Queries.ListByEmail
 {
     public sealed class ListUserSecurityQuestionsByEmailQueryDto
     {

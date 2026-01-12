@@ -30,7 +30,6 @@ public sealed class RegisterUserCommandHandler(IAppDbContext context, IPasswordH
             IsAdmin = false,
             IsDeleted = false,
             IsEnabled=true,
-            CountryId = request.CountryId
         };
 
         user.PasswordHash = passwordHasher.HashPassword(user, request.Password);

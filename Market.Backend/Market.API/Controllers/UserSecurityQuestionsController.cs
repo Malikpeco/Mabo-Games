@@ -48,7 +48,7 @@ namespace Market.API.Controllers
 
         [HttpGet]
 
-        public async Task<ActionResult<List<ListUserSecurityQuestionsQueryDto>>> List([FromQuery]ListUserSecurityQuestionsQuery query, CancellationToken ct)
+        public async Task<ActionResult<List<ListUserSecurityQuestionsByEmailQueryDto>>> List([FromQuery]ListUserSecurityQuestionsByEmailQuery query, CancellationToken ct)
         {
             var result = await sender.Send(query, ct);
             return Ok(result);
