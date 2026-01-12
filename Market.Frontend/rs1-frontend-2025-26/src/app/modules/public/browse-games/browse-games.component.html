@@ -1,0 +1,171 @@
+
+<mat-toolbar class="topbar">
+
+  <div class="nav-left">
+    <button mat-icon-button aria-label="Toggle theme">
+      <mat-icon>dark_mode</mat-icon>
+    </button>
+
+    <img src="/mabo_logo.png" alt="Mabo Games Logo" class="app-logo">
+  </div>
+
+  <div class="nav-center">
+    <a mat-button routerLink="/">Store</a>
+    <a matButton routerLink="/public/browse-games">Browse Games</a>
+    <a matButton routerLink="/client/library">My Library</a>
+    <a matButton routerLink="/client/profile">My Profile</a>
+  </div>
+
+  <span class="spacer"></span>
+
+  <div class="nav-right">
+
+    <button mat-button routerLink="/admin/admin-panel" *ngIf="isAuthenticated() && isAdmin()">
+      <mat-icon>admin_panel_settings</mat-icon>
+      Admin Panel
+    </button>
+
+
+    <div style="font-size:12px; opacity:.7">
+      auth={{ isAuthenticated() }} admin={{ isAdmin() }}
+    </div>
+
+    <button mat-icon-button aria-label="Notifications">
+      <mat-icon>notifications</mat-icon>
+    </button>
+
+    <button mat-icon-button aria-label="Cart" routerLink="/client/cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+
+    <button mat-button routerLink="/auth/login" class="user-button" *ngIf="isAuthenticated() === false; else notLoggedIn">
+      <mat-icon>login</mat-icon>
+      Log in
+    </button>
+
+    <ng-template #notLoggedIn>
+      <button mat-button class="user-button" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Log out
+      </button>
+    </ng-template>
+
+  </div>
+</mat-toolbar>
+
+
+
+<!-- page -->
+<div class="browse-page">
+  <div class="browse-layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="panel">
+        <div class="panel-title">SORT BY</div>
+
+        <select class="select" [(ngModel)]="sort" (change)="onSortChanged();">
+          <option value="recent">Release Date: Recent → Old</option>
+          <option value="priceAsc">Price: Low → High</option>
+          <option value="priceDesc">Price: High → Low</option>
+          <option value="nameAsc">Name: A → Z</option>
+          <option value="nameDesc">Name: Z → A</option>
+        </select>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title-row">
+          <span>GENRES</span>
+          <span class="muted"> {{ selectedGenreIds.size }}</span>
+        </div>
+
+        <div class="genre-list">
+          <label class="genre-item" *ngFor="let g of genres">
+            <input
+              type="checkbox"
+              [checked]="isGenreSelected(g.id)"
+              (change)="toggleGenre(g.id)"
+            />
+            <span class="genre-name">{{ g.name }}</span>
+          </label>
+        </div>
+
+        <button
+          class="btn-clear"
+          type="button"
+          (click)="clearGenres()"
+          *ngIf="selectedGenreIds.size > 0"
+        >
+          Clear
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="content">
+
+      <div class="top-row">
+        <div class="spacer"></div>
+
+        <div class="search">
+          <span class="search-icon">🔎</span>
+          <input
+            class="search-input"
+            type="text"
+            placeholder="Search for games..."
+            [(ngModel)]="search"
+            (input)="onSearchChanged()"
+          />
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="games-grid" *ngIf="filteredGames.length > 0; else empty">
+        <a
+          class="game-card"
+          *ngFor="let g of filteredGames"
+          [routerLink]="['/public/game', g.id]"
+        >
+          <img class="game-card-img" [src]="getGameImage(g)" [alt]="g.name" />
+
+          <div class="game-card-meta">
+            <div class="game-card-title">{{ g.name }}</div>
+            <div class="game-card-sub">{{ g.publisherName }}</div>
+
+            <div class="game-card-bottom">
+
+              <div class="game-card-price">
+                {{ g.price | number:'1.2-2' }} KM
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <ng-template #empty>
+        <div class="empty">
+          No games found.
+        </div>
+      </ng-template>
+
+      <!-- Pagination -->
+      <div class="pager" *ngIf="totalPages > 1">
+        <button class="pager-btn" (click)="goToPage(page-1)" [disabled]="page <= 1">‹</button>
+
+        <button
+          class="pager-num"
+          *ngFor="let p of pageNumbers"
+          (click)="goToPage(p)"
+          [class.active]="p === page"
+        >
+          {{ p }}
+        </button>
+
+        <button class="pager-btn" (click)="goToPage(page+1)" [disabled]="page >= totalPages">›</button>
+      </div>
+
+    </main>
+  </div>
+</div>

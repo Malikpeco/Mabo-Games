@@ -16,5 +16,6 @@ namespace Market.Application.Modules.Games.Dto
         public int PublisherId { get; init; }
         public string PublisherName { get; init; } = default!;
         public List<GameScreenshotsDto> Screenshots { get; set; } = new List<GameScreenshotsDto>();
+        public List<GameGenreDto> Genres { get; set; } = new List<GameGenreDto>();
     }
 }

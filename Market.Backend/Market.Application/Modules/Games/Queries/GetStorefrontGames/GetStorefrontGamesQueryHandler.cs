@@ -53,6 +53,11 @@ namespace Market.Application.Modules.Games.Queries.GetStorefrontGames
                         ImageURL= s.ImageURL,
                         GameId=s.GameId,
                     }).ToList(),
+                    Genres = x.GameGenres.Select(gg=>new GameGenreDto
+                    {
+                        Id=gg.GenreId,
+                        Name=gg.Genre.Name
+                    }).ToList(),
                 });
 
             return await PageResult<StorefrontGameDto>.FromQueryableAsync(projectedQuery, request.Paging, cancellationToken);

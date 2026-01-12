@@ -35,9 +35,9 @@ namespace Market.Application.Modules.Games.Queries.GetGameDetails
                         ImageURL= s.ImageURL,
                         GameId= s.GameId,
                     }).ToList(),
-                    Genres = g.GameGenres.Select(gg => new GenreDto
+                    Genres = g.GameGenres.Select(gg => new GameGenreDto
                     {
-                        Id = gg.Genre.Id,
+                        Id = gg.GenreId,
                         Name = gg.Genre.Name,
                     }).ToList(),
                     Reviews = new ReviewSummaryDto

@@ -39,7 +39,7 @@ export class StorefrontComponent {
     });
    
     this.gamesApi.storefront({
-      paging:{page:1, pageSize:5},
+      paging:{page:1, pageSize:4},
       sort:'priceAsc'
     }).subscribe(res=>{
       this.cheapestGames=res.items;
@@ -61,19 +61,6 @@ export class StorefrontComponent {
   prevNewest():void{
     if(this.newestGames.length===0)return;
     this.newestIndex = (this.newestIndex-1 + this.newestGames.length) % this.newestGames.length;
-  }
-
-
-  cheapestIndex = 0;
-
-  nextCheapest():void{
-    if(this.cheapestGames.length===0)return;
-    this.cheapestIndex = (this.cheapestIndex+1) % this.cheapestGames.length;
-  }
-
-  prevCheapest():void{
-    if(this.cheapestGames.length===0)return;
-    this.cheapestIndex = (this.cheapestIndex-1 + this.cheapestGames.length) % this.cheapestGames.length;
   }
 
 

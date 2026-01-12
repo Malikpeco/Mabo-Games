@@ -66,7 +66,7 @@
 
 
   <section class="carousel-section">
-    <h2>MaBo’s Favourite</h2>
+    <h2>Featured</h2>
   
     <ng-container *ngIf="featuredGame as g; else favLoading">
       <div class="carousel">
@@ -88,7 +88,7 @@
   
 
 
-  
+
   <section class="carousel-section">
     <h2>Newest Releases</h2>
 
@@ -138,53 +138,24 @@
   </section>
   
   
-  <section class="carousel-section">
-    <h2>Cheapest</h2>
-
-    <div class="carousel" *ngIf="cheapestGames.length > 0; else cheapestEmpty">
-      <!-- Left button -->
-      <button
-        type="button"
-        class="nav-btn left"
-        (click)="prevCheapest()"
-        [disabled]="cheapestGames.length <= 1"
-        aria-label="Previous game"
-      >
-        ‹
-      </button>
-
-      <!-- Slide -->
-      <div class="slide">
-        <img
-          class="slide-img"
-          [src]="getGameImage(cheapestGames[cheapestIndex])"
-          [alt]="cheapestGames[cheapestIndex].name"
-        />
-
-        <!-- Overlay info -->
-        <div class="slide-overlay">
-          <div class="slide-title">{{ cheapestGames[cheapestIndex].name }}</div>
-          <div class="slide-sub">{{ cheapestGames[cheapestIndex].publisherName }}</div>
-          <div class="slide-price">{{ cheapestGames[cheapestIndex].price | number:'1.2-2' }} KM</div>
+<section class="carousel-section">
+  <h2>Cheapest</h2>
+  <ng-container *ngIf="cheapestGames.length>0; else cheapestEmpty">
+    <div class="games-grid">
+      <a class="game-card" *ngFor="let g of cheapestGames" [routerLink]="['/public/game', g.id]">
+        <img class="game-card-img" [src]="g.coverImageURL" [alt]="g.name" />
+        <div class="game-card-meta">
+          <div class="game-card-title">{{ g.name }}</div>
+          <div class="game-card-sub">{{ g.publisherName }}</div>
+          <div class="game-card-price">{{ g.price | number:'1.2-2' }} KM</div>
         </div>
-      </div>
-
-      <!-- Right button -->
-      <button
-        type="button"
-        class="nav-btn right"
-        (click)="nextCheapest()"
-        [disabled]="cheapestGames.length <= 1"
-        aria-label="Next game"
-      >
-        ›
-      </button>
+      </a>
     </div>
-
-    <ng-template #cheapestEmpty>
-      <div class="carousel-placeholder">No games yet.</div>
-    </ng-template>
-  </section>
+  </ng-container>
+   <ng-template #cheapestEmpty>
+    <div class="carousel-placeholder">No cheap games yet.</div>
+  </ng-template>
+</section>
 
 
     

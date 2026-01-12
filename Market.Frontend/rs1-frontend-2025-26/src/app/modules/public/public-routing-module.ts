@@ -2,16 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { StorefrontComponent } from './storefront/storefront.component';
-import { SearchProductsComponent } from './search-products/search-products.component';
+import { BrowseGamesComponent } from './browse-games/browse-games.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: StorefrontComponent,
-    children: [
-      { path: '**', redirectTo: '' }//if user goes to any url that doesnt exist, send them back to '/'
-    ]
-  }
+  { path: '', component: StorefrontComponent},
+  { path: 'public/browse-games', component: BrowseGamesComponent},
+  { path: '**', redirectTo: '' }, //if user goes to any url that doesnt exist, send them back to '/'
 ];
 
 @NgModule({

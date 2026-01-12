@@ -17,7 +17,7 @@ namespace Market.Application.Modules.Games.Dto
         public string? CoverImageURL { get; init; }
         public PublisherDto Publisher { get; init; } = default!;
         public IReadOnlyList<GameScreenshotsDto> Screenshots { get; init; } = new List<GameScreenshotsDto>();
-        public IReadOnlyList<GenreDto> Genres { get; init; } = new List<GenreDto>();
+        public IReadOnlyList<GameGenreDto> Genres { get; init; } = new List<GameGenreDto>();
         public ReviewSummaryDto Reviews { get; init; } = new();
     }
 
@@ -35,7 +35,7 @@ namespace Market.Application.Modules.Games.Dto
         public string? CountryName { get; init; }
     }
 
-    public sealed class GenreDto
+    public sealed class GameGenreDto
     {
         public int Id { get; init; }
         public string Name { get; init; } = default!;

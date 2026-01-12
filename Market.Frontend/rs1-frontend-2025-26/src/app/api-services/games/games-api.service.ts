@@ -16,7 +16,6 @@ export class GamesApiService{
     private readonly baseUrl = `${environment.apiUrl}/api/games`;
 
 
-    //GET /api/games/storefront
     storefront(request?: GetStorefrontGamesRequest): Observable<GetStorefrontGamesResponse>{
         const params = request ? buildHttpParams(request as any) : undefined;
 
