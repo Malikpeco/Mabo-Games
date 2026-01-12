@@ -1,0 +1,171 @@
+
+<div class="storefront-page">
+  <!--navbar-->
+  <mat-toolbar class="topbar">
+
+    <div class="nav-left">
+      <button mat-icon-button aria-label="Toggle theme">
+        <mat-icon>dark_mode</mat-icon>
+      </button>
+      
+      <img src="/mabo_logo.png" alt="Mabo Games Logo" class="app-logo">
+    </div>
+
+    <div class="nav-center">
+      <a mat-button routerLink="/">Store</a>
+      <a matButton routerLink="/public/browse-games">Browse Games</a>
+      <a matButton routerLink="/client/library">My Library</a>
+      <a matButton routerLink="/client/profile">My Profile</a>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div class="nav-right">
+      
+      <button mat-button routerLink="/admin/admin-panel" *ngIf="isAuthenticated() && isAdmin()">
+        <mat-icon>admin_panel_settings</mat-icon>
+        Admin Panel
+      </button>
+
+      
+      
+      <!--TEMPORARY JUST FOR HELP ON THE FRONTEND -->
+      <div style="font-size:12px; opacity:.7">
+        auth={{ isAuthenticated() }} admin={{ isAdmin() }}
+      </div>
+      
+      
+      
+      
+      <button mat-icon-button aria-label="Notifications">
+        <mat-icon>notifications</mat-icon>
+      </button>
+      
+      <button mat-icon-button aria-label="Cart" routerLink="/client/cart">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>      
+      
+      <button mat-button routerLink="/auth/login" class="user-button" *ngIf="isAuthenticated() === false; else notLoggedIn">
+        <mat-icon>login</mat-icon>
+        Log in
+      </button>
+      
+      <ng-template #notLoggedIn>
+        <button mat-button class="user-button" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Log out
+        </button>
+      </ng-template>
+
+    </div>
+  </mat-toolbar>
+
+
+
+
+
+
+  <section class="carousel-section">
+    <h2>Featured</h2>
+  
+    <ng-container *ngIf="featuredGame as g; else favLoading">
+      <div class="carousel">
+        <div class="slide">
+          <img class="slide-img" [src]="getGameImage(g)" [alt]="g.name" />
+          <div class="slide-overlay">
+            <div class="slide-title">{{ g.name }}</div>
+            <div class="slide-sub">{{ g.publisherName }}</div>
+            <div class="slide-price">{{ g.price | number:'1.2-2' }} KM</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  
+    <ng-template #favLoading>
+      <div class="carousel-placeholder">Loading favourite...</div>
+    </ng-template>
+  </section>
+  
+
+
+
+  <section class="carousel-section">
+    <h2>Newest Releases</h2>
+
+    <div class="carousel" *ngIf="newestGames.length > 0; else newestEmpty">
+      <!-- Left button -->
+      <button
+      type="button"
+      class="nav-btn left"
+      (click)="prevNewest()"
+      [disabled]="newestGames.length <= 1"
+      aria-label="Previous game"
+      >
+        ‹
+      </button>
+
+      <!-- Slide -->
+      <div class="slide">
+        <img
+          class="slide-img"
+          [src]="getGameImage(newestGames[newestIndex])"
+          [alt]="newestGames[newestIndex].name"
+        />
+
+        <!-- Overlay info -->
+        <div class="slide-overlay">
+          <div class="slide-title">{{ newestGames[newestIndex].name }}</div>
+          <div class="slide-sub">{{ newestGames[newestIndex].publisherName }}</div>
+          <div class="slide-price">{{ newestGames[newestIndex].price | number:'1.2-2' }} KM</div>
+        </div>
+      </div>
+
+      <!-- Right button -->
+      <button
+        type="button"
+        class="nav-btn right"
+        (click)="nextNewest()"
+        [disabled]="newestGames.length <= 1"
+        aria-label="Next game"
+      >
+        ›
+      </button>
+    </div>
+
+    <ng-template #newestEmpty>
+      <div class="carousel-placeholder">No games yet.</div>
+    </ng-template>
+  </section>
+  
+  
+<section class="carousel-section">
+  <h2>Cheapest</h2>
+  <ng-container *ngIf="cheapestGames.length>0; else cheapestEmpty">
+    <div class="games-grid">
+      <a class="game-card" *ngFor="let g of cheapestGames" [routerLink]="['/public/game', g.id]">
+        <img class="game-card-img" [src]="g.coverImageURL" [alt]="g.name" />
+        <div class="game-card-meta">
+          <div class="game-card-title">{{ g.name }}</div>
+          <div class="game-card-sub">{{ g.publisherName }}</div>
+          <div class="game-card-price">{{ g.price | number:'1.2-2' }} KM</div>
+        </div>
+      </a>
+    </div>
+  </ng-container>
+   <ng-template #cheapestEmpty>
+    <div class="carousel-placeholder">No cheap games yet.</div>
+  </ng-template>
+</section>
+
+
+    
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/mabo_logo.png" alt="Mabo Games Logo">
+    <div class="footer-text">@{{currentYear}} MABO Games. All rights reserved.</div>
+  </div>
+</footer>
+
+
+</div>

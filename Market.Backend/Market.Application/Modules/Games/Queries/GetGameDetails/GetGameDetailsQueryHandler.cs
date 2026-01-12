@@ -30,10 +30,14 @@ namespace Market.Application.Modules.Games.Queries.GetGameDetails
                         CountryId = g.Publisher.CountryId,
                         CountryName = g.Publisher.Country.Name
                     },
-                    Screenshots = g.Screenshots.OrderBy(s => s.Id).Select(s => s.ImageURL).ToList(),
-                    Genres = g.GameGenres.Select(gg => new GenreDto
+                    Screenshots = g.Screenshots.OrderBy(s=>s.Id).Select(s=>new GameScreenshotsDto
                     {
-                        Id = gg.Genre.Id,
+                        ImageURL= s.ImageURL,
+                        GameId= s.GameId,
+                    }).ToList(),
+                    Genres = g.GameGenres.Select(gg => new GameGenreDto
+                    {
+                        Id = gg.GenreId,
                         Name = gg.Genre.Name,
                     }).ToList(),
                     Reviews = new ReviewSummaryDto
