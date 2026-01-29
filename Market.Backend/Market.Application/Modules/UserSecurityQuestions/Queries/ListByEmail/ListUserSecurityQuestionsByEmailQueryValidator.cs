@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using Market.Application.Modules.UserSecurityQuestions.Queries.List;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Market.Application.Modules.UserSecurityQuestions.Queries.ListByEmail
 {
@@ -6,7 +7,7 @@ namespace Market.Application.Modules.UserSecurityQuestions.Queries.ListByEmail
     {
         public ListUserSecurityQuestionsByEmailQueryValidator()
         {
-            RuleFor(x => x.userEmail).NotEmpty();
+            RuleFor(x => x.UserEmail).NotEmpty();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Market.Application.Modules.UserSecurityQuestions.Queries.List
 {
-    public sealed class ListUserSecurityQuestionsByEmailQueryValidator : AbstractValidator<ListUserSecurityQuestionsByEmailQuery>
+    public sealed class ListUserSecurityQuestionsQueryValidator : AbstractValidator<ListUserSecurityQuestionsQuery>
     {
-        public ListUserSecurityQuestionsByEmailQueryValidator()
+        public ListUserSecurityQuestionsQueryValidator()
         {
            
         }

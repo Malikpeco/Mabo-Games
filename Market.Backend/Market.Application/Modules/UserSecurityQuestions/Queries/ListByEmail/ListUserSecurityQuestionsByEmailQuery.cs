@@ -1,6 +1,8 @@
-﻿namespace Market.Application.Modules.UserSecurityQuestions.Queries.List
+﻿using Market.Application.Modules.UserSecurityQuestions.Queries.ListByEmail;
+
+namespace Market.Application.Modules.UserSecurityQuestions.Queries.List
 {
-    public sealed class ListUserSecurityQuestionsByEmailQuery() : IRequest<List<ListUserSecurityQuestionsByEmailQueryDto>>
+    public sealed record ListUserSecurityQuestionsByEmailQuery(string UserEmail) : IRequest<List<ListUserSecurityQuestionsByEmailQueryDto>>
     {
      
     }

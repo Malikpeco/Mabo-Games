@@ -1,4 +1,6 @@
-﻿namespace Market.Application.Modules.UserSecurityQuestions.Queries.ListByEmail
+﻿using Market.Application.Modules.UserSecurityQuestions.Queries.List;
+
+namespace Market.Application.Modules.UserSecurityQuestions.Queries.ListByEmail
 {
     public sealed class ListUserSecurityQuestionsByEmailQueryHandler(IAppDbContext context, IAppCurrentUser appCurrentUser)
         : IRequestHandler<ListUserSecurityQuestionsByEmailQuery,List<ListUserSecurityQuestionsByEmailQueryDto>>
@@ -7,7 +9,7 @@
         {
 
             var userQ = await context.Users.AsNoTracking()
-                .FirstAsync(x => x.Email == request.userEmail,ct);
+                .FirstAsync(x => x.Email == request.UserEmail,ct);
 
             if (userQ == null)
                 throw new MarketNotFoundException("User was not found");

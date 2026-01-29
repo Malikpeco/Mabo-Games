@@ -1,9 +1,9 @@
 ﻿namespace Market.Application.Modules.UserSecurityQuestions.Queries.List
 {
-    public sealed class ListUserSecurityQuestionsByEmailQueryHandler(IAppDbContext context, IAppCurrentUser appCurrentUser)
-        : IRequestHandler<ListUserSecurityQuestionsByEmailQuery,List<ListUserSecurityQuestionsByEmailQueryDto>>
+    public sealed class ListUserSecurityQuestionsQueryHandler(IAppDbContext context, IAppCurrentUser appCurrentUser)
+        : IRequestHandler<ListUserSecurityQuestionsQuery,List<ListUserSecurityQuestionsQueryDto>>
     {
-        public async Task<List<ListUserSecurityQuestionsByEmailQueryDto>> Handle(ListUserSecurityQuestionsByEmailQuery request, CancellationToken ct)
+        public async Task<List<ListUserSecurityQuestionsQueryDto>> Handle(ListUserSecurityQuestionsQuery request, CancellationToken ct)
         {
 
             var q = context.UserSecurityQuestions.
@@ -14,7 +14,7 @@
                 q.
                 Where(x=>x.UserId==appCurrentUser.UserId).
                 OrderBy(x=>x.Id).
-                Select(x=> new ListUserSecurityQuestionsByEmailQueryDto 
+                Select(x=> new ListUserSecurityQuestionsQueryDto
                 {
                     Id = x.Id,
                     Question=x.SecurityQuestion.Question,
