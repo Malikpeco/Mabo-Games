@@ -104,7 +104,7 @@
     </aside>
 
     <!-- MAIN -->
-    <main class="content">
+    <main class="content"> 
 
       <div class="top-row">
         <div class="spacer"></div>
@@ -126,7 +126,7 @@
         <a
           class="game-card"
           *ngFor="let g of filteredGames"
-          [routerLink]="['/public/game', g.id]"
+          [routerLink]="['/public/games', g.id]"
         >
           <img class="game-card-img" [src]="getGameImage(g)" [alt]="g.name" />
 
