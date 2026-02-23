@@ -1,0 +1,38 @@
+<!-- Email Recovery Step - The user will enter the code that was sent to their email (in this case the mailtrap account i made) -->
+
+<div class="email-recovery-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <header class="form-header">
+            <p id="welcome-message">Recovery Code</p>
+            <p id="reset-instructions">
+                We have sent a recovery code to your email address. Please enter the code below to proceed with
+                resetting your password.
+            </p>
+        </header>
+
+        <label>Recovery Code</label>
+        <div class="form-input">
+            <input type="text" maxlength="6" inputmode="numeric" placeholder="6 digit code"
+                formControlName="recoveryCode" />
+        </div>
+
+        <div class="error-message" *ngIf="form.get('recoveryCode')?.invalid && form.get('recoveryCode')?.touched">
+            <small *ngIf="form.get('recoveryCode')?.errors?.['required']">Recovery code is required</small>
+            <small *ngIf="form.get('recoveryCode')?.errors?.['pattern']">
+                Recovery code must contain only digits
+            </small>
+        </div>
+
+        <div class="error-message" *ngIf="errorMessage">
+            <small>{{ errorMessage }}</small>
+        </div>
+        <button type="submit" class="reset-button" [disabled]="form.invalid || isLoading">
+            Reset Password
+        </button>
+
+        <p class="reset-section">
+            Remembered your password?
+            <a routerLink="/auth/login">Log in</a>
+        </p>
+    </form>
+</div>

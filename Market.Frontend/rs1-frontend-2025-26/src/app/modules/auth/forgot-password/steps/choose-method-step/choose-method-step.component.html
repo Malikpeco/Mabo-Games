@@ -1,0 +1,32 @@
+    <!-- Choose Method Step - The user will be given all his recovery options - email or security questions (if they has any) -->
+
+    <div class="choose-method-form">
+        <form>
+            <header class="form-header">
+                <p id="welcome-message">Choose Your Preferred Recovery Method</p>
+                <p id="reset-instructions">
+                    Select one of the available recovery methods below to proceed with resetting your password.
+                </p>
+            </header>
+
+
+            <div class="buttons-container">
+
+                <button type="button" class="email-reset-button" (click)="startEmailRecovery()" [disabled]="isLoading">
+                    Reset via Email Recovery Code
+                </button>
+
+                <button type="button" class="security-question-reset-button"
+                    (click)="startSecurityQuestionRecovery()" [disabled]="isLoading">
+                    Reset via Security Questions
+                </button>
+
+            </div>
+
+
+            <p class="reset-section">
+                Remembered your password?
+                <a routerLink="/auth/login">Log in</a>
+            </p>
+        </form>
+    </div>

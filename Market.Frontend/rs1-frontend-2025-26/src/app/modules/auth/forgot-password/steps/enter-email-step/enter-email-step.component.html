@@ -1,0 +1,32 @@
+<div class="enter-email-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <header class="form-header">
+      <p id="welcome-message">Reset Your Password</p>
+      <p id="reset-instructions">
+        Enter your email address below, and we'll guide you through the process to reset your password.
+      </p>
+    </header>
+
+    <label>Email</label>
+    <div class="form-input">
+      <input type="email" placeholder="Enter your email" formControlName="email" />
+    </div>
+    <div class="error-message" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.['required']">Email is required</small>
+      <small *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email address</small>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      <small>{{ errorMessage }}</small>
+    </div>
+
+    <button type="submit" class="reset-button" [disabled]="isLoading">
+      Reset Password
+    </button>
+
+    <p class="reset-section">
+      Remembered your password?
+      <a routerLink="/auth/login">Log in</a>
+    </p>
+  </form>
+</div>
