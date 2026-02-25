@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
-import { GetStorefrontGamesRequest, GetStorefrontGamesResponse } from "./games-api.models";
+import { GameDetailsDto, GetStorefrontGamesRequest, GetStorefrontGamesResponse } from "./games-api.models";
 import { Observable } from "rxjs";
 import { buildHttpParams } from "../../core/models/build-http-params";
 import { UntypedFormBuilder } from "@angular/forms";
@@ -23,4 +23,8 @@ export class GamesApiService{
             params
         });
     }
+
+     getById(id: number): Observable<GameDetailsDto> {
+        return this.http.get<GameDetailsDto>(`${this.baseUrl}/${id}`);
+      }
 }

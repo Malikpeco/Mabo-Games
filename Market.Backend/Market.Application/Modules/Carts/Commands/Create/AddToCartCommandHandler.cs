@@ -49,7 +49,7 @@ namespace Market.Application.Modules.Carts.Commands.Create
 
             if (alreadyOwned) 
             {
-                throw new ValidationException("You already own this game!");
+                throw new MarketBusinessRuleException("409","You already own this game!");
             }
 
 
@@ -58,7 +58,7 @@ namespace Market.Application.Modules.Carts.Commands.Create
 
             if (existingItem != null)
             {
-                return Unit.Value;
+                throw new MarketBusinessRuleException("409","Game already in cart");
             }
 
             var cartItem = new CartItemEntity

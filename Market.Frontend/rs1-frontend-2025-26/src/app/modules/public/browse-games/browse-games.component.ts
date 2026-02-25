@@ -143,7 +143,9 @@ export class BrowseGamesComponent {
     this.reload();
   }
 
-
+  goToGameDetails(id: number): void{
+    this.router.navigate(['/public/games', id]);
+  }
 
 
 
