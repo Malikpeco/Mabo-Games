@@ -1,65 +1,7 @@
 
 <div class="storefront-page">
-  <!--navbar-->
-  <mat-toolbar class="topbar">
-
-    <div class="nav-left">
-      <button mat-icon-button aria-label="Toggle theme">
-        <mat-icon>dark_mode</mat-icon>
-      </button>
-      
-      <img src="/mabo_logo.png" alt="Mabo Games Logo" class="app-logo">
-    </div>
-
-      <div class="nav-center">
-      <a mat-button routerLink="/">Store</a>
-      <a mat-button routerLink="/public/browse-games">Browse Games</a>
-      <a mat-button routerLink="/client/library">My Library</a>
-      <a mat-button routerLink="/client/profile">My Profile</a>
-    </div>
-
-    <span class="spacer"></span>
-
-    <div class="nav-right">
-      
-      <button mat-button routerLink="/admin/admin-panel" *ngIf="isAuthenticated() && isAdmin()">
-        <mat-icon>admin_panel_settings</mat-icon>
-        Admin Panel
-      </button>
-
-      
-      
-      <!--TEMPORARY JUST FOR HELP ON THE FRONTEND -->
-      <div style="font-size:12px; opacity:.7">
-        auth={{ isAuthenticated() }} admin={{ isAdmin() }}
-      </div>
-      
-      
-      
-      
-      <button mat-icon-button aria-label="Notifications">
-        <mat-icon>notifications</mat-icon>
-      </button>
-      
-      <button mat-icon-button aria-label="Cart" routerLink="/client/cart">
-        <mat-icon>shopping_cart</mat-icon>
-      </button>      
-      
-      <button mat-button routerLink="/auth/login" class="user-button" *ngIf="isAuthenticated() === false; else notLoggedIn">
-        <mat-icon>login</mat-icon>
-        Log in
-      </button>
-      
-      <ng-template #notLoggedIn>
-        <button mat-button class="user-button" (click)="logout()">
-          <mat-icon>logout</mat-icon>
-          Log out
-        </button>
-      </ng-template>
-
-    </div>
-  </mat-toolbar>
-
+  
+  <app-mabo-navbar></app-mabo-navbar>
 
 
 
@@ -68,7 +10,7 @@
   <section class="carousel-section">
     <h2>Featured</h2>
   
-    <ng-container *ngIf="featuredGame as g; else favLoading">
+    <ng-container *ngIf="featuredGame as g; else favLoading" >
       <div class="carousel">
         <div class="slide">
           <img class="slide-img" [src]="getGameImage(g)" [alt]="g.name" />
@@ -142,7 +84,7 @@
   <h2>Cheapest</h2>
   <ng-container *ngIf="cheapestGames.length>0; else cheapestEmpty">
     <div class="games-grid">
-      <a class="game-card" *ngFor="let g of cheapestGames" [routerLink]="['/public/game', g.id]">
+      <a class="game-card" *ngFor="let g of cheapestGames" [routerLink]="['/public/games', g.id]">
         <img class="game-card-img" [src]="g.coverImageURL" [alt]="g.name" />
         <div class="game-card-meta">
           <div class="game-card-title">{{ g.name }}</div>
@@ -159,13 +101,6 @@
 
 
     
-
-<footer class="footer">
-  <div class="footer-inner">
-    <img class="footer-logo" src="/mabo_logo.png" alt="Mabo Games Logo">
-    <div class="footer-text">@{{currentYear}} MABO Games. All rights reserved.</div>
-  </div>
-</footer>
-
+<app-mabo-footer></app-mabo-footer>
 
 </div>

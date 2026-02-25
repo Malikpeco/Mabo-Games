@@ -25,7 +25,7 @@ namespace Market.API.Controllers
         }
 
 
-
+            
         //get game by id
         [HttpGet("{id:int}")]
         [AllowAnonymous]

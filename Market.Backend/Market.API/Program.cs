@@ -84,7 +84,7 @@ public partial class Program
             // Global exception handler (IExceptionHandler)
             app.UseExceptionHandler();
             app.UseMiddleware<RequestResponseLoggingMiddleware>();
-
+            app.UseExceptionHandler();
             app.UseHttpsRedirection();
             // UseCors ide prije UseAuthorization i UseAuthentification
             app.UseCors("AllowAngularDev");
