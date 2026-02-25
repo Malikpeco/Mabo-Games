@@ -34,6 +34,24 @@ export interface RequestPasswordResetByEmailCommand {
 }
 
 /**
+ * Command for POST /password-reset/security-question
+ * Corresponds to: RequestPasswordResetBySecurityQuestionCommand.cs
+ */
+export interface RequestPasswordResetBySecurityQuestionCommand {
+    userSecurityQuestionId: number;
+    securityQuestionAnswer: string;
+}
+
+/**
+ * Response for POST /password-reset/security-question
+ * Corresponds to: PasswordResetCodeDto.cs
+ */
+export interface PasswordResetCodeDto {
+    resetCode: string;
+}
+
+
+/**
  * Command for POST /password-reset/change
  * Corresponds to: PasswordResetCommand.cs
  */

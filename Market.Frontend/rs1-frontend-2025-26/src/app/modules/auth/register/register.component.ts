@@ -3,8 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseComponent } from '../../../core/components/base-classes/base-component';
 import { passwordMatchValidator } from '../../../core/validators/password-match.validator';
-import { RegisterUserCommand } from '../../../api-services/user/user-api.model';
-import { UserApiService } from '../../../api-services/user/user-api.service';
+import { RegisterUserCommand } from '../../../api-services/users/users-api.model';
+import { UserApiService } from '../../../api-services/users/users-api.service';
 
 
 

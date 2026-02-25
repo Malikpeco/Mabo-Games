@@ -9,8 +9,10 @@ import {
   , RegisterUserResultDto,
   RequestPasswordResetByEmailCommand,
   PasswordResetCommand,
-  VerifyResetCodeQuery
-} from './user-api.model';
+  VerifyResetCodeQuery,
+  RequestPasswordResetBySecurityQuestionCommand,
+  PasswordResetCodeDto
+} from './users-api.model';
 
 
 //NOTE TO SELF. Pripazi koji http saljes, da li je put, get itd...
@@ -49,6 +51,14 @@ export class UserApiService {
 */
   requestPasswordResetByEmail(payload: RequestPasswordResetByEmailCommand): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/password-reset/email`, payload);
+  }
+
+  /**
+  * POST /password-reset/security-question
+  * Sends a recovery code to reset password with by security question.
+  */
+  requestPasswordResetBySecurityQuestion(payload: RequestPasswordResetBySecurityQuestionCommand): Observable<PasswordResetCodeDto> {
+    return this.http.post<PasswordResetCodeDto>(`${this.baseUrl}/password-reset/security-question`, payload);
   }
 
 

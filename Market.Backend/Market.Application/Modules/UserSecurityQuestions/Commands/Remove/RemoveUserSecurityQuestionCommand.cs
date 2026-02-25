@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.UserSecurityQuestions.Commands.Remove
 {
-    public sealed class RemoveUserSecurityQuestionCommand
-        :IRequest<int>
+    public sealed class RemoveUserSecurityQuestionCommand:IRequest<int>
     {
 
         [JsonIgnore]

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { BaseComponent } from '../../../../../core/components/base-classes/base-component';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserApiService } from '../../../../../api-services/user/user-api.service';
-import { VerifyResetCodeQuery } from '../../../../../api-services/user/user-api.model';
+import { UserApiService } from '../../../../../api-services/users/users-api.service';
+import { VerifyResetCodeQuery } from '../../../../../api-services/users/users-api.model';
 
 @Component({
   selector: 'app-email-recovery-step',
@@ -23,6 +23,8 @@ export class EmailRecoveryStepComponent extends BaseComponent {
     recoveryCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
   });
 
+
+
   onSubmit(): void {
     if (this.form.invalid || this.isLoading) return;
 
@@ -35,10 +37,12 @@ export class EmailRecoveryStepComponent extends BaseComponent {
 
     this.userApi.verifyResetCode(payload).subscribe({
       next: () => {
+
         this.stopLoading();
         this.codeVerified.emit(this.form.value.recoveryCode ?? '');
       },
       error: (err) => {
+
         this.stopLoading('Invalid recovery code. Please try again.');
         console.error('Verify reset code error:', err);
       },

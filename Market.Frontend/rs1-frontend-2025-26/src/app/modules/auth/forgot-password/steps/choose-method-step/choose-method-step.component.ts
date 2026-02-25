@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Input, input, Output } from '@angular/core';
 import { BaseComponent } from '../../../../../core/components/base-classes/base-component';
-import { UserApiService } from '../../../../../api-services/user/user-api.service';
+import { UserApiService } from '../../../../../api-services/users/users-api.service';
 import { FormBuilder } from '@angular/forms';
-import { CheckRecoveryOptionsResultDto, RequestPasswordResetByEmailCommand } from '../../../../../api-services/user/user-api.model';
+import { CheckRecoveryOptionsResultDto, RequestPasswordResetByEmailCommand } from '../../../../../api-services/users/users-api.model';
 
 @Component({
   selector: 'app-choose-method-step',
@@ -25,19 +25,23 @@ export class ChooseMethodStepComponent extends BaseComponent {
   @Output() methodChosen = new EventEmitter<'email' | 'security-question'>();
 
 
+  isSendingEmail: boolean = false;  
 
-  startEmailRecovery():void  {
-    
-    if(this.isLoading) return;
 
+  startEmailRecovery(): void {
+
+    if (this.isLoading) return;
+
+    this.isSendingEmail = true;  
     this.startLoading();
 
-    const payload: RequestPasswordResetByEmailCommand= {
+    const payload: RequestPasswordResetByEmailCommand = {
       userEmail: this.userEmail
     }
-   
+
     this.userApi.requestPasswordResetByEmail(payload).subscribe({
       next: () => {
+        this.isSendingEmail = false;  
         this.stopLoading();
         this.methodChosen.emit('email');
       },
@@ -53,7 +57,5 @@ export class ChooseMethodStepComponent extends BaseComponent {
   startSecurityQuestionRecovery(): void {
     this.methodChosen.emit('security-question');
   }
-
-
 
 }

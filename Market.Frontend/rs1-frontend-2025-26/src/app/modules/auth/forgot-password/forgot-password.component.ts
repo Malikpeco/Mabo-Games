@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CheckRecoveryOptionsResultDto } from '../../../api-services/user/user-api.model';
+import { CheckRecoveryOptionsResultDto } from '../../../api-services/users/users-api.model';
 
 @Component({
   selector: 'app-forgot-password',

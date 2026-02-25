@@ -30,8 +30,7 @@ export class BrowseGamesComponent {
 
 
   logout():void{
-    this.authFacadeService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/logout']);
   }
 
 

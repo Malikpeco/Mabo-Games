@@ -12,6 +12,8 @@ import { ChooseMethodStepComponent } from './forgot-password/steps/choose-method
 import { EmailRecoveryStepComponent } from './forgot-password/steps/email-recovery-step/email-recovery-step.component';
 import { ResetPasswordStepComponent } from './forgot-password/steps/reset-password-step/reset-password-step.component';
 import { DoneStepComponent } from './forgot-password/steps/done-step/done-step.component';
+import { SecurityQuestionRecoveryStepComponent } from './forgot-password/steps/security-question-recovery-step/security-question-recovery-step.component';
+import { TransitionLoadingComponent } from '../shared/components/transition-loading/transition-loading.component';
 
 
 
@@ -27,6 +29,7 @@ import { DoneStepComponent } from './forgot-password/steps/done-step/done-step.c
     EmailRecoveryStepComponent,
     ResetPasswordStepComponent,
     DoneStepComponent,
+    SecurityQuestionRecoveryStepComponent,
   
   ],
   imports: [

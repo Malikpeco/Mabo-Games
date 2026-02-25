@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BaseComponent } from '../../../../../core/components/base-classes/base-component';
-import { UserApiService } from '../../../../../api-services/user/user-api.service';
-import { PasswordResetCommand } from '../../../../../api-services/user/user-api.model';
+import { UserApiService } from '../../../../../api-services/users/users-api.service';
+import { PasswordResetCommand } from '../../../../../api-services/users/users-api.model';
 import { passwordMatchValidator } from '../../../../../core/validators/password-match.validator';
 import { PasswordStrenghtMeterComponent } from '../../../../shared/components/password-strenght-meter/password-strenght-meter/password-strenght-meter.component';
 @Component({

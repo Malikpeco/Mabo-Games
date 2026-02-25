@@ -1,0 +1,21 @@
+<div class="transition-wrapper" @fadeInUp *ngIf="isVisible">
+  <mat-card class="transition-card">
+    <mat-card-content>
+      <div class="icon-container">
+        <mat-icon class="check-icon">check_circle</mat-icon>
+      </div>
+      
+      <h2 class="title">{{ title }}</h2>
+      <p class="message">{{ message }}</p>
+      
+      <div class="progress-section">
+        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+        
+        <div class="countdown-display" *ngIf="redirectRoute">
+          <mat-icon>schedule</mat-icon>
+          <span>Redirecting in {{ currentCountdown }} second{{ currentCountdown !== 1 ? 's' : '' }}...</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
