@@ -1,1 +1,95 @@
-<p>game-details works!</p>
+<app-mabo-navbar></app-mabo-navbar>
+
+<section class="game-details-page" *ngIf="game as g; else loadingTpl">
+
+
+  <section class="gallery-wrap" *ngIf="game as g">
+  <h1 class="title">{{ g.name }}</h1>
+
+  <div class="main-image-box">
+    <img class="main-image" [src]="mainImageUrl" [alt]="g.name" />
+
+    <button
+      *ngIf="isViewingScreenshot && g.screenshots.length > 1"
+      class="nav prev"
+      type="button"
+      (click)="prevScreenshot()"
+    >
+      ‹
+    </button>
+
+    <button
+      *ngIf="isViewingScreenshot && g.screenshots.length > 1"
+      class="nav next"
+      type="button"
+      (click)="nextScreenshot()"
+    >
+      ›
+    </button>
+
+    <button
+      *ngIf="isViewingScreenshot"
+      class="close-btn"
+      type="button"
+      (click)="closeScreenshot()"
+    >
+      Exit screenshot
+    </button>
+  </div>
+
+  <div class="thumb-row" *ngIf="g.screenshots?.length">
+    <button
+      type="button"
+      class="thumb"
+      *ngFor="let s of g.screenshots; let i = index"
+      (click)="openScreenshot(i)"
+      [class.active]="activeScreenshotIndex === i"
+    >
+      <img [src]="s.imageURL" [alt]="g.name + ' screenshot ' + (i + 1)" />
+    </button>
+  </div>
+
+</section>
+
+    <aside class="game-side">
+      <div class="meta-row" *ngIf="game?.genres?.length">
+        <span>Genres</span>
+        <div class="genre-list">
+            <span class="genre-chip" *ngFor="let g of game!.genres">
+                {{ g.name }}
+            </span>
+        </div>
+      </div>
+
+      <div class="meta-row">
+        <span>Publisher</span>
+        <strong> {{ g.publisher.name }}</strong>
+      </div>
+
+      <div class="meta-row">
+        <span>Release date</span>
+        <strong>{{ g.releaseDate | date:'mediumDate' }}</strong>
+      </div>
+
+      <div class="price-box">
+        <div class="price">{{ g.price | currency:'EUR':'symbol':'1.2-2' }}</div>
+        <button type="button" class="btn-add-cart" (click)="addToCart(g.id)">
+          Add to cart
+        </button>
+      </div>
+    </aside>
+
+  <section class="about">
+    <h2>About {{ g.name }}</h2>
+    <p>{{ g.description }}</p>
+  </section>
+
+
+</section>
+
+
+<app-mabo-footer></app-mabo-footer>
+
+<ng-template #loadingTpl>
+  <p>Loading game details...</p>
+</ng-template>
