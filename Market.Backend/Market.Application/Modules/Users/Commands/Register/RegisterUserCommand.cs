@@ -25,7 +25,6 @@ namespace Market.Application.Modules.Users.Commands.Register
         [PreserveString]
         public string? PhoneNumber { get; set; }
 
-        public int CountryId { get; set; }
 
 
     }

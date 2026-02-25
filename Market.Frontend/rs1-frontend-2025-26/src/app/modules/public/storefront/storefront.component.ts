@@ -72,8 +72,7 @@ export class StorefrontComponent {
 
 
   logout():void{
-    this.authFacadeService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/logout']);
   }
 
 

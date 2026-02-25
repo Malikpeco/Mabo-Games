@@ -8,6 +8,7 @@ using Market.Application.Modules.UserSecurityQuestions.Commands.Remove;
 using Market.Application.Modules.UserSecurityQuestions.Commands.Update;
 using Market.Application.Modules.UserSecurityQuestions.Queries.GetById;
 using Market.Application.Modules.UserSecurityQuestions.Queries.List;
+using Market.Application.Modules.UserSecurityQuestions.Queries.ListByEmail;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Market.API.Controllers
@@ -46,13 +47,21 @@ namespace Market.API.Controllers
         }
 
 
-        [HttpGet]
-
-        public async Task<ActionResult<List<ListUserSecurityQuestionsQueryDto>>> List([FromQuery]ListUserSecurityQuestionsQuery query, CancellationToken ct)
+        [HttpGet("list")]
+        public async Task<ActionResult<List<ListUserSecurityQuestionsQueryDto>>> List(ListUserSecurityQuestionsQuery query, CancellationToken ct)
         {
             var result = await sender.Send(query, ct);
             return Ok(result);
         }
+
+        [HttpGet("list-email")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<ListUserSecurityQuestionsByEmailQueryDto>>> ListByEmail(string userEmail, CancellationToken ct)
+        {
+            var result = await sender.Send(new ListUserSecurityQuestionsByEmailQuery(userEmail), ct);
+            return Ok(result);
+        }
+
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<GetUserSecurityQuestionsByIdQueryDto>> GetById(int id, CancellationToken ct)

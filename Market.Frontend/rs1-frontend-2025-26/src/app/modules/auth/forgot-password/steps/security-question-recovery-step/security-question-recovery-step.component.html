@@ -1,0 +1,49 @@
+<div class="security-question-recovery-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <header class="form-header">
+            <p id="welcome-message">Security Question Recovery</p>
+            <p id="reset-instructions">
+                Please select your security question and provide the answer to proceed with resetting your password.
+            </p>
+        </header>
+
+        <!-- Security Question Dropdown -->
+        <label>Security Question</label>
+        <div class="form-input">
+            <select formControlName="selectedQuestionId">
+                <option value="" disabled>Select a security question</option>
+                <option *ngFor="let question of userQuestions" [value]="question.id">
+                    {{ question.question }}
+                </option>
+            </select>
+        </div>
+
+        <div class="error-message" *ngIf="form.get('selectedQuestionId')?.invalid && form.get('selectedQuestionId')?.touched">
+            <small *ngIf="form.get('selectedQuestionId')?.errors?.['required']">Please select a security question</small>
+        </div>
+
+        <!-- Security Question Answer -->
+        <label>Answer</label>
+        <div class="form-input">
+            <input type="text" placeholder="Your answer" formControlName="securityQuestionAnswer" />
+        </div>
+
+        <div class="error-message" *ngIf="form.get('securityQuestionAnswer')?.invalid && form.get('securityQuestionAnswer')?.touched">
+            <small *ngIf="form.get('securityQuestionAnswer')?.errors?.['required']">Answer is required</small>
+            <small *ngIf="form.get('securityQuestionAnswer')?.errors?.['minlength']">Answer must be at least 3 characters</small>
+        </div>
+
+        <div class="error-message" *ngIf="errorMessage">
+            <small>{{ errorMessage }}</small>
+        </div>
+
+        <button type="submit" class="reset-button" [disabled]="form.invalid || isLoading">
+            Verify Answer
+        </button>
+
+        <p class="reset-section">
+            Remembered your password?
+            <a routerLink="/auth/login">Log in</a>
+        </p>
+    </form>
+</div>

@@ -14,7 +14,7 @@
                 q.
                 Where(x=>x.UserId==appCurrentUser.UserId).
                 OrderBy(x=>x.Id).
-                Select(x=> new ListUserSecurityQuestionsQueryDto 
+                Select(x=> new ListUserSecurityQuestionsQueryDto
                 {
                     Id = x.Id,
                     Question=x.SecurityQuestion.Question,

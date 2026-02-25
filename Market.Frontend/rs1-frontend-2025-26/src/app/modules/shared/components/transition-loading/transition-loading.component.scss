@@ -1,0 +1,90 @@
+$primary-black: #1A1A1A;
+$primary-white: #F9F8F6;
+$text-dark: #1a1a1a;
+$text-light: #F9F8F6;
+$text-lighter: #6b7280;
+$error-light : #FFEAEA;
+$error-dark : #D93025;
+
+
+
+.transition-wrapper {
+
+  position: fixed;
+  inset: 0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  padding: 24px;
+  
+  background: $primary-black;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.transition-card {
+  max-width: 500px;
+  width: 100%;
+
+  text-align: center;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  
+  flex-shrink: 0;
+}
+
+mat-card-content {
+  padding: 48px 32px;
+}
+
+.icon-container {
+  margin-bottom: 24px;
+
+  .check-icon {
+    font-size: 80px;
+    width: 80px;
+    height: 80px;
+    color: #4caf50;
+  }
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.message {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 32px 0;
+  line-height: 1.6;
+}
+
+.progress-section {
+  mat-progress-bar {
+    height: 6px;
+    border-radius: 3px;
+  }
+
+  .countdown-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

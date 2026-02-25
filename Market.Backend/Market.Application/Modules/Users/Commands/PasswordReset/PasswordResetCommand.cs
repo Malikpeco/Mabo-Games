@@ -10,7 +10,7 @@ namespace Market.Application.Modules.Users.Commands.PasswordReset
     [PreserveString]
     public sealed class PasswordResetCommand:IRequest<Unit>
     {
-        public string PasswordResetCode { get; set; }
+        public string RecoveryCode { get; set; }
 
         public string NewPassword { get; set; }
 

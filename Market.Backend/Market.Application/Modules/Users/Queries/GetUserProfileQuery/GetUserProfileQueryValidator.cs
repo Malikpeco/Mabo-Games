@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Users.Queries.GetUserProfileQuery
 {
-    public sealed class GetUserProfileQueryValidator
-        : AbstractValidator<GetUserProfileQuery>
+    public sealed class GetUserProfileQueryValidator: AbstractValidator<GetUserProfileQuery>
     {
         public GetUserProfileQueryValidator()
         {

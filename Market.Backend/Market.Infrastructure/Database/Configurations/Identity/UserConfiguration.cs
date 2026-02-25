@@ -39,7 +39,6 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
         builder.HasOne(u => u.Country)
                .WithMany(c => c.Users)
                .HasForeignKey(u => u.CountryId)
-               .IsRequired()
                .OnDelete(DeleteBehavior.NoAction);
                ;
 

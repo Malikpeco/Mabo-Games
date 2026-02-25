@@ -10,6 +10,7 @@
 
             RuleFor(x=> x.newAnswer)
                 .NotEmpty().WithMessage("The new answer cannot be empty.")
+                .MinimumLength(3)
                 .MaximumLength(100).WithMessage("The new answer cannot exceed 100 characters.");
         }
     }

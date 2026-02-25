@@ -30,8 +30,7 @@ public sealed class RegisterUserCommandValidator : AbstractValidator<RegisterUse
             .NotEmpty()
             .Equal(y => y.Password)
             .WithMessage("The passwords do not match, try again.");
-        
-        RuleFor(x=> x.CountryId).NotEmpty();
+
         
         RuleFor(x => x.PhoneNumber)
             .Matches("^\\+?(\\d{1,3})?[-.\\s]?(\\(?\\d{3}\\)?[-.\\s]?)?(\\d[-.\\s]?){6,9}\\d$")
