@@ -9,6 +9,8 @@ import { GameDetailsComponent } from './game-details/game-details.component';
 import { MaboNavbarComponent } from './mabo-navbar/mabo-navbar.component';
 import { MaboFooterComponent } from './mabo-footer/mabo-footer.component';
 import { CartComponent } from './cart/cart.component';
+import { BeginCheckoutComponent } from './begin-checkout/begin-checkout.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { CartComponent } from './cart/cart.component';
     MaboNavbarComponent,
     MaboFooterComponent,
     CartComponent,
+    BeginCheckoutComponent,
+    PaymentComponent,
   ],
   imports: [
     SharedModule,

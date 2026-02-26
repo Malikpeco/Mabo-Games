@@ -1,0 +1,46 @@
+<app-mabo-navbar></app-mabo-navbar>
+
+<main class="checkout-page">
+  <section class="checkout-shell">
+    <header class="checkout-header">
+      <h1>Checkout</h1>
+      <p>Review your items before payment.</p>
+    </header>
+
+    <section class="checkout-list" *ngIf="cartItems.length; else emptyCheckoutTpl">
+      <article class="checkout-row" *ngFor="let item of cartItems">
+        <div class="cover-wrap">
+          <img [src]="item.coverImageURL" [alt]="item.gameName" />
+        </div>
+
+        <div class="game-meta">
+          <h3>{{ item.gameName }}</h3>
+          <p class="added-at">Added {{ item.addedAt | date: 'mediumDate' }}</p>
+        </div>
+
+        <div class="price-col">{{ item.price | currency:'EUR':'symbol':'1.2-2' }}</div>
+      </article>
+    </section>
+
+    <ng-template #emptyCheckoutTpl>
+      <section class="empty-checkout">
+        <h2>No items in checkout</h2>
+        <p>Go back to cart and add items to continue.</p>
+      </section>
+    </ng-template>
+  </section>
+
+  <section class="checkout-summary">
+    <div class="summary-total">
+      <span>Total price</span>
+      <strong>{{ totalPrice | currency:'EUR':'symbol':'1.2-2' }}</strong>
+    </div>
+
+    <div class="summary-actions">
+      <button type="button" class="btn btn-secondary" routerLink="/public/cart">Back to cart</button>
+      <button type="button" class="btn btn-primary" [disabled]="!cartItems.length" routerLink="/public/payment">Pay now</button>
+    </div>
+  </section>
+</main>
+
+<app-mabo-footer></app-mabo-footer>
