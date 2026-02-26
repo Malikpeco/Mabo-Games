@@ -18,13 +18,11 @@ export class GamesApiService{
 
     storefront(request?: GetStorefrontGamesRequest): Observable<GetStorefrontGamesResponse>{
         const params = request ? buildHttpParams(request as any) : undefined;
-
-        return this.http.get<GetStorefrontGamesResponse>(`${this.baseUrl}/storefront`,{
-            params
-        });
+        return this.http.get<GetStorefrontGamesResponse>(`${this.baseUrl}/storefront`,{params});
     }
 
-     getById(id: number): Observable<GameDetailsDto> {
+    getById(id: number): Observable<GameDetailsDto> {
         return this.http.get<GameDetailsDto>(`${this.baseUrl}/${id}`);
-      }
+    }
+
 }
