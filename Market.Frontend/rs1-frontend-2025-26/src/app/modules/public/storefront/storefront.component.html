@@ -13,7 +13,7 @@
     <ng-container *ngIf="featuredGame as g; else favLoading" >
       <div class="carousel">
         <div class="slide">
-          <img class="slide-img" [src]="getGameImage(g)" [alt]="g.name" />
+          <img class="slide-img" [src]="getGameImage(g)" [alt]="g.name" [routerLink]="['/public/games', g.id ]" />
           <div class="slide-overlay">
             <div class="slide-title">{{ g.name }}</div>
             <div class="slide-sub">{{ g.publisherName }}</div>
@@ -52,6 +52,7 @@
           class="slide-img"
           [src]="getGameImage(newestGames[newestIndex])"
           [alt]="newestGames[newestIndex].name"
+          [routerLink]="['/public/games', newestGames[newestIndex].id ]"
         />
 
         <!-- Overlay info -->

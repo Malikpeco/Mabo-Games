@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Market.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,12 +30,18 @@ namespace Market.Application.Modules.Carts.Commands.Delete
 
             context.CartItems.Remove(cartitem);
             await context.SaveChangesAsync(ct);
+    
+            cart.TotalPrice = await context.CartItems
+            .Where(ci => ci.CartId == cart.Id && !ci.IsSaved)
+            .SumAsync(ci => ci.Game.Price, ct);
 
-            cart.TotalPrice -= cartitem.Game.Price;
+            context.Carts.Update(cart);
             await context.SaveChangesAsync(ct);
             return Unit.Value;
 
         }
+
+        
 
         private static async Task EnsureNoPendingOrder(IAppDbContext context, int userid, CancellationToken ct)
         {

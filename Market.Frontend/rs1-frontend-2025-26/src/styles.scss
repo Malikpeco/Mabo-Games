@@ -50,62 +50,37 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-// Add this to your global styles.scss
-
 // ===========================
 // TOASTER / SNACKBAR STYLES
 // ===========================
 
-.snackbar-success {
+.mat-mdc-snack-bar-container.snackbar-success .mdc-snackbar__surface {
   background-color: #4caf50 !important;
-  color: white !important;
-
-  .mat-mdc-snack-bar-label {
-    color: white !important;
-  }
-
-  .mat-mdc-button {
-    color: white !important;
-  }
+  color: #fff !important;
 }
 
-.snackbar-error {
+.mat-mdc-snack-bar-container.snackbar-error .mdc-snackbar__surface {
   background-color: #f44336 !important;
-  color: white !important;
-
-  .mat-mdc-snack-bar-label {
-    color: white !important;
-  }
-
-  .mat-mdc-button {
-    color: white !important;
-  }
+  color: #fff !important;
 }
 
-.snackbar-warning {
+.mat-mdc-snack-bar-container.snackbar-warning .mdc-snackbar__surface {
   background-color: #ff9800 !important;
-  color: white !important;
-
-  .mat-mdc-snack-bar-label {
-    color: white !important;
-  }
-
-  .mat-mdc-button {
-    color: white !important;
-  }
+  color: #fff !important;
 }
 
-.snackbar-info {
+.mat-mdc-snack-bar-container.snackbar-info .mdc-snackbar__surface {
   background-color: #2196f3 !important;
-  color: white !important;
+  color: #fff !important;
+}
 
-  .mat-mdc-snack-bar-label {
-    color: white !important;
-  }
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: 8px !important;
+}
 
-  .mat-mdc-button {
-    color: white !important;
-  }
+.mat-mdc-snack-bar-container .mat-mdc-snack-bar-label,
+.mat-mdc-snack-bar-container .mat-mdc-button {
+  color: #fff !important;
 }
 
 

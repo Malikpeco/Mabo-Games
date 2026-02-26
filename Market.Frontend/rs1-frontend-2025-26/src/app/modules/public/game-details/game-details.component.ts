@@ -6,6 +6,7 @@ import { CurrentUserService } from '../../../core/services/auth/current-user.ser
 import { AuthFacadeService } from '../../../core/services/auth/auth-facade.service';
 import { CartsApiService } from '../../../api-services/carts/carts-api.service';
 import { ToasterService } from '../../../core/services/toaster.service';
+import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
 
 @Component({
   selector: 'app-game-details',
@@ -21,7 +22,10 @@ implements OnInit{
   api=inject(GamesApiService);
   id = 0;
   game:GameDetailsDto | null = null;
+  isInCart = false;
+  isInLibrary = false;
   cartsApi=inject(CartsApiService);
+  userGamesApi=inject(UserGamesApiService);
   toaster=inject(ToasterService);
 
   private currentUserService = inject(CurrentUserService);
@@ -41,8 +45,35 @@ implements OnInit{
   this.api.getById(this.id).subscribe({
     next:response=>{
       this.game=response;
+      this.loadUserGameState(this.id);
     }
   });
+  }
+
+  private loadUserGameState(gameId: number): void {
+    if (!this.isAuthenticated()) {
+      this.isInCart = false;
+      this.isInLibrary = false;
+      return;
+    }
+
+    this.cartsApi.getCart().subscribe({
+      next: response => {
+        this.isInCart = response.cartItems.some(item => item.gameId === gameId);
+      },
+      error: () => {
+        this.isInCart = false;
+      }
+    });
+
+    this.userGamesApi.listUserGames().subscribe({
+      next: res => {
+        this.isInLibrary = res.items.some(g => g.id === gameId);
+      },
+      error: () => {
+        this.isInLibrary = false;
+      }
+    });
   }
 
   activeScreenshotIndex: number | null = null;
@@ -88,14 +119,51 @@ addToCart(gameId:number) :void{
     return;
   }
 
-  this.cartsApi.addToCart({gameId}).subscribe({
-    next:()=>{
-      this.toaster.success('Game added to cart!');
+  if (this.isInLibrary) {
+    this.toaster.info('You already own this game.');
+    return;
+  }
+
+  if (this.isInCart) {
+    this.toaster.info('Game is already in your cart.');
+    return;
+  }
+
+  this.cartsApi.getCart().subscribe({
+    next:response=>{
+      if(response.cartItems.some(item=>item.gameId===gameId)){
+        this.toaster.info('Game is already in your cart.');
+        return;
+      }
+
+      this.userGamesApi.listUserGames().subscribe({
+        next:res=>{
+          if(res.items.some(g=>g.id===gameId)){
+            this.toaster.info('You already own this game.');
+            return;
+          }
+
+          this.cartsApi.addToCart({gameId}).subscribe({
+            next:()=>{
+              this.isInCart = true;
+              this.toaster.success('Game added to cart!');
+            },
+            error:(err)=>{
+              this.toaster.error(`${err?.error?.message ?? 'Failed to add game to cart.'}`); 
+            },
+          });
+        },
+        error:(err)=>{
+          this.toaster.error(`${err?.error?.message ?? 'Failed to check owned games.'}`);
+        }
+      });
     },
     error:(err)=>{
-      this.toaster.error(`${err.error.message}`); 
-    },
+      this.toaster.error(`${err?.error?.message ?? 'Failed to check cart.'}`);
+    }
   });
 }
+
+
 
 }

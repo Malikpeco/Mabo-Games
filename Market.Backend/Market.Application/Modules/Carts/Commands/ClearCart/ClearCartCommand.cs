@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market.Application.Modules.Carts.Commands.DeleteUnsavedCartItems
+namespace Market.Application.Modules.Carts.Commands.ClearCart
 {
-    public sealed class CartCleanupCommand : IRequest<Unit>
+    public sealed class ClearCartCommand : IRequest<Unit>
     {
     }
 }

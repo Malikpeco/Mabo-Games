@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { MaboNavbarComponent } from './mabo-navbar/mabo-navbar.component';
 import { MaboFooterComponent } from './mabo-footer/mabo-footer.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { MaboFooterComponent } from './mabo-footer/mabo-footer.component';
     GameDetailsComponent,
     MaboNavbarComponent,
     MaboFooterComponent,
+    CartComponent,
   ],
   imports: [
     SharedModule,

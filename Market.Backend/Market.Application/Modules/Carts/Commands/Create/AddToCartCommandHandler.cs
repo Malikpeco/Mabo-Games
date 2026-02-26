@@ -67,13 +67,20 @@ namespace Market.Application.Modules.Carts.Commands.Create
                 GameId = request.GameId
             };
             _context.CartItems.Add(cartItem);
-
-            cart.TotalPrice += game.Price;
-            
             await _context.SaveChangesAsync(cancellationToken);
+
+            cart.TotalPrice = await _context.CartItems
+            .Where(ci => ci.CartId == cart.Id && !ci.IsSaved)
+            .SumAsync(ci => ci.Game.Price, cancellationToken);
+
+            await _context.SaveChangesAsync(cancellationToken);
+
+
 
             return Unit.Value;
         }
+
+
 
         private static async Task EnsureNoPendingOrder(IAppDbContext context, int userid, CancellationToken ct)
         {

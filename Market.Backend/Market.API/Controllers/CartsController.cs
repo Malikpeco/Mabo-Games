@@ -1,6 +1,8 @@
-﻿using Market.Application.Modules.Carts.Commands.Create;
+﻿using Market.Application.Modules.Achievements.Commands.Update;
+using Market.Application.Modules.Carts.Commands.ClearCart;
+using Market.Application.Modules.Carts.Commands.Create;
 using Market.Application.Modules.Carts.Commands.Delete;
-using Market.Application.Modules.Carts.Commands.DeleteUnsavedCartItems;
+using Market.Application.Modules.Carts.Commands.SwitchItemState;
 using Market.Application.Modules.Carts.Dto;
 using Market.Application.Modules.Carts.Queries;
 using Microsoft.AspNetCore.Http;
@@ -39,15 +41,23 @@ namespace Market.API.Controllers
 
 
 
-        //TODO:
-        //When frontend is added, call this endpoint on user login, immediately after logging in, call this, to clear his cart, and leave only items with isSaved==true
-        [HttpPost("CartCleanup")]
+        
+        [HttpPost("ClearCart")]
         public async Task<ActionResult> Cleanup(CancellationToken ct)
         {
-            await sender.Send(new CartCleanupCommand(), ct);
+            await sender.Send(new ClearCartCommand(), ct);
             return Ok();
         }
 
+
+
+
+        [HttpPut("SwitchItemState/{id:int}")]
+        public async Task<IActionResult> Update(int id, CancellationToken ct)
+        {
+            await sender.Send(new SwitchItemStateCommand { CartItemId = id }, ct);
+            return NoContent();
+        }
 
 
     }
