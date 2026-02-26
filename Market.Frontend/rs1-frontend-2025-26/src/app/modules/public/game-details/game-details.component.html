@@ -73,8 +73,19 @@
 
       <div class="price-box">
         <div class="price">{{ g.price | currency:'EUR':'symbol':'1.2-2' }}</div>
-        <button type="button" class="btn-add-cart" (click)="addToCart(g.id)">
+        <button
+          *ngIf="!isInCart && !isInLibrary"
+          type="button"
+          class="btn-add-cart"
+          (click)="addToCart(g.id)"
+        >
           Add to cart
+        </button>
+        <button *ngIf="isInLibrary" type="button" class="btn-status btn-status-info" disabled>
+          In library
+        </button>
+        <button *ngIf="!isInLibrary && isInCart" type="button" class="btn-status btn-status-info" disabled>
+          In cart
         </button>
       </div>
     </aside>

@@ -1,0 +1,116 @@
+<app-mabo-navbar></app-mabo-navbar>
+
+<main class="cart-page">
+  <section class="cart-shell">
+    <header class="cart-header">
+      <h1>Cart</h1>
+      <p *ngIf="cart?.cartItems?.length">Review your items and continue when ready.</p>
+    </header>
+
+    <div class="tab-switch">
+      <button
+        type="button"
+        class="tab-btn"
+        [class.active]="activeTab === 'cart'"
+        (click)="setTab('cart')"
+      >
+        Cart
+      </button>
+      <button
+        type="button"
+        class="tab-btn"
+        [class.active]="activeTab === 'saved'"
+        (click)="setTab('saved')"
+      >
+        Saved For Later
+      </button>
+    </div>
+
+    <section class="cart-list" *ngIf="activeTab === 'cart' && cartItems.length; else cartEmptyTpl">
+      <article class="cart-row" *ngFor="let item of cartItems">
+        <div class="cover-wrap">
+          <img [src]="item.coverImageURL" [alt]="item.gameName" />
+        </div>
+
+        <div class="game-meta">
+          <h3>{{ item.gameName }}</h3>
+          <p class="added-at">Added {{ item.addedAt | date: 'mediumDate' }}</p>
+        </div>
+
+        <div class="price-col">
+          {{ item.price | currency:'EUR':'symbol':'1.2-2' }}
+        </div>
+
+        <button type="button" class="btn btn-secondary save-btn" (click)="toggleSavedState(item.id)">
+          Save for later
+        </button>
+
+        <button type="button" class="btn btn-danger" (click)="removeFromCart(item.gameId)">
+          Remove
+        </button>
+      </article>
+    </section>
+
+    <section class="cart-list" *ngIf="activeTab === 'saved' && savedItems.length; else savedEmptyTpl">
+      <article class="cart-row" *ngFor="let item of savedItems">
+        <div class="cover-wrap">
+          <img [src]="item.coverImageURL" [alt]="item.gameName" />
+        </div>
+
+        <div class="game-meta">
+          <h3>{{ item.gameName }}</h3>
+          <p class="added-at">Added {{ item.addedAt | date: 'mediumDate' }}</p>
+        </div>
+
+        <div class="price-col">
+          {{ item.price | currency:'EUR':'symbol':'1.2-2' }}
+        </div>
+
+        <button type="button" class="btn btn-secondary save-btn" (click)="toggleSavedState(item.id)">
+          Move to cart
+        </button>
+
+        <button type="button" class="btn btn-danger" (click)="removeFromCart(item.gameId)">
+          Remove
+        </button>
+      </article>
+    </section>
+
+    <ng-template #cartEmptyTpl>
+      <section class="empty-cart" *ngIf="activeTab === 'cart'">
+        <h2>Your cart is empty</h2>
+        <p>Items you add to cart will show here.</p>
+      </section>
+    </ng-template>
+
+    <ng-template #savedEmptyTpl>
+      <section class="empty-cart" *ngIf="activeTab === 'saved'">
+        <h2>No saved items yet</h2>
+        <p>Use "Save for later" on cart items to move them here.</p>
+      </section>
+    </ng-template>
+  </section>
+
+  <section class="cart-summary" *ngIf="activeTab === 'cart'">
+    <div class="summary-total">
+      <span>Total price</span>
+      <strong>{{ (cart?.totalPrice ?? 0) | currency:'EUR':'symbol':'1.2-2' }}</strong>
+    </div>
+
+    <div class="summary-actions">
+      <button type="button" class="btn btn-danger" (click)="clearCart()" [disabled]="!cartItems.length">Clear cart</button>
+      <button type="button" class="btn btn-secondary" routerLink="/public/browse-games">Continue browsing</button>
+      <button type="button" class="btn btn-primary" [disabled]="!cartItems.length">Proceed to checkout</button>
+    </div>
+  </section>
+
+  <section class="saved-summary" *ngIf="activeTab === 'saved' && savedItems.length">
+    <div class="saved-actions">
+      <button type="button" class="btn btn-secondary" routerLink="/public/browse-games">Continue browsing</button>
+    </div>
+  </section>
+</main>
+
+
+
+<app-mabo-footer></app-mabo-footer>

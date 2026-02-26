@@ -1,4 +1,5 @@
 ﻿using Market.Domain.Entities;
+using Stripe.TestHelpers.Issuing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,11 @@ namespace Market.Application.Modules.Orders.Commands.Create
                 .Include(c=>c.CartItems).ThenInclude(ci=>ci.Game)
                 .FirstOrDefaultAsync(c => c.UserId == currentUser.UserId, ct);
 
-            if (cart.CartItems == null || cart.CartItems.Count == 0)
+            
+
+            var cartitemstoorder = cart.CartItems.Where(ci => ci.IsSaved == false).ToList();
+
+            if (cartitemstoorder.Count == 0)
                 throw new Exception("Cart is empty!");
 
             var order = new OrderEntity
@@ -43,14 +48,18 @@ namespace Market.Application.Modules.Orders.Commands.Create
 
             foreach (var ci in cart.CartItems)
             {
-                var oi = new OrderItemEntity
+                if (!ci.IsSaved)
                 {
-                    Order = order,
-                    GameId = ci.GameId,
-                    Price = ci.Game.Price,
-                };
-                context.OrderItems.Add(oi);
-                order.TotalAmount += oi.Price;
+                    var oi = new OrderItemEntity
+                    {
+                        Order = order,
+                        GameId = ci.GameId,
+                        Price = ci.Game.Price,
+                    };
+                    context.OrderItems.Add(oi);
+                    order.TotalAmount += oi.Price;
+                }
+
 
             }
 

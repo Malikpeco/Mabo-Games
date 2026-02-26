@@ -13,7 +13,7 @@ export class ToasterService {
 
   private defaultConfig: MatSnackBarConfig = {
     duration: 3000,
-    horizontalPosition: 'end',
+    horizontalPosition: 'center',
     verticalPosition: 'top'
   };
 

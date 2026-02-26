@@ -152,6 +152,13 @@
   background: rgba(0,0,0,0.55);
   color: white;
   z-index: 10;
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nav-btn:hover:not(:disabled){
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.14);
 }
 
 .nav-btn.left { left: 10px; }
@@ -253,7 +260,9 @@
 
 
 
-
+.slide :hover{
+  cursor: pointer;
+}
 
 
 

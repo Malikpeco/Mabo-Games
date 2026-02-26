@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market.Application.Modules.Carts.Commands.DeleteUnsavedCartItems
+namespace Market.Application.Modules.Carts.Commands.ClearCart
 {
-    public sealed class CartCleanupCommandHandler(IAppDbContext context, IAppCurrentUser currentUser)
-        : IRequestHandler<CartCleanupCommand, Unit>
+    public sealed class CleanCartCommandHandler(IAppDbContext context, IAppCurrentUser currentUser)
+        : IRequestHandler<ClearCartCommand, Unit>
     {
-        public async Task<Unit> Handle(CartCleanupCommand request, CancellationToken ct)
+        public async Task<Unit> Handle(ClearCartCommand request, CancellationToken ct)
         {
             var userId = currentUser.UserId;
             var cart = await context.Carts
@@ -21,16 +21,13 @@ namespace Market.Application.Modules.Carts.Commands.DeleteUnsavedCartItems
             if (cart is null)
                 return Unit.Value;
 
-            var toRemove = cart.CartItems
-                .Where(ci => ci.IsSaved == false)
+            var toRemove = cart.CartItems.Where(ci=>!ci.IsSaved)
                 .ToList();
 
             if (toRemove.Count == 0)
                 return Unit.Value;
 
-            cart.TotalPrice = cart.CartItems
-                .Where(ci => ci.IsSaved)
-                .Sum(ci => ci.Game.Price);
+            cart.TotalPrice = 0;
 
             context.CartItems.RemoveRange(toRemove);
             await context.SaveChangesAsync(ct);
