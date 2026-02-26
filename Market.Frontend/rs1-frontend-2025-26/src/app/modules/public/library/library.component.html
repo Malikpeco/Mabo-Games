@@ -1,0 +1,112 @@
+<app-mabo-navbar></app-mabo-navbar>
+
+<div class="library-page">
+  <div class="library-layout" *ngIf="isAuthenticated(); else loginStateTpl">
+    <aside class="sidebar">
+      <div class="panel">
+        <div class="panel-title-row">
+          <span>GENRES</span>
+          <span class="muted">{{ selectedGenreIds.size }}</span>
+        </div>
+
+        <div class="genre-list">
+          <label class="genre-item" *ngFor="let g of genres">
+            <input
+              type="checkbox"
+              [checked]="isGenreSelected(g.id)"
+              (change)="toggleGenre(g.id)"
+            />
+            <span class="genre-name">{{ g.name }}</span>
+          </label>
+        </div>
+
+        <button
+          class="btn-clear"
+          type="button"
+          (click)="clearGenres()"
+          *ngIf="selectedGenreIds.size > 0"
+        >
+          Clear
+        </button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="library-header">
+        <div>
+          <h1>My Library</h1>
+          <p>Your owned games in one place.</p>
+        </div>
+        <button type="button" class="btn-favourites" (click)="goToFavourites()">Favourite Games</button>
+      </header>
+
+      <div class="top-row">
+        <div class="library-actions">
+          <span class="owned-count" *ngIf="!isLoading">{{ filteredGames.length }} games</span>
+        </div>
+
+        <div class="search">
+          <span class="search-icon">Search</span>
+          <input
+            class="search-input"
+            type="text"
+            placeholder="Search your library..."
+            [(ngModel)]="search"
+            (input)="onSearchChanged()"
+          />
+        </div>
+      </div>
+
+      <section class="state-card" *ngIf="isLoading">
+        <h2>Loading library...</h2>
+      </section>
+
+      <section class="state-card" *ngIf="!isLoading && errorMessage">
+        <h2>Could not load library</h2>
+        <p>{{ errorMessage }}</p>
+        <button type="button" class="btn-primary" (click)="retry()">Try again</button>
+      </section>
+
+      <div class="games-grid" *ngIf="!isLoading && !errorMessage && filteredGames.length > 0">
+        <a
+          class="game-card"
+          *ngFor="let g of filteredGames"
+          [routerLink]="['/public/games', g.id]"
+        >
+          <img class="game-card-img" [src]="getGameImage(g)" [alt]="g.name" />
+
+          <div class="game-card-meta">
+            <div class="game-card-title">{{ g.name }}</div>
+            <div class="game-card-sub">{{ g.publisherName }}</div>
+
+            <div class="game-card-bottom">
+              <div class="game-card-price">
+                {{ g.price | number:'1.2-2' }} KM
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <section class="state-card" *ngIf="!isLoading && !errorMessage && filteredGames.length === 0">
+          <div class="empty">
+          No games found.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <ng-template #loginStateTpl>
+    <main class="login-state">
+      <section class="state-card">
+        <h2>Log in to view your library</h2>
+        <p>Your purchased games will appear here after you sign in.</p>
+        <button type="button" class="btn-primary" (click)="goToLogin()">Log in</button>
+      </section>
+    </main>
+  </ng-template>
+
+  <div class="cart-summary">
+    <app-mabo-footer></app-mabo-footer>
+  </div>
+</div>
