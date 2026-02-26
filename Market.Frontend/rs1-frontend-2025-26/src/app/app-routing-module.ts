@@ -3,13 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {myAuthData, myAuthGuard} from './core/guards/my-auth-guard';
 
 const routes: Routes = [
-  {
-    path: 'admin',
-    canActivate: [myAuthGuard],
-    data: myAuthData({ requireAuth: true, requireAdmin: true }),
-    loadChildren: () =>
-      import('./modules/admin/admin-module').then(m => m.AdminModule)
-  },
+
   {
     path: 'auth',
     loadChildren: () =>

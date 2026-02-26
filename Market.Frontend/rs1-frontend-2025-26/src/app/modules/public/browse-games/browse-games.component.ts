@@ -49,11 +49,17 @@ export class BrowseGamesComponent {
   selectedGenreIds = new Set<number>();
   
   genreCounts: Record<number, number> = {};
+  paymentNoticeVisible = false;
 
 
 
 
   ngOnInit(): void {
+    this.paymentNoticeVisible = localStorage.getItem('payment_success_notice') === '1';
+    if (this.paymentNoticeVisible) {
+      localStorage.removeItem('payment_success_notice');
+    }
+
     this.genresApi.list().subscribe(res=>{
       this.genres=res.items ?? [];
     });
@@ -144,6 +150,10 @@ export class BrowseGamesComponent {
 
   goToGameDetails(id: number): void{
     this.router.navigate(['/public/games', id]);
+  }
+
+  closePaymentNotice(): void {
+    this.paymentNoticeVisible = false;
   }
 
 

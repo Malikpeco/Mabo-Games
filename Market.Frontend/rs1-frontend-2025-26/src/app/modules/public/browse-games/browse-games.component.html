@@ -53,6 +53,12 @@
 
     <!-- MAIN -->
     <main class="content"> 
+      <section class="payment-notice" *ngIf="paymentNoticeVisible">
+        <div>
+          <strong>Payment successful.</strong> Your order is confirmed and marked as paid.
+        </div>
+        <button type="button" class="payment-notice-close" (click)="closePaymentNotice()">Dismiss</button>
+      </section>
 
       <div class="top-row">
         <div class="spacer"></div>

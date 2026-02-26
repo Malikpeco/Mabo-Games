@@ -100,7 +100,7 @@
     <div class="summary-actions">
       <button type="button" class="btn btn-danger" (click)="clearCart()" [disabled]="!cartItems.length">Clear cart</button>
       <button type="button" class="btn btn-secondary" routerLink="/public/browse-games">Continue browsing</button>
-      <button type="button" class="btn btn-primary" [disabled]="!cartItems.length">Proceed to checkout</button>
+      <button type="button" class="btn btn-primary" [disabled]="!cartItems.length" routerLink="/public/checkout">Proceed to checkout</button>
     </div>
   </section>
 

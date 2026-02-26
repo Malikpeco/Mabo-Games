@@ -8,14 +8,14 @@ namespace Market.API.Controllers
 
     public class OrdersController(ISender sender): ControllerBase
     {
-        [HttpPost("CreateOrder/BeginCheckout")]
+        [HttpPost("CreateOrder")]
         public async Task<ActionResult<int>> Create(CancellationToken ct)
         {
             int orderId = await sender.Send(new CreateOrderCommand(), ct);
             return Ok(orderId);
         }
 
-        [HttpPut("CancelOrder")]
+        [HttpPut("CancelOrder/{id:int}")]
         public async Task<ActionResult> Cancel(int id, CancellationToken ct)
         {
             await sender.Send(new CancelOrderCommand { OrderId = id }, ct);

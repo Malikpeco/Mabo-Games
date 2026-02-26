@@ -4,6 +4,7 @@
 
 
   <section class="gallery-wrap" *ngIf="game as g">
+  <button type="button" class="btn-back" (click)="goBack()">Back</button>
   <h1 class="title">{{ g.name }}</h1>
 
   <div class="main-image-box">

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GamesApiService } from '../../../api-services/games/games-api.service';
@@ -27,6 +28,7 @@ implements OnInit{
   cartsApi=inject(CartsApiService);
   userGamesApi=inject(UserGamesApiService);
   toaster=inject(ToasterService);
+  location = inject(Location);
 
   private currentUserService = inject(CurrentUserService);
   isAdmin = this.currentUserService.isAdmin;
@@ -36,6 +38,15 @@ implements OnInit{
   logout():void{
     this.authFacadeService.logout();
     this.router.navigate(['/']);
+  }
+
+  goBack(): void {
+    if (window.history.length > 1) {
+      this.location.back();
+      return;
+    }
+
+    this.router.navigate(['/public/browse-games']);
   }
   
   

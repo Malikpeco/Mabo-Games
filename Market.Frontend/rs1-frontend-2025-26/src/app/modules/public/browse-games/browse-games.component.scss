@@ -100,6 +100,28 @@
   min-width: 0;
 }
 
+.payment-notice{
+  margin-bottom: 14px;
+  border: 1px solid #2a2a2a;
+  background: rgba(126, 207, 67, 0.16);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.payment-notice-close{
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  background: #0f0f0f;
+  color: #fff;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
 .top-row{
   display:flex;
   align-items:center;
