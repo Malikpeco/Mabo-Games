@@ -8,6 +8,7 @@ import { AuthFacadeService } from '../../../core/services/auth/auth-facade.servi
 import { CartsApiService } from '../../../api-services/carts/carts-api.service';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
+import { FavouritesApiService } from '../../../api-services/favourites/favourites-api.service';
 
 @Component({
   selector: 'app-game-details',
@@ -25,11 +26,12 @@ implements OnInit{
   game:GameDetailsDto | null = null;
   isInCart = false;
   isInLibrary = false;
+  isInFavourites = false;
   cartsApi=inject(CartsApiService);
   userGamesApi=inject(UserGamesApiService);
   toaster=inject(ToasterService);
   location = inject(Location);
-
+  favouritesApi = inject(FavouritesApiService);
   private currentUserService = inject(CurrentUserService);
   isAdmin = this.currentUserService.isAdmin;
   isAuthenticated = this.currentUserService.isAuthenticated;
@@ -65,6 +67,7 @@ implements OnInit{
     if (!this.isAuthenticated()) {
       this.isInCart = false;
       this.isInLibrary = false;
+      this.isInFavourites = false;
       return;
     }
 
@@ -85,6 +88,15 @@ implements OnInit{
         this.isInLibrary = false;
       }
     });
+
+    this.favouritesApi.listFavouritesQuery().subscribe({
+      next:res=>{
+        this.isInFavourites=res.items.some(f=>f.id===gameId);
+      },
+      error: () => {
+        this.isInFavourites = false;
+      }
+    })
   }
 
   activeScreenshotIndex: number | null = null;
@@ -175,6 +187,22 @@ addToCart(gameId:number) :void{
   });
 }
 
+addToFavourites(gameId:number):void{
+  this.favouritesApi.addToFavourites(gameId).subscribe({
+  next:(response)=>{
+    this.toaster.success('Game added to favourites!');
+    this.isInFavourites=true;
+  }    
+  })
+}
+
+removeFromFavourites(gameId:number):void{
+  this.favouritesApi.removeFromFavourites(gameId).subscribe({
+    next:()=>{
+      this.isInFavourites=false;
+    }
+  });
+}
 
 
 }

@@ -2,35 +2,16 @@
 
 <main class="payment-page">
   <section class="payment-shell">
-    <section class="payment-card" *ngIf="isSuccessMode; else paymentFlowTpl">
-      <h1>Payment successful</h1>
-      <p>Your order has been paid successfully. Returning to your website tab...</p>
-      <div class="actions">
-        <button type="button" class="btn btn-primary" routerLink="/public/browse-games">Continue browsing</button>
-      </div>
+    <section class="payment-card" *ngIf="!isSuccessMode; else successTpl">
+      <h1>Redirecting to Stripe</h1>
+      <p *ngIf="!errorMessage">Preparing your checkout...</p>
+      <p *ngIf="errorMessage">{{ errorMessage }}</p>
     </section>
 
-    <ng-template #paymentFlowTpl>
-      <section class="payment-card" *ngIf="isLoading">
-        <h1>Redirecting to Stripe</h1>
-        <p>Creating your order and preparing secure payment checkout.</p>
-      </section>
-
-      <section class="payment-card" *ngIf="!isLoading && openedInNewTab && !hasError">
-        <h1>Stripe opened in a new tab</h1>
-        <p>Complete the payment in that tab. You can stay here or go back to checkout.</p>
-        <div class="actions">
-          <button type="button" class="btn btn-secondary" (click)="goToCheckout()">Back to checkout</button>
-        </div>
-      </section>
-
-      <section class="payment-card" *ngIf="!isLoading && hasError">
-        <h1>Payment could not start</h1>
-        <p>{{ errorMessage }}</p>
-        <div class="actions">
-          <button type="button" class="btn btn-secondary" (click)="goToCheckout()">Back to checkout</button>
-          <button type="button" class="btn btn-primary" (click)="startPayment()">Try again</button>
-        </div>
+    <ng-template #successTpl>
+      <section class="payment-card">
+        <h1>Payment successful</h1>
+        <p>Your order has been paid successfully.</p>
       </section>
     </ng-template>
   </section>

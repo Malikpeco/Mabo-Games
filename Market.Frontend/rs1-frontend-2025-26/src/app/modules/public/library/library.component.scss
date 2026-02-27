@@ -21,12 +21,7 @@
 }
 
 .cart-summary {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 40;
-  
+  position: static;
 }
 
 
@@ -121,12 +116,35 @@
   gap: 12px;
 }
 
+.favourites-section{
+  margin-top: 18px;
+}
+
+.favourites-section h2{
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.library-grid{
+  margin-top: 22px;
+}
+
+.favourites-section + .library-grid{
+  margin-top: 28px;
+}
+
 .top-row{
   display:flex;
   align-items:center;
   justify-content: space-between;
   gap: 12px;
   margin: 14px 0;
+}
+
+.section-divider{
+  height: 1px;
+  background: #2a2a2a;
+  margin: 2px 0 16px;
 }
 
 .library-actions{

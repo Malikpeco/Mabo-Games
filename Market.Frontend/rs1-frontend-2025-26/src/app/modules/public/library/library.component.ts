@@ -5,6 +5,7 @@ import { GenresApiService } from '../../../api-services/genres/genres-api.servic
 import { StorefrontGameDto } from '../../../api-services/games/games-api.models';
 import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
 import { CurrentUserService } from '../../../core/services/auth/current-user.service';
+import {FavouritesApiService } from '../../../api-services/favourites/favourites-api.service';
 
 @Component({
   selector: 'app-library',
@@ -15,6 +16,7 @@ import { CurrentUserService } from '../../../core/services/auth/current-user.ser
 export class LibraryComponent implements OnInit {
   private userGamesApi = inject(UserGamesApiService);
   private genresApi = inject(GenresApiService);
+  private favouritesApi = inject(FavouritesApiService);
   private currentUserService = inject(CurrentUserService);
   private router = inject(Router);
 
@@ -29,6 +31,8 @@ export class LibraryComponent implements OnInit {
 
   games: StorefrontGameDto[] = [];
   filteredGames: StorefrontGameDto[] = [];
+  favouriteGameIds = new Set<number>();
+  favouriteGames: StorefrontGameDto[] = [];
 
   ngOnInit(): void {
     if (!this.isAuthenticated()) {
@@ -39,7 +43,21 @@ export class LibraryComponent implements OnInit {
       this.genres = res.items ?? [];
     });
 
+    this.loadFavourites();
     this.loadLibrary();
+  }
+
+  private loadFavourites(): void {
+    this.favouritesApi.listFavouritesQuery().subscribe({
+      next: res => {
+        this.favouriteGameIds = new Set((res.items ?? []).map(game => game.id));
+        this.updatePinnedFavourites();
+      },
+      error: () => {
+        this.favouriteGameIds = new Set<number>();
+        this.updatePinnedFavourites();
+      }
+    });
   }
 
   private loadLibrary(): void {
@@ -75,6 +93,12 @@ export class LibraryComponent implements OnInit {
 
       return matchesSearch && matchesGenre;
     });
+
+    this.updatePinnedFavourites();
+  }
+
+  private updatePinnedFavourites(): void {
+    this.favouriteGames = this.filteredGames.filter(game => this.favouriteGameIds.has(game.id));
   }
 
   onSearchChanged(): void {
