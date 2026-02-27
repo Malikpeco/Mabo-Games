@@ -88,6 +88,13 @@
         <button *ngIf="!isInLibrary && isInCart" type="button" class="btn-status btn-status-info" disabled>
           In cart
         </button>
+        <button *ngIf="isInLibrary && isInFavourites" type="button" class="btn-statuss btn-status-info" (click)="removeFromFavourites(g.id)">
+          In favourites (click to remove)
+        </button>
+        <button *ngIf="isInLibrary && !isInFavourites" type="button" class="btn-add-cart" (click)="addToFavourites(g.id)">
+          Add to favourites
+        </button>
+        
       </div>
     </aside>
 
