@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Market.Infrastructure.Common
 {
-    internal class SmtpEmailSender : IEmailSender
+    public sealed class SmtpEmailSender : IEmailSender
     {
         private readonly EmailSettings _settings;
 

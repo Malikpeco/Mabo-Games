@@ -29,6 +29,8 @@ public interface IAppDbContext
     DbSet<UserSecurityQuestionEntity> UserSecurityQuestions { get; }
     DbSet<RefreshTokenEntity> RefreshTokens { get; }
 
+    DbSet<IGDBTokenEntity> IGDBTokens { get; }
+
     DbSet<PasswordResetTokenEntity> PasswordResetTokens {get;}
     DbSet<ProcessedWebhookEventEntity> ProcessedWebhookEvents { get; }
     Task<int> SaveChangesAsync(CancellationToken ct);
