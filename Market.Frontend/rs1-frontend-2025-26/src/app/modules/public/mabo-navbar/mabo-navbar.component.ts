@@ -32,4 +32,9 @@ export class MaboNavbarComponent {
       this.router.navigate(['/public/cart']);
     }
   }
+
+  isNavActive(key: 'cart'): boolean {
+    const url = this.router.url;
+    return url.startsWith('/public/cart') || url.startsWith('/public/checkout') || url.startsWith('/public/payment');
+  }
 }

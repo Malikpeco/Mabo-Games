@@ -2,13 +2,14 @@ import { Location } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GamesApiService } from '../../../api-services/games/games-api.service';
-import { GameDetailsDto } from '../../../api-services/games/games-api.models';
+import { GameDetailsDto, ReviewDto } from '../../../api-services/games/games-api.models';
 import { CurrentUserService } from '../../../core/services/auth/current-user.service';
 import { AuthFacadeService } from '../../../core/services/auth/auth-facade.service';
 import { CartsApiService } from '../../../api-services/carts/carts-api.service';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
 import { FavouritesApiService } from '../../../api-services/favourites/favourites-api.service';
+import { ReviewsApiService } from '../../../api-services/reviews/reviews-api.service';
 
 @Component({
   selector: 'app-game-details',
@@ -32,10 +33,15 @@ implements OnInit{
   toaster=inject(ToasterService);
   location = inject(Location);
   favouritesApi = inject(FavouritesApiService);
+  reviewsApi = inject(ReviewsApiService);
   private currentUserService = inject(CurrentUserService);
   isAdmin = this.currentUserService.isAdmin;
   isAuthenticated = this.currentUserService.isAuthenticated;
   private authFacadeService = inject(AuthFacadeService);
+  reviewRating = 5;
+  reviewContent = '';
+  isSubmittingReview = false;
+  ownedUserGameId: number | null = null;
   
   logout():void{
     this.authFacadeService.logout();
@@ -82,10 +88,13 @@ implements OnInit{
 
     this.userGamesApi.listUserGames().subscribe({
       next: res => {
-        this.isInLibrary = res.items.some(g => g.id === gameId);
+        const ownedGame = res.items.find(g => g.id === gameId);
+        this.isInLibrary = !!ownedGame;
+        this.ownedUserGameId = ownedGame?.id ?? null;
       },
       error: () => {
         this.isInLibrary = false;
+        this.ownedUserGameId = null;
       }
     });
 
@@ -190,7 +199,6 @@ addToCart(gameId:number) :void{
 addToFavourites(gameId:number):void{
   this.favouritesApi.addToFavourites(gameId).subscribe({
   next:(response)=>{
-    this.toaster.success('Game added to favourites!');
     this.isInFavourites=true;
   }    
   })
@@ -202,6 +210,54 @@ removeFromFavourites(gameId:number):void{
       this.isInFavourites=false;
     }
   });
+}
+
+submitReview(): void {
+  if (!this.isInLibrary || !this.ownedUserGameId) {
+    this.toaster.error('You can only review games you own.');
+    return;
+  }
+
+  if (this.reviewRating < 1 || this.reviewRating > 5) {
+    this.toaster.error('Rating must be between 1 and 5.');
+    return;
+  }
+
+  this.isSubmittingReview = true;
+  this.reviewsApi.createReview({
+    userGameId: this.ownedUserGameId,
+    rating: this.reviewRating,
+    content: this.reviewContent?.trim() || undefined
+  }).subscribe({
+    next: () => {
+      this.toaster.success('Review submitted.');
+      this.reviewContent = '';
+      this.reviewRating = 5;
+      this.api.getById(this.id).subscribe({
+        next: response => {
+          this.game = response;
+          this.isSubmittingReview = false;
+        },
+        error: () => {
+          this.isSubmittingReview = false;
+        }
+      });
+    },
+    error: err => {
+      this.isSubmittingReview = false;
+      this.toaster.error(err?.error?.message ?? 'Failed to submit review.');
+    }
+  });
+}
+
+getreviewItems(): ReviewDto[] {
+  if (!this.game?.reviews?.length) return [];
+  return this.game.reviews[0]?.items ?? [];
+}
+
+getaverageRating(): number {
+  if (!this.game?.reviews?.length) return 0;
+  return this.game.reviews[0]?.averageRating ?? 0;
 }
 
 

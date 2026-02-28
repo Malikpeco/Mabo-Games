@@ -22,6 +22,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.isSuccessMode = this.route.snapshot.data['mode'] === 'success';
     if (this.isSuccessMode) {
+      this.handleSuccessReturn();
       return;
     }
 
@@ -46,5 +47,23 @@ export class PaymentComponent implements OnInit {
           this.errorMessage = err?.error?.message ?? 'Payment could not start.';
         }
       });
+  }
+
+  private handleSuccessReturn(): void {
+    const openerWindow = window.opener;
+    if (openerWindow && !openerWindow.closed) {
+      try {
+        openerWindow.location.href = `${window.location.origin}/public/library`;
+        openerWindow.focus();
+      } catch {
+      }
+
+      setTimeout(() => {
+        window.close();
+      }, 250);
+      return;
+    }
+
+    this.router.navigate(['/public/library']);
   }
 }

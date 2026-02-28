@@ -301,6 +301,103 @@
   color: #ffffff;
 }
 
+.reviews {
+  margin: 22px auto 0;
+  max-width: 820px;
+  border: 1px solid #2b2b2b;
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.reviews h2 {
+  margin: 0;
+}
+
+.review-form {
+  margin-top: 12px;
+  border: 1px solid #2b2b2b;
+  border-radius: 10px;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.review-form h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.review-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  color: #d7dbe2;
+}
+
+.review-form select,
+.review-form textarea {
+  border: 1px solid #2b2b2b;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  padding: 8px 10px;
+}
+
+.review-form textarea {
+  resize: vertical;
+}
+
+.reviews-summary {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #2b2b2b;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reviews-summary span {
+  color: #b7bcc4;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reviews-summary strong {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.review-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.review-card {
+  border: 1px solid #2b2b2b;
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.review-card p {
+  margin: 0 0 6px;
+}
+
+.review-card p:last-child {
+  margin-bottom: 0;
+}
+
+.empty-reviews {
+  margin-top: 12px;
+  color: #b7bcc4;
+}
+
 @media (max-width: 640px) {
   .game-side {
     padding: 14px;

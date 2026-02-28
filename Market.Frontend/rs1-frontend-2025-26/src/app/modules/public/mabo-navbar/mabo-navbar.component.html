@@ -9,10 +9,10 @@
   </div>
 
   <div class="nav-center">
-    <a mat-button routerLink="/">Store</a>
-    <a matButton routerLink="/public/browse-games">Browse Games</a>
-    <a matButton routerLink="/public/library">My Library</a>
-    <a matButton routerLink="/client/profile">My Profile</a>
+    <a mat-button routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{ exact: true }">Store</a>
+    <a matButton routerLink="/public/browse-games" routerLinkActive="nav-active">Browse Games</a>
+    <a matButton routerLink="/public/library" routerLinkActive="nav-active">My Library</a>
+    <a matButton routerLink="/public/profile" routerLinkActive="nav-active">My Profile</a>
   </div>
 
   <span class="spacer"></span>
@@ -29,11 +29,11 @@
       auth={{ isAuthenticated() }} admin={{ isAdmin() }}
     </div>
 
-    <button mat-icon-button aria-label="Notifications">
+    <button mat-icon-button aria-label="Notifications" routerLink="/public/notifications" routerLinkActive="nav-active">
       <mat-icon>notifications</mat-icon>
     </button>
 
-    <button mat-icon-button aria-label="Cart" (click)="cartbtnclick()">
+    <button mat-icon-button aria-label="Cart" (click)="cartbtnclick()" [class.nav-active]="isNavActive('cart')">
       <mat-icon>shopping_cart</mat-icon>
     </button>
 
