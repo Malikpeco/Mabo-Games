@@ -10,8 +10,6 @@ namespace Market.Application.Modules.IGDB.Queries.SearchIGDBGames
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string CoverUrl { get; set; }
-
-        public string Summary { get; set; }
+        public string? CoverUrl { get; set; }
     }
 }

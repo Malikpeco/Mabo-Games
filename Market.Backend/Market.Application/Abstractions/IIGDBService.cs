@@ -1,4 +1,5 @@
 ﻿using Market.Application.Common.IGDB;
+using Market.Application.Modules.IGDB.Queries.GetIGDBGameDetails;
 using Market.Application.Modules.IGDB.Queries.SearchIGDBGames;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,8 @@ namespace Market.Application.Abstractions
     {
         Task<string> getTokenAsync(CancellationToken ct);
         Task<List<SearchIGDBGamesQueryDto>> SearchGamesAsync(string searchTerm,CancellationToken ct);
+
+        Task<GetIGDBGameDetailsDto> GetGameDetailsAsync(int gameId, CancellationToken ct);
+
     }
 }

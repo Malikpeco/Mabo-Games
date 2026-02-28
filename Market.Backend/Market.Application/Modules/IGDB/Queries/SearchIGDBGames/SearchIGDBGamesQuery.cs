@@ -1,4 +1,4 @@
-﻿using Market.Application.Modules.IGDB.Queries.IGDBGameDetails;
+﻿using Market.Application.Modules.IGDB.Queries.SearchIGDBGames;
 
 namespace Market.Application.Modules.IGDB.Queries.SearchIGDBGames
 {
