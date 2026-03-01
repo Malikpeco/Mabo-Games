@@ -6,6 +6,7 @@ import { StorefrontGameDto } from '../../../api-services/games/games-api.models'
 import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
 import { CurrentUserService } from '../../../core/services/auth/current-user.service';
 import {FavouritesApiService } from '../../../api-services/favourites/favourites-api.service';
+import { ListUserGamesQueryDto } from '../../../api-services/user-games/user-games-api.models';
 
 @Component({
   selector: 'app-library',
@@ -29,10 +30,10 @@ export class LibraryComponent implements OnInit {
   genres: GenreDto[] = [];
   selectedGenreIds = new Set<number>();
 
-  games: StorefrontGameDto[] = [];
-  filteredGames: StorefrontGameDto[] = [];
+  games: ListUserGamesQueryDto[] = [];
+  filteredGames: ListUserGamesQueryDto[] = [];
   favouriteGameIds = new Set<number>();
-  favouriteGames: StorefrontGameDto[] = [];
+  favouriteGames: ListUserGamesQueryDto[] = [];
 
   ngOnInit(): void {
     if (!this.isAuthenticated()) {
@@ -84,12 +85,12 @@ export class LibraryComponent implements OnInit {
     this.filteredGames = this.games.filter(game => {
       const matchesSearch =
         !searchText ||
-        game.name.toLowerCase().includes(searchText) ||
-        game.publisherName.toLowerCase().includes(searchText);
+        game.game.name.toLowerCase().includes(searchText) ||
+        game.game.publisherName.toLowerCase().includes(searchText);
 
       const matchesGenre =
         !hasGenreFilter ||
-        (game.genres ?? []).some(genre => this.selectedGenreIds.has(genre.id));
+        (game.game.genres ?? []).some(genre => this.selectedGenreIds.has(genre.id));
 
       return matchesSearch && matchesGenre;
     });
@@ -98,7 +99,7 @@ export class LibraryComponent implements OnInit {
   }
 
   private updatePinnedFavourites(): void {
-    this.favouriteGames = this.filteredGames.filter(game => this.favouriteGameIds.has(game.id));
+    this.favouriteGames = this.filteredGames.filter(usergame => this.favouriteGameIds.has(usergame.gameId));
   }
 
   onSearchChanged(): void {

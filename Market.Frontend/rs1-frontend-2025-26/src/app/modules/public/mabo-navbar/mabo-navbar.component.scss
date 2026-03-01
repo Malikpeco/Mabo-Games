@@ -53,3 +53,9 @@
   align-items: center;
   gap: 6px;
 }
+
+.topbar .nav-active {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid #3a3a3a;
+  border-radius: 10px;
+}

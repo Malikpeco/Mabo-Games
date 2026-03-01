@@ -62,13 +62,13 @@
           <a
           class="game-card"
           *ngFor="let g of favouriteGames"
-          [routerLink]="['/public/games', g.id]"
+          [routerLink]="['/public/games', g.gameId]"
           >
-          <img class="game-card-img" [src]="getGameImage(g)" [alt]="g.name" />
+          <img class="game-card-img" [src]="getGameImage(g.game)" [alt]="g.game.name" />
           
           <div class="game-card-meta">
-            <div class="game-card-title">{{ g.name }}</div>
-            <div class="game-card-sub">{{ g.publisherName }}</div>
+            <div class="game-card-title">{{ g.game.name }}</div>
+            <div class="game-card-sub">{{ g.game.publisherName }}</div>
           </div>
         </a>
       </div>
@@ -90,13 +90,13 @@
         <a
           class="game-card"
           *ngFor="let g of filteredGames"
-          [routerLink]="['/public/games', g.id]"
+          [routerLink]="['/public/games', g.gameId]"
         >
-          <img class="game-card-img" [src]="getGameImage(g)" [alt]="g.name" />
+          <img class="game-card-img" [src]="getGameImage(g.game)" [alt]="g.game.name" />
 
           <div class="game-card-meta">
-            <div class="game-card-title">{{ g.name }}</div>
-            <div class="game-card-sub">{{ g.publisherName }}</div>
+            <div class="game-card-title">{{ g.game.name }}</div>
+            <div class="game-card-sub">{{ g.game.publisherName }}</div>
           </div>
         </a>
       </div>

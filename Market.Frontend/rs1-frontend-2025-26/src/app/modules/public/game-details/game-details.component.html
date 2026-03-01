@@ -82,7 +82,7 @@
         >
           Add to cart
         </button>
-        <button *ngIf="isInLibrary" type="button" class="btn-status btn-status-info" disabled>
+        <button *ngIf="isInLibrary" type="button" class="btn-statuss btn-status-info" routerLink="/public/library">
           In library
         </button>
         <button *ngIf="!isInLibrary && isInCart" type="button" class="btn-status btn-status-info" disabled>
@@ -101,6 +101,56 @@
   <section class="about">
     <h2>About {{ g.name }}</h2>
     <p>{{ g.description }}</p>
+  </section>  
+
+  <section class="reviews">
+    <h2>Reviews</h2>
+
+    <section class="review-form" *ngIf="isInLibrary">
+      <h3>Add your review</h3>
+
+      <label>
+        Rating
+        <select [(ngModel)]="reviewRating">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+          <option [ngValue]="4">4</option>
+          <option [ngValue]="5">5</option>
+        </select>
+      </label>
+
+      <label>
+        Comment
+        <textarea
+          rows="4"
+          placeholder="Write your review..."
+          [(ngModel)]="reviewContent"
+        ></textarea>
+      </label>
+
+      <button type="button" class="btn-add-cart" [disabled]="isSubmittingReview" (click)="submitReview()">
+        Submit review
+      </button>
+    </section>
+
+    <div class="reviews-summary">
+      <span>Average rating</span>
+      <strong>{{ getaverageRating() | number:'1.1-2' }}</strong>
+    </div>
+
+    <div class="review-list" *ngIf="getreviewItems().length > 0; else noReviewsTpl">
+      <article class="review-card" *ngFor="let review of getreviewItems()">
+        <p><strong>Date:</strong> {{ review.date | date:'mediumDate' }}</p>
+        <p><strong>Username:</strong> {{ review.username || 'Anonymous' }}</p>
+        <p><strong>Rating:</strong> {{ review.rating | number:'1.1-1' }}</p>
+        <p><strong>Content:</strong> {{ review.content || 'No comment' }}</p>
+      </article>
+    </div>
+
+    <ng-template #noReviewsTpl>
+      <div class="empty-reviews">No reviews yet for this game.</div>
+    </ng-template>
   </section>
 
 

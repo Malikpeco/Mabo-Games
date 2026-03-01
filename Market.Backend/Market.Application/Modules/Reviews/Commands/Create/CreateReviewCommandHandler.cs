@@ -20,7 +20,7 @@ namespace Market.Application.Modules.Reviews.Commands.Create
             }
 
             if (await context.Reviews.AnyAsync(r => r.UserGameId == userGame.Id))
-                throw new MarketBusinessRuleException("422", "User already has a review for this game.");
+                throw new MarketBusinessRuleException("422", "You already have a review for this game.");
 
             var review = new ReviewEntity
             {

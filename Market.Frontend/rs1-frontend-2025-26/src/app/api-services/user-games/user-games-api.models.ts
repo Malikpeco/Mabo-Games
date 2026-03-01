@@ -29,4 +29,14 @@ export interface StorefrontGameDto{
     screenshots: GameScreenshotsDto[];
     genres: GenreDto[];
 }
-export type ListUserGamesResponse = PageResult<StorefrontGameDto>;
+
+export interface ListUserGamesQueryDto{
+    id:number;
+    userId:number;
+    gameId:number;
+    game:StorefrontGameDto;
+    purchaseDate:string;
+}
+
+
+export type ListUserGamesResponse = PageResult<ListUserGamesQueryDto>;
