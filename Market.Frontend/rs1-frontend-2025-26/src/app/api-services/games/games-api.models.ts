@@ -64,7 +64,7 @@ export interface GameDetailsDto {
     publisher: PublisherDto;
     screenshots: GameScreenshotsDto[];
     genres: GameGenreDto[];
-    reviews : ReviewSummaryDto[];
+    reviews : ReviewSummaryDto;
 }
 
 

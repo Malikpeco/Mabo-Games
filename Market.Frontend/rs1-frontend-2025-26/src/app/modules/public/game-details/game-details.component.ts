@@ -88,7 +88,7 @@ implements OnInit{
 
     this.userGamesApi.listUserGames().subscribe({
       next: res => {
-        const ownedGame = res.items.find(g => g.id === gameId);
+        const ownedGame = res.items.find(ug => ug.gameId === gameId);
         this.isInLibrary = !!ownedGame;
         this.ownedUserGameId = ownedGame?.id ?? null;
       },
@@ -170,7 +170,7 @@ addToCart(gameId:number) :void{
 
       this.userGamesApi.listUserGames().subscribe({
         next:res=>{
-          if(res.items.some(g=>g.id===gameId)){
+          if(res.items.some(ug=>ug.gameId===gameId)){
             this.toaster.info('You already own this game.');
             return;
           }
@@ -251,14 +251,11 @@ submitReview(): void {
 }
 
 getreviewItems(): ReviewDto[] {
-  if (!this.game?.reviews?.length) return [];
-  return this.game.reviews[0]?.items ?? [];
+  return this.game?.reviews?.items ?? [];
 }
 
 getaverageRating(): number {
-  if (!this.game?.reviews?.length) return 0;
-  return this.game.reviews[0]?.averageRating ?? 0;
+  return this.game?.reviews?.averageRating ?? 0;
 }
-
 
 }
