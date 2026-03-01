@@ -15,6 +15,20 @@ namespace Market.Application.Modules.Games.Commands.Create
 
             RuleFor(g => g.Price)
                 .GreaterThanOrEqualTo(0);
+
+            RuleFor(g => g.ReleaseDate)
+                .LessThan(DateTime.UtcNow.AddDays(1 ));
+
+            RuleFor(g => g.PublisherId)
+                .GreaterThan(0);
+
+            RuleFor(g => g.GenreIds)
+             .NotEmpty().WithMessage("At least one genre must be selected.");
+
+            RuleFor(g => g.CoverImageURL)
+                .NotEmpty().Matches(@"^https?://.*$")
+                .WithMessage("Must be a valid URL.");
+
         }
     }
 }

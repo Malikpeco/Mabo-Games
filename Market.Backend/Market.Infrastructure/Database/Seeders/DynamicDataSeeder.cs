@@ -1,5 +1,6 @@
 ﻿using Market.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
 
 namespace Market.Infrastructure.Database.Seeders;
 
@@ -15,33 +16,58 @@ public static class DynamicDataSeeder
         await SeedSecurityQuestionsAsync(context);
         await SeedPublishersAsync(context);
         await SeedGamesAsync(context);
+        await SeedIGDBToken(context);
     }
 
+    private static async Task SeedIGDBToken(DatabaseContext context)
+    {
+        if (await context.IGDBTokens.AnyAsync())
+            return;
+
+        var token = new IGDBTokenEntity
+        {
+
+            Token = "71agowqlxa1xvcx5yer8npl6lr6vqg",
+            ExpiresAt = DateTime.ParseExact("2026-04-26 21:05:44.4339604", "yyyy-MM-dd HH:mm:ss.fffffff", CultureInfo.InvariantCulture),
+            IsDeleted = false,
+            LastUpdated = DateTime.ParseExact("2026-03-01 21:11:59.4340855", "yyyy-MM-dd HH:mm:ss.fffffff", CultureInfo.InvariantCulture),
+            CreatedAtUtc = DateTime.ParseExact("2026-03-01 21:11:59.4427116", "yyyy-MM-dd HH:mm:ss.fffffff", CultureInfo.InvariantCulture),
+            ModifiedAtUtc=null,
+
+
+        };
+
+        context.IGDBTokens.Add(token);
+        await context.SaveChangesAsync();
+
+        Console.WriteLine($"Dynamic seed: IGDB Token added.");
+
+
+
+    }
     private static async Task SeedCountriesAsync(DatabaseContext context)
     {
+      
         if (await context.Countries.AnyAsync())
             return;
 
-        var usa = new CountryEntity
-        {
-            Name = "USA"
-        };
+   
 
-        var bih = new CountryEntity
-        {
-            Name = "Bosna i Hercegovina"
-        };
+       
+        var countries = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+            .Select(c => new RegionInfo(c.Name))
+            .Select(r => new CountryEntity
+            {
+                Name = r.EnglishName,    
+            })
+            .GroupBy(c => c.Name)
+            .Select(g => g.First())
+            .ToList();
 
-        var cro = new CountryEntity
-        {
-            Name = "Hrvatska"
-        };
-
-        context.Countries.AddRange(bih, cro);
-        context.Countries.Add(usa);
+        context.Countries.AddRange(countries);
         await context.SaveChangesAsync();
 
-        Console.WriteLine("Dynamic seed: Countries added.");
+        Console.WriteLine($"Dynamic seed: {countries.Count} Countries added.");
     }
 
     private static async Task SeedSecurityQuestionsAsync(DatabaseContext context)

@@ -113,7 +113,7 @@ namespace Market.Infrastructure.Common
                 Content = new StringContent(
                     $"fields id,name,summary,cover.url,screenshots.url," +
                     $"genres.name,release_dates.date," +
-                    $"involved_companies.company.name,involved_companies.developer,involved_companies.publisher; " +
+                    $"involved_companies.company.name,involved_companies.publisher; " +
                     $"where id = {gameId};",
                     Encoding.UTF8,
                     "text/plain")
