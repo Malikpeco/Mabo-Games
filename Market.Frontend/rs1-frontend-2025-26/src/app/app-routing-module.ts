@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {myAuthData, myAuthGuard} from './core/guards/my-auth-guard';
+import { myAuthData, myAuthGuard } from './core/guards/my-auth-guard';
 
 const routes: Routes = [
 
@@ -9,6 +9,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/auth/auth-module').then(m => m.AuthModule)
   },
+  
+  {
+    path: 'admin',
+    canActivate: [myAuthGuard],
+    data: myAuthData({ requireAuth: true, requireAdmin: true }),
+    loadChildren: () =>
+      import('./modules/admin/admin-module').then(m => m.AdminModule)
+  },
+
   {
     path: 'client',
     canActivate: [myAuthGuard],
@@ -21,12 +30,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/public/public-module').then(m => m.PublicModule)
   },
+
   // fallback 404
   { path: '**', redirectTo: '' }
+
+
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

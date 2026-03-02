@@ -137,7 +137,7 @@ namespace Market.Infrastructure.Common
                 Summary = game.Summary,
                 ReleaseDate = game.ReleaseDates?.OrderBy(r => r.Date).FirstOrDefault()?.GetDateTime(),
                 CoverUrl = FixImageUrl(game.Cover?.Url, "t_cover_big"),
-                Screenshots = game.Screenshots?.Select(s => FixImageUrl(s.Url, "t_screenshot_big")!).ToList() ?? new(),
+                Screenshots = game.Screenshots?.Select(s => FixImageUrl(s.Url, "t_720p")!).ToList() ?? new(),
                 Genres = game.Genres?.Select(g => g.Name).ToList() ?? new(),
                 Publisher = game.InvolvedCompanies?.FirstOrDefault(ic => ic.Publisher)?.Company?.Name
             };

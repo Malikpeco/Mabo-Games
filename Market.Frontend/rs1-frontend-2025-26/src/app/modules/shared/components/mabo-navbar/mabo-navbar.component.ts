@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthFacadeService } from '../../../core/services/auth/auth-facade.service';
-import { CurrentUserService } from '../../../core/services/auth/current-user.service';
-import { ToasterService } from '../../../core/services/toaster.service';
+import { AuthFacadeService } from '../../../../core/services/auth/auth-facade.service';
+import { CurrentUserService } from '../../../../core/services/auth/current-user.service';
+import { ToasterService } from '../../../../core/services/toaster.service';
 
 @Component({
   selector: 'app-mabo-navbar',
@@ -32,4 +32,17 @@ export class MaboNavbarComponent {
       this.router.navigate(['/public/cart']);
     }
   }
+
+  adminPanelBtnClick():void{
+    if(!this.isAuthenticated()){
+      this.toaster.error("You need to be logged in to access the admin panel.");
+    }
+    else if(!this.isAdmin()){
+      this.toaster.error("You do not have permission to access the admin panel.");
+    }
+    else{
+      this.router.navigate(['/admin']);
+    }
+  }
+
 }

@@ -27,7 +27,7 @@ public static class DynamicDataSeeder
         var token = new IGDBTokenEntity
         {
 
-            Token = "71agowqlxa1xvcx5yer8npl6lr6vqg",
+            Token = "202bz70ncku4b8lrviwryp31fvmhta",
             ExpiresAt = DateTime.ParseExact("2026-04-26 21:05:44.4339604", "yyyy-MM-dd HH:mm:ss.fffffff", CultureInfo.InvariantCulture),
             IsDeleted = false,
             LastUpdated = DateTime.ParseExact("2026-03-01 21:11:59.4340855", "yyyy-MM-dd HH:mm:ss.fffffff", CultureInfo.InvariantCulture),

@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'public/checkout', component: BeginCheckoutComponent},
   { path: 'public/payment', component: PaymentComponent},
   { path: 'public/payment/success', component: PaymentComponent, data: { mode: 'success' }},
+  
   { path: '**', redirectTo: '' }, //if user goes to any url that doesnt exist, send them back to '/'
 ];
 
