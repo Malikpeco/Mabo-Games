@@ -34,7 +34,7 @@ namespace Market.Application.Modules.Carts.Commands.Create
 
             if (cart == null)
             {
-                throw new Exception("Cart not found for this user. (It should exist by default.)");
+                throw new MarketBusinessRuleException("409", "Cart not found for this user. (It should exist by default.)");
             }
 
             var game = await _context.Games
@@ -42,7 +42,7 @@ namespace Market.Application.Modules.Carts.Commands.Create
 
             if (game == null)
             {
-                throw new Exception("Game not found.");
+                throw new MarketBusinessRuleException("409", "Game not found.");
             }
 
             var alreadyOwned = await _context.UserGames.AnyAsync(ug => ug.UserId == userId.Value && ug.GameId == request.GameId);

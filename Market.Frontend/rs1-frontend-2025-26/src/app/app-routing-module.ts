@@ -19,13 +19,6 @@ const routes: Routes = [
   },
 
   {
-    path: 'client',
-    canActivate: [myAuthGuard],
-    data: myAuthData({ requireAuth: true }),// bilo ko logiran
-    loadChildren: () =>
-      import('./modules/client/client-module').then(m => m.ClientModule)
-  },
-  {
     path: '',
     loadChildren: () =>
       import('./modules/public/public-module').then(m => m.PublicModule)
@@ -39,7 +32,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'top'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

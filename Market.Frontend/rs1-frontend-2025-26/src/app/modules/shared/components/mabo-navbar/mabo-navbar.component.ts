@@ -30,6 +30,11 @@ export class MaboNavbarComponent {
     }
   }
 
+  isNavActive(key: 'cart'): boolean {
+    const url = this.router.url;
+    return url.startsWith('/public/cart') || url.startsWith('/public/checkout') || url.startsWith('/public/payment');
+  }
+
   adminPanelBtnClick():void{
     if(!this.isAuthenticated()){
       this.toaster.error("You need to be logged in to access the admin panel.");

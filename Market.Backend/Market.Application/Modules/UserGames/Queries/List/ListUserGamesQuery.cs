@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.UserGames.Queries.List
 {
-    public sealed class ListUserGamesQuery : BasePagedQuery<StorefrontGameDto>
+    public sealed class ListUserGamesQuery : BasePagedQuery<ListUserGamesQueryDto>
     {
         //takes userId from IAppCurrentUser currentUser(handler) - (OBAVEZNO/NEMA LISTE SVIH USERGAMES NEGO SAMO PO USERU)
     }

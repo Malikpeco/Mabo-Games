@@ -8,7 +8,7 @@ namespace Market.API.Controllers
     public sealed class UserGamesController(ISender sender)
     {
         [HttpGet]
-        public async Task<PageResult<StorefrontGameDto>> List([FromQuery]ListUserGamesQuery query, CancellationToken ct)
+        public async Task<PageResult<ListUserGamesQueryDto>> List([FromQuery]ListUserGamesQuery query, CancellationToken ct)
         {
             return await sender.Send(query, ct);
         }

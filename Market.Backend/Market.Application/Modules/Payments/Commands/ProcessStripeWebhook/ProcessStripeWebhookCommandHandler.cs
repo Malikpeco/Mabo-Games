@@ -136,8 +136,10 @@ namespace Market.Application.Modules.Payments.Commands.ProcessStripeWebhook
             // clear cart
 
             var cart = await context.Carts
-                .Include(c=>c.CartItems)
+                .Include(c=>c.CartItems.Where(ci=>!ci.IsSaved))
                 .FirstOrDefaultAsync(c => c.UserId == userId,ct);
+
+            
 
             if(cart.CartItems !=null && cart.CartItems.Count > 0)
             {
