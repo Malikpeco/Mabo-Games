@@ -9,6 +9,6 @@ namespace Market.Domain.Entities
     {
         public string ImageURL { get; set; }
         public int GameId { get; set; }
-        public GameEntity Game { get; set; }
+        public GameEntity Game { get; set; }    
     }
 }

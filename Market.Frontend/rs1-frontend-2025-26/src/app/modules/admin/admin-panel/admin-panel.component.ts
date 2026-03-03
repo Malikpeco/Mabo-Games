@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-admin-panel',
   standalone: false,
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './admin-panel.component.scss',
 })
 export class AdminPanelComponent {
+
+
+isGamesOpen = false;
+
+  toggleGames() {
+    this.isGamesOpen = !this.isGamesOpen;
+  }
 
 }

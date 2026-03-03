@@ -61,7 +61,7 @@ export class BrowseGamesComponent {
     }
 
     this.genresApi.list().subscribe(res=>{
-      this.genres=res.items ?? [];
+      this.genres=res ?? [];
     });
 
     this.reload();
@@ -89,14 +89,6 @@ export class BrowseGamesComponent {
         this.filteredGames= this.games;
       });
   }
-
-  
-  getGameImage(game: StorefrontGameDto): string {
-    return game.coverImageURL ?? game.screenshots[0].imageURL ??
-    '/carousel-placeholder-image.png';
-  }
-
-
 
 
   isGenreSelected(id: number): boolean {

@@ -29,6 +29,8 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<UserSecurityQuestionEntity> UserSecurityQuestions  => Set<UserSecurityQuestionEntity>();
     public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
     public DbSet<PasswordResetTokenEntity> PasswordResetTokens => Set<PasswordResetTokenEntity>();
+
+    public DbSet<IGDBTokenEntity> IGDBTokens => Set<IGDBTokenEntity>();
     public DbSet<ProcessedWebhookEventEntity> ProcessedWebhookEvents => Set<ProcessedWebhookEventEntity>();
 
     public DbSet<AuditLogEntity> AuditLogs => Set<AuditLogEntity>();

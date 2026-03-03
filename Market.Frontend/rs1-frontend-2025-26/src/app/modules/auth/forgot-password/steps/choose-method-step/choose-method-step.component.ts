@@ -53,7 +53,7 @@ export class ChooseMethodStepComponent extends BaseComponent {
   }
 
 
-  //temp for now have to implement (AGAIN BECAUSE IM STUPID)
+ 
   startSecurityQuestionRecovery(): void {
     this.methodChosen.emit('security-question');
   }

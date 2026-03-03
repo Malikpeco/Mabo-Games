@@ -12,7 +12,6 @@ namespace Market.Application.Abstractions
 
         Task SendEmail(string recieverEmail, string subject, string emailText, CancellationToken cancellationTokens);
 
-
     }
     
 }

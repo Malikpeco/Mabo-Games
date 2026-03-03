@@ -1,0 +1,54 @@
+$primary-black: #1A1A1A;
+$primary-white: #F9F8F6;
+$text-dark: #1a1a1a;
+$text-light: #F9F8F6;
+$text-lighter: #6b7280;
+$error-light : #FFEAEA;
+$error-dark : #D93025;
+$border-soft: rgba(0, 0, 0, 0.1);
+
+.admin-bg {
+    background-color: $primary-black;
+    color: $text-light;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.admin-surface {
+    background-color: $primary-white;
+    border: 1px solid $border-soft;
+    border-radius: 8px;
+    
+}
+
+.admin-text-muted {
+    color: $text-lighter;
+}
+
+.error {
+    border: 2px solid $error-dark;
+    background-color: $error-light;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+
+.error-message {
+    background-color: $error-light;
+    padding: 8px 10px;
+    border-radius: 4px;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 10px;
+
+    small {
+        color: $error-dark;
+        font-size: 12px;
+        font-weight: 900;
+    }
+}

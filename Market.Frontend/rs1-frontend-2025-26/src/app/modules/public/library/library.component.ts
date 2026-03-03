@@ -41,7 +41,7 @@ export class LibraryComponent implements OnInit {
     }
 
     this.genresApi.list().subscribe(res => {
-      this.genres = res.items ?? [];
+      this.genres = res ?? [];
     });
 
     this.loadFavourites();

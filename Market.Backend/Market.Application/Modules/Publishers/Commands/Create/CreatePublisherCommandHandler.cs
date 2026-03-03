@@ -14,10 +14,16 @@ namespace Market.Application.Modules.Publishers.Commands.Create
         public async Task<int> Handle(CreatePublisherCommand request, CancellationToken ct)
         {
             if (!currentUser.IsAdmin)
-                throw new Exception("You must be an admin to do this.");
+                throw new MarketForbiddenException();
 
             if (!await context.Countries.AnyAsync(c => c.Id == request.CountryId, ct))
                 throw new MarketNotFoundException("Country not found.");
+
+
+            if (await context.Publishers.AnyAsync(c => c.Name == request.Name, ct))
+                throw new MarketConflictException("Publisher with that name already exists! .");
+
+
 
             var pub = new PublisherEntity
             {
