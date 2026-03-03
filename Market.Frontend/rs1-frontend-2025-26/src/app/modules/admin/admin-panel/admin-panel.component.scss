@@ -1,17 +1,20 @@
+@import '../../shared/components/admin-shared/admin-shared.scss';
+
 $primary-black: #1A1A1A;
 $primary-white: #F9F8F6;
 $text-dark: #1a1a1a;
 $text-lighter: #6b7280;
+$text-light: #F9F8F6;   
 
 .admin-layout {
     display: flex;
     height: calc(100vh - 64px);
-    background-color: $primary-white;
+    min-width: 0;
 }
 
 .sidebar {
     width: 280px;
-    background-color: $primary-black;
+    background-color: rgb(15, 15, 15);
     color: $primary-white;
     display: flex;
     flex-direction: column;
@@ -84,6 +87,8 @@ $text-lighter: #6b7280;
 
 .content {
     flex: 1;
+    min-width: 0;
     overflow-y: auto;
-    padding: 60px;
+    overflow-x: auto;
+    
 }

@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthFacadeService } from '../../../../core/services/auth/auth-facade.service';
 import { CurrentUserService } from '../../../../core/services/auth/current-user.service';
 import { ToasterService } from '../../../../core/services/toaster.service';
 
@@ -16,14 +15,12 @@ export class MaboNavbarComponent {
   private currentUserService = inject(CurrentUserService);
   isAdmin = this.currentUserService.isAdmin;
   isAuthenticated = this.currentUserService.isAuthenticated;
-  private authFacadeService = inject(AuthFacadeService);
   toaster=inject(ToasterService);
   
   logout():void{
-    this.authFacadeService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/logout']);
   }
-
+  
   cartbtnclick():void{
     if(!this.isAuthenticated()){
       this.toaster.error("You need to be logged in to access the cart.");
