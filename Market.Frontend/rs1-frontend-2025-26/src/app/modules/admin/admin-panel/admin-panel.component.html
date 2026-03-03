@@ -1,0 +1,46 @@
+<app-mabo-navbar></app-mabo-navbar>
+
+<div class="admin-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3>Market Admin</h3>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-group">
+                <button (click)="toggleGames()" class="nav-item-btn">
+                    <span>Games</span>
+                    <span class="arrow" [class.open]="isGamesOpen">▼</span>
+                </button>
+
+                <div class="sub-nav" *ngIf="isGamesOpen">
+                    <a routerLink="games" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">Catalog</a>
+                    <a routerLink="games/add" routerLinkActive="active">Add New</a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <a routerLink="publishers" routerLinkActive="active" class="nav-item">
+                    Publishers
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <a routerLink="genres" routerLinkActive="active" class="nav-item">
+                    Genres
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <a routerLink="orders" routerLinkActive="active" class="nav-item">
+                    Orders
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <router-outlet></router-outlet>
+    </main>
+</div>

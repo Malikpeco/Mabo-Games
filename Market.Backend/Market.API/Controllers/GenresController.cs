@@ -1,4 +1,7 @@
-﻿using Market.Application.Modules.Genres.Queries.List;
+﻿using Market.Application.Modules.Genres.Commands.Create;
+using Market.Application.Modules.Genres.Queries.List;
+using Market.Application.Modules.SecurityQuestions.Commands.Create;
+using Market.Application.Modules.SecurityQuestions.Dto;
 
 namespace Market.API.Controllers
 {
@@ -8,9 +11,19 @@ namespace Market.API.Controllers
     {
         [AllowAnonymous]
         [HttpGet]
-        public async Task<PageResult<ListGenresQueryDto>> List([FromQuery]ListGenresQuery query, CancellationToken ct)
+        public async Task<List<ListGenresQueryDto>> List([FromQuery]ListGenresQuery query, CancellationToken ct)
         {
             return await sender.Send(query, ct);
         }
+
+
+        [HttpPost]
+        public async Task<ActionResult<int>> Create(CreateGenreCommand command, CancellationToken ct)
+        { 
+
+            return await sender.Send(command, ct);
+        }
+
+
     }
 }

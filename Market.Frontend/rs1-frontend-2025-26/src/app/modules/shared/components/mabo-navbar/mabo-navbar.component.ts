@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthFacadeService } from '../../../core/services/auth/auth-facade.service';
-import { CurrentUserService } from '../../../core/services/auth/current-user.service';
-import { ToasterService } from '../../../core/services/toaster.service';
+import { CurrentUserService } from '../../../../core/services/auth/current-user.service';
+import { ToasterService } from '../../../../core/services/toaster.service';
 
 @Component({
   selector: 'app-mabo-navbar',
@@ -16,14 +15,12 @@ export class MaboNavbarComponent {
   private currentUserService = inject(CurrentUserService);
   isAdmin = this.currentUserService.isAdmin;
   isAuthenticated = this.currentUserService.isAuthenticated;
-  private authFacadeService = inject(AuthFacadeService);
   toaster=inject(ToasterService);
   
   logout():void{
-    this.authFacadeService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/logout']);
   }
-
+  
   cartbtnclick():void{
     if(!this.isAuthenticated()){
       this.toaster.error("You need to be logged in to access the cart.");
@@ -37,4 +34,17 @@ export class MaboNavbarComponent {
     const url = this.router.url;
     return url.startsWith('/public/cart') || url.startsWith('/public/checkout') || url.startsWith('/public/payment');
   }
+
+  adminPanelBtnClick():void{
+    if(!this.isAuthenticated()){
+      this.toaster.error("You need to be logged in to access the admin panel.");
+    }
+    else if(!this.isAdmin()){
+      this.toaster.error("You do not have permission to access the admin panel.");
+    }
+    else{
+      this.router.navigate(['/admin']);
+    }
+  }
+
 }

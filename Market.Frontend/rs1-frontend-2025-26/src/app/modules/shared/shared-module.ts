@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import {FitPaginatorBarComponent} from './components/fit-paginator-bar/fit-paginator-bar.component';
 import {materialModules} from './material-modules';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -10,6 +11,9 @@ import { FitLoadingBarComponent } from './components/fit-loading-bar/fit-loading
 import { FitTableSkeletonComponent } from './components/fit-table-skeleton/fit-table-skeleton.component';
 import { PasswordStrenghtMeterComponent } from './components/password-strenght-meter/password-strenght-meter/password-strenght-meter.component';
 import { TransitionLoadingComponent } from './components/transition-loading/transition-loading.component';
+import { MaboNavbarComponent } from './components/mabo-navbar/mabo-navbar.component';
+import { MaboFooterComponent } from './components/mabo-footer/mabo-footer.component';
+import { GameCardComponent } from './components/game-card/game-card.component';
 
 
 
@@ -20,10 +24,14 @@ import { TransitionLoadingComponent } from './components/transition-loading/tran
     FitLoadingBarComponent,
     FitTableSkeletonComponent,
     PasswordStrenghtMeterComponent,
-    TransitionLoadingComponent
+    TransitionLoadingComponent,
+    MaboNavbarComponent,
+    MaboFooterComponent,
+    GameCardComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     FormsModule,
     TranslatePipe,
@@ -35,6 +43,7 @@ import { TransitionLoadingComponent } from './components/transition-loading/tran
   exports:[
     FitPaginatorBarComponent,
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     TranslatePipe,
     FormsModule,
@@ -42,7 +51,10 @@ import { TransitionLoadingComponent } from './components/transition-loading/tran
     FitTableSkeletonComponent,
     materialModules,
     PasswordStrenghtMeterComponent,
-    TransitionLoadingComponent
+    TransitionLoadingComponent,
+    MaboNavbarComponent,
+    MaboFooterComponent,
+    GameCardComponent
   ]
 })
 export class SharedModule { }

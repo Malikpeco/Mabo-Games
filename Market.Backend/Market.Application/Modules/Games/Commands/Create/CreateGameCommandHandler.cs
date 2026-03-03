@@ -13,23 +13,36 @@ namespace Market.Application.Modules.Games.Commands.Create
         public async Task<int> Handle(CreateGameCommand request, CancellationToken ct)
         {
             if (!currentUser.IsAdmin)
-                throw new Exception("You must be an admin to do this!");
+                throw new MarketForbiddenException();
 
 
-            var publisherExists = await context.Publishers.AnyAsync(p => p.Id == request.PublisherId, ct);
+            bool publisherExists = await context.Publishers.AnyAsync(x => x.Id == request.PublisherId);
 
             if (!publisherExists)
-                throw new Exception("Publisher not found");
+                throw new MarketNotFoundException($"Publisher with id:{request.PublisherId} was not found.");
 
+            
             var game = new GameEntity
             {
                 Name = request.Name,
                 Price = request.Price,
                 Description = request.Description,
                 ReleaseDate = request.ReleaseDate,
-                PublisherId = request.PublisherId,
                 CoverImageURL = request.CoverImageURL,
+                PublisherId = request.PublisherId 
             };
+
+            // 2. Link existing Genres (Many-to-Many)
+            foreach (var genreId in request.GenreIds)
+                game.AddGenre(genreId);
+            
+            
+
+            // 3. Add Screenshots (One-to-Many)
+            foreach (var url in request.ScreenshotUrls)
+                game.AddScreenshot(url);
+            
+            
 
             context.Games.Add(game);
             await context.SaveChangesAsync(ct);

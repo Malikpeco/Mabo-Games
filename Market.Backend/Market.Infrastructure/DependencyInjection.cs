@@ -1,5 +1,6 @@
 ﻿using Market.Application.Abstractions;
 using Market.Application.Common.Email;
+using Market.Application.Common.IGDB;
 using Market.Domain.Entities;
 using Market.Infrastructure.Common;
 using Market.Infrastructure.Database;
@@ -62,6 +63,10 @@ public static class DependencyInjection
         // Email sender via SMTP 
         services.Configure<EmailSettings>(configuration.GetSection("Email"));
         services.AddScoped<IEmailSender, SmtpEmailSender>();
+
+        // IGDB 
+        services.Configure<IGDBSettings>(configuration.GetSection("IGDB"));
+        services.AddHttpClient<IIGDBService, IGDBService>();
 
         // Audit log interceptor 
         services.AddScoped<AuditLogInterceptor>();

@@ -69,7 +69,7 @@
         <div class="spacer"></div>
 
         <div class="search">
-          <span class="search-icon">🔎</span>
+          <mat-icon class="search-icon">search</mat-icon>
           <input
             class="search-input"
             type="text"
@@ -82,25 +82,7 @@
 
       <!-- Grid -->
       <div class="games-grid" *ngIf="filteredGames.length > 0; else empty">
-        <a
-          class="game-card"
-          *ngFor="let g of filteredGames"
-          [routerLink]="['/public/games', g.id]"
-        >
-          <img class="game-card-img" [src]="getGameImage(g)" [alt]="g.name" />
-
-          <div class="game-card-meta">
-            <div class="game-card-title">{{ g.name }}</div>
-            <div class="game-card-sub">{{ g.publisherName }}</div>
-
-            <div class="game-card-bottom">
-
-              <div class="game-card-price">
-                {{ g.price | number:'1.2-2' }} KM
-              </div>
-            </div>
-          </div>
-        </a>
+        <app-game-card *ngFor="let g of filteredGames" [game]="g"></app-game-card>
       </div>
 
       <ng-template #empty>
@@ -128,6 +110,7 @@
     </main>
   </div>
   
-<app-mabo-footer></app-mabo-footer>
-
+  
 </div>
+
+<app-mabo-footer></app-mabo-footer>

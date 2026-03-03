@@ -26,5 +26,16 @@ namespace Market.Domain.Entities
 
 
 
+        public void AddGenre(int genreId)
+        {
+            // Add to the underlying private list
+            (GameGenres as List<GameGenreEntity>).Add(new GameGenreEntity { GenreId = genreId });
+        }
+
+        public void AddScreenshot(string url)
+        {
+            (Screenshots as List<ScreenshotEntity>).Add(new ScreenshotEntity { ImageURL = url });
+        }
+
     }
 }

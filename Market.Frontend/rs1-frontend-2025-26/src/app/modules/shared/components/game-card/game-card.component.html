@@ -1,0 +1,14 @@
+<a class="game-card" [routerLink]="['/public/games', game.id]">
+  <img class="game-card-img" [src]="getGameImage()" [alt]="game.name" />
+  
+  <div class="game-card-meta">
+    <div class="game-card-title">{{ game.name }}</div>
+    <div class="game-card-sub">{{ game.publisherName }}</div>
+    
+    <div class="game-card-bottom">
+      <div class="game-card-price">
+        {{ game.price | number:'1.2-2' }} €
+      </div>
+    </div>
+  </div>
+</a>

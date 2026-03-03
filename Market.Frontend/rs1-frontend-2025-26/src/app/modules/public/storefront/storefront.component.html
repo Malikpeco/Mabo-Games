@@ -1,11 +1,6 @@
+<app-mabo-navbar></app-mabo-navbar>
 
 <div class="storefront-page">
-  
-  <app-mabo-navbar></app-mabo-navbar>
-
-
-
-
 
   <section class="carousel-section">
     <h2>Featured</h2>
@@ -85,14 +80,7 @@
   <h2>Cheapest</h2>
   <ng-container *ngIf="cheapestGames.length>0; else cheapestEmpty">
     <div class="games-grid">
-      <a class="game-card" *ngFor="let g of cheapestGames" [routerLink]="['/public/games', g.id]">
-        <img class="game-card-img" [src]="g.coverImageURL" [alt]="g.name" />
-        <div class="game-card-meta">
-          <div class="game-card-title">{{ g.name }}</div>
-          <div class="game-card-sub">{{ g.publisherName }}</div>
-          <div class="game-card-price">{{ g.price | number:'1.2-2' }} KM</div>
-        </div>
-      </a>
+      <app-game-card *ngFor="let g of cheapestGames" [game]="g"></app-game-card>
     </div>
   </ng-container>
    <ng-template #cheapestEmpty>
@@ -100,8 +88,8 @@
   </ng-template>
 </section>
 
+</div>
 
     
-<app-mabo-footer></app-mabo-footer>
 
-</div>
+<app-mabo-footer></app-mabo-footer>
