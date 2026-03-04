@@ -13,6 +13,28 @@ Full-stack online game store built with ASP.NET Core 8 and Angular.
 
 ---
 
+## Features
+
+- User authentication (register, login, logout)
+- Forgot password flow (email code and security question recovery)
+- Storefront with latest/cheapest game sections
+- Browse games with search, sorting, genre filtering, and pagination
+- Game details page with screenshots, ratings, and reviews display
+- Add to cart from game details
+- Cart management (remove items, clear cart, save for later)
+- Stripe checkout flow (create order + redirect to Stripe + success return)
+- User library page with search and genre filters
+- Favourites support (add/remove favourites and highlight favourites in library)
+
+### Features To Be Implemented
+
+- Admin dashboard functionality
+- Notifications system
+- Achievements system
+- User profile page
+- Light mode
+---
+
 ## Requirements
 
 - .NET 8 SDK  
@@ -104,7 +126,7 @@ Add it to your configuration:
 
 Now Stripe payments will work locally in test mode.
 
-
+When entering card info, the test card number is `4242424242424242`
 
 ## Frontend Setup
 
