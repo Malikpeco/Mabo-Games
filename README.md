@@ -119,3 +119,5 @@ ng serve
 
 
 Open: http://localhost:4200
+
+> ⚠️ This project is currently under active development. Some features are still being implemented and improved.
