@@ -1,1 +1,0 @@
-This is a placeholder just for the folder to show up in the git repo.
