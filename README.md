@@ -2,6 +2,7 @@
 
 Full-stack online game store built with ASP.NET Core 8 and Angular.
 
+
 ## Tech Stack
 
 - ASP.NET Core 8
@@ -12,6 +13,7 @@ Full-stack online game store built with ASP.NET Core 8 and Angular.
 - Stripe Payments
 
 ---
+
 
 ## Features
 
@@ -35,6 +37,7 @@ Full-stack online game store built with ASP.NET Core 8 and Angular.
 - Light mode
 ---
 
+
 ## Requirements
 
 - .NET 8 SDK  
@@ -44,23 +47,29 @@ Full-stack online game store built with ASP.NET Core 8 and Angular.
 
 ---
 
+
 ## Backend Setup
 
-1. Open the solution file (`MaboGames.sln`) in **Visual Studio**.
-
-2. Go to:
-   Tools → NuGet Package Manager → Package Manager Console
-
-3. In Package Manager Console:
-   - Set **Default Project** to `Market.Infrastructure`
-   - Make sure the **Startup Project** is the API project
-4. Run:
-
-```powershell
-Update-Database
-```
+1. Open the **Backend** project in Visual Studio.
+2. Run the Project.
+3. The database will be created and seeded automatically on startup.
 
 ---
+
+
+## Frontend Setup
+
+1. Open the frontend folder in Visual Studio Code 
+2. Open the terminal in the folder and run 
+```bash 
+npm install
+```
+```bash 
+ng serve
+```
+
+Open: http://localhost:4200
+
 
 ## Stripe Setup (Required for Payment Testing)
 
@@ -128,18 +137,5 @@ Now Stripe payments will work locally in test mode.
 
 When entering card info, the test card number is `4242424242424242`
 
-## Frontend Setup
-
-1. Open the frontend folder in Visual Studio Code 
-2. Open the terminal in the folder and run 
-```bash 
-npm install
-```
-```bash 
-ng serve
-```
-
-
-Open: http://localhost:4200
 
 > ⚠️ This project is currently under active development. Some features are still being implemented and improved.
