@@ -88,7 +88,7 @@ In the Stripe Dashboard settings:
 - Go to **Developers → API Keys**
 - Copy `Secret key`
 
-Add it to your `appsettings.json`:
+Add it to your `appsettings.json` file:
 
 ```json
 "Stripe": {
@@ -122,7 +122,7 @@ stripe listen --forward-to https://localhost:7260/api/webhooks/stripe
 
 Stripe will output a webhook secret (`whsec_...`).
 
-Add it to your configuration:
+Add it to your `appsettings.json` file:
 
 ```json
 "Stripe": {
