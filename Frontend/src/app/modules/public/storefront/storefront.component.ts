@@ -48,7 +48,7 @@ export class StorefrontComponent {
 
   
   getGameImage(game: StorefrontGameDto): string{
-    return game.screenshots?.[0]?.imageURL ?? '/carousel-placeholder-image.png';
+    return game.screenshots?.[0]?.imageURL ?? game.coverImageURL ?? '/carousel-placeholder-image.png';
   }
   
   newestIndex = 1;
