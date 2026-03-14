@@ -1,0 +1,15 @@
+<div class="pager" *ngIf="totalPages > 1">
+  <button class="pager-btn" (click)="goToPage(currentPage - 1)" [disabled]="disabled || currentPage <= 1">‹</button>
+
+  <button
+    class="pager-num"
+    *ngFor="let p of visiblePages"
+    (click)="goToPage(p)"
+    [class.active]="p === currentPage"
+    [disabled]="disabled"
+  >
+    {{ p }}
+  </button>
+
+  <button class="pager-btn" (click)="goToPage(currentPage + 1)" [disabled]="disabled || currentPage >= totalPages">›</button>
+</div>

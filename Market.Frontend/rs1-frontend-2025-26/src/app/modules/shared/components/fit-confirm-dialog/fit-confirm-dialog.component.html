@@ -1,6 +1,6 @@
 <!-- src/app/modules/shared/components/fit-confirm-dialog/fit-fit-confirm-dialog.component.html -->
 
-<div class="confirm-dialog">
+<div class="confirm-dialog" [class.delete-confirm]="isDeleteConfirm()">
   <!-- Icon -->
   <div class="dialog-icon" [ngClass]="getIconClass()">
     <mat-icon>{{ getDefaultIcon() }}</mat-icon>

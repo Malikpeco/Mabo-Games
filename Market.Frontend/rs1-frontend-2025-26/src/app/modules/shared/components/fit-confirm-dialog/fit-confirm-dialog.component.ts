@@ -13,6 +13,7 @@ import { DialogConfig, DialogButton, DialogType, DialogResult } from '../../mode
 })
 export class FitConfirmDialogComponent {
   DialogType = DialogType;
+  DialogButton = DialogButton;
 
   constructor(
     public dialogRef: MatDialogRef<FitConfirmDialogComponent>,
@@ -110,5 +111,9 @@ export class FitConfirmDialogComponent {
     return this.config.messageKey
       ? this.translate.instant(this.config.messageKey, this.config.messageParams)
       : this.config.message ?? '';
+  }
+
+  isDeleteConfirm(): boolean {
+    return this.config.buttons?.some((button) => button.type === DialogButton.DELETE) ?? false;
   }
 }

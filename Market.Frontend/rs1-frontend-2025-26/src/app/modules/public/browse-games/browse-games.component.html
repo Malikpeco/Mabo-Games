@@ -91,21 +91,12 @@
         </div>
       </ng-template>
 
-      <!-- Pagination -->
-      <div class="pager" *ngIf="totalPages > 1">
-        <button class="pager-btn" (click)="goToPage(page-1)" [disabled]="page <= 1">‹</button>
-
-        <button
-          class="pager-num"
-          *ngFor="let p of pageNumbers"
-          (click)="goToPage(p)"
-          [class.active]="p === page"
-        >
-          {{ p }}
-        </button>
-
-        <button class="pager-btn" (click)="goToPage(page+1)" [disabled]="page >= totalPages">›</button>
-      </div>
+      <app-shared-paginator
+        class="browse-pager"
+        [currentPage]="page"
+        [totalPages]="totalPages"
+        (pageChange)="goToPage($event)"
+      ></app-shared-paginator>
 
     </main>
   </div>
