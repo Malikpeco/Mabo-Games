@@ -1,0 +1,36 @@
+<div class="searchable-dropdown genres-dropdown">
+	<div class="dropdown-shell">
+		<mat-icon class="dropdown-icon">category</mat-icon>
+		<input
+			type="text"
+			class="dropdown-search-input"
+			placeholder="Search genres..."
+			[ngModel]="searchTerm"
+			(ngModelChange)="onSearchInput($event)"
+			(focus)="onFocus()"
+			[ngModelOptions]="{ standalone: true }"
+			autocomplete="off" />
+	</div>
+
+	<div class="dropdown-panel genre-dropdown-panel" *ngIf="isOpen">
+		<div class="dropdown-state" *ngIf="isLoading">Loading genres...</div>
+		<div class="dropdown-state" *ngIf="!isLoading && filteredGenres.length === 0 && !canCreateFromSearch">No genres found.</div>
+
+		<button
+			type="button"
+			class="dropdown-option create-genre-option"
+			*ngIf="canCreateFromSearch"
+			(click)="createGenreFromSearch()">
+			<mat-icon>add</mat-icon>
+			<span>Genre "{{ searchTerm.trim() }}" doesn't exist - create it?</span>
+		</button>
+
+		<div class="dropdown-state" *ngIf="isCreating">Creating genre...</div>
+		<div class="dropdown-state error" *ngIf="createError">{{ createError }}</div>
+
+		<label class="dropdown-option checkbox-option" *ngFor="let genre of filteredGenres">
+			<input type="checkbox" [checked]="isGenreSelected(genre)" (change)="toggleGenre(genre)" />
+			<span>{{ genre.name }}</span>
+		</label>
+	</div>
+</div>

@@ -1,0 +1,74 @@
+.create-publisher-dialog {
+  color: #f3f5fb;
+  padding: 22px 24px;
+  box-sizing: border-box;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.dialog-header p {
+  margin: 6px 0 0;
+  color: #aeb6c4;
+}
+
+.dialog-form {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+}
+
+.dialog-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  > input {
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid #2a2a2a;
+    background: #0f0f0f;
+    color: #f3f5fb;
+    padding: 0 12px;
+    outline: none;
+  }
+}
+
+.dialog-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-secondary,
+.btn-primary {
+  min-width: 110px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #0f0f0f;
+  color: #f3f5fb;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #84ad69 0%, #6e9357 100%);
+  border-color: #668654;
+  color: #f3ffe9;
+}
+
+.btn-primary:disabled {
+  cursor: default;
+  opacity: 0.55;
+}

@@ -1,0 +1,48 @@
+<div class="publisher-dropdown-field">
+  <div class="publisher-dropdown-shell">
+    <input
+      [ngModel]="internalSearchTerm"
+      (ngModelChange)="onInternalSearch($event)"
+      (focus)="internalIsOpen = true"
+      placeholder="Search or create publishers..."
+      [ngModelOptions]="{ standalone: true }"
+      autocomplete="off" />
+
+    <button
+      type="button"
+      class="publisher-dropdown-clear-btn"
+      *ngIf="internalSearchTerm.length"
+      (click)="clearSelection()"
+      aria-label="Clear selected publisher">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="internalIsOpen" class="publisher-dropdown-panel">
+    <div *ngIf="internalIsLoading" class="publisher-dropdown-state">Loading...</div>
+    <div *ngIf="internalError" class="publisher-dropdown-state error">{{ internalError }}</div>
+    <div *ngIf="!internalIsLoading && !internalError && internalFilteredPublishers.length === 0 && !internalCanCreate" class="publisher-dropdown-state">
+      No publishers found.
+    </div>
+
+    <button
+      type="button"
+      class="publisher-dropdown-option"
+      *ngFor="let publisher of internalFilteredPublishers"
+      (click)="selectPublisher(publisher)"
+      [class.selected]="isSelected(publisher)">
+      {{ publisher.name }}
+    </button>
+
+    <button
+      type="button"
+      class="publisher-dropdown-option create"
+      *ngIf="internalCanCreate"
+      (click)="createNew()"
+      [disabled]="internalIsCreating">
+      + Create "{{ internalSearchTerm.trim() }}"
+    </button>
+
+    <div *ngIf="internalIsCreating" class="publisher-dropdown-state">Creating publisher...</div>
+  </div>
+</div>

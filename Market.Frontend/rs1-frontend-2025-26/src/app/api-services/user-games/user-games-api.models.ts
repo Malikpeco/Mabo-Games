@@ -8,6 +8,10 @@ export class ListUserGamesRequest extends BasePagedQuery{
 
 }
 
+export interface ClaimFreeGameRequest {
+    gameId: number;
+}
+
 export interface GameScreenshotsDto{
     imageURL:string;
     gameId:number;

@@ -14,4 +14,8 @@ export class GenresApiService{
     list(){
         return this.http.get<GenreDto[]>(`${environment.apiUrl}/api/genres`);
     }
+
+    create(name: string){
+        return this.http.post<number>(`${environment.apiUrl}/api/genres`, { name });
+    }
 }

@@ -38,7 +38,7 @@
     </button>
   </div>
 
-  <div class="thumb-row" *ngIf="g.screenshots?.length">
+  <div class="thumb-row" *ngIf="g.screenshots.length">
     <button
       type="button"
       class="thumb"
@@ -53,7 +53,7 @@
 </section>
 
     <aside class="game-side">
-      <div class="meta-row" *ngIf="game?.genres?.length">
+      <div class="meta-row" *ngIf="g.genres.length">
         <span>Genres</span>
         <div class="genre-list">
             <span class="genre-chip" *ngFor="let g of game!.genres">
@@ -73,9 +73,17 @@
       </div>
 
       <div class="price-box">
-        <div class="price">{{ g.price | currency:'EUR':'symbol':'1.2-2' }}</div>
+        <div class="price">{{ priceLabel }}</div>
         <button
-          *ngIf="!isInCart && !isInLibrary"
+          *ngIf="!isInLibrary && isFreeGame"
+          type="button"
+          class="btn-add-cart"
+          (click)="addToLibrary(g.id)"
+        >
+          Add to library
+        </button>
+        <button
+          *ngIf="!isInCart && !isInLibrary && !isFreeGame"
           type="button"
           class="btn-add-cart"
           (click)="addToCart(g.id)"
@@ -85,7 +93,7 @@
         <button *ngIf="isInLibrary" type="button" class="btn-statuss btn-status-info" routerLink="/public/library">
           In library
         </button>
-        <button *ngIf="!isInLibrary && isInCart" type="button" class="btn-status btn-status-info" disabled>
+        <button *ngIf="!isInLibrary && isInCart && !isFreeGame" type="button" class="btn-status btn-status-info" disabled>
           In cart
         </button>
         <button *ngIf="isInLibrary && isInFavourites" type="button" class="btn-statuss btn-status-info" (click)="removeFromFavourites(g.id)">

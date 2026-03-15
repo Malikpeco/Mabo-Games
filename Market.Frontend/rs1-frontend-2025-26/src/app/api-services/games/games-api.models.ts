@@ -68,6 +68,17 @@ export interface GameDetailsDto {
 }
 
 
+export interface CreateGameRequest {
+    name: string;
+    price: number;
+    description?: string;
+    releaseDate: string;
+    publisherId: number;
+    coverImageURL: string;
+    genreIds: number[];
+    screenshotUrls: string[];
+}
+
 
 
 

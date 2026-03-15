@@ -9,6 +9,10 @@ import { AdminPublishersComponent } from './publishers/admin-publishers/admin-pu
 import { AdminOrdersComponent } from './orders/admin-orders/admin-orders.component';
 import { AdminOrderDetailsComponent } from './orders/admin-order-details/admin-order-details.component';
 import { AdminGamesEditComponent } from './games/admin-games-edit/admin-games-edit.component';
+import { CreatePublisherDialogComponent } from './games/admin-shared/create-publisher-dialog/create-publisher-dialog.component';
+import { PublisherDropdownComponent } from './games/admin-shared/publisher-dropdown/publisher-dropdown.component';
+import { GenreDropdownComponent } from './games/admin-shared/genre-dropdown/genre-dropdown.component';
+import { CountryDropdownComponent } from './games/admin-shared/country-dropdown/country-dropdown.component';
 
 
 
@@ -22,6 +26,10 @@ import { AdminGamesEditComponent } from './games/admin-games-edit/admin-games-ed
     AdminOrdersComponent, 
     AdminOrderDetailsComponent, 
     AdminGamesEditComponent,
+    CreatePublisherDialogComponent,
+    PublisherDropdownComponent,
+    GenreDropdownComponent,
+    CountryDropdownComponent,
 
   ],
   imports: [

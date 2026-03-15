@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { StorefrontGameDto } from '../../../../api-services/games/games-api.models';
 import { GamesApiService } from '../../../../api-services/games/games-api.service';
@@ -147,18 +148,26 @@ export class AdminGamesComponent implements OnInit, OnDestroy {
         return;
       }
 
-      // Must add logic here for deletion!
-      this.games = this.games.filter((g) => g.id !== game.id);
-      this.totalCount = Math.max(0, this.totalCount - 1);
+      this.gamesApi.delete(game.id).subscribe({
+        next: () => {
+          this.dialog.showSuccess('Game deleted', `Game "${game.name}" was deleted successfully.`, undefined, 'check_circle');
 
-      const currentTotalPages = Math.max(1, Math.ceil(this.totalCount / this.pageSize));
-      if (this.page > currentTotalPages) {
-        this.page = currentTotalPages;
-      }
+          const wasLastItemOnPage = this.games.length === 1;
+          if (wasLastItemOnPage && this.page > 1) {
+            this.page = this.page - 1;
+          }
 
-      if (this.games.length === 0 && this.page > 1) {
-        this.page = this.page - 1;
-      }
+          this.loadGames();
+        },
+        error: (error: HttpErrorResponse) => {
+          const message =
+            error.error?.message ||
+            error.error?.title ||
+            'Could not delete game. Please try again.';
+
+          this.dialog.showError('Delete failed', message, undefined, 'error');
+        },
+      });
     });
   }
 

@@ -132,6 +132,25 @@ closeScreenshot(): void {
   this.activeScreenshotIndex = null;
 }
 
+get priceLabel(): string {
+  if (!this.game) {
+    return '';
+  }
+
+  return this.game.price <= 0
+    ? 'Free'
+    : new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(this.game.price);
+}
+
+get isFreeGame(): boolean {
+  return (this.game?.price ?? 0) <= 0;
+}
+
 nextScreenshot(): void {
   if (!this.game?.screenshots?.length || this.activeScreenshotIndex === null) return;
   const total = this.game.screenshots.length;
@@ -192,6 +211,35 @@ addToCart(gameId:number) :void{
     },
     error:(err)=>{
       this.toaster.error(`${err?.error?.message ?? 'Failed to check cart.'}`);
+    }
+  });
+}
+
+addToLibrary(gameId: number): void {
+  if (!this.isAuthenticated()) {
+    this.toaster.error('You must be logged in to add a game to your library.');
+    return;
+  }
+
+  if (!this.isFreeGame) {
+    this.toaster.error('Only free games can be added directly to your library.');
+    return;
+  }
+
+  if (this.isInLibrary) {
+    this.toaster.info('You already own this game.');
+    return;
+  }
+
+  this.userGamesApi.claimFreeGame({ gameId }).subscribe({
+    next: userGameId => {
+      this.isInLibrary = true;
+      this.isInCart = false;
+      this.ownedUserGameId = userGameId;
+      this.toaster.success('Game added to library!');
+    },
+    error: err => {
+      this.toaster.error(err?.error?.message ?? 'Failed to add game to library.');
     }
   });
 }
