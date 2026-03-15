@@ -8,5 +8,6 @@ namespace Market.Application.Modules.Genres.Queries.List
 {
     public class ListGenresQuery : IRequest< List<ListGenresQueryDto>>
     {
+
     }
 }

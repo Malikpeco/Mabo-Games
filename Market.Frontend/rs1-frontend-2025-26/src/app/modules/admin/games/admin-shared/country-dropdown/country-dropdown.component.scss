@@ -35,17 +35,14 @@
 }
 
 .dropdown-panel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100% + 8px);
-  max-height: 240px;
-  overflow: auto;
+  position: static;
+  margin-top: 8px;
+  max-height: none;
+  overflow: visible;
   border: 1px solid #2a2a2a;
   border-radius: 10px;
   background: #0f0f0f;
   padding: 6px;
-  z-index: 6;
 }
 
 .dropdown-state {

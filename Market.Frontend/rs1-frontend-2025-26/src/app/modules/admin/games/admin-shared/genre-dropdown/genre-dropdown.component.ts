@@ -3,6 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { GenreDto } from '../../../../../api-services/genres/genres-api.models';
 import { GenresApiService } from '../../../../../api-services/genres/genres-api.service';
 import { ToasterService } from '../../../../../core/services/toaster.service';
+import { DialogHelperService } from '../../../../shared/services/dialog-helper.service';
+import { DialogButton, DialogType } from '../../../../shared/models/dialog-config.model';
 
 @Component({
   selector: 'app-genre-dropdown',
@@ -22,6 +24,7 @@ export class GenreDropdownComponent {
 
   private genresApi = inject(GenresApiService);
   private toaster = inject(ToasterService);
+  private dialog = inject(DialogHelperService);
   private hostElement = inject(ElementRef<HTMLElement>);
 
   private availableGenres: GenreDto[] = [];
@@ -94,6 +97,28 @@ export class GenreDropdownComponent {
     if (!genreName || !this.canCreateFromSearch) {
       return;
     }
+
+    this.dialog
+      .showCustom({
+        type: DialogType.QUESTION,
+        title: 'Create Genre',
+        message: `Create new genre "${genreName}"?`,
+        icon: 'category',
+        buttons: [
+          { type: DialogButton.CANCEL },
+          { type: DialogButton.SAVE, label: 'Create', color: 'primary' },
+        ],
+      })
+      .subscribe((result) => {
+        if (result?.button !== DialogButton.SAVE) {
+          return;
+        }
+
+        this.createGenre(genreName);
+      });
+  }
+
+  private createGenre(genreName: string): void {
 
     this.isCreating = true;
     this.createError = '';

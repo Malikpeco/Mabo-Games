@@ -12,12 +12,12 @@ namespace Market.Application.Modules.Carts.Commands.Delete
     {
         public async Task<Unit> Handle(RemoveFromCartCommand request, CancellationToken ct)
         {
+            await CancelPendingOrders(context, currentUser.UserId.Value, ct);
+
             var cart = await context.Carts
                 .Include(c=>c.CartItems)
                 .ThenInclude(ci=>ci.Game)
                 .FirstOrDefaultAsync(c => c.UserId == currentUser.UserId,ct);
-
-            await EnsureNoPendingOrder(context, currentUser.UserId.Value, ct);
 
 
             var cartitem = cart.CartItems.FirstOrDefault(ci => ci.GameId == request.GameId);
@@ -43,13 +43,21 @@ namespace Market.Application.Modules.Carts.Commands.Delete
 
         
 
-        private static async Task EnsureNoPendingOrder(IAppDbContext context, int userid, CancellationToken ct)
+        private static async Task CancelPendingOrders(IAppDbContext context, int userid, CancellationToken ct)
         {
-            var hasPending = await context.Orders
-                .AnyAsync(o => o.UserId == userid && o.OrderStatus == "Pending", ct);
+            var pendingOrders = await context.Orders
+                .Where(o => o.UserId == userid && o.OrderStatus == "Pending")
+                .ToListAsync(ct);
 
-            if (hasPending)
-                throw new ValidationException("Checkout in progress. Cart is locked.");
+            if (pendingOrders.Count == 0)
+                return;
+
+            foreach (var order in pendingOrders)
+            {
+                order.OrderStatus = "Cancelled";
+            }
+
+            await context.SaveChangesAsync(ct);
         }
     }
 }

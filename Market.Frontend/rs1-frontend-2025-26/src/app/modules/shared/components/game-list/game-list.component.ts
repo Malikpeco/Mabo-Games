@@ -23,6 +23,24 @@ export class GameListComponent {
       : `${this.game.price.toFixed(2)} EUR`;
   }
 
+  get releaseDateLabel(): string {
+    const raw = this.game.releaseDate;
+    if (!raw) {
+      return 'N/A';
+    }
+
+    const parsed = new Date(raw);
+    if (Number.isNaN(parsed.getTime())) {
+      return 'N/A';
+    }
+
+    return new Intl.DateTimeFormat('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    }).format(parsed);
+  }
+
   onEdit(): void {
     this.editGame.emit(this.game);
   }

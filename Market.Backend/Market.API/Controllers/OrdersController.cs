@@ -1,5 +1,6 @@
 ﻿using Market.Application.Modules.Orders.Commands.Create;
 using Market.Application.Modules.Orders.Commands.Delete;
+using Market.Application.Modules.Orders.Queries.List;
 
 namespace Market.API.Controllers
 {
@@ -8,6 +9,12 @@ namespace Market.API.Controllers
 
     public class OrdersController(ISender sender): ControllerBase
     {
+        [HttpGet]
+        public async Task<PageResult<ListOrdersQueryDto>> List([FromQuery] ListOrdersQuery query, CancellationToken ct)
+        {
+            return await sender.Send(query, ct);
+        }
+
         [HttpPost("CreateOrder")]
         public async Task<ActionResult<int>> Create(CancellationToken ct)
         {

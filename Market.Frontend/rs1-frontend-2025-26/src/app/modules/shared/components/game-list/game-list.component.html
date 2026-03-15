@@ -9,6 +9,10 @@
   <div class="game-info">
     <h3 class="game-name">{{ game.name }}</h3>
     <p class="publisher">{{ game.publisherName }}</p>
+    <p class="release-date">
+      <mat-icon class="release-date-icon">event</mat-icon>
+      <span>Released: {{ releaseDateLabel }}</span>
+    </p>
     
     <div class="genre-list">
       <ng-container *ngIf="game.genres && game.genres.length > 0; else noGenres">

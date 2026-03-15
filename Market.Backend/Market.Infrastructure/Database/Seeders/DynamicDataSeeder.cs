@@ -320,7 +320,7 @@ public static class DynamicDataSeeder
         {
             Name = "Grand Theft Auto 'San Andreas'",
             PublisherId = 1,
-            Price = 59.99m,
+            Price = 60.00m,
             ReleaseDate = new DateTime(2013, 9, 17),
             Description = "An open-world action-adventure game following three criminals in the fictional state of San Andreas.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg"
@@ -330,7 +330,7 @@ public static class DynamicDataSeeder
         {
             Name = "FIFA 19",
             PublisherId = 2,
-            Price = 59.99m,
+            Price = 25.00m,
             ReleaseDate = new DateTime(2018, 9, 28),
             Description = "A football simulation game featuring realistic gameplay, official leagues and teams, and the conclusion of The Journey story mode.",
             CoverImageURL = "https://legacymedia.sportsplatform.io/img/images/photos/003/757/965/75da9a20a992ae7b8b1d18f6ee3fb8a4_crop_north.jpg?w=802"
@@ -340,17 +340,17 @@ public static class DynamicDataSeeder
         {
             Name = "Red Dead Redemption 2",
             PublisherId = 1,
-            Price = 59.99m,
+            Price = 30.00m,
             ReleaseDate = new DateTime(2018, 10, 26),
             Description = "An epic tale of outlaw Arthur Morgan and the Van der Linde gang in the dying days of the Wild West.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg"
         };
 
         var gm4 = new GameEntity
         {
             Name = "The Witcher 3: Wild Hunt",
             PublisherId = 3,
-            Price = 39.99m,
+            Price = 20.00m,
             ReleaseDate = new DateTime(2015, 5, 19),
             Description = "A story-driven open world RPG set in a visually stunning fantasy universe full of meaningful choices.",
             CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg"
@@ -360,7 +360,7 @@ public static class DynamicDataSeeder
         {
             Name = "Cyberpunk 2077",
             PublisherId = 3,
-            Price = 49.99m,
+            Price = 27.50m,
             ReleaseDate = new DateTime(2020, 12, 10),
             Description = "An open-world action-adventure story set in Night City, a megalopolis obsessed with power and glamour.",
             CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg"
@@ -370,17 +370,17 @@ public static class DynamicDataSeeder
         {
             Name = "Elden Ring",
             PublisherId = 4,
-            Price = 59.99m,
+            Price = 40.00m,
             ReleaseDate = new DateTime(2022, 2, 25),
             Description = "A vast action RPG world filled with mystery and danger, created by Hidetaka Miyazaki and George R. R. Martin.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg"
         };
 
         var gm7 = new GameEntity
         {
             Name = "Hades",
             PublisherId = 6,
-            Price = 24.99m,
+            Price = 12.50m,
             ReleaseDate = new DateTime(2020, 9, 17),
             Description = "A rogue-like dungeon crawler where you defy the god of the dead while wielding mythic weapons.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg"
@@ -390,19 +390,19 @@ public static class DynamicDataSeeder
 
         var gm9 = new GameEntity
         {
-            Name = "BestGame",
+            Name = "Tomb Raider",
             PublisherId = 1,
-            Price = 69.69m,
+            Price = 2.50m,
             ReleaseDate = new DateTime(2026, 1, 2),
             Description = "this is a test game boi",
-            CoverImageURL = "https://interfaceingame.com/wp-content/uploads/taxonomies/genres/genres-adventure-500x281.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbu.jpg"
         };
 
         var gm10 = new GameEntity
         {
             Name = "God of War",
             PublisherId = 5,
-            Price = 49.99m,
+            Price = 30.00m,
             ReleaseDate = new DateTime(2018, 4, 20),
             Description = "A mythological action-adventure following Kratos in Norse lands.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg"
@@ -412,7 +412,7 @@ public static class DynamicDataSeeder
         {
             Name = "God of War Ragnarök",
             PublisherId = 5,
-            Price = 69.99m,
+            Price = 45.00m,
             ReleaseDate = new DateTime(2022, 11, 9),
             Description = "The epic continuation of Kratos and Atreus’ Norse saga.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg"
@@ -422,17 +422,17 @@ public static class DynamicDataSeeder
         {
             Name = "Assassin's Creed Valhalla",
             PublisherId = 8,
-            Price = 59.99m,
+            Price = 35.00m,
             ReleaseDate = new DateTime(2020, 11, 10),
             Description = "An open-world Viking adventure set in Dark Ages England.",
-            CoverImageURL = "https://gaming-cdn.com/images/products/6147/orig/assassin-s-creed-valhalla-pc-game-ubisoft-connect-europe-cover.jpg?v=1709130520"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ed3.jpg"
         };
 
         var gm13 = new GameEntity
         {
             Name = "Assassin's Creed Odyssey",
             PublisherId = 8,
-            Price = 49.99m,
+            Price = 0.00m,
             ReleaseDate = new DateTime(2018, 10, 5),
             Description = "Explore ancient Greece in this vast open-world RPG.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/9/99/ACOdysseyCoverArt.png"
@@ -442,17 +442,17 @@ public static class DynamicDataSeeder
         {
             Name = "Resident Evil 4 Remake",
             PublisherId = 9,
-            Price = 59.99m,
+            Price = 42.50m,
             ReleaseDate = new DateTime(2023, 3, 24),
             Description = "A modern reimagining of the legendary survival horror game.",
-            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg?w=440"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co6bo0.jpg"
         };
 
         var gm15 = new GameEntity
         {
             Name = "Resident Evil Village",
             PublisherId = 9,
-            Price = 49.99m,
+            Price = 22.50m,
             ReleaseDate = new DateTime(2021, 5, 7),
             Description = "Survival horror set in a mysterious European village.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/2c/Resident_Evil_Village.png"
@@ -462,7 +462,7 @@ public static class DynamicDataSeeder
         {
             Name = "Dark Souls III",
             PublisherId = 4,
-            Price = 39.99m,
+            Price = 0.00m,
             ReleaseDate = new DateTime(2016, 4, 12),
             Description = "A challenging action RPG set in a dark fantasy world.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/b/bb/Dark_souls_3_cover_art.jpg"
@@ -472,7 +472,7 @@ public static class DynamicDataSeeder
         {
             Name = "Sekiro: Shadows Die Twice",
             PublisherId = 4,
-            Price = 59.99m,
+            Price = 32.50m,
             ReleaseDate = new DateTime(2019, 3, 22),
             Description = "A precision-based action game set in feudal Japan.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/6/6e/Sekiro_art.jpg"
@@ -482,27 +482,27 @@ public static class DynamicDataSeeder
         {
             Name = "Starfield",
             PublisherId = 10,
-            Price = 69.99m,
+            Price = 50.00m,
             ReleaseDate = new DateTime(2023, 9, 6),
             Description = "A massive space RPG exploring the vastness of the universe.",
-            CoverImageURL = "https://fanatical.imgix.net/product/original/cb418010-79d8-4810-a1e1-6e2062ccf625.jpeg?auto=compress,format&w=212&fit=crop&h=119"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co39vv.jpg"
         };
 
         var gm19 = new GameEntity
         {
             Name = "The Elder Scrolls V: Skyrim",
             PublisherId = 10,
-            Price = 39.99m,
+            Price = 15.00m,
             ReleaseDate = new DateTime(2011, 11, 11),
             Description = "An open-world fantasy RPG set in the land of Skyrim.",
-            CoverImageURL = "https://gaming-cdn.com/images/products/146/orig/the-elder-scrolls-v-skyrim-pc-game-steam-europe-cover.jpg?v=1719414268"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnw.jpg"
         };
 
         var gm20 = new GameEntity
         {
             Name = "Fallout 4",
             PublisherId = 10,
-            Price = 39.99m,
+            Price = 12.50m,
             ReleaseDate = new DateTime(2015, 11, 10),
             Description = "A post-apocalyptic RPG set in the ruins of Boston.",
             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202009/2502/rB3GRFvdPmaALiGt89ysflQ4.jpg"
@@ -512,7 +512,7 @@ public static class DynamicDataSeeder
         {
             Name = "DOOM Eternal",
             PublisherId = 10,
-            Price = 49.99m,
+            Price = 22.50m,
             ReleaseDate = new DateTime(2020, 3, 20),
             Description = "Fast-paced demon-slaying FPS action.",
             CoverImageURL = "https://www.theouterhaven.net/wp-content/uploads/2020/02/doom-eternal-2020-top-625x352-1.jpg"
@@ -522,7 +522,7 @@ public static class DynamicDataSeeder
         {
             Name = "Half-Life: Alyx",
             PublisherId = 11,
-            Price = 59.99m,
+            Price = 0.00m,
             ReleaseDate = new DateTime(2020, 3, 23),
             Description = "A VR return to the Half-Life universe.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/4/49/Half-Life_Alyx_Cover_Art.jpg"
@@ -532,27 +532,27 @@ public static class DynamicDataSeeder
         {
             Name = "Horizon Zero Dawn",
             PublisherId = 5,
-            Price = 49.99m,
+            Price = 20.00m,
             ReleaseDate = new DateTime(2017, 2, 28),
             Description = "An open-world action RPG in a post-apocalyptic world.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/9/93/Horizon_Zero_Dawn.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2una.jpg"
         };
 
         var gm24 = new GameEntity
         {
             Name = "Horizon Forbidden West",
             PublisherId = 5,
-            Price = 69.99m,
+            Price = 40.00m,
             ReleaseDate = new DateTime(2022, 2, 18),
             Description = "The continuation of Aloy’s journey in a dangerous frontier.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/6/69/Horizon_Forbidden_West_cover_art.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2gvu.jpg"
         };
 
         var gm25 = new GameEntity
         {
             Name = "Metal Gear Solid V: The Phantom Pain",
             PublisherId = 13,
-            Price = 29.99m,
+            Price = 10.00m,
             ReleaseDate = new DateTime(2015, 9, 1),
             Description = "A tactical stealth game with an open-world design.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/8/8f/Metal_Gear_Solid_V_The_Phantom_Pain_cover.png"
@@ -562,27 +562,27 @@ public static class DynamicDataSeeder
         {
             Name = "Battlefield 1",
             PublisherId = 2,
-            Price = 39.99m,
+            Price = 17.50m,
             ReleaseDate = new DateTime(2016, 10, 21),
             Description = "A World War I themed first-person shooter.",
-            CoverImageURL = "https://gaming-cdn.com/images/products/1735/616x353/battlefield-1-xbox-one-game-microsoft-store-europe-cover.jpg?v=1730908133"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n9d.jpg"
         };
 
         var gm27 = new GameEntity
         {
             Name = "Battlefield V",
             PublisherId = 2,
-            Price = 39.99m,
+            Price = 0.00m,
             ReleaseDate = new DateTime(2018, 11, 20),
             Description = "A WWII shooter focused on large-scale battles.",
-            CoverImageURL = "https://gaming-cdn.com/images/products/612/orig/battlefield-5-pc-game-ea-app-cover.jpg?v=1729758248"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xbv.jpg"
         };
 
         var gm28 = new GameEntity
         {
             Name = "Death Stranding",
             PublisherId = 5,
-            Price = 49.99m,
+            Price = 22.50m,
             ReleaseDate = new DateTime(2019, 11, 8),
             Description = "A unique narrative-driven experience in a fractured world.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg"
@@ -595,84 +595,150 @@ public static class DynamicDataSeeder
     }
     private static async Task SeedGameGenresAsync(DatabaseContext context)
     {
-        if (await context.GameGenres.AnyAsync())
-            return;
-
-        var ss1 = new ScreenshotEntity
+        if (!await context.GameGenres.AnyAsync())
         {
-            GameId = 3,
-            ImageURL = "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg"
-        };
+            var gameIdsByName = await context.Games
+                .Select(g => new { g.Id, g.Name })
+                .ToDictionaryAsync(g => g.Name, g => g.Id);
 
-        var ss2 = new ScreenshotEntity
+            var genreIdsByName = await context.Genres
+                .Select(g => new { g.Id, g.Name })
+                .ToDictionaryAsync(g => g.Name, g => g.Id);
+
+            var mappings = new Dictionary<string, string[]>
+            {
+                ["Grand Theft Auto 'San Andreas'"] = ["Action", "Open-World"],
+                ["FIFA 19"] = ["Sports", "Simulation"],
+                ["Red Dead Redemption 2"] = ["Action", "Open-World"],
+                ["The Witcher 3: Wild Hunt"] = ["Role-Playing (RPG)", "Adventure"],
+                ["Cyberpunk 2077"] = ["Role-Playing (RPG)", "Open-World"],
+                ["Elden Ring"] = ["Role-Playing (RPG)", "Action"],
+                ["Hades"] = ["Action", "Adventure"],
+                ["BestGame"] = ["Adventure", "Action"],
+                ["God of War"] = ["Action", "Adventure"],
+                ["God of War Ragnarök"] = ["Action", "Adventure"],
+                ["Assassin's Creed Valhalla"] = ["Action", "Open-World"],
+                ["Assassin's Creed Odyssey"] = ["Role-Playing (RPG)", "Open-World"],
+                ["Resident Evil 4 Remake"] = ["Action", "Horror"],
+                ["Resident Evil Village"] = ["Horror", "Survival"],
+                ["Dark Souls III"] = ["Role-Playing (RPG)", "Action"],
+                ["Sekiro: Shadows Die Twice"] = ["Action", "Adventure"],
+                ["Starfield"] = ["Role-Playing (RPG)", "Open-World"],
+                ["The Elder Scrolls V: Skyrim"] = ["Role-Playing (RPG)", "Open-World"],
+                ["Fallout 4"] = ["Role-Playing (RPG)", "Survival"],
+                ["DOOM Eternal"] = ["Action", "Horror"],
+                ["Half-Life: Alyx"] = ["Action", "Puzzle"],
+                ["Horizon Zero Dawn"] = ["Action", "Role-Playing (RPG)"],
+                ["Horizon Forbidden West"] = ["Action", "Role-Playing (RPG)"],
+                ["Metal Gear Solid V: The Phantom Pain"] = ["Action", "Strategy"],
+                ["Battlefield 1"] = ["Action", "Simulation"],
+                ["Battlefield V"] = ["Action", "Simulation"],
+                ["Death Stranding"] = ["Adventure", "Simulation"]
+            };
+
+            var gameGenres = new List<GameGenreEntity>();
+
+            foreach (var mapping in mappings)
+            {
+                if (!gameIdsByName.TryGetValue(mapping.Key, out var gameId))
+                    continue;
+
+                foreach (var genreName in mapping.Value)
+                {
+                    if (!genreIdsByName.TryGetValue(genreName, out var genreId))
+                        continue;
+
+                    gameGenres.Add(new GameGenreEntity
+                    {
+                        GameId = gameId,
+                        GenreId = genreId
+                    });
+                }
+            }
+
+            context.GameGenres.AddRange(gameGenres);
+            await context.SaveChangesAsync();
+            Console.WriteLine($"Dynamic seed: {gameGenres.Count} game-genre relations added.");
+        }
+
+        if (!await context.Screenshots.AnyAsync())
         {
-            GameId = 9,
-            ImageURL = "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2018/01/img_5a6791a231406.jpg"
-        };
+            var ss1 = new ScreenshotEntity
+            {
+                GameId = 3,
+                ImageURL = "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg"
+            };
 
-        var ss3 = new ScreenshotEntity
-        {
-            GameId = 5,
-            ImageURL = "https://www.escapistmagazine.com/wp-content/uploads/2019/07/GOW-Feature-Image.jpg"
-        };
+            var ss2 = new ScreenshotEntity
+            {
+                GameId = 9,
+                ImageURL = "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2018/01/img_5a6791a231406.jpg"
+            };
 
-        var ss4 = new ScreenshotEntity
-        {
-            GameId = 1,
-            ImageURL = "https://www.igta5.com/images/official-screenshot-cant-touch-this.jpg"
-        };
+            var ss3 = new ScreenshotEntity
+            {
+                GameId = 5,
+                ImageURL = "https://www.escapistmagazine.com/wp-content/uploads/2019/07/GOW-Feature-Image.jpg"
+            };
 
-        var ss5 = new ScreenshotEntity
-        {
-            GameId = 6,
-            ImageURL = "https://cdn.mos.cms.futurecdn.net/8gWTFzyHLQXnTGiVhRLeea.jpg"
-        };
+            var ss4 = new ScreenshotEntity
+            {
+                GameId = 1,
+                ImageURL = "https://www.igta5.com/images/official-screenshot-cant-touch-this.jpg"
+            };
 
-        var ss6 = new ScreenshotEntity
-        {
-            GameId = 7,
-            ImageURL = "https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000033131/dbc8c55a21688b446a5c57711b726956483a14ef8c5ddb861f897c0595ccb6b5"
-        };
+            var ss5 = new ScreenshotEntity
+            {
+                GameId = 6,
+                ImageURL = "https://cdn.mos.cms.futurecdn.net/8gWTFzyHLQXnTGiVhRLeea.jpg"
+            };
 
-        var ss7 = new ScreenshotEntity
-        {
-            GameId = 4,
-            ImageURL = "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/ad9240e088f953a84aee814034c50a6a92bf4516/header.jpg?t=1765462356"
-        };
+            var ss6 = new ScreenshotEntity
+            {
+                GameId = 7,
+                ImageURL = "https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000033131/dbc8c55a21688b446a5c57711b726956483a14ef8c5ddb861f897c0595ccb6b5"
+            };
 
-        var ss8 = new ScreenshotEntity
-        {
-            GameId = 2,
-            ImageURL = "https://static.standard.co.uk/s3fs-public/thumbnails/image/2018/09/06/16/easportsfifa19.jpg?width=1200"
-        };
+            var ss7 = new ScreenshotEntity
+            {
+                GameId = 4,
+                ImageURL = "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/ad9240e088f953a84aee814034c50a6a92bf4516/header.jpg?t=1765462356"
+            };
 
-        var ss9 = new ScreenshotEntity
-        {
-            GameId = 1,
-            ImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg"
-        };
+            var ss8 = new ScreenshotEntity
+            {
+                GameId = 2,
+                ImageURL = "https://static.standard.co.uk/s3fs-public/thumbnails/image/2018/09/06/16/easportsfifa19.jpg?width=1200"
+            };
 
-        var ss10 = new ScreenshotEntity
-        {
-            GameId = 18,
-            ImageURL = "https://www.newgamenetwork.com/app/uploads/2025/10/starfield_07_3.jpg"
-        };
+            var ss9 = new ScreenshotEntity
+            {
+                GameId = 1,
+                ImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg"
+            };
 
-        var ss11 = new ScreenshotEntity
-        {
-            GameId = 11,
-            ImageURL = "https://gamingbolt.com/wp-content/uploads/2022/10/god-of-war-ragnarok-image.jpg"
-        };
+            var ss10 = new ScreenshotEntity
+            {
+                GameId = 18,
+                ImageURL = "https://www.newgamenetwork.com/app/uploads/2025/10/starfield_07_3.jpg"
+            };
 
-        var ss12 = new ScreenshotEntity
-        {
-            GameId = 14,
-            ImageURL = "https://img.playstationtrophies.org/images/monthly_2024_02/screenshots/16476/re4_ge_01_51b1e450-b26b-4e8a-891c-cb68a8138fa6.jpg"
-        };
-        context.Screenshots.AddRange(ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8, ss9, ss10, ss11, ss12);
-        await context.SaveChangesAsync();
-        Console.WriteLine("Dynamic seed: Screnshots added.");
+            var ss11 = new ScreenshotEntity
+            {
+                GameId = 11,
+                ImageURL = "https://gamingbolt.com/wp-content/uploads/2022/10/god-of-war-ragnarok-image.jpg"
+            };
 
+            var ss12 = new ScreenshotEntity
+            {
+                GameId = 14,
+                ImageURL = "https://img.playstationtrophies.org/images/monthly_2024_02/screenshots/16476/re4_ge_01_51b1e450-b26b-4e8a-891c-cb68a8138fa6.jpg"
+            };
+
+            context.Screenshots.AddRange(ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8, ss9, ss10, ss11, ss12);
+            await context.SaveChangesAsync();
+            Console.WriteLine("Dynamic seed: Screenshots added.");
+        }
     }
 
 

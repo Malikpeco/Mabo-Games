@@ -1,58 +1,13 @@
 <section class="admin-games-add-page">
 
 	<header class="admin-games-add-header">
-		<h1>Add New Game</h1>
-		<p>Create a storefront-ready game card with cover, details, and screenshots.</p>
+		<h1>{{ isEditMode ? 'Edit Game' : 'Add New Game' }}</h1>
 	</header>
 
-	<section class="igdb-search-strip">
-		<div class="igdb-search-shell">
-			<mat-icon class="igdb-search-icon">search</mat-icon>
-			<input
-				type="text"
-				class="igdb-search-input"
-				placeholder="Search IGDB"
-				[ngModel]="igdbSearchTerm"
-				(ngModelChange)="onIgdbSearchInput($event)"
-				(focus)="onIgdbSearchFocus()"
-				[ngModelOptions]="{ standalone: true }"
-				autocomplete="off" />
-			<button
-				type="button"
-				class="igdb-clear-btn"
-				*ngIf="igdbSearchTerm.length"
-				(click)="clearIgdbSearch()"
-				aria-label="Clear search">
-				<mat-icon>close</mat-icon>
-			</button>
-		</div>
-
-		<div class="igdb-results" *ngIf="isIgdbDropdownOpen && igdbSearchTerm.trim().length >= 2">
-			<div class="igdb-results-state" *ngIf="isIgdbSearching">Searching...</div>
-			<div class="igdb-results-state error" *ngIf="!isIgdbSearching && igdbSearchError">{{ igdbSearchError }}</div>
-			<div class="igdb-results-state" *ngIf="!isIgdbSearching && !igdbSearchError && igdbSearchResults.length === 0">
-				No matches found.
-			</div>
-
-			<button
-				type="button"
-				class="igdb-result-item"
-				*ngFor="let result of igdbSearchResults"
-				(click)="selectIgdbGame(result)"
-				[class.selected]="selectedIgdbGameId === result.id">
-				<img
-					*ngIf="result.coverUrl"
-					[src]="result.coverUrl"
-					alt="{{ result.name }} cover"
-					class="igdb-result-cover" />
-				<div class="igdb-result-cover placeholder" *ngIf="!result.coverUrl">No image</div>
-				<div class="igdb-result-copy">
-					<strong>{{ result.name }}</strong>
-					<small>ID: {{ result.id }}</small>
-				</div>
-			</button>
-		</div>
-	</section>
+	<app-igdb-search
+		(gameDetailsSelected)="onIgdbDetailsSelected($event)"
+		(searchCleared)="onIgdbSearchCleared()">
+	</app-igdb-search>
 
 
 
@@ -68,6 +23,16 @@
 						class="admin-input"
 						placeholder="Enter game title"
 						autocomplete="off" />
+				</label>
+
+				<label class="admin-field">
+					<span class="admin-field-label">Release Date</span>
+					<input
+						type="date"
+						name="releaseDate"
+						[(ngModel)]="releaseDate"
+						class="admin-input"
+						max="9999-12-31" />
 				</label>
 
 				<label class="admin-field">
@@ -107,17 +72,21 @@
 					<input type="file" accept="image/*" hidden [disabled]="isUploadingCover" (change)="onCoverSelected($event)" />
 					<span>{{ isUploadingCover ? 'Uploading cover...' : 'Upload cover' }}</span>
 				</label>
+				<p class="size-hint">Recommended size: 264 × 374 px</p>
 
 				<label class="admin-field admin-price-field">
 					<span class="admin-field-label">Price</span>
-					<label class="free-to-play-toggle">
-						<input
-							type="checkbox"
-							name="isFreeToPlay"
-							[ngModel]="isFreeToPlay"
-							(ngModelChange)="onFreeToPlayChange($event)" />
-						<span>Free to play</span>
-					</label>
+					<button
+						type="button"
+						class="free-to-play-switch"
+						[class.is-on]="isFreeToPlay"
+						[attr.aria-pressed]="isFreeToPlay"
+						(click)="onFreeToPlayChange(!isFreeToPlay)">
+						<span class="free-to-play-switch__label">Free to play</span>
+						<span class="free-to-play-switch__track">
+							<span class="free-to-play-switch__thumb"></span>
+						</span>
+					</button>
 					<div class="price-shell">
 						<span>EUR</span>
 						<input
@@ -168,6 +137,7 @@
 		<section class="screenshots-section">
 			<h2>Screenshots</h2>
 			<p class="screenshots-hint">First screenshot is used as hero portrait.</p>
+			<p class="size-hint">Recommended size: 1920 × 1080 px</p>
 
 			<div class="screenshots-canvas" [class.has-image]="activeScreenshotUrl">
 				<img *ngIf="activeScreenshotUrl" [src]="activeScreenshotUrl" alt="Screenshot preview" />
@@ -199,7 +169,7 @@
 
 		<div class="form-actions">
 			<a routerLink="/admin/games" class="action-btn secondary">Cancel</a>
-			<button type="submit" class="action-btn primary" [disabled]="isSaving">{{ isSaving ? 'Saving...' : 'Save Game' }}</button>
+			<button type="submit" class="action-btn primary" [disabled]="isSaving || isLoadingGame">{{ isLoadingGame ? 'Loading...' : (isSaving ? (isEditMode ? 'Updating...' : 'Saving...') : (isEditMode ? 'Update Game' : 'Save Game')) }}</button>
 		</div>
 	</form>
 </section>

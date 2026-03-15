@@ -28,6 +28,10 @@ export class GamesApiService{
         return this.http.post<void>(this.baseUrl, request);
     }
 
+    update(id: number, request: CreateGameRequest): Observable<void> {
+        return this.http.put<void>(`${this.baseUrl}/${id}`, request);
+    }
+
     delete(id: number): Observable<void> {
         return this.http.delete<void>(`${this.baseUrl}/${id}`);
     }

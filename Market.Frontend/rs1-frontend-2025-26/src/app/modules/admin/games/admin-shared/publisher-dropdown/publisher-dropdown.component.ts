@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PublishersApiService } from '../../../../../api-services/publishers/publishers-api.service';
 import { ListPublishersRequest, PublisherAutocompleteDto } from '../../../../../api-services/publishers/publishers-api.models';
 import { DialogHelperService } from '../../../../shared/services/dialog-helper.service';
+import { DialogButton, DialogType } from '../../../../shared/models/dialog-config.model';
 import { CreatePublisherDialogComponent, CreatePublisherDialogResult } from '../create-publisher-dialog/create-publisher-dialog.component';
 
 @Component({
@@ -124,7 +125,24 @@ export class PublisherDropdownComponent implements OnInit, OnChanges {
         return;
       }
 
-      this.createPublisher(result);
+      this.dialog
+        .showCustom({
+          type: DialogType.QUESTION,
+          title: 'Create Publisher',
+          message: `Create publisher "${result.title}"?`,
+          icon: 'business',
+          buttons: [
+            { type: DialogButton.CANCEL },
+            { type: DialogButton.SAVE, label: 'Create', color: 'primary' },
+          ],
+        })
+        .subscribe((confirmResult) => {
+          if (confirmResult?.button !== DialogButton.SAVE) {
+            return;
+          }
+
+          this.createPublisher(result);
+        });
     });
   }
 

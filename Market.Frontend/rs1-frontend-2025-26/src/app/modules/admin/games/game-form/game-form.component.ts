@@ -1,15 +1,13 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { GenresApiService } from '../../../../api-services/genres/genres-api.service';
 import { GamesApiService } from '../../../../api-services/games/games-api.service';
 import { CreateGameRequest } from '../../../../api-services/games/games-api.models';
-import { IgdbApiService } from '../../../../api-services/igdb/igdb-api.service';
-import { GetIgdbGameDetailsDto, SearchIgdbGameDto } from '../../../../api-services/igdb/igdb-api.models';
+import { GetIgdbGameDetailsDto } from '../../../../api-services/igdb/igdb-api.models';
 import { PublisherAutocompleteDto } from '../../../../api-services/publishers/publishers-api.models';
 import { GenreDto } from '../../../../api-services/genres/genres-api.models';
 import { ToasterService } from '../../../../core/services/toaster.service';
 import { DialogHelperService } from '../../../shared/services/dialog-helper.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ScreenshotsApiService } from '../../../../api-services/screenshots/screenshots-api.service';
 import { firstValueFrom } from 'rxjs';
 
@@ -20,26 +18,26 @@ interface IgdbMediaOption {
 }
 
 @Component({
-  selector: 'app-admin-games-add',
+  selector: 'app-game-form',
   standalone: false,
-  templateUrl: './admin-games-add.component.html',
-  styleUrl: './admin-games-add.component.scss',
+  templateUrl: './game-form.component.html',
+  styleUrl: './game-form.component.scss',
 })
-export class AdminGamesAddComponent implements OnInit, OnDestroy {
-  private igdbApi = inject(IgdbApiService);
+export class GameFormComponent {
   private gamesApi = inject(GamesApiService);
-  private genresApi = inject(GenresApiService);
   private screenshotsApi = inject(ScreenshotsApiService);
   private dialog = inject(DialogHelperService);
   private toaster = inject(ToasterService);
   private router = inject(Router);
-  private hostElement = inject(ElementRef<HTMLElement>);
-  private igdbSearchDebounceTimer?: ReturnType<typeof setTimeout>;
-  private igdbSearchRequestSeq = 0;
-  private igdbDetailsRequestSeq = 0;
+  private route = inject(ActivatedRoute);
   readonly screenshotSlots = [1, 2, 3, 4, 5, 6];
 
+  isEditMode = false;
+  editingGameId: number | null = null;
+  isLoadingGame = false;
+
   gameTitle = '';
+  releaseDate = new Date().toISOString().slice(0, 10);
   publisherName = '';
   price: number | null = null;
   description = '';
@@ -50,12 +48,6 @@ export class AdminGamesAddComponent implements OnInit, OnDestroy {
   screenshotPreviews: Array<string | null> = [null, null, null, null, null, null];
   activeScreenshotIndex = 0;
 
-  igdbSearchTerm = '';
-  igdbSearchResults: SearchIgdbGameDto[] = [];
-  isIgdbSearching = false;
-  igdbSearchError = '';
-  isIgdbDropdownOpen = false;
-  selectedIgdbGameId: number | null = null;
   igdbMediaOptions: IgdbMediaOption[] = [];
   uploadedMediaOptions: IgdbMediaOption[] = [];
   selectedMediaUrls: string[] = [];
@@ -67,12 +59,30 @@ export class AdminGamesAddComponent implements OnInit, OnDestroy {
   isSaving = false;
 
   ngOnInit(): void {
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (!idParam) {
+      this.isEditMode = false;
+      return;
+    }
+
+    const routeId = Number(idParam);
+    if (!Number.isFinite(routeId) || routeId <= 0) {
+      this.toaster.error('Invalid game id for edit page.');
+      this.router.navigate(['/admin/games']);
+      return;
+    }
+
+    this.isEditMode = true;
+    this.editingGameId = routeId;
+    this.loadGameForEdit(routeId);
   }
 
-  ngOnDestroy(): void {
-    if (this.igdbSearchDebounceTimer) {
-      clearTimeout(this.igdbSearchDebounceTimer);
-    }
+  ngOnDestroy(): void {}
+
+  onIgdbSearchCleared(): void {
+    this.igdbMediaOptions = [];
+    this.selectedMediaUrls = this.selectedMediaUrls.filter((url) => this.uploadedMediaOptions.some((item) => item.url === url));
+    this.syncSelectedMediaToScreenshotSlots();
   }
 
   onPublisherSelected(publisher: PublisherAutocompleteDto | null): void {
@@ -91,112 +101,19 @@ export class AdminGamesAddComponent implements OnInit, OnDestroy {
     this.selectedGenreNames = this.selectedGenres.map((genre) => genre.name);
   }
 
-  onIgdbSearchInput(value: string): void {
-    this.igdbSearchTerm = value ?? '';
-    this.igdbSearchError = '';
-
-    if (this.igdbSearchDebounceTimer) {
-      clearTimeout(this.igdbSearchDebounceTimer);
-    }
-
-    const trimmed = this.igdbSearchTerm.trim();
-    if (trimmed.length < 2) {
-      this.igdbSearchResults = [];
-      this.isIgdbSearching = false;
-      this.isIgdbDropdownOpen = false;
-      return;
-    }
-
-    this.isIgdbDropdownOpen = true;
-
-    this.igdbSearchDebounceTimer = setTimeout(() => {
-      this.runIgdbSearch(trimmed);
-    }, 250);
-  }
-
-  clearIgdbSearch(): void {
-    this.igdbSearchTerm = '';
-    this.igdbSearchResults = [];
-    this.igdbSearchError = '';
-    this.isIgdbSearching = false;
-    this.isIgdbDropdownOpen = false;
-    this.igdbMediaOptions = [];
-    this.selectedMediaUrls = this.selectedMediaUrls.filter((url) => this.uploadedMediaOptions.some((item) => item.url === url));
-    this.syncSelectedMediaToScreenshotSlots();
-  }
-
-  onIgdbSearchFocus(): void {
-    if (this.igdbSearchTerm.trim().length >= 2) {
-      this.isIgdbDropdownOpen = true;
-    }
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const target = event.target;
-    if (!target) {
-      return;
-    }
-
-    const targetElement = target as HTMLElement;
-
-    if (!targetElement.closest('.igdb-search-strip')) {
-      this.isIgdbDropdownOpen = false;
-    }
-  }
-
-  selectIgdbGame(game: SearchIgdbGameDto): void {
-    this.selectedIgdbGameId = game.id;
-    this.igdbSearchError = '';
-    this.isIgdbDropdownOpen = false;
-
-    const requestId = ++this.igdbDetailsRequestSeq;
-    this.igdbApi.getGameDetails(game.id).subscribe({
-      next: (details) => {
-        if (requestId !== this.igdbDetailsRequestSeq) {
-          return;
-        }
-
-        this.applyIgdbDetails(details);
-      },
-      error: () => {
-        if (requestId !== this.igdbDetailsRequestSeq) {
-          return;
-        }
-
-        this.igdbSearchError = 'Could not load selected game details.';
-      },
-    });
-  }
-
-  private runIgdbSearch(searchTerm: string): void {
-    const requestId = ++this.igdbSearchRequestSeq;
-    this.isIgdbSearching = true;
-    this.igdbSearchError = '';
-
-    this.igdbApi.searchGames(searchTerm).subscribe({
-      next: (results) => {
-        if (requestId !== this.igdbSearchRequestSeq) {
-          return;
-        }
-
-        this.igdbSearchResults = results ?? [];
-        this.isIgdbSearching = false;
-      },
-      error: () => {
-        if (requestId !== this.igdbSearchRequestSeq) {
-          return;
-        }
-
-        this.igdbSearchResults = [];
-        this.isIgdbSearching = false;
-        this.igdbSearchError = 'IGDB search failed. Try again.';
-      },
-    });
+  onIgdbDetailsSelected(details: GetIgdbGameDetailsDto): void {
+    this.applyIgdbDetails(details);
   }
 
   private applyIgdbDetails(details: GetIgdbGameDetailsDto): void {
     this.gameTitle = details.name ?? this.gameTitle;
+
+    if (details.releaseDate) {
+      const parsedReleaseDate = this.toDateInputValue(details.releaseDate);
+      if (parsedReleaseDate) {
+        this.releaseDate = parsedReleaseDate;
+      }
+    }
 
     if (details.summary?.trim()) {
       this.description = details.summary;
@@ -402,8 +319,76 @@ export class AdminGamesAddComponent implements OnInit, OnDestroy {
     return this.isFreeToPlay ? 0 : this.price;
   }
 
+  private toDateInputValue(value: string | null | undefined): string {
+    if (!value) {
+      return '';
+    }
+
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) {
+      return '';
+    }
+
+    return parsed.toISOString().slice(0, 10);
+  }
+
+  private getReleaseDateIso(): string {
+    if (!this.releaseDate) {
+      return new Date().toISOString();
+    }
+
+    const parsed = new Date(`${this.releaseDate}T00:00:00`);
+    if (Number.isNaN(parsed.getTime())) {
+      return new Date().toISOString();
+    }
+
+    return parsed.toISOString();
+  }
+
+  private loadGameForEdit(gameId: number): void {
+    this.isLoadingGame = true;
+
+    this.gamesApi.getById(gameId).subscribe({
+      next: (game) => {
+        this.gameTitle = game.name ?? '';
+        this.description = game.description ?? '';
+        this.price = Number(game.price ?? 0);
+        this.isFreeToPlay = this.price === 0;
+        this.publisherName = game.publisher?.name ?? '';
+        this.selectedPublisherId = game.publisher?.id ?? null;
+        this.coverPreviewUrl = game.coverImageURL ?? null;
+        this.releaseDate = this.toDateInputValue(game.releaseDate) || this.releaseDate;
+
+        this.selectedGenres = (game.genres ?? []).map((genre) => ({
+          id: genre.id,
+          name: genre.name,
+        }));
+        this.selectedGenreNames = this.selectedGenres.map((genre) => genre.name);
+
+        const existingScreenshotUrls = (game.screenshots ?? [])
+          .map((item) => item.imageURL)
+          .filter((url): url is string => /^https?:\/\//i.test(url));
+
+        this.uploadedMediaOptions = existingScreenshotUrls.map((url, index) => ({
+          key: `existing-${index}`,
+          url,
+          kind: 'Upload' as const,
+        }));
+        this.selectedMediaUrls = existingScreenshotUrls.slice(0, this.screenshotSlots.length);
+        this.syncSelectedMediaToScreenshotSlots();
+
+        this.isLoadingGame = false;
+      },
+      error: () => {
+        this.isLoadingGame = false;
+        this.toaster.error('Could not load game details for editing.');
+        this.router.navigate(['/admin/games']);
+      },
+    });
+  }
+
   onSave(): void {
-    if (this.isSaving) {
+    if (this.isSaving || this.isLoadingGame) {
       return;
     }
 
@@ -435,16 +420,11 @@ export class AdminGamesAddComponent implements OnInit, OnDestroy {
     const validHttpUrls = this.selectedMediaUrls.filter((url) => /^https?:\/\//i.test(url));
     const coverCandidate = this.coverPreviewUrl ?? validHttpUrls[0] ?? '';
 
-    if (!/^https?:\/\//i.test(coverCandidate)) {
-      this.toaster.error('Cover image must be a web URL (http/https). Pick one from IGDB media or set an online cover.');
-      return;
-    }
-
     const payload: CreateGameRequest = {
       name: gameName,
       price: this.effectivePrice,
       description: this.description?.trim() || undefined,
-      releaseDate: new Date().toISOString(),
+      releaseDate: this.getReleaseDateIso(),
       publisherId: this.selectedPublisherId,
       coverImageURL: coverCandidate,
       genreIds,
@@ -452,6 +432,26 @@ export class AdminGamesAddComponent implements OnInit, OnDestroy {
     };
 
     this.isSaving = true;
+
+    if (this.isEditMode && this.editingGameId) {
+      this.gamesApi.update(this.editingGameId, payload).subscribe({
+        next: () => {
+          this.isSaving = false;
+          this.dialog.showSuccess('Game updated', `Game "${gameName}" was updated successfully.`, undefined, 'check_circle');
+          this.router.navigate(['/admin/games']);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.isSaving = false;
+          const message =
+            error.error?.message ||
+            error.error?.title ||
+            'Could not update game. Please verify the form and try again.';
+          this.toaster.error(message);
+        },
+      });
+      return;
+    }
+
     this.gamesApi.create(payload).subscribe({
       next: () => {
         this.isSaving = false;

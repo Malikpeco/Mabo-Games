@@ -49,9 +49,27 @@
   }
 
   .publisher {
-    margin: 4px 0 12px 0;
+    margin: 4px 0 2px 0;
     font-size: 0.85rem;
     color: #888;
+  }
+
+  .release-date {
+    margin: 0 0 12px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #888;
+    font-weight: 600;
+  }
+
+  .release-date-icon {
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
+    line-height: 15px;
+    color: #f3f3f3;
   }
 
   .genre-list {

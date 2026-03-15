@@ -12,7 +12,7 @@
       autocomplete="off" />
   </div>
 
-  <div class="dropdown-panel" *ngIf="isOpen && searchTerm.trim().length > 0">
+  <div class="dropdown-panel" *ngIf="isOpen && searchTerm.trim().length >= 2">
     <div class="dropdown-state" *ngIf="isLoading">Searching countries...</div>
     <div class="dropdown-state error" *ngIf="!isLoading && errorMessage">{{ errorMessage }}</div>
     <div class="dropdown-state" *ngIf="!isLoading && !errorMessage && countryOptions.length === 0">No countries found.</div>

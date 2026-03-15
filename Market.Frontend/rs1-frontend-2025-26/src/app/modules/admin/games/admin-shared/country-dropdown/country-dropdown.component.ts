@@ -9,6 +9,9 @@ import { CountryAutocompleteDto } from '../../../../../api-services/countries/co
   styleUrl: './country-dropdown.component.scss',
 })
 export class CountryDropdownComponent implements OnInit {
+  private readonly minSearchLength = 2;
+  private readonly searchDebounceMs = 400;
+
   @Input() initialCountryName = '';
   @Output() countrySelected = new EventEmitter<CountryAutocompleteDto | null>();
 
@@ -47,7 +50,7 @@ export class CountryDropdownComponent implements OnInit {
     }
 
     const trimmed = this.searchTerm.trim();
-    if (!trimmed) {
+    if (trimmed.length < this.minSearchLength) {
       this.countryOptions = [];
       this.isOpen = false;
       this.isLoading = false;
@@ -57,7 +60,7 @@ export class CountryDropdownComponent implements OnInit {
     this.isOpen = true;
     this.searchDebounceTimer = setTimeout(() => {
       this.searchCountries(trimmed);
-    }, 220);
+    }, this.searchDebounceMs);
   }
 
   onFocus(): void {
