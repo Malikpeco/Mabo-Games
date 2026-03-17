@@ -13,6 +13,9 @@ namespace Market.Application.Modules.Carts.Commands.ClearCart
         public async Task<Unit> Handle(ClearCartCommand request, CancellationToken ct)
         {
             var userId = currentUser.UserId;
+
+            await CancelPendingOrders(context, userId.Value, ct);
+
             var cart = await context.Carts
                 .Include(c => c.CartItems)
                 .ThenInclude(ci => ci.Game)
@@ -34,6 +37,23 @@ namespace Market.Application.Modules.Carts.Commands.ClearCart
 
             return Unit.Value;
 
+        }
+
+        private static async Task CancelPendingOrders(IAppDbContext context, int userId, CancellationToken ct)
+        {
+            var pendingOrders = await context.Orders
+                .Where(o => o.UserId == userId && o.OrderStatus == "Pending")
+                .ToListAsync(ct);
+
+            if (pendingOrders.Count == 0)
+                return;
+
+            foreach (var order in pendingOrders)
+            {
+                order.OrderStatus = "Cancelled";
+            }
+
+            await context.SaveChangesAsync(ct);
         }
     }
 }

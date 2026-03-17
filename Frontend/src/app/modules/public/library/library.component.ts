@@ -129,6 +129,10 @@ export class LibraryComponent implements OnInit {
     return game.coverImageURL ?? game.screenshots[0]?.imageURL ?? '/carousel-placeholder-image.png';
   }
 
+  getPriceLabel(game: StorefrontGameDto): string {
+    return game.price <= 0 ? 'Free' : `${game.price.toFixed(2)} EUR`;
+  }
+
   goToFavourites(): void {
     this.router.navigate(['/public/favourites']);
   }

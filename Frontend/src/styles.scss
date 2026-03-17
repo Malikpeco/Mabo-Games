@@ -84,6 +84,40 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
+// ===========================
+// DIALOG STYLES
+// ===========================
+
+.site-dialog-backdrop {
+  background: rgba(0, 0, 0, 0.72) !important;
+  backdrop-filter: blur(2px);
+}
+
+.custom-dialog-container.site-dialog-panel .mat-mdc-dialog-surface {
+  background: #121212 !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55) !important;
+}
+
+.custom-dialog-container.site-dialog-panel .mat-mdc-dialog-container {
+  padding: 0;
+}
+
+.custom-dialog-container.site-dialog-panel .mat-mdc-button-base.mat-mdc-raised-button.mat-primary {
+  background: linear-gradient(180deg, #a7e36d 0%, #7ecf43 100%) !important;
+  color: #13240e !important;
+}
+
+.custom-dialog-container.site-dialog-panel .mat-mdc-button-base.mat-mdc-outlined-button,
+.custom-dialog-container.site-dialog-panel .mat-mdc-button-base.mat-mdc-stroked-button {
+  border-color: #2a2a2a !important;
+  color: #ffffff !important;
+  background: #151515;
+}
+
+
 
 
 

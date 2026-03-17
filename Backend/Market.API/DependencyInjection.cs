@@ -91,6 +91,13 @@ public static class DependencyInjection
             };
             c.AddSecurityDefinition("Bearer", bearer);
             c.AddSecurityRequirement(new OpenApiSecurityRequirement { { bearer, Array.Empty<string>() } });
+
+            c.MapType<IFormFile>(() => new OpenApiSchema
+            {
+                Type = "string",
+                Format = "binary"
+            });
+
         });
 
         services.AddExceptionHandler<MarketExceptionHandler>();

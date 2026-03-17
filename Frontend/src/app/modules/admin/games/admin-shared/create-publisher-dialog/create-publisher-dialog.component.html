@@ -1,0 +1,31 @@
+<section class="create-publisher-dialog">
+  <header class="dialog-header">
+    <h2>Create Publisher</h2>
+    <p>Add a new publisher with its country.</p>
+  </header>
+
+  <div class="dialog-form">
+    <label class="dialog-field">
+      <span>Title</span>
+      <input
+        type="text"
+        [(ngModel)]="title"
+        placeholder="Publisher title"
+        autocomplete="off"
+        maxlength="100" />
+    </label>
+
+    <label class="dialog-field">
+      <span>Country</span>
+      <app-country-dropdown
+        [initialCountryName]="selectedCountryName"
+        (countrySelected)="onCountrySelected($event)">
+      </app-country-dropdown>
+    </label>
+  </div>
+
+  <footer class="dialog-actions">
+    <button type="button" class="btn-secondary" (click)="close()">Cancel</button>
+    <button type="button" class="btn-primary" [disabled]="!canSave" (click)="save()">Create</button>
+  </footer>
+</section>

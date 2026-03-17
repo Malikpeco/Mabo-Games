@@ -17,7 +17,9 @@ namespace Market.Application.Modules.Games.Queries.GetStorefrontGames
             var searchTerm = request.Search?.Trim().ToLower() ?? string.Empty;
             if (!string.IsNullOrWhiteSpace(request.Search))
             {
-                q = q.Where(x => x.Name.ToLower().Contains(searchTerm));
+                q = q.Where(x =>
+                    x.Name.ToLower().Contains(searchTerm) ||
+                    x.Publisher.Name.ToLower().Contains(searchTerm));
             }
 
 

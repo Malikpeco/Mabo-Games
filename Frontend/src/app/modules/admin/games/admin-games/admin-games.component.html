@@ -1,1 +1,66 @@
-<p>admin-games works!</p>
+<section class="admin-games-page">
+	<header class="admin-games-header">
+		<div>
+			<h1>Game Catalog</h1>
+		</div>
+
+		<div class="admin-games-tools">
+			<div class="admin-games-sort-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">sort</mat-icon>
+				<select
+					class="admin-games-sort"
+					[ngModel]="sort"
+					(ngModelChange)="onSortChange($event)"
+					aria-label="Sort games">
+					<option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+				</select>
+			</div>
+
+			<div class="admin-games-search-shell">
+				<mat-icon class="admin-tool-icon">search</mat-icon>
+				<input
+					type="search"
+					class="admin-games-search"
+					[ngModel]="searchTerm"
+					(ngModelChange)="onSearchChange($event)"
+					placeholder="Search by name or publisher"
+					aria-label="Search games" />
+			</div>
+
+			<div class="admin-games-size-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">format_list_numbered</mat-icon>
+				<select
+					class="admin-games-page-size"
+					[ngModel]="pageSize"
+					(ngModelChange)="onPageSizeChange($event)"
+					aria-label="Games per page">
+					<option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }} / page</option>
+				</select>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="admin-games-state" *ngIf="isLoading">Loading games...</div>
+
+	<div class="admin-games-state" *ngIf="!isLoading && games.length === 0 && !hasSearchTerm">No games available.</div>
+
+	<div class="admin-games-state" *ngIf="!isLoading && games.length === 0 && hasSearchTerm">No games match your search.</div>
+
+	<div class="admin-games-list" *ngIf="!isLoading && filteredGames.length > 0">
+		<app-game-list
+			*ngFor="let game of filteredGames"
+			[game]="game"
+			(editGame)="onEditGame($event)"
+			(deleteGame)="onDeleteGame($event)">
+		</app-game-list>
+	</div>
+
+	<app-shared-paginator
+		*ngIf="!isLoading"
+		class="admin-games-pager"
+		[currentPage]="page"
+		[totalPages]="totalPages"
+		(pageChange)="goToPage($event)">
+	</app-shared-paginator>
+</section>

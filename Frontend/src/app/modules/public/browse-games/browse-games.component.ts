@@ -123,17 +123,6 @@ export class BrowseGamesComponent {
   get totalPages(): number {
     return Math.max(1, Math.ceil(this.totalCount / this.pageSize));
   }
-
-  get pageNumbers(): number[] {
-  
-    const total = this.totalPages;
-    const start = Math.max(1, this.page - 3);
-    const end = Math.min(total, start + 6);
-    const out: number[] = [];
-    for (let i = start; i <= end; i++) out.push(i);
-    return out;
-  }
-
   goToPage(p: number): void {
     if (p < 1 || p > this.totalPages || p === this.page) return;
     this.page = p;

@@ -1,0 +1,28 @@
+<div class="searchable-dropdown country-dropdown">
+  <div class="dropdown-shell">
+    <mat-icon class="dropdown-icon">public</mat-icon>
+    <input
+      type="text"
+      class="dropdown-search-input"
+      placeholder="Search countries..."
+      [ngModel]="searchTerm"
+      (ngModelChange)="onSearchInput($event)"
+      (focus)="onFocus()"
+      [ngModelOptions]="{ standalone: true }"
+      autocomplete="off" />
+  </div>
+
+  <div class="dropdown-panel" *ngIf="isOpen && searchTerm.trim().length >= 2">
+    <div class="dropdown-state" *ngIf="isLoading">Searching countries...</div>
+    <div class="dropdown-state error" *ngIf="!isLoading && errorMessage">{{ errorMessage }}</div>
+    <div class="dropdown-state" *ngIf="!isLoading && !errorMessage && countryOptions.length === 0">No countries found.</div>
+
+    <button
+      type="button"
+      class="dropdown-option"
+      *ngFor="let country of countryOptions"
+      (click)="selectCountry(country)">
+      {{ country.name }}
+    </button>
+  </div>
+</div>

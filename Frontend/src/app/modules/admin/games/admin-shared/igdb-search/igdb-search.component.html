@@ -1,0 +1,48 @@
+<section class="igdb-search-strip">
+  <div class="igdb-search-shell">
+    <mat-icon class="igdb-search-icon">search</mat-icon>
+    <input
+      type="text"
+      class="igdb-search-input"
+      placeholder="Search IGDB"
+      [ngModel]="searchTerm"
+      (ngModelChange)="onSearchInput($event)"
+      (focus)="onSearchFocus()"
+      [ngModelOptions]="{ standalone: true }"
+      autocomplete="off" />
+    <button
+      type="button"
+      class="igdb-clear-btn"
+      *ngIf="searchTerm.length"
+      (click)="clearSearch()"
+      aria-label="Clear search">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="igdb-results" *ngIf="isDropdownOpen && searchTerm.trim().length >= 2">
+    <div class="igdb-results-state" *ngIf="isSearching">Searching...</div>
+    <div class="igdb-results-state error" *ngIf="!isSearching && searchError">{{ searchError }}</div>
+    <div class="igdb-results-state" *ngIf="!isSearching && !searchError && searchResults.length === 0">
+      No matches found.
+    </div>
+
+    <button
+      type="button"
+      class="igdb-result-item"
+      *ngFor="let result of searchResults"
+      (click)="selectGame(result)"
+      [class.selected]="selectedGameId === result.id">
+      <img
+        *ngIf="result.coverUrl"
+        [src]="result.coverUrl"
+        alt="{{ result.name }} cover"
+        class="igdb-result-cover" />
+      <div class="igdb-result-cover placeholder" *ngIf="!result.coverUrl">No image</div>
+      <div class="igdb-result-copy">
+        <strong>{{ result.name }}</strong>
+        <small>ID: {{ result.id }}</small>
+      </div>
+    </button>
+  </div>
+</section>

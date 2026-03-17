@@ -12,6 +12,8 @@ import { TransitionLoadingComponent } from './components/transition-loading/tran
 import { MaboNavbarComponent } from './components/mabo-navbar/mabo-navbar.component';
 import { MaboFooterComponent } from './components/mabo-footer/mabo-footer.component';
 import { GameCardComponent } from './components/game-card/game-card.component';
+import { GameListComponent } from './components/game-list/game-list.component';
+import { SharedPaginatorComponent } from './components/shared-paginator/shared-paginator.component';
 
 
 
@@ -23,7 +25,9 @@ import { GameCardComponent } from './components/game-card/game-card.component';
     TransitionLoadingComponent,
     MaboNavbarComponent,
     MaboFooterComponent,
-    GameCardComponent
+    GameCardComponent,
+    GameListComponent,
+    SharedPaginatorComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +52,9 @@ import { GameCardComponent } from './components/game-card/game-card.component';
     TransitionLoadingComponent,
     MaboNavbarComponent,
     MaboFooterComponent,
-    GameCardComponent
+    GameCardComponent,
+    GameListComponent,
+    SharedPaginatorComponent
   ]
 })
 export class SharedModule { }

@@ -13,4 +13,10 @@ export class GameCardComponent {
   getGameImage(): string {
     return this.game.coverImageURL ?? this.game.screenshots?.[0]?.imageURL ?? '/carousel-placeholder-image.png';
   }
+
+  get priceLabel(): string {
+    return this.game.price <= 0
+      ? 'Free'
+      : `${this.game.price.toFixed(2)} EUR`;
+  }
 }

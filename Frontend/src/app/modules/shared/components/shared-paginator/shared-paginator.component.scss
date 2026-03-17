@@ -1,0 +1,27 @@
+.pager {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.pager-btn,
+.pager-num {
+  width: 34px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  background: #0f0f0f;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.pager-num.active {
+  border-color: #fff;
+}
+
+.pager-btn:disabled,
+.pager-num:disabled {
+  opacity: 0.4;
+  cursor: default;
+}

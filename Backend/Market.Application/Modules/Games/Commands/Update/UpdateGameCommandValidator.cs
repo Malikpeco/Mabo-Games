@@ -15,6 +15,16 @@ namespace Market.Application.Modules.Games.Commands.Update
 
             RuleFor(g => g.Price)
                 .GreaterThanOrEqualTo(0);
+
+            RuleFor(g => g.GenreIds)
+                .NotEmpty().WithMessage("At least one genre must be selected.");
+
+            RuleForEach(g => g.GenreIds)
+                .GreaterThan(0);
+
+            RuleForEach(g => g.ScreenshotUrls)
+                .Matches(@"^https?://.*$")
+                .WithMessage("Must be a valid URL.");
         }
     }
 }

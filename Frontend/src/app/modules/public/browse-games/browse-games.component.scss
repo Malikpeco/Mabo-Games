@@ -177,31 +177,9 @@
 }
 
 
-.pager{
-  display:flex;
-  justify-content:center;
-  gap: 6px;
+.browse-pager {
+  display: block;
   margin: 18px 0 40px;
-}
-
-.pager-btn, .pager-num{
-  width: 34px;
-  height: 28px;
-  border-radius: 6px;
-  border: 1px solid #2a2a2a;
-  background: #0f0f0f;
-  color: #fff;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.pager-num.active{
-  border-color: #fff;
-}
-
-.pager-btn:disabled{
-  opacity: .4;
-  cursor: default;
 }
 
 @media (max-width: 1100px){

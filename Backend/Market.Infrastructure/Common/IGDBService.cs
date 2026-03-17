@@ -112,7 +112,7 @@ namespace Market.Infrastructure.Common
                 },
                 Content = new StringContent(
                     $"fields id,name,summary,cover.url,screenshots.url," +
-                    $"genres.name,release_dates.date," +
+                    $"genres.name,release_dates.date,artworks.url," +
                     $"involved_companies.company.name,involved_companies.publisher; " +
                     $"where id = {gameId};",
                     Encoding.UTF8,
@@ -137,7 +137,8 @@ namespace Market.Infrastructure.Common
                 Summary = game.Summary,
                 ReleaseDate = game.ReleaseDates?.OrderBy(r => r.Date).FirstOrDefault()?.GetDateTime(),
                 CoverUrl = FixImageUrl(game.Cover?.Url, "t_cover_big"),
-                Screenshots = game.Screenshots?.Select(s => FixImageUrl(s.Url, "t_720p")!).ToList() ?? new(),
+                Screenshots = game.Screenshots?.Select(s => FixImageUrl(s.Url, "t_1080p")!).ToList() ?? new(),
+                Artworks = game.Artworks?.Select(s => FixImageUrl(s.Url,"t_1080p")!).ToList() ?? new(),
                 Genres = game.Genres?.Select(g => g.Name).ToList() ?? new(),
                 Publisher = game.InvolvedCompanies?.FirstOrDefault(ic => ic.Publisher)?.Company?.Name
             };
@@ -182,6 +183,10 @@ namespace Market.Infrastructure.Common
             [JsonPropertyName("screenshots")]
             public List<ScreenshotDto>? Screenshots { get; set; }
 
+            [JsonPropertyName("artworks")]
+
+            public List<ArtworkDto>? Artworks { get; set; }
+
             [JsonPropertyName("genres")]
             public List<GenreDto>? Genres { get; set; }
 
@@ -202,6 +207,13 @@ namespace Market.Infrastructure.Common
         {
             [JsonPropertyName("url")]
             public string Url { get; set; } = string.Empty;
+        }
+
+        private class ArtworkDto
+        {
+            [JsonPropertyName("url")]
+
+            public string Url { get; set; } = string.Empty ;
         }
 
         private class GenreDto

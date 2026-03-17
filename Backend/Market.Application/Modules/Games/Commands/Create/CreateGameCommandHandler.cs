@@ -15,6 +15,13 @@ namespace Market.Application.Modules.Games.Commands.Create
             if (!currentUser.IsAdmin)
                 throw new MarketForbiddenException();
 
+            var normalizedName = request.Name.Trim();
+            bool gameNameExists = await context.Games
+                .AnyAsync(g => g.Name.ToLower() == normalizedName.ToLower(), ct);
+
+            if (gameNameExists)
+                throw new MarketConflictException($"Game with name '{normalizedName}' already exists.");
+
 
             bool publisherExists = await context.Publishers.AnyAsync(x => x.Id == request.PublisherId);
 
@@ -24,7 +31,7 @@ namespace Market.Application.Modules.Games.Commands.Create
             
             var game = new GameEntity
             {
-                Name = request.Name,
+                Name = normalizedName,
                 Price = request.Price,
                 Description = request.Description,
                 ReleaseDate = request.ReleaseDate,

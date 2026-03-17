@@ -22,9 +22,11 @@ export class DialogHelperService {
   open(config: DialogConfig): Observable<DialogResult | undefined> {
     const dialogRef = this.dialog.open(FitConfirmDialogComponent, {
       width: config.width || '450px',
+      maxWidth: 'calc(100vw - 24px)',
       disableClose: config.disableClose || false,
       data: config,
-      panelClass: 'custom-dialog-container'
+      panelClass: ['custom-dialog-container', 'site-dialog-panel'],
+      backdropClass: 'site-dialog-backdrop'
     });
 
     return dialogRef.afterClosed();

@@ -1,0 +1,175 @@
+<section class="admin-games-add-page">
+
+	<header class="admin-games-add-header">
+		<h1>{{ isEditMode ? 'Edit Game' : 'Add New Game' }}</h1>
+	</header>
+
+	<app-igdb-search
+		(gameDetailsSelected)="onIgdbDetailsSelected($event)"
+		(searchCleared)="onIgdbSearchCleared()">
+	</app-igdb-search>
+
+
+
+	<form class="admin-games-add-form" (ngSubmit)="onSave()">
+		<div class="admin-games-add-grid">
+			<div class="admin-fields">
+				<label class="admin-field">
+					<span class="admin-field-label">Game Title</span>
+					<input
+						type="text"
+						name="gameTitle"
+						[(ngModel)]="gameTitle"
+						class="admin-input"
+						placeholder="Enter game title"
+						autocomplete="off" />
+				</label>
+
+				<label class="admin-field">
+					<span class="admin-field-label">Release Date</span>
+					<input
+						type="date"
+						name="releaseDate"
+						[(ngModel)]="releaseDate"
+						class="admin-input"
+						max="9999-12-31" />
+				</label>
+
+				<label class="admin-field">
+					<span class="admin-field-label">Publisher</span>
+					<app-publisher-dropdown
+						[initialPublisherId]="selectedPublisherId"
+						[initialPublisherName]="publisherName"
+						(publisherSelected)="onPublisherSelected($event)">
+					</app-publisher-dropdown>
+				</label>
+
+				<label class="admin-field">
+					<span class="admin-field-label">Genres</span>
+					<app-genre-dropdown
+						[initialSelectedGenres]="selectedGenreNames"
+						(genresChanged)="onGenresChanged($event)">
+					</app-genre-dropdown>
+
+					<div class="genre-pills" role="group" aria-label="Selected genres" *ngIf="selectedGenres.length > 0">
+						<label class="genre-pill selected" *ngFor="let genre of selectedGenres">
+							<span>{{ genre.name }}</span>
+						</label>
+					</div>
+				</label>
+			</div>
+
+			<div class="admin-media-panel">
+				<div class="cover-box" [class.has-image]="coverPreviewUrl">
+					<img *ngIf="coverPreviewUrl" [src]="coverPreviewUrl" alt="Cover preview" />
+					<div class="cover-placeholder" *ngIf="!coverPreviewUrl">
+						<div>Cover Image</div>
+						<small>(Portrait preferred)</small>
+					</div>
+				</div>
+
+				<label class="upload-inline">
+					<input type="file" accept="image/*" hidden [disabled]="isUploadingCover" (change)="onCoverSelected($event)" />
+					<span>{{ isUploadingCover ? 'Uploading cover...' : 'Upload cover' }}</span>
+				</label>
+				<p class="size-hint">Recommended size: 264 × 374 px</p>
+
+				<label class="admin-field admin-price-field">
+					<span class="admin-field-label">Price</span>
+					<button
+						type="button"
+						class="free-to-play-switch"
+						[class.is-on]="isFreeToPlay"
+						[attr.aria-pressed]="isFreeToPlay"
+						(click)="onFreeToPlayChange(!isFreeToPlay)">
+						<span class="free-to-play-switch__label">Free to play</span>
+						<span class="free-to-play-switch__track">
+							<span class="free-to-play-switch__thumb"></span>
+						</span>
+					</button>
+					<div class="price-shell">
+						<span>EUR</span>
+						<input
+							type="number"
+							name="price"
+							[(ngModel)]="price"
+							class="admin-input admin-price-input"
+							[disabled]="isFreeToPlay"
+							min="0"
+							step="0.01"
+							placeholder="0.00" />
+					</div>
+				</label>
+			</div>
+		</div>
+
+		<label class="admin-field admin-description-field">
+			<span class="admin-field-label">Description</span>
+			<textarea
+				name="description"
+				[(ngModel)]="description"
+				class="admin-textarea"
+				rows="8"
+				placeholder="Write a short game description for the store page..."></textarea>
+		</label>
+
+		<section class="igdb-media-grid-section" *ngIf="mediaOptionsForGrid.length > 0">
+			<div class="igdb-media-grid-header">
+				<h2>Media Picker</h2>
+				<p>Choose up to {{ screenshotSlots.length }} images for this game.</p>
+			</div>
+
+			<div class="igdb-media-grid">
+				<button
+					type="button"
+					class="igdb-media-card"
+					*ngFor="let media of mediaOptionsForGrid; trackBy: trackByIgdbMediaKey"
+					[class.selected]="isMediaSelected(media)"
+					(click)="toggleMediaSelection(media)">
+					<img [src]="media.url" alt="Media option" />
+					<span class="igdb-media-check" *ngIf="isMediaSelected(media)">
+						<mat-icon>check</mat-icon>
+					</span>
+				</button>
+			</div>
+		</section>
+
+		<section class="screenshots-section">
+			<h2>Screenshots</h2>
+			<p class="screenshots-hint">First screenshot is used as hero portrait.</p>
+			<p class="size-hint">Recommended size: 1920 × 1080 px</p>
+
+			<div class="screenshots-canvas" [class.has-image]="activeScreenshotUrl">
+				<img *ngIf="activeScreenshotUrl" [src]="activeScreenshotUrl" alt="Screenshot preview" />
+				<div class="canvas-placeholder" *ngIf="!activeScreenshotUrl">Screenshot preview area</div>
+			</div>
+
+			<div class="screenshots-toolbar">
+				<button type="button" class="clear-all-button" (click)="clearAllSelectedMedia()">
+					Clear all
+				</button>
+
+				<button
+					type="button"
+					class="slot-button"
+					*ngFor="let slot of screenshotSlots; let i = index"
+					[class.active]="activeScreenshotIndex === i"
+					[class.filled]="screenshotPreviews[i]"
+					(click)="setActiveScreenshot(i)">
+					<mat-icon *ngIf="i === 0" class="slot-star">star</mat-icon>
+					<span *ngIf="i !== 0">{{ slot }}</span>
+				</button>
+
+				<label class="upload-button">
+					<input type="file" hidden accept="image/*" multiple [disabled]="isUploadingScreenshots" (change)="onScreenshotsSelected($event)" />
+					<span>{{ isUploadingScreenshots ? 'Uploading...' : 'Upload' }}</span>
+				</label>
+			</div>
+		</section>
+
+		<div class="form-actions">
+			<a routerLink="/admin/games" class="action-btn secondary">Cancel</a>
+			<button type="submit" class="action-btn primary" [disabled]="isSaving || isLoadingGame">{{ isLoadingGame ? 'Loading...' : (isSaving ? (isEditMode ? 'Updating...' : 'Saving...') : (isEditMode ? 'Update Game' : 'Save Game')) }}</button>
+		</div>
+	</form>
+</section>

@@ -1,10 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
-import { GameDetailsDto, GetStorefrontGamesRequest, GetStorefrontGamesResponse } from "./games-api.models";
+import { CreateGameRequest, GameDetailsDto, GetStorefrontGamesRequest, GetStorefrontGamesResponse, UpdateGameRequest } from "./games-api.models";
 import { Observable } from "rxjs";
 import { buildHttpParams } from "../../core/models/build-http-params";
-import { UntypedFormBuilder } from "@angular/forms";
 
 @Injectable({
     providedIn:'root'
@@ -23,6 +22,18 @@ export class GamesApiService{
 
     getById(id: number): Observable<GameDetailsDto> {
         return this.http.get<GameDetailsDto>(`${this.baseUrl}/${id}`);
+    }
+
+    create(request: CreateGameRequest): Observable<void> {
+        return this.http.post<void>(this.baseUrl, request);
+    }
+
+    update(id: number, request: UpdateGameRequest): Observable<void> {
+        return this.http.put<void>(`${this.baseUrl}/${id}`, request);
+    }
+
+    delete(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.baseUrl}/${id}`);
     }
 
 }

@@ -1,0 +1,42 @@
+<div class="admin-game-row">
+  <div class="img-container">
+    <img 
+      [src]="getGameImage()" 
+      [alt]="game.name" 
+      class="game-thumb" />
+  </div>
+
+  <div class="game-info">
+    <h3 class="game-name">{{ game.name }}</h3>
+    <p class="publisher">{{ game.publisherName }}</p>
+    <p class="release-date">
+      <mat-icon class="release-date-icon">event</mat-icon>
+      <span>Released: {{ releaseDateLabel }}</span>
+    </p>
+    
+    <div class="genre-list">
+      <ng-container *ngIf="game.genres && game.genres.length > 0; else noGenres">
+        <span class="genre-tag" *ngFor="let genre of game.genres">
+          {{ genre.name }}
+        </span>
+      </ng-container>
+      
+      <ng-template #noGenres>
+        <span class="no-genres-text">No genres assigned</span>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="game-price">
+    {{ priceLabel }}
+  </div>
+
+  <div class="game-actions">
+    <button class="btn-action btn-edit" (click)="onEdit()">
+      Edit
+    </button>
+    <button class="btn-action btn-delete" (click)="onDelete()">
+      Delete
+    </button>
+  </div>
+</div>

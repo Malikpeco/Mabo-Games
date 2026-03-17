@@ -1,0 +1,48 @@
+<div class="publisher-dropdown-field">
+  <div class="publisher-dropdown-shell">
+    <input
+      [ngModel]="searchTerm"
+      (ngModelChange)="onSearch($event)"
+      (focus)="isOpen = true"
+      placeholder="Search or create publishers..."
+      [ngModelOptions]="{ standalone: true }"
+      autocomplete="off" />
+
+    <button
+      type="button"
+      class="publisher-dropdown-clear-btn"
+      *ngIf="searchTerm.length"
+      (click)="clearSelection()"
+      aria-label="Clear selected publisher">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="isOpen" class="publisher-dropdown-panel">
+    <div *ngIf="isLoading" class="publisher-dropdown-state">Loading...</div>
+    <div *ngIf="error" class="publisher-dropdown-state error">{{ error }}</div>
+    <div *ngIf="!isLoading && !error && filteredPublishers.length === 0 && !canCreate" class="publisher-dropdown-state">
+      No publishers found.
+    </div>
+
+    <button
+      type="button"
+      class="publisher-dropdown-option"
+      *ngFor="let publisher of filteredPublishers"
+      (click)="selectPublisher(publisher)"
+      [class.selected]="isSelected(publisher)">
+      {{ publisher.name }}
+    </button>
+
+    <button
+      type="button"
+      class="publisher-dropdown-option create"
+      *ngIf="canCreate"
+      (click)="createNew()"
+      [disabled]="isCreating">
+      + Create "{{ searchTerm.trim() }}"
+    </button>
+
+    <div *ngIf="isCreating" class="publisher-dropdown-state">Creating publisher...</div>
+  </div>
+</div>
