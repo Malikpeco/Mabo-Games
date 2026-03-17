@@ -1,4 +1,4 @@
-﻿using Market.Domain.Common;
+using Market.Domain.Common;
 using Market.Domain.Entities;
 using Market.Infrastructure.Database.Seeders;
 using System.Linq.Expressions;
@@ -26,7 +26,7 @@ public partial class DatabaseContext
                     break;
 
                 case EntityState.Deleted:
-                    if(entry.Entity is CartItemEntity)//THIS SKIPS SOFT DELETE FOR CART ITEMS, THEY DELETE FULLY FROM THE DB
+                    if(entry.Entity is CartItemEntity or GameGenreEntity or ScreenshotEntity)//HARD DELETE: join/child entities cannot be soft-deleted due to unique constraints
                     {
                         break;
                     }

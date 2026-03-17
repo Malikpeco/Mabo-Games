@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { PublishersApiService } from '../../../../../api-services/publishers/publishers-api.service';
 import { ListPublishersRequest, PublisherAutocompleteDto } from '../../../../../api-services/publishers/publishers-api.models';
 import { DialogHelperService } from '../../../../shared/services/dialog-helper.service';
-import { DialogButton, DialogType } from '../../../../shared/models/dialog-config.model';
 import { CreatePublisherDialogComponent, CreatePublisherDialogResult } from '../create-publisher-dialog/create-publisher-dialog.component';
 
 @Component({
@@ -20,13 +19,13 @@ export class PublisherDropdownComponent implements OnInit, OnChanges {
 
   private readonly minSearchLength = 2;
 
-  internalSearchTerm = '';
-  internalAllPublishers: PublisherAutocompleteDto[] = [];
-  internalIsOpen = false;
-  internalIsLoading = false;
-  internalIsCreating = false;
-  internalError = '';
-  internalSelectedPublisherId: number | null = null;
+  searchTerm = '';
+  allPublishers: PublisherAutocompleteDto[] = [];
+  isOpen = false;
+  isLoading = false;
+  isCreating = false;
+  error = '';
+  selectedPublisherId: number | null = null;
 
   private publishersApi = inject(PublishersApiService);
   private dialog = inject(DialogHelperService);
@@ -51,63 +50,63 @@ export class PublisherDropdownComponent implements OnInit, OnChanges {
     }
 
     if (!(target as HTMLElement).closest('.publisher-dropdown-field')) {
-      this.internalIsOpen = false;
+      this.isOpen = false;
     }
   }
 
-  get internalFilteredPublishers(): PublisherAutocompleteDto[] {
-    const term = this.internalSearchTerm.trim().toLowerCase();
+  get filteredPublishers(): PublisherAutocompleteDto[] {
+    const term = this.searchTerm.trim().toLowerCase();
     if (!term) {
-      return this.internalAllPublishers;
+      return this.allPublishers;
     }
 
-    return this.internalAllPublishers.filter((publisher) =>
+    return this.allPublishers.filter((publisher) =>
       publisher.name.toLowerCase().includes(term),
     );
   }
 
-  get internalCanCreate(): boolean {
-    const term = this.internalSearchTerm.trim();
+  get canCreate(): boolean {
+    const term = this.searchTerm.trim();
     return term.length >= this.minSearchLength
-      && !this.internalIsLoading
-      && !this.internalIsCreating
-      && this.internalFilteredPublishers.length === 0;
+      && !this.isLoading
+      && !this.isCreating
+      && this.filteredPublishers.length === 0;
   }
 
-  onInternalSearch(value: string): void {
-    this.internalSearchTerm = value ?? '';
-    this.internalIsOpen = true;
-    this.internalError = '';
+  onSearch(value: string): void {
+    this.searchTerm = value ?? '';
+    this.isOpen = true;
+    this.error = '';
 
-    this.internalSelectedPublisherId = null;
+    this.selectedPublisherId = null;
     this.publisherSelected.emit(null);
   }
 
   selectPublisher(publisher: PublisherAutocompleteDto): void {
-    this.internalSelectedPublisherId = publisher.id;
-    this.internalSearchTerm = publisher.name;
-    this.internalIsOpen = false;
+    this.selectedPublisherId = publisher.id;
+    this.searchTerm = publisher.name;
+    this.isOpen = false;
 
     this.publisherSelected.emit(publisher);
   }
 
   clearSelection(): void {
-    this.internalSelectedPublisherId = null;
-    this.internalSearchTerm = '';
-    this.internalError = '';
-    this.internalIsOpen = false;
-    this.internalIsCreating = false;
+    this.selectedPublisherId = null;
+    this.searchTerm = '';
+    this.error = '';
+    this.isOpen = false;
+    this.isCreating = false;
 
     this.publisherSelected.emit(null);
   }
 
   isSelected(publisher: PublisherAutocompleteDto): boolean {
-    return this.internalSelectedPublisherId === publisher.id;
+    return this.selectedPublisherId === publisher.id;
   }
 
   createNew(): void {
-    const initialTitle = this.internalSearchTerm.trim();
-    if (!initialTitle || !this.internalCanCreate) {
+    const initialTitle = this.searchTerm.trim();
+    if (!initialTitle || !this.canCreate) {
       return;
     }
 
@@ -125,79 +124,88 @@ export class PublisherDropdownComponent implements OnInit, OnChanges {
         return;
       }
 
-      this.dialog
-        .showCustom({
-          type: DialogType.QUESTION,
-          title: 'Create Publisher',
-          message: `Create publisher "${result.title}"?`,
-          icon: 'business',
-          buttons: [
-            { type: DialogButton.CANCEL },
-            { type: DialogButton.SAVE, label: 'Create', color: 'primary' },
-          ],
-        })
-        .subscribe((confirmResult) => {
-          if (confirmResult?.button !== DialogButton.SAVE) {
-            return;
-          }
-
-          this.createPublisher(result);
-        });
+      this.createPublisher(result);
     });
   }
 
   private loadPublishers(): void {
-    this.internalIsLoading = true;
-    this.internalError = '';
+    this.isLoading = true;
+    this.error = '';
 
     const request = new ListPublishersRequest();
     this.publishersApi.listForDropdown(request).subscribe({
       next: (results) => {
-        this.internalAllPublishers = [...(results ?? [])]
+        this.allPublishers = [...(results ?? [])]
           .filter((publisher) => !!publisher.name?.trim())
           .sort((a, b) => a.name.localeCompare(b.name));
 
-        this.internalIsLoading = false;
+        this.isLoading = false;
         this.applyInitialSelection();
       },
       error: () => {
-        this.internalAllPublishers = [];
-        this.internalIsLoading = false;
-        this.internalError = 'Could not load publishers.';
+        this.allPublishers = [];
+        this.isLoading = false;
+        this.error = 'Could not load publishers.';
       },
     });
   }
 
   private applyInitialSelection(): void {
-    if (this.internalAllPublishers.length === 0) {
-      if (!this.internalIsOpen) {
-        this.internalSearchTerm = this.initialPublisherName ?? '';
+    if (this.allPublishers.length === 0) {
+      if (!this.isOpen) {
+        this.searchTerm = this.initialPublisherName ?? '';
       }
 
-      this.internalSelectedPublisherId = this.initialPublisherId;
+      this.selectedPublisherId = this.initialPublisherId;
       return;
     }
 
     const byId = this.initialPublisherId == null
       ? undefined
-      : this.internalAllPublishers.find((publisher) => publisher.id === this.initialPublisherId);
+      : this.allPublishers.find((publisher) => publisher.id === this.initialPublisherId);
 
     const initialName = (this.initialPublisherName ?? '').trim().toLowerCase();
     const byName = initialName
-      ? this.internalAllPublishers.find((publisher) => publisher.name.toLowerCase() === initialName)
+      ? this.allPublishers.find((publisher) => publisher.name.toLowerCase() === initialName)
       : undefined;
 
-    const selected = byId ?? byName;
-    this.internalSelectedPublisherId = selected?.id ?? null;
+    const normalizedInitialName = this.normalizePublisherName(this.initialPublisherName);
+    const byNormalizedName = normalizedInitialName
+      ? this.allPublishers.find((publisher) => this.normalizePublisherName(publisher.name) === normalizedInitialName)
+      : undefined;
 
-    if (!this.internalIsOpen) {
-      this.internalSearchTerm = selected?.name ?? this.initialPublisherName ?? '';
+    const partialMatches = normalizedInitialName
+      ? this.allPublishers.filter((publisher) => {
+        const normalizedPublisherName = this.normalizePublisherName(publisher.name);
+        return normalizedPublisherName.includes(normalizedInitialName)
+          || normalizedInitialName.includes(normalizedPublisherName);
+      })
+      : [];
+
+    const bySinglePartialMatch = partialMatches.length === 1 ? partialMatches[0] : undefined;
+
+    const selected = byId ?? byName ?? byNormalizedName ?? bySinglePartialMatch;
+    this.selectedPublisherId = selected?.id ?? null;
+
+    if (!this.isOpen) {
+      this.searchTerm = selected?.name ?? this.initialPublisherName ?? '';
+    }
+
+    if (selected) {
+      this.publisherSelected.emit(selected);
     }
   }
 
+  private normalizePublisherName(value: string | null | undefined): string {
+    return (value ?? '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+
   private createPublisher(result: CreatePublisherDialogResult): void {
-    this.internalIsCreating = true;
-    this.internalError = '';
+    this.isCreating = true;
+    this.error = '';
 
     this.publishersApi
       .create({
@@ -211,10 +219,10 @@ export class PublisherDropdownComponent implements OnInit, OnChanges {
             name: result.title,
           };
 
-          this.internalAllPublishers = [...this.internalAllPublishers, selected]
+          this.allPublishers = [...this.allPublishers, selected]
             .sort((a, b) => a.name.localeCompare(b.name));
           this.selectPublisher(selected);
-          this.internalIsCreating = false;
+          this.isCreating = false;
           this.dialog.showSuccess('Publisher created', `Publisher "${result.title}" was created successfully.`, undefined, 'check_circle');
         },
         error: (error: HttpErrorResponse) => {
@@ -223,8 +231,8 @@ export class PublisherDropdownComponent implements OnInit, OnChanges {
             error.error?.title ||
             'Could not create publisher.';
 
-          this.internalError = message;
-          this.internalIsCreating = false;
+          this.error = message;
+          this.isCreating = false;
           this.dialog.showError('Publisher creation failed', message, undefined, 'error');
         },
       });

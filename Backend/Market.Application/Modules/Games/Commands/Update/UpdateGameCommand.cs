@@ -16,5 +16,7 @@ namespace Market.Application.Modules.Games.Commands.Update
         public DateTime ReleaseDate { get; set; }
         public int PublisherId { get; set; }
         public string? CoverImageURL { get; set; }
+        public List<int> GenreIds { get; set; } = new();
+        public List<string> ScreenshotUrls { get; set; } = new();
     }
 }

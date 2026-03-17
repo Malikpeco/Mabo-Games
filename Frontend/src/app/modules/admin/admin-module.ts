@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared-module';
 import { AdminRoutingModule } from './admin-routing-module';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { AdminGamesComponent } from './games/admin-games/admin-games.component';
+
 import { AdminGenresComponent } from './genres/admin-genres/admin-genres.component';
 import { AdminPublishersComponent } from './publishers/admin-publishers/admin-publishers.component';
 import { AdminOrdersComponent } from './orders/admin-orders/admin-orders.component';
@@ -13,6 +13,8 @@ import { PublisherDropdownComponent } from './games/admin-shared/publisher-dropd
 import { GenreDropdownComponent } from './games/admin-shared/genre-dropdown/genre-dropdown.component';
 import { CountryDropdownComponent } from './games/admin-shared/country-dropdown/country-dropdown.component';
 import { IgdbSearchComponent } from './games/admin-shared/igdb-search/igdb-search.component';
+import { AdminGamesComponent } from './games/admin-games/admin-games.component';
+
 
 
 

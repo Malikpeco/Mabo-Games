@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GamesApiService } from '../../../../api-services/games/games-api.service';
-import { CreateGameRequest } from '../../../../api-services/games/games-api.models';
+import { CreateGameRequest, UpdateGameRequest } from '../../../../api-services/games/games-api.models';
 import { GetIgdbGameDetailsDto } from '../../../../api-services/igdb/igdb-api.models';
 import { PublisherAutocompleteDto } from '../../../../api-services/publishers/publishers-api.models';
 import { GenreDto } from '../../../../api-services/genres/genres-api.models';
@@ -420,7 +420,18 @@ export class GameFormComponent {
     const validHttpUrls = this.selectedMediaUrls.filter((url) => /^https?:\/\//i.test(url));
     const coverCandidate = this.coverPreviewUrl ?? validHttpUrls[0] ?? '';
 
-    const payload: CreateGameRequest = {
+    const createPayload: CreateGameRequest = {
+      name: gameName,
+      price: this.effectivePrice,
+      description: this.description?.trim() || undefined,
+      releaseDate: this.getReleaseDateIso(),
+      publisherId: this.selectedPublisherId,
+      coverImageURL: coverCandidate,
+      genreIds,
+      screenshotUrls: validHttpUrls,
+    };
+
+    const updatePayload: UpdateGameRequest = {
       name: gameName,
       price: this.effectivePrice,
       description: this.description?.trim() || undefined,
@@ -434,7 +445,7 @@ export class GameFormComponent {
     this.isSaving = true;
 
     if (this.isEditMode && this.editingGameId) {
-      this.gamesApi.update(this.editingGameId, payload).subscribe({
+      this.gamesApi.update(this.editingGameId, updatePayload).subscribe({
         next: () => {
           this.isSaving = false;
           this.dialog.showSuccess('Game updated', `Game "${gameName}" was updated successfully.`, undefined, 'check_circle');
@@ -452,7 +463,7 @@ export class GameFormComponent {
       return;
     }
 
-    this.gamesApi.create(payload).subscribe({
+    this.gamesApi.create(createPayload).subscribe({
       next: () => {
         this.isSaving = false;
         this.dialog.showSuccess('Game created', `Game "${gameName}" was created successfully.`, undefined, 'check_circle');

@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { GameFormComponent } from './games/game-form/game-form.component';
-import { AdminGamesComponent } from './games/admin-games/admin-games.component';
+
 import { AdminPublishersComponent } from './publishers/admin-publishers/admin-publishers.component';
 import { AdminGenresComponent } from './genres/admin-genres/admin-genres.component';
 import { AdminOrderDetailsComponent } from './orders/admin-order-details/admin-order-details.component';
 import { AdminOrdersComponent } from './orders/admin-orders/admin-orders.component';
+import { AdminGamesComponent } from './games/admin-games/admin-games.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
+  
   exports: [RouterModule],
 })
 export class AdminRoutingModule { }

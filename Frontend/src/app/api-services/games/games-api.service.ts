@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
-import { CreateGameRequest, GameDetailsDto, GetStorefrontGamesRequest, GetStorefrontGamesResponse } from "./games-api.models";
+import { CreateGameRequest, GameDetailsDto, GetStorefrontGamesRequest, GetStorefrontGamesResponse, UpdateGameRequest } from "./games-api.models";
 import { Observable } from "rxjs";
 import { buildHttpParams } from "../../core/models/build-http-params";
 
@@ -28,7 +28,7 @@ export class GamesApiService{
         return this.http.post<void>(this.baseUrl, request);
     }
 
-    update(id: number, request: CreateGameRequest): Observable<void> {
+    update(id: number, request: UpdateGameRequest): Observable<void> {
         return this.http.put<void>(`${this.baseUrl}/${id}`, request);
     }
 
