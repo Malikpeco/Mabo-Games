@@ -1,0 +1,23 @@
+<div class="admin-publisher-row">
+  <div class="publisher-info">
+    <h3 class="publisher-name">{{ publisher.name }}</h3>
+    <p class="publisher-country">
+      <mat-icon class="country-icon">public</mat-icon>
+      <span>{{ publisher.country.name }}</span>
+    </p>
+
+    <div class="games-info">
+      <mat-icon class="games-icon">videogame_asset</mat-icon>
+      <span>{{ gameCountLabel }}</span>
+    </div>
+  </div>
+
+  <div class="publisher-actions">
+    <button class="btn-action btn-edit" (click)="onEdit()">
+      Edit
+    </button>
+    <button class="btn-action btn-delete" (click)="onDelete()">
+      Delete
+    </button>
+  </div>
+</div>

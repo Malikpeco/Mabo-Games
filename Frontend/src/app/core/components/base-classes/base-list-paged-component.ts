@@ -25,8 +25,8 @@ export abstract class BaseListPagedComponent<TItem, TRequest extends BasePagedQu
 
   protected handlePageResult(result: PageResult<TItem>) {
     this.items = result.items;
-    this.totalItems = result.totalItems;
-    this.totalPages = result.totalPages;
+    this.totalItems = result.total;
+    this.totalPages = Math.max(1, Math.ceil(this.totalItems / this.paging.pageSize));
   }
 
   goToPage(page: number): void {

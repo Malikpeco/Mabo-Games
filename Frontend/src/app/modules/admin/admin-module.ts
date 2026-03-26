@@ -14,6 +14,7 @@ import { GenreDropdownComponent } from './games/admin-shared/genre-dropdown/genr
 import { CountryDropdownComponent } from './games/admin-shared/country-dropdown/country-dropdown.component';
 import { IgdbSearchComponent } from './games/admin-shared/igdb-search/igdb-search.component';
 import { AdminGamesComponent } from './games/admin-games/admin-games.component';
+import { PublisherListItemComponent } from './publishers/publisher-list-item/publisher-list-item.component';
 
 
 
@@ -32,6 +33,7 @@ import { AdminGamesComponent } from './games/admin-games/admin-games.component';
     GenreDropdownComponent,
     CountryDropdownComponent,
     IgdbSearchComponent,
+    PublisherListItemComponent,
 
   ],
   imports: [

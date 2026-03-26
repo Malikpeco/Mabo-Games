@@ -4,9 +4,11 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
   CreatePublisherRequest,
+  GetPublisherByIdResponse,
   ListPublishersRequest,
   ListPublishersResponse,
   PublisherAutocompleteDto,
+  UpdatePublisherRequest,
 } from './publishers-api.models';
 import { buildHttpParams } from '../../core/models/build-http-params';
 
@@ -51,5 +53,17 @@ export class PublishersApiService {
 
   create(request: CreatePublisherRequest): Observable<number> {
     return this.http.post<number>(this.baseUrl, request);
+  }
+
+  getById(id: number): Observable<GetPublisherByIdResponse> {
+    return this.http.get<GetPublisherByIdResponse>(`${this.baseUrl}/${id}`);
+  }
+
+  update(id: number, request: UpdatePublisherRequest): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, request);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

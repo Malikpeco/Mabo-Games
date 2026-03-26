@@ -85,7 +85,7 @@ export class BrowseGamesComponent {
       })
       .subscribe(res => {
         this.games = res.items ?? [];
-        this.totalCount = (res as any).totalCount ?? (res as any).total ?? this.games.length;
+        this.totalCount = res.total ?? 0;
         this.filteredGames= this.games;
       });
   }

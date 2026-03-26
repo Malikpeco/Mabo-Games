@@ -1,1 +1,71 @@
-<p>admin-publishers works!</p>
+<section class="admin-publishers-page">
+	<header class="admin-publishers-header">
+		<div>
+			<h1>Publishers</h1>
+		</div>
+
+		<div class="admin-publishers-tools">
+			<div class="admin-publishers-sort-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">sort</mat-icon>
+				<select
+					class="admin-publishers-sort"
+					[ngModel]="sort"
+					(ngModelChange)="onSortChange($event)"
+					aria-label="Sort publishers">
+					<option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+				</select>
+			</div>
+
+			<div class="admin-publishers-search-shell">
+				<mat-icon class="admin-tool-icon">search</mat-icon>
+				<input
+					type="search"
+					class="admin-publishers-search"
+					[ngModel]="searchTerm"
+					(ngModelChange)="onSearchChange($event)"
+					placeholder="Search by name or country"
+					aria-label="Search publishers" />
+			</div>
+
+			<div class="admin-publishers-size-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">format_list_numbered</mat-icon>
+				<select
+					class="admin-publishers-page-size"
+					[ngModel]="pageSize"
+					(ngModelChange)="onPageSizeChange($event)"
+					aria-label="Publishers per page">
+					<option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }} / page</option>
+				</select>
+			</div>
+
+			<button type="button" class="admin-publishers-add-btn" (click)="onAddPublisher()">
+				<mat-icon>add</mat-icon>
+				<span>Add publisher</span>
+			</button>
+		</div>
+
+	</header>
+
+	<div class="admin-publishers-state" *ngIf="isLoading">Loading publishers...</div>
+
+	<div class="admin-publishers-state" *ngIf="!isLoading && publishers.length === 0 && !hasSearchTerm">No publishers available.</div>
+
+	<div class="admin-publishers-state" *ngIf="!isLoading && publishers.length === 0 && hasSearchTerm">No publishers match your search.</div>
+
+	<div class="admin-publishers-list" *ngIf="!isLoading && filteredPublishers.length > 0">
+		<app-publisher-list-item
+			*ngFor="let publisher of filteredPublishers"
+			[publisher]="publisher"
+			(editPublisher)="onEditPublisher($event)"
+			(deletePublisher)="onDeletePublisher($event)">
+		</app-publisher-list-item>
+	</div>
+
+	<app-shared-paginator
+		*ngIf="!isLoading"
+		class="admin-publishers-pager"
+		[currentPage]="page"
+		[totalPages]="totalPages"
+		(pageChange)="goToPage($event)">
+	</app-shared-paginator>
+</section>
