@@ -46,8 +46,8 @@ export class LibraryComponent
       return;
     }
 
-    this.genresApi.list().subscribe(res => {
-      this.genres = res ?? [];
+    this.genresApi.list({ paging: { page: 1, pageSize: 1000 } }).subscribe(res => {
+      this.genres = res.items ?? [];
     });
 
     this.initList();

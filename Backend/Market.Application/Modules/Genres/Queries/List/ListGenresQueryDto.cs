@@ -10,5 +10,6 @@ namespace Market.Application.Modules.Genres.Queries.List
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int GameCount { get; set; }
     }
 }

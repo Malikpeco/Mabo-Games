@@ -154,9 +154,9 @@ export class GenreDropdownComponent {
   private loadGenres(): void {
     this.isLoading = true;
 
-    this.genresApi.list().subscribe({
-      next: (genres) => {
-        this.availableGenres = [...(genres ?? [])]
+    this.genresApi.list({ paging: { page: 1, pageSize: 1000 } }).subscribe({
+      next: (res) => {
+        this.availableGenres = [...(res.items ?? [])]
           .filter((genre) => !!genre.name?.trim())
           .sort((a, b) => a.name.localeCompare(b.name));
 

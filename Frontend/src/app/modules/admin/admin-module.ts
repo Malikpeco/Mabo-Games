@@ -15,6 +15,8 @@ import { CountryDropdownComponent } from './games/admin-shared/country-dropdown/
 import { IgdbSearchComponent } from './games/admin-shared/igdb-search/igdb-search.component';
 import { AdminGamesComponent } from './games/admin-games/admin-games.component';
 import { PublisherListItemComponent } from './publishers/publisher-list-item/publisher-list-item.component';
+import { GenreListItemComponent } from './genres/genre-list-item/genre-list-item.component';
+import { CreateGenreDialogComponent } from './genres/create-genre-dialog/create-genre-dialog.component';
 
 
 
@@ -34,6 +36,8 @@ import { PublisherListItemComponent } from './publishers/publisher-list-item/pub
     CountryDropdownComponent,
     IgdbSearchComponent,
     PublisherListItemComponent,
+    GenreListItemComponent,
+    CreateGenreDialogComponent,
 
   ],
   imports: [

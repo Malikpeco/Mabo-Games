@@ -1,0 +1,19 @@
+<div class="admin-genre-row">
+  <div class="genre-info">
+    <h3 class="genre-name">{{ genre.name }}</h3>
+
+    <div class="games-info">
+      <mat-icon class="games-icon">videogame_asset</mat-icon>
+      <span>{{ gameCountLabel }}</span>
+    </div>
+  </div>
+
+  <div class="genre-actions">
+    <button class="btn-action btn-edit" (click)="onEdit()">
+      Edit
+    </button>
+    <button class="btn-action btn-delete" (click)="onDelete()">
+      Delete
+    </button>
+  </div>
+</div>

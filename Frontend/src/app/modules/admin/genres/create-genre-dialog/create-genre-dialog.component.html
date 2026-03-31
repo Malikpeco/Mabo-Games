@@ -1,0 +1,23 @@
+<section class="create-genre-dialog">
+  <header class="dialog-header">
+    <h2>{{ titleText }}</h2>
+    <p>{{ subtitleText }}</p>
+  </header>
+
+  <div class="dialog-form">
+    <label class="dialog-field">
+      <span>Title</span>
+      <input
+        type="text"
+        [(ngModel)]="title"
+        placeholder="Genre title"
+        autocomplete="off"
+        maxlength="100" />
+    </label>
+  </div>
+
+  <footer class="dialog-actions">
+    <button type="button" class="btn-secondary" (click)="close()">Cancel</button>
+    <button type="button" class="btn-primary" [disabled]="!canSave" (click)="save()">{{ submitText }}</button>
+  </footer>
+</section>
