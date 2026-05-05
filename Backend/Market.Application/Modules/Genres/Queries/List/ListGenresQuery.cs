@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Genres.Queries.List
 {
-    public class ListGenresQuery : IRequest< List<ListGenresQueryDto>>
+    public sealed class ListGenresQuery : BasePagedQuery<ListGenresQueryDto>
     {
+        public string? Search { get; set; }
 
     }
 }

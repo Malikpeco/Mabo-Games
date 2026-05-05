@@ -10,6 +10,8 @@ import { ToasterService } from '../../../core/services/toaster.service';
 import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
 import { FavouritesApiService } from '../../../api-services/favourites/favourites-api.service';
 import { ReviewsApiService } from '../../../api-services/reviews/reviews-api.service';
+import { ListUserGamesRequest } from '../../../api-services/user-games/user-games-api.models';
+import { ListFavouritesQueryRequest } from '../../../api-services/favourites/favourites-api.models';
 
 @Component({
   selector: 'app-game-details',
@@ -86,7 +88,11 @@ implements OnInit{
       }
     });
 
-    this.userGamesApi.listUserGames().subscribe({
+    const userGamesRequest = new ListUserGamesRequest();
+    userGamesRequest.paging.page = 1;
+    userGamesRequest.paging.pageSize = 100;
+
+    this.userGamesApi.listUserGames(userGamesRequest).subscribe({
       next: res => {
         const ownedGame = res.items.find(ug => ug.gameId === gameId);
         this.isInLibrary = !!ownedGame;
@@ -98,7 +104,11 @@ implements OnInit{
       }
     });
 
-    this.favouritesApi.listFavouritesQuery().subscribe({
+    const favouritesRequest = new ListFavouritesQueryRequest();
+    favouritesRequest.paging.page = 1;
+    favouritesRequest.paging.pageSize = 100;
+
+    this.favouritesApi.listFavouritesQuery(favouritesRequest).subscribe({
       next:res=>{
         this.isInFavourites=res.items.some(f=>f.id===gameId);
       },
@@ -187,7 +197,11 @@ addToCart(gameId:number) :void{
         return;
       }
 
-      this.userGamesApi.listUserGames().subscribe({
+      const userGamesRequest = new ListUserGamesRequest();
+      userGamesRequest.paging.page = 1;
+      userGamesRequest.paging.pageSize = 100;
+
+      this.userGamesApi.listUserGames(userGamesRequest).subscribe({
         next:res=>{
           if(res.items.some(ug=>ug.gameId===gameId)){
             this.toaster.info('You already own this game.');

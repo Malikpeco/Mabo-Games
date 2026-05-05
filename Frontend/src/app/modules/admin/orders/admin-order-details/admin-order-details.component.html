@@ -1,1 +1,50 @@
-<p>admin-order-details works!</p>
+<section class="admin-order-details-page">
+	<header class="admin-order-details-header">
+		<div>
+			<button type="button" class="back-button" (click)="goBack()">Back</button>
+			<h1>Order Details</h1>
+			<p *ngIf="order">Order #{{ order.id }}</p>
+		</div>
+	</header>
+
+	<div class="admin-order-details-state" *ngIf="isLoading">Loading order details...</div>
+	<div class="admin-order-details-state error" *ngIf="error">{{ error }}</div>
+
+	<ng-container *ngIf="order && !error">
+		<section class="order-summary-grid">
+			<article class="summary-card status-card">
+				<span class="summary-label">Status</span>
+				<strong class="status-text" [ngClass]="statusClass">{{ order.status }}</strong>
+			</article>
+			<article class="summary-card">
+				<span class="summary-label">Customer</span>
+				<strong>{{ order.user.username }}</strong>
+				<small>{{ order.user.email }}</small>
+			</article>
+			<article class="summary-card">
+				<span class="summary-label">Games</span>
+				<strong>{{ order.games.length }}</strong>
+			</article>
+			<article class="summary-card">
+				<span class="summary-label">Total Amount</span>
+				<strong>{{ formatCurrency(order.totalAmount) }}</strong>
+			</article>
+		</section>
+
+		<section class="details-section">
+			<h2>Items</h2>
+			<div class="items-list" *ngIf="order.games.length > 0; else noGames">
+				<article class="item-row" *ngFor="let game of order.games">
+					<div class="item-meta">
+						<h3>{{ game.name }}</h3>
+						<p>{{ game.publisherName }}</p>
+					</div>
+					<div class="item-price">{{ formatCurrency(game.price) }}</div>
+				</article>
+			</div>
+			<ng-template #noGames>
+				<div class="admin-order-details-state">This order has no game items.</div>
+			</ng-template>
+		</section>
+	</ng-container>
+</section>

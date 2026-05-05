@@ -10,24 +10,32 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Genres.Queries.List
 {
-    public class ListGenresQueryHandler(IAppDbContext context)
-        :IRequestHandler<ListGenresQuery, List<ListGenresQueryDto>>
+    public sealed class ListGenresQueryHandler(IAppDbContext context, IAppCurrentUser currentUser)
+        : IRequestHandler<ListGenresQuery, PageResult<ListGenresQueryDto>>
     {
-        public async Task<List<ListGenresQueryDto>> Handle(ListGenresQuery request, CancellationToken ct)
+        public async Task<PageResult<ListGenresQueryDto>> Handle(ListGenresQuery request, CancellationToken ct)
         {
-            var q = context.Genres.
-            AsNoTracking();
 
 
-            return await
-                q.
-                Select(x => new ListGenresQueryDto
+            var q = context.Genres.AsNoTracking();
+
+            var searchTerm = request.Search?.Trim().ToLower() ?? string.Empty;
+            if (!string.IsNullOrWhiteSpace(request.Search))
+            {
+                q = q.Where(g => g.Name.ToLower().Contains(searchTerm));
+            }
+
+
+            var projectedQuery = q
+                .Select(x => new ListGenresQueryDto
                 {
                     Id = x.Id,
                     Name = x.Name,
+                    GameCount = x.GameGenres.Count,
                 }
-                ).
-                ToListAsync(ct);
+                );
+
+            return await PageResult<ListGenresQueryDto>.FromQueryableAsync(projectedQuery, request.Paging, ct);
 
         }
     }

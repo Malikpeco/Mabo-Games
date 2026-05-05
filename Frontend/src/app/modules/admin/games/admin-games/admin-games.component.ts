@@ -73,11 +73,7 @@ export class AdminGamesComponent implements OnInit, OnDestroy {
             return;
           }
 
-          const nextTotalCount =
-            (res as any).totalItems ??
-            (res as any).totalCount ??
-            (res as any).total ??
-            (res.items?.length ?? 0);
+          const nextTotalCount = res.total ?? 0;
 
           const nextTotalPages = Math.max(1, Math.ceil(nextTotalCount / this.pageSize));
           if (this.page > nextTotalPages) {

@@ -16,9 +16,12 @@ namespace Market.Application.Modules.Publishers.Queries.List
 
             var q = context.Publishers.AsNoTracking();
 
-            if (!string.IsNullOrEmpty(request.Search))
+            var searchTerm = request.Search?.Trim().ToLower() ?? string.Empty;
+            if (!string.IsNullOrWhiteSpace(request.Search))
             {
-                q = q.Where(p => p.Name.ToLower().Contains(request.Search.ToLower()));
+                q = q.Where(p =>
+                    p.Name.ToLower().Contains(searchTerm) ||
+                    p.Country.Name.ToLower().Contains(searchTerm));
             }
 
             //if(request.CountryId is not null)

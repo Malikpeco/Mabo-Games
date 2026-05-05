@@ -1,0 +1,37 @@
+<div class="admin-order-row">
+  <div class="order-info">
+    <div class="order-header">
+      <h1 class="order-id">Order #{{ order.id }}</h1>
+      <span class="order-status" [ngClass]="statusBadgeClass">{{ order.status }}</span>
+    </div>
+
+    <div class="order-details">
+      <div class="detail-item">
+        <span class="detail-label">Date:</span>
+        <span class="detail-value">{{ formattedDate }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Customer:</span>
+        <span class="detail-value">{{ order.user.username }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Email:</span>
+        <span class="detail-value">{{ order.user.email }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Total:</span>
+        <span class="detail-value total">{{ formattedTotal }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Items:</span>
+        <span class="detail-value">{{ order.games.length }} game(s)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-actions">
+    <button class="btn-action btn-view" (click)="onViewDetails()">
+      View Details
+    </button>
+  </div>
+</div>

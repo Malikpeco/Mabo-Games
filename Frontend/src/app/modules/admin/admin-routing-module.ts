@@ -50,7 +50,7 @@ const routes: Routes = [
         component: AdminOrdersComponent,
       },
       {
-        path: 'orders/:id',
+        path: 'orders/:id/details',
         component: AdminOrderDetailsComponent,
       },
 

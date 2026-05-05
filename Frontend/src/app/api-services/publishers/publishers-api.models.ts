@@ -35,3 +35,10 @@ export interface CreatePublisherRequest {
   name: string;
   countryId: number;
 }
+
+export interface UpdatePublisherRequest {
+  name: string;
+  countryId: number;
+}
+
+export type GetPublisherByIdResponse = ListPublisherDto;

@@ -60,8 +60,8 @@ export class BrowseGamesComponent {
       localStorage.removeItem('payment_success_notice');
     }
 
-    this.genresApi.list().subscribe(res=>{
-      this.genres=res ?? [];
+    this.genresApi.list({ paging: { page: 1, pageSize: 1000 } }).subscribe(res=>{
+      this.genres = res.items ?? [];
     });
 
     this.reload();
@@ -85,7 +85,7 @@ export class BrowseGamesComponent {
       })
       .subscribe(res => {
         this.games = res.items ?? [];
-        this.totalCount = (res as any).totalCount ?? (res as any).total ?? this.games.length;
+        this.totalCount = res.total ?? 0;
         this.filteredGames= this.games;
       });
   }

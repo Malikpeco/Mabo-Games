@@ -19,6 +19,9 @@ namespace Market.Application.Modules.Publishers.Commands.Delete
             if (pub is null)
                 throw new MarketNotFoundException("Publisher not found");
 
+            if (await context.Games.AnyAsync(g => g.PublisherId == request.Id, ct))
+                throw new MarketBusinessRuleException("400", "Cannot delete publisher because it has games assigned.");
+
             context.Publishers.Remove(pub);
             await context.SaveChangesAsync(ct);
 

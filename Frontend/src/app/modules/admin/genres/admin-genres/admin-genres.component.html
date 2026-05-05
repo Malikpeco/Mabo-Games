@@ -1,1 +1,68 @@
-<p>admin-genres works!</p>
+<section class="admin-genres-page">
+	<header class="admin-genres-header">
+		<h1>Genres</h1>
+
+		<div class="admin-genres-tools">
+			<div class="admin-genres-sort-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">sort</mat-icon>
+				<select
+					class="admin-genres-sort"
+					[ngModel]="sort"
+					(ngModelChange)="onSortChange($event)"
+					aria-label="Sort genres">
+					<option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+				</select>
+			</div>
+
+			<div class="admin-genres-search-shell">
+				<mat-icon class="admin-tool-icon">search</mat-icon>
+				<input
+					type="search"
+					class="admin-genres-search"
+					[ngModel]="searchTerm"
+					(ngModelChange)="onSearchChange($event)"
+					placeholder="Search genres"
+					aria-label="Search genres" />
+			</div>
+
+			<div class="admin-genres-size-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">format_list_numbered</mat-icon>
+				<select
+					class="admin-genres-page-size"
+					[ngModel]="pageSize"
+					(ngModelChange)="onPageSizeChange($event)"
+					aria-label="Genres per page">
+					<option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }} / page</option>
+				</select>
+			</div>
+
+			<button type="button" class="admin-genres-add-btn" (click)="onAddGenre()">
+				<mat-icon>add</mat-icon>
+				<span>Add genre</span>
+			</button>
+		</div>
+	</header>
+
+	<div class="admin-genres-state" *ngIf="isLoading">Loading genres...</div>
+
+	<div class="admin-genres-state" *ngIf="!isLoading && filteredGenres.length === 0 && !hasSearchTerm">No genres available.</div>
+
+	<div class="admin-genres-state" *ngIf="!isLoading && filteredGenres.length === 0 && hasSearchTerm">No genres match your search.</div>
+
+	<div class="admin-genres-list" *ngIf="!isLoading && filteredGenres.length > 0">
+		<app-genre-list-item
+			*ngFor="let genre of filteredGenres"
+			[genre]="genre"
+			(editGenre)="onEditGenre($event)"
+			(deleteGenre)="onDeleteGenre($event)">
+		</app-genre-list-item>
+	</div>
+
+	<app-shared-paginator
+		*ngIf="!isLoading"
+		class="admin-genres-pager"
+		[currentPage]="page"
+		[totalPages]="totalPages"
+		(pageChange)="goToPage($event)">
+	</app-shared-paginator>
+</section>
