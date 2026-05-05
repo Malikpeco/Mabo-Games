@@ -1,1 +1,82 @@
-<p>admin-orders works!</p>
+<section class="admin-orders-page">
+	<header class="admin-orders-header">
+		<div>
+			<h1>Orders</h1>
+		</div>
+
+		<div class="admin-orders-tools">
+			<div class="admin-orders-status-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">filter_list</mat-icon>
+				<select
+					class="admin-orders-status"
+					[ngModel]="statusFilter"
+					(ngModelChange)="onStatusFilterChange($event)"
+					aria-label="Filter orders by status">
+					<option *ngFor="let option of statusOptions" [value]="option.value">{{ option.label }}</option>
+				</select>
+			</div>
+
+			<div class="admin-orders-date-range">
+				<input
+					type="date"
+					class="admin-orders-date-input"
+					[ngModel]="dateFromFilter"
+					(ngModelChange)="dateFromFilter = $event; onDateFilterChange()"
+					placeholder="From"
+					aria-label="Filter orders from date" />
+				<input
+					type="date"
+					class="admin-orders-date-input"
+					[ngModel]="dateToFilter"
+					(ngModelChange)="dateToFilter = $event; onDateFilterChange()"
+					placeholder="To"
+					aria-label="Filter orders to date" />
+			</div>
+
+			<div class="admin-orders-search-shell">
+				<mat-icon class="admin-tool-icon">search</mat-icon>
+				<input
+					type="search"
+					class="admin-orders-search"
+					[ngModel]="searchTerm"
+					(ngModelChange)="onSearchChange($event)"
+					placeholder="Search by ID or customer name"
+					aria-label="Search orders" />
+			</div>
+
+			<div class="admin-orders-size-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">format_list_numbered</mat-icon>
+				<select
+					class="admin-orders-page-size"
+					[ngModel]="pageSize"
+					(ngModelChange)="onPageSizeChange($event)"
+					aria-label="Orders per page">
+					<option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }} / page</option>
+				</select>
+			</div>
+		</div>
+	</header>
+
+	<div class="admin-orders-state" *ngIf="isLoading">Loading orders...</div>
+	<div class="admin-orders-state error" *ngIf="!isLoading && errorMessage">{{ errorMessage }}</div>
+
+	<div class="admin-orders-state" *ngIf="!isLoading && items.length === 0 && !hasSearchTerm && !errorMessage">No orders available.</div>
+
+	<div class="admin-orders-state" *ngIf="!isLoading && items.length === 0 && hasSearchTerm && !errorMessage">No orders match your search.</div>
+
+	<div class="admin-orders-list" *ngIf="!isLoading && items.length > 0">
+		<app-order-list-item
+			*ngFor="let order of items"
+			[order]="order"
+			(viewDetails)="onViewDetails($event)">
+		</app-order-list-item>
+	</div>
+
+	<app-shared-paginator
+		*ngIf="!isLoading"
+		class="admin-orders-pager"
+		[currentPage]="page"
+		[totalPages]="totalPages"
+		(pageChange)="onPageChange($event)">
+	</app-shared-paginator>
+</section>
