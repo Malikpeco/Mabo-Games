@@ -10,6 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { BeginCheckoutComponent } from './begin-checkout/begin-checkout.component';
 import { PaymentComponent } from './payment/payment.component';
 import { LibraryComponent } from './library/library.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { LibraryComponent } from './library/library.component';
     BeginCheckoutComponent,
     PaymentComponent,
     LibraryComponent,
+    ProfileComponent,
   ],
   imports: [
     SharedModule,

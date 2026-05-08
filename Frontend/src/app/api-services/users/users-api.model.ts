@@ -26,6 +26,20 @@ export interface RegisterUserResultDto {
 }
 
 /**
+ * Response for GET /{username}
+ * Corresponds to: GetUserProfileQueryDto.cs
+ */
+export interface GetUserProfileQueryDto {
+    username: string;
+    bio: string | null;
+    profileImageURL: string | null;
+    city: string | null;
+    country: string | null;
+    ownedGamesCount: number;
+    isOwnProfile: boolean;
+}
+
+/**
  * Command for POST /password-reset/email
  * Corresponds to: RequestPasswordResetByEmailCommand.cs
  */

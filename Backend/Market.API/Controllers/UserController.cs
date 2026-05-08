@@ -7,6 +7,7 @@ using Market.Application.Modules.Users.Commands.RequestPasswordResetBySecurityQu
 using Market.Application.Modules.Users.Commands.ResetPassword;
 using Market.Application.Modules.Users.Dto;
 using Market.Application.Modules.Users.Queries.CheckRecoveryOptions;
+using Market.Application.Modules.Users.Queries.GetCurrentUserProfileQuery;
 using Market.Application.Modules.Users.Queries.GetUserProfileQuery;
 using Market.Application.Modules.Users.Queries.VerifyResetCode;
 
@@ -57,6 +58,15 @@ namespace Market.API.Controllers
 
             return Ok(new { message = "Password has been reset." });
 
+        }
+
+        [HttpGet("me")]
+        public async Task<ActionResult<GetUserProfileQueryDto>> GetCurrentUserProfile(CancellationToken ct)
+        {
+            var resultDto =
+                await sender.Send(new GetCurrentUserProfileQuery(), ct);
+
+            return Ok(resultDto);
         }
 
         [HttpGet("{username}")]

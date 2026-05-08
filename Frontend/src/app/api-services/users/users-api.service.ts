@@ -5,13 +5,14 @@ import { environment } from '../../../environments/environment';
 import {
   CheckRecoveryOptionsQuery,
   CheckRecoveryOptionsResultDto,
-  RegisterUserCommand
-  , RegisterUserResultDto,
-  RequestPasswordResetByEmailCommand,
+  GetUserProfileQueryDto,
+  PasswordResetCodeDto,
   PasswordResetCommand,
-  VerifyResetCodeQuery,
+  RegisterUserCommand,
+  RegisterUserResultDto,
+  RequestPasswordResetByEmailCommand,
   RequestPasswordResetBySecurityQuestionCommand,
-  PasswordResetCodeDto
+  VerifyResetCodeQuery
 } from './users-api.model';
 
 
@@ -73,6 +74,21 @@ export class UserApiService {
     });
   }
 
+  /**
+   * GET /me
+   * Loads the current authenticated user's profile.
+   */
+  getCurrentUserProfile(): Observable<GetUserProfileQueryDto> {
+    return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/me`);
+  }
+
+  /**
+   * GET /{username}
+   * Loads the public profile view for a username.
+   */
+  getUserProfile(username: string): Observable<GetUserProfileQueryDto> {
+    return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/${encodeURIComponent(username)}`);
+  }
 
   /**
 * PUT /password-reset/email

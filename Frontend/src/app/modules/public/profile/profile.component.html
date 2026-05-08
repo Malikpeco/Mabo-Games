@@ -1,0 +1,56 @@
+<app-mabo-navbar></app-mabo-navbar>
+
+<div class="profile-page">
+  <ng-container *ngIf="isAuthenticated(); else signedOutState">
+    <section class="profile-shell">
+      <header class="profile-card hero-card">
+        <div class="avatar">{{ initials }}</div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Player profile</p>
+          <h1>{{ displayName }}</h1>
+          <p class="hero-subtitle">{{ currentUser()?.email }}</p>
+          <p class="hero-country">{{ country }}</p>
+        </div>
+      </header>
+
+      <section class="detail-card">
+        <div class="section-title">
+          <h2>Bio</h2>
+        </div>
+
+        <div class="bio-content">
+          <p>{{ bio }}</p>
+        </div>
+      </section>
+
+      <section class="detail-card" *ngIf="isLoading">
+        <div class="section-title">
+          <h2>Loading profile</h2>
+          <p>Fetching your profile details.</p>
+        </div>
+      </section>
+
+      <section class="detail-card" *ngIf="!isLoading && errorMessage">
+        <div class="section-title">
+          <h2>Profile unavailable</h2>
+          <p>{{ errorMessage }}</p>
+        </div>
+      </section>
+    </section>
+  </ng-container>
+
+  <ng-template #signedOutState>
+    <section class="profile-shell guest-state">
+      <article class="detail-card guest-card">
+        <p class="eyebrow">Player profile</p>
+        <h1>Log in to view your account</h1>
+        <p class="guest-copy">
+          Create an account to access your player profile, track your game history, and more, or if you already have an account, log in to view your profile.
+        </p>
+
+        <a mat-flat-button color="primary" routerLink="/auth/login">Log in</a>
+      </article>
+    </section>
+  </ng-template>
+</div>
