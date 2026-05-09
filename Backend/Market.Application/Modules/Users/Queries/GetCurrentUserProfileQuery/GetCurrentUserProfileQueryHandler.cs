@@ -24,6 +24,7 @@ namespace Market.Application.Modules.Users.Queries.GetCurrentUserProfileQuery
                 q.Select(x => new GetUserProfileQueryDto
                 {
                     Username = x.Username,
+                    CountryId = x.CountryId,
                     ProfileImageURL = x.ProfileImageURL,
                     Bio = x.ProfileBio,
                     City = x.City != null ? x.City.Name : null,
@@ -49,7 +50,6 @@ namespace Market.Application.Modules.Users.Queries.GetCurrentUserProfileQuery
                     .Take(5)
                     .Select(y => new UserRecentlyBoughtGameDto
                     {
-                        GameId = y.GameId,
                         CoverImageURL = y.Game.CoverImageURL,
                         Name = y.Game.Name
 

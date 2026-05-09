@@ -6,8 +6,6 @@ public sealed class ListCountriesQueryHandler(IAppDbContext context, IAppCurrent
     public async Task<PageResult<ListCountriesQueryDto>> Handle(
         ListCountriesQuery request, CancellationToken ct)
     {
-        if (!currentUser.IsAdmin)
-            throw new Exception("You must be an admin to do this!");
 
         var q = context.Countries.AsNoTracking();
 

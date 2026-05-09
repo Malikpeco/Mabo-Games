@@ -5,14 +5,15 @@ import { environment } from '../../../environments/environment';
 import {
   CheckRecoveryOptionsQuery,
   CheckRecoveryOptionsResultDto,
-  GetUserProfileQueryDto,
-  PasswordResetCodeDto,
-  PasswordResetCommand,
-  RegisterUserCommand,
-  RegisterUserResultDto,
+  RegisterUserCommand
+  , RegisterUserResultDto,
   RequestPasswordResetByEmailCommand,
+  PasswordResetCommand,
+  VerifyResetCodeQuery,
   RequestPasswordResetBySecurityQuestionCommand,
-  VerifyResetCodeQuery
+  PasswordResetCodeDto,
+  GetUserProfileQueryDto,
+  UpdateCurrentUserProfileCommand
 } from './users-api.model';
 
 
@@ -74,21 +75,6 @@ export class UserApiService {
     });
   }
 
-  /**
-   * GET /me
-   * Loads the current authenticated user's profile.
-   */
-  getCurrentUserProfile(): Observable<GetUserProfileQueryDto> {
-    return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/me`);
-  }
-
-  /**
-   * GET /{username}
-   * Loads the public profile view for a username.
-   */
-  getUserProfile(username: string): Observable<GetUserProfileQueryDto> {
-    return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/${encodeURIComponent(username)}`);
-  }
 
   /**
 * PUT /password-reset/email
@@ -96,6 +82,21 @@ export class UserApiService {
 */
   resetPassword(payload: PasswordResetCommand): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/password-reset/change`, payload);
+  }
+
+  getCurrentUserProfile(): Observable<GetUserProfileQueryDto> {
+    return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/me`);
+  }
+
+  updateCurrentUserProfile(payload: UpdateCurrentUserProfileCommand): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/me`, payload);
+  }
+
+  uploadProfileImage(imageFile: File): Observable<void> {
+    const formData = new FormData();
+    formData.append('imageFile', imageFile, imageFile.name);
+
+    return this.http.post<void>(`${this.baseUrl}/me/profile-image`, formData);
   }
 
 

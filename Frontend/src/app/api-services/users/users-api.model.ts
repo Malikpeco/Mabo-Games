@@ -26,20 +26,6 @@ export interface RegisterUserResultDto {
 }
 
 /**
- * Response for GET /{username}
- * Corresponds to: GetUserProfileQueryDto.cs
- */
-export interface GetUserProfileQueryDto {
-    username: string;
-    bio: string | null;
-    profileImageURL: string | null;
-    city: string | null;
-    country: string | null;
-    ownedGamesCount: number;
-    isOwnProfile: boolean;
-}
-
-/**
  * Command for POST /password-reset/email
  * Corresponds to: RequestPasswordResetByEmailCommand.cs
  */
@@ -73,6 +59,41 @@ export interface PasswordResetCommand{
     recoveryCode: string;
     newPassword: string;
     confirmNewPassword: string;
+}
+
+
+export interface UpdateCurrentUserProfileCommand {
+    username: string;
+    bio?: string | null;
+    countryId?: number | null;
+}
+
+
+export interface UserProfileAchievementDto {
+    name: string;
+    description?: string | null;
+    unlockedAt?: string | null;
+    imageURL?: string | null;
+}
+
+
+export interface UserRecentlyBoughtGameDto {
+    name: string;
+    coverImageURL?: string | null;
+}
+
+
+export interface GetUserProfileQueryDto {
+    username: string;
+    countryId?: number | null;
+    bio?: string | null;
+    profileImageURL?: string | null;
+    city?: string | null;
+    country?: string | null;
+    ownedGamesCount: number;
+    isOwnProfile: boolean;
+    achievements?: UserProfileAchievementDto[] | null;
+    recentlyBoughtGames?: UserRecentlyBoughtGameDto[] | null;
 }
 
 

@@ -11,8 +11,6 @@ namespace Market.Application.Modules.Countries.Queries.ListCountriesAutocomplete
     {
         public async Task<List<ListCountriesAutocompleteQueryDto>> Handle(ListCountriesAutocompleteQuery request, CancellationToken ct)
         {
-            if (!currentUser.IsAdmin)
-                throw new Exception("You must be an admin to do this.");
 
             if(string.IsNullOrWhiteSpace(request.Term))
                 return new List<ListCountriesAutocompleteQueryDto>();
