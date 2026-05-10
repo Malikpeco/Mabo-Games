@@ -8,7 +8,7 @@ public sealed class UploadProfileImageCommandHandler(
 {
     public async Task<Unit> Handle(UploadProfileImageCommand request, CancellationToken cancellationToken)
     {
-        if (!currentUser.IsAuthenticated || !currentUser.UserId.HasValue)
+        if (!currentUser.IsAuthenticated)
         {
             throw new MarketForbiddenException();
         }
@@ -22,7 +22,7 @@ public sealed class UploadProfileImageCommandHandler(
             var imageUrl = await blobStorage.UploadImageAsync(fileStream, request.File.FileName, cancellationToken);
             user.ProfileImageURL = imageUrl;
 
-            await context.SaveChangesAsync(cancellationToken);
+            await context.SaveChangesAsync(cancellationToken);  
 
             return Unit.Value;
         }

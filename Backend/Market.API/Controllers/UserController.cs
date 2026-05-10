@@ -3,9 +3,9 @@ using Market.Application.Modules.Users.Commands.ChangePassword;
 using Market.Application.Modules.Users.Commands.ChangeUsername;
 using Market.Application.Modules.Users.Commands.PasswordReset;
 using Market.Application.Modules.Users.Commands.Register;
-using Market.Application.Modules.Users.Commands.RequestPasswordResetBySecurityQuestion;
-using Market.Application.Modules.Users.Commands.UploadProfileImage;
 using Market.Application.Modules.Users.Commands.UpdateCurrentUserProfile;
+using Market.Application.Modules.Users.Commands.UploadProfileImage;
+using Market.Application.Modules.Users.Commands.RequestPasswordResetBySecurityQuestion;
 using Market.Application.Modules.Users.Commands.ResetPassword;
 using Market.Application.Modules.Users.Dto;
 using Market.Application.Modules.Users.Queries.CheckRecoveryOptions;
@@ -62,15 +62,6 @@ namespace Market.API.Controllers
 
         }
 
-        [HttpGet("me")]
-        public async Task<ActionResult<GetUserProfileQueryDto>> GetCurrentUserProfile(CancellationToken ct)
-        {
-            var resultDto =
-                await sender.Send(new GetCurrentUserProfileQuery(), ct);
-
-            return Ok(resultDto);
-        }
-
         [HttpGet("{username}")]
         [AllowAnonymous]
         public async Task<ActionResult<GetUserProfileQueryDto>> GetUserProfile(string username, CancellationToken ct)
@@ -81,7 +72,17 @@ namespace Market.API.Controllers
             return Ok(resultDto);
         }
 
+        [HttpGet("me")]
+        [Authorize]
+        public async Task<ActionResult<GetUserProfileQueryDto>> GetCurrentUserProfile(CancellationToken ct)
+        {
+            var resultDto = await sender.Send(new GetCurrentUserProfileQuery(), ct);
+
+            return Ok(resultDto);
+        }
+
         [HttpPut("me")]
+        [Authorize]
         public async Task<ActionResult<Unit>> UpdateCurrentUserProfile(UpdateCurrentUserProfileCommand command, CancellationToken ct)
         {
             await sender.Send(command, ct);
@@ -90,8 +91,8 @@ namespace Market.API.Controllers
         }
 
         [HttpPost("me/profile-image")]
-        [Consumes("multipart/form-data")]
-        public async Task<ActionResult<Unit>> UploadProfileImage(IFormFile imageFile, CancellationToken ct)
+        [Authorize]
+        public async Task<ActionResult<Unit>> UploadProfileImage([FromForm(Name = "imageFile")] IFormFile imageFile, CancellationToken ct)
         {
             await sender.Send(new UploadProfileImageCommand { File = imageFile }, ct);
 

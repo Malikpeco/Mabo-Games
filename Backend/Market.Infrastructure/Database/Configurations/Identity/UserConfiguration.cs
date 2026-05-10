@@ -10,7 +10,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
 
         builder.Property(u => u.Username)
                .IsRequired()
-               .HasMaxLength(100);
+               .HasMaxLength(10000);
 
         builder.Property(u => u.PasswordHash)
                .IsRequired();

@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'public/payment/success', component: PaymentComponent, data: { mode: 'success' }},
   
   { path: 'public/library', component: LibraryComponent},
+  { path: 'public/profile/:username', canActivate: [myAuthGuard], data: myAuthData({ requireAuth: true }), component: ProfileComponent },
   { path: 'public/profile', canActivate: [myAuthGuard], data: myAuthData({ requireAuth: true }), component: ProfileComponent },
   { path: '**', redirectTo: '' }, //if user goes to any url that doesnt exist, send them back to '/'
 ];

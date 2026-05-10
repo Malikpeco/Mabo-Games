@@ -84,6 +84,10 @@ export class UserApiService {
     return this.http.put<void>(`${this.baseUrl}/password-reset/change`, payload);
   }
 
+  getUserProfile(username: string): Observable<GetUserProfileQueryDto> {
+    return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/${encodeURIComponent(username)}`);
+  }
+
   getCurrentUserProfile(): Observable<GetUserProfileQueryDto> {
     return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/me`);
   }

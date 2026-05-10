@@ -13,29 +13,7 @@
           </div>
 
           <div class="avatar-copy" *ngIf="profile?.isOwnProfile">
-            <p class="avatar-label">Profile picture</p>
-            <p class="avatar-help">Upload a new picture for your player profile.</p>
 
-            <div class="avatar-actions">
-              <input
-                #profileImageInput
-                type="file"
-                accept="image/*"
-                hidden
-                [disabled]="isUploadingProfileImage || isLoading || isSaving"
-                (change)="onProfileImageSelected($event)" />
-
-              <button
-                mat-stroked-button
-                type="button"
-                class="avatar-action"
-                [disabled]="isUploadingProfileImage || isLoading || isSaving"
-                (click)="profileImageInput.click()">
-                {{ isUploadingProfileImage ? 'Uploading...' : 'Edit profile picture' }}
-              </button>
-            </div>
-
-            <p class="avatar-error" *ngIf="profileImageErrorMessage">{{ profileImageErrorMessage }}</p>
           </div>
         </div>
 
@@ -44,7 +22,7 @@
             <div>
               <p class="eyebrow">Player profile</p>
               <h1>{{ displayName }}</h1>
-              <p class="hero-subtitle">{{ currentUser()?.email }}</p>
+              <p class="hero-subtitle" *ngIf="profile?.isOwnProfile">{{ currentUser()?.email }}</p>
               <p class="hero-country">{{ country || '' }}</p>
             </div>
           </div>
@@ -55,6 +33,21 @@
         <div class="section-title">
           <h2>Edit profile</h2>
           <p>Update your username, bio, and country.</p>
+        </div>
+
+        <div class="image-editor" *ngIf="profile?.isOwnProfile">
+          <div class="image-editor-copy">
+            <p class="avatar-label">Profile picture</p>
+          </div>
+
+          <button
+            mat-stroked-button
+            type="button"
+            class="avatar-action avatar-action-muted"
+            [disabled]="isSaving"
+            (click)="openProfilePictureDialog()">
+            Change profile picture
+          </button>
         </div>
 
         <div class="edit-form">
@@ -91,7 +84,7 @@
         <div class="section-title bio-title-row">
           <h2>Bio</h2>
 
-          <button mat-stroked-button type="button" class="edit-button" *ngIf="!isEditing" (click)="startEdit()">
+          <button mat-stroked-button type="button" class="edit-button" *ngIf="!isEditing && profile?.isOwnProfile" (click)="startEdit()">
             Edit profile
           </button>
         </div>

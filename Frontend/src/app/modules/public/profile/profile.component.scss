@@ -2,10 +2,7 @@
   display: block;
   min-height: 100vh;
   color: #f4efe8;
-  background:
-    radial-gradient(circle at top left, rgba(196, 160, 93, 0.18), transparent 32%),
-    radial-gradient(circle at right center, rgba(86, 108, 190, 0.16), transparent 28%),
-    linear-gradient(135deg, #0d1117 0%, #15121a 45%, #10141d 100%);
+  background: #121212;
 }
 
 .profile-page {
@@ -51,7 +48,7 @@
   border-radius: 24px;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, #f2c46f, #e58b67 55%, #9f7cff);
+  background: #d3b46c;
   color: #101010;
   font-size: 2rem;
   font-weight: 800;
@@ -328,7 +325,7 @@
   width: 100%;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(12, 16, 24, 0.65);
+  background:#0f0f0f;
   color: #f4efe8;
   padding: 12px 14px;
   outline: none;

@@ -11,6 +11,7 @@ import { BeginCheckoutComponent } from './begin-checkout/begin-checkout.componen
 import { PaymentComponent } from './payment/payment.component';
 import { LibraryComponent } from './library/library.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UploadProfilePictureDialogComponent } from './profile/upload-profile-picture-dialog/upload-profile-picture-dialog.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
     PaymentComponent,
     LibraryComponent,
     ProfileComponent,
+    UploadProfilePictureDialogComponent,
   ],
   imports: [
     SharedModule,

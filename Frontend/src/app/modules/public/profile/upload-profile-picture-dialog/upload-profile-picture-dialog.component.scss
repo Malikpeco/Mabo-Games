@@ -1,0 +1,114 @@
+.upload-picture-dialog {
+  padding: 22px 24px;
+  background: #121212   ;
+  color: #fff;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.dialog-header p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dialog-form {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+}
+
+.dialog-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drop-zone {
+  width: 100%;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  min-height: 220px;
+  padding: 18px;
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.02);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.drop-zone-active {
+  border-color: #7fda9f;
+}
+
+.drop-icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255,255,255,0.85);
+}
+
+.drop-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.preview-image {
+  width: min(100%, 240px);
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.error-message {
+  margin: 10px 0 0;
+  color: #ffb1b1;
+}
+
+.dialog-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Make local btn styles match site buttons used elsewhere */
+.btn-secondary {
+  min-width: 110px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  color: #fff;
+  cursor: pointer; /* Added cursor style */
+  :hover {
+    cursor:pointer;
+  }
+}
+
+.btn-primary {
+  min-width: 110px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #2f7be2 0%, #1e62d6 100%);
+  border-color: #145ab5;
+  color: #fff;
+  cursor: pointer; /* Added cursor style */
+    :hover {
+    cursor:pointer;
+  }
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
