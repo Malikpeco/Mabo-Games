@@ -19,6 +19,7 @@ public static class DynamicDataSeeder
         await SeedGamesAsync(context);
         await SeedGameGenresAsync(context);
         await SeedIGDBToken(context);
+        await SeedAchievementsAsync(context);
     }
 
     private static async Task SeedIGDBToken(DatabaseContext context)

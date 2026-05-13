@@ -17,6 +17,8 @@ import { AdminGamesComponent } from './games/admin-games/admin-games.component';
 import { PublisherListItemComponent } from './publishers/publisher-list-item/publisher-list-item.component';
 import { GenreListItemComponent } from './genres/genre-list-item/genre-list-item.component';
 import { CreateGenreDialogComponent } from './genres/create-genre-dialog/create-genre-dialog.component';
+import { AdminAchievementsComponent } from './achievements/admin-achievements/admin-achievements.component';
+import { AchievementListItemComponent } from './achievements/achievement-list-item/achievement-list-item.component';
 
 
 
@@ -38,6 +40,8 @@ import { CreateGenreDialogComponent } from './genres/create-genre-dialog/create-
     PublisherListItemComponent,
     GenreListItemComponent,
     CreateGenreDialogComponent,
+    AdminAchievementsComponent,
+    AchievementListItemComponent,
 
   ],
   imports: [

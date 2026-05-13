@@ -1,0 +1,72 @@
+<section class="admin-achievements-page">
+	<header class="admin-achievements-header">
+		<h1>Achievements</h1>
+
+		<div class="admin-achievements-tools">
+			<div class="admin-achievements-sort-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">sort</mat-icon>
+				<select
+					class="admin-achievements-sort"
+					[ngModel]="sort"
+					(ngModelChange)="onSortChange($event)"
+					aria-label="Sort achievements">
+					<option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+				</select>
+			</div>
+
+			<div class="admin-achievements-search-shell">
+				<mat-icon class="admin-tool-icon">search</mat-icon>
+				<input
+					type="search"
+					class="admin-achievements-search"
+					[ngModel]="searchTerm"
+					(ngModelChange)="onSearchChange($event)"
+					placeholder="Search achievements"
+					aria-label="Search achievements" />
+			</div>
+
+			<div class="admin-achievements-size-shell custom-select-shell">
+				<mat-icon class="admin-tool-icon">format_list_numbered</mat-icon>
+				<select
+					class="admin-achievements-page-size"
+					[ngModel]="pageSize"
+					(ngModelChange)="onPageSizeChange($event)"
+					aria-label="Achievements per page">
+					<option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }} / page</option>
+				</select>
+			</div>
+
+			<button type="button" class="admin-achievements-add-btn" (click)="onAddAchievement()">
+				<mat-icon>add</mat-icon>
+				<span>Add achievement</span>
+			</button>
+		</div>
+	</header>
+
+	<div class="admin-achievements-state" *ngIf="isLoading">Loading achievements...</div>
+
+	<div class="admin-achievements-state" *ngIf="!isLoading && filteredAchievements.length === 0 && !hasSearchTerm">
+		No achievements available.
+	</div>
+
+	<div class="admin-achievements-state" *ngIf="!isLoading && filteredAchievements.length === 0 && hasSearchTerm">
+		No achievements match your search.
+	</div>
+
+	<div class="admin-achievements-list" *ngIf="!isLoading && filteredAchievements.length > 0">
+		<app-achievement-list-item
+			*ngFor="let achievement of filteredAchievements"
+			[achievement]="achievement"
+			(editAchievement)="onEditAchievement($event)"
+			(deleteAchievement)="onDeleteAchievement($event)">
+		</app-achievement-list-item>
+	</div>
+
+	<app-shared-paginator
+		*ngIf="!isLoading"
+		class="admin-achievements-pager"
+		[currentPage]="page"
+		[totalPages]="totalPages"
+		(pageChange)="goToPage($event)">
+	</app-shared-paginator>
+</section>

@@ -4,6 +4,7 @@ using Market.Application.Modules.Achievements.Commands.Update;
 using Market.Application.Modules.Achievements.Queries.GetById;
 using Market.Application.Modules.Achievements.Queries.List;
 using Market.Application.Modules.Achievements.Queries.ListAchievementsAutocomplete;
+using Market.Application.Modules.Achievements.Commands.UploadImage;
 using Market.Infrastructure.Database.Configurations;
 
 namespace Market.API.Controllers
@@ -59,6 +60,16 @@ namespace Market.API.Controllers
         {
             return await sender.Send(new ListAchievementsAutocompleteQuery { Term = term }, ct);
         }
+
+
+        [HttpPost("upload-image")]
+        [Authorize]
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult<string>> UploadImage([FromForm] UploadAchievementImageCommand command, CancellationToken ct)
+            {
+                var url = await sender.Send(command, ct);
+                return Ok(url);
+            }
 
     }
 }

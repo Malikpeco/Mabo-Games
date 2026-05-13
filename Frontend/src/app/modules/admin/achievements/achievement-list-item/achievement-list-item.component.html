@@ -1,0 +1,17 @@
+<article class="admin-achievement-row">
+  <img class="achievement-thumbnail" [src]="thumbnailUrl" [alt]="achievement.name" />
+
+  <div class="achievement-info">
+    <h3 class="achievement-name">{{ achievement.name }}</h3>
+    <p class="achievement-description">{{ achievement.description || 'No description provided.' }}</p>
+  </div>
+
+  <div class="achievement-actions">
+    <button class="btn-action btn-edit" (click)="onEdit()">
+      Edit
+    </button>
+    <button class="btn-action btn-delete" (click)="onDelete()">
+      Delete
+    </button>
+  </div>
+</article>

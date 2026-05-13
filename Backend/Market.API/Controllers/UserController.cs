@@ -12,6 +12,7 @@ using Market.Application.Modules.Users.Queries.CheckRecoveryOptions;
 using Market.Application.Modules.Users.Queries.GetCurrentUserProfileQuery;
 using Market.Application.Modules.Users.Queries.GetUserProfileQuery;
 using Market.Application.Modules.Users.Queries.VerifyResetCode;
+using Market.Application.Modules.Screenshots.Commands.Create;
 
 namespace Market.API.Controllers
 {
@@ -92,11 +93,14 @@ namespace Market.API.Controllers
 
         [HttpPost("me/profile-image")]
         [Authorize]
-        public async Task<ActionResult<Unit>> UploadProfileImage([FromForm(Name = "imageFile")] IFormFile imageFile, CancellationToken ct)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> UploadImage(IFormFile imageFile, CancellationToken ct)
         {
-            await sender.Send(new UploadProfileImageCommand { File = imageFile }, ct);
+            var command = new UploadProfileImageCommand() { File = imageFile };
 
-            return Ok(new { message = "Profile image has been updated." });
+            var imageUrl = await sender.Send(command, ct);
+
+            return Ok(new { url = imageUrl });
         }
 
         [HttpGet("check-recovery-options")]

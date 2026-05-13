@@ -15,10 +15,17 @@ namespace Market.Application.Modules.Achievements.Commands.Create
             if (!currentUser.IsAdmin)
                 throw new Exception("You must be an admin to do this!");
 
+            var normalizedName = request.Name.Trim();
+            var exists = await context.Achievements
+                .AnyAsync(a => a.Name.ToLower() == normalizedName.ToLower(), ct);
+
+            if (exists)
+                throw new MarketConflictException($"Achievement with name '{normalizedName}' already exists.");
+
 
             var newAchievement = new AchievementEntity
             {
-                Name = request.Name,
+                Name = normalizedName,
                 Description = request.Description,
                 ImageURL = request.ImageURL,
             };

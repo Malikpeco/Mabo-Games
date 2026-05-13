@@ -11,7 +11,8 @@ import { BeginCheckoutComponent } from './begin-checkout/begin-checkout.componen
 import { PaymentComponent } from './payment/payment.component';
 import { LibraryComponent } from './library/library.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UploadProfilePictureDialogComponent } from './profile/upload-profile-picture-dialog/upload-profile-picture-dialog.component';
+import { UploadProfilePictureDialogModule } from './profile/upload-profile-picture-dialog/upload-profile-picture-dialog.module';
+import { CommonModule, DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -24,12 +25,14 @@ import { UploadProfilePictureDialogComponent } from './profile/upload-profile-pi
     PaymentComponent,
     LibraryComponent,
     ProfileComponent,
-    UploadProfilePictureDialogComponent,
   ],
   imports: [
+    CommonModule,
     SharedModule,
+    UploadProfilePictureDialogModule,
     PublicRoutingModule,
     FormsModule,
+    DatePipe,
   ]
 })
 export class PublicModule { }

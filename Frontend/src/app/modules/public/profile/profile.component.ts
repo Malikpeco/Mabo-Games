@@ -1,16 +1,12 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { firstValueFrom } from 'rxjs';
 import { CurrentUserService } from '../../../core/services/auth/current-user.service';
 import { CountryAutocompleteDto } from '../../../api-services/countries/countries-api.models';
 import { UserApiService } from '../../../api-services/users/users-api.service';
 import { GetUserProfileQueryDto, UpdateCurrentUserProfileCommand } from '../../../api-services/users/users-api.model';
 import { ToasterService } from '../../../core/services/toaster.service';
-import {
-  UploadProfilePictureDialogComponent,
-  UploadProfilePictureDialogResult,
-} from './upload-profile-picture-dialog/upload-profile-picture-dialog.component';
+import { UploadProfilePictureDialogComponent, UploadProfilePictureDialogResult } from './upload-profile-picture-dialog/upload-profile-picture-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -23,8 +19,6 @@ export class ProfileComponent implements OnInit {
   private userApi = inject(UserApiService);
   private toaster = inject(ToasterService);
   private dialog = inject(MatDialog);
-  private route = inject(ActivatedRoute);
-  private destroyRef = inject(DestroyRef);
 
   currentUser = this.currentUserService.currentUser;
   isAuthenticated = this.currentUserService.isAuthenticated;
@@ -33,19 +27,17 @@ export class ProfileComponent implements OnInit {
   isLoading = false;
   isEditing = false;
   isSaving = false;
+  isUploadingProfileImage = false;
   errorMessage = '';
   editErrorMessage = '';
+  profileImageErrorMessage = '';
   editUsername = '';
   editBio = '';
   selectedCountryId: number | null = null;
   selectedCountryName = '';
 
   ngOnInit(): void {
-    this.route.paramMap
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((params: ParamMap) => {
-        this.loadProfile(params.get('username'));
-      });
+    this.loadProfile();
   }
 
   get initials(): string {
@@ -73,6 +65,14 @@ export class ProfileComponent implements OnInit {
     return profileName.replace(/[._-]+/g, ' ');
   }
 
+  openProfilePictureDialog(): void {
+    this.dialog.open(UploadProfilePictureDialogComponent).afterClosed().subscribe((result: UploadProfilePictureDialogResult | null) => {
+      if (result?.updated) {
+        this.loadProfile();
+      }
+    });
+  }
+
   get bio(): string {
     return this.profile?.bio?.trim() || 'No bio added yet.';
   }
@@ -86,7 +86,7 @@ export class ProfileComponent implements OnInit {
   }
 
   startEdit(): void {
-    if (!this.profile?.isOwnProfile) {
+    if (!this.profile) {
       return;
     }
 
@@ -104,28 +104,27 @@ export class ProfileComponent implements OnInit {
     this.isSaving = false;
   }
 
-  openProfilePictureDialog(): void {
-    if (!this.profile?.isOwnProfile || this.isLoading || this.isSaving) {
+  async onProfileImageSelected(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) {
       return;
     }
 
-    const dialogRef = this.dialog.open<UploadProfilePictureDialogComponent, void, UploadProfilePictureDialogResult | null>(
-      UploadProfilePictureDialogComponent,
-      {
-        width: '560px',
-        maxWidth: 'calc(100vw - 24px)',
-        disableClose: true,
-      }
-    );
+    this.profileImageErrorMessage = '';
+    this.isUploadingProfileImage = true;
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result?.updated) {
-        return;
-      }
-
+    try {
+      await firstValueFrom(this.userApi.uploadProfileImage(file));
       this.toaster.success('Profile picture updated.');
-      this.loadProfile(this.route.snapshot.paramMap.get('username'));
-    });
+      this.loadProfile();
+    } catch {
+      this.profileImageErrorMessage = 'Could not update your profile picture.';
+    } finally {
+      this.isUploadingProfileImage = false;
+      input.value = '';
+    }
   }
 
   onCountrySelected(country: CountryAutocompleteDto | null): void {
@@ -161,7 +160,7 @@ export class ProfileComponent implements OnInit {
       next: () => {
         this.isSaving = false;
         this.isEditing = false;
-        this.loadProfile(this.route.snapshot.paramMap.get('username'));
+        this.loadProfile();
       },
       error: () => {
         this.isSaving = false;
@@ -170,32 +169,21 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  private loadProfile(username: string | null): void {
+  private loadProfile(): void {
     this.isLoading = true;
     this.errorMessage = '';
-    this.isEditing = false;
 
-    const request = username
-      ? this.userApi.getUserProfile(username)
-      : this.userApi.getCurrentUserProfile();
-
-    request.subscribe({
+    this.userApi.getCurrentUserProfile().subscribe({
       next: profile => {
         this.profile = profile;
         this.isLoading = false;
 
-        if (profile.isOwnProfile) {
+        if (!this.isEditing) {
           this.editUsername = profile.username ?? '';
           this.editBio = profile.bio ?? '';
           this.selectedCountryId = profile.countryId ?? null;
           this.selectedCountryName = profile.country ?? '';
-          return;
         }
-
-        this.editUsername = '';
-        this.editBio = '';
-        this.selectedCountryId = null;
-        this.selectedCountryName = '';
       },
       error: () => {
         this.errorMessage = 'Could not load profile details.';

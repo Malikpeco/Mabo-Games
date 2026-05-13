@@ -294,7 +294,13 @@
 }
 
 .achievement-thumbnail {
-  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #141414;
 }
 
 .empty-state {

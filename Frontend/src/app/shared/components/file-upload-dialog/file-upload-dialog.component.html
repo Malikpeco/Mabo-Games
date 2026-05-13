@@ -1,0 +1,47 @@
+<section class="upload-dialog">
+  <header class="dialog-header">
+    <h2>{{ title }}</h2>
+    <p>{{ subtitle }}</p>
+  </header>
+
+  <input #fileInput type="file" accept="image/png,image/jpeg" hidden (change)="onFileInputChange($event)" />
+
+  <div class="dialog-form">
+    <label class="dialog-field">
+      <button
+        type="button"
+        class="drop-zone"
+        [class.drop-zone-active]="isDragging"
+        (click)="openFilePicker()"
+        (dragenter)="onDragEnter($event)"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)">
+        <ng-container *ngIf="previewUrl; else emptyState">
+          <img class="preview-image" [src]="previewUrl" alt="Selected image preview" />
+          <div class="drop-copy">
+            <strong>{{ selectedFile?.name }}</strong>
+            <span>Click to choose a different image, or drag and drop another image.</span>
+          </div>
+        </ng-container>
+
+        <ng-template #emptyState>
+          <div class="drop-icon">
+            <mat-icon>{{ uploadIcon }}</mat-icon>
+          </div>
+          <div class="drop-copy">
+            <strong>{{ emptyStateTitle }}</strong>
+            <span>{{ emptyStateSubtitle }}</span>
+          </div>
+        </ng-template>
+      </button>
+    </label>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+
+  <footer class="dialog-actions">
+    <button type="button" class="btn-secondary" (click)="close()" [disabled]="isUploading">Cancel</button>
+    <button type="button" class="btn-primary" [disabled]="!canUpload" (click)="upload()">{{ isUploading ? uploadingText : uploadButtonText }}</button>
+  </footer>
+</section>
