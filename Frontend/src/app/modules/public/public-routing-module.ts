@@ -8,6 +8,8 @@ import { CartComponent } from './cart/cart.component';
 import { BeginCheckoutComponent } from './begin-checkout/begin-checkout.component';
 import { PaymentComponent } from './payment/payment.component';
 import { LibraryComponent } from './library/library.component';
+import { ProfileComponent } from './profile/profile.component';
+import { myAuthData, myAuthGuard } from '../../core/guards/my-auth-guard';
 
 const routes: Routes = [
   { path: '', component: StorefrontComponent},
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'public/payment/success', component: PaymentComponent, data: { mode: 'success' }},
   
   { path: 'public/library', component: LibraryComponent},
+  { path: 'public/profile/:username', canActivate: [myAuthGuard], data: myAuthData({ requireAuth: true }), component: ProfileComponent },
+  { path: 'public/profile', canActivate: [myAuthGuard], data: myAuthData({ requireAuth: true }), component: ProfileComponent },
   { path: '**', redirectTo: '' }, //if user goes to any url that doesnt exist, send them back to '/'
 ];
 

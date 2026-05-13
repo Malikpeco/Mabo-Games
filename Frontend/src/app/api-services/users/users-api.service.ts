@@ -11,7 +11,9 @@ import {
   PasswordResetCommand,
   VerifyResetCodeQuery,
   RequestPasswordResetBySecurityQuestionCommand,
-  PasswordResetCodeDto
+  PasswordResetCodeDto,
+  GetUserProfileQueryDto,
+  UpdateCurrentUserProfileCommand
 } from './users-api.model';
 
 
@@ -80,6 +82,25 @@ export class UserApiService {
 */
   resetPassword(payload: PasswordResetCommand): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/password-reset/change`, payload);
+  }
+
+  getUserProfile(username: string): Observable<GetUserProfileQueryDto> {
+    return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/${encodeURIComponent(username)}`);
+  }
+
+  getCurrentUserProfile(): Observable<GetUserProfileQueryDto> {
+    return this.http.get<GetUserProfileQueryDto>(`${this.baseUrl}/me`);
+  }
+
+  updateCurrentUserProfile(payload: UpdateCurrentUserProfileCommand): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/me`, payload);
+  }
+
+  uploadProfileImage(imageFile: File): Observable<void> {
+    const formData = new FormData();
+    formData.append('imageFile', imageFile, imageFile.name);
+
+    return this.http.post<void>(`${this.baseUrl}/me/profile-image`, formData);
   }
 
 

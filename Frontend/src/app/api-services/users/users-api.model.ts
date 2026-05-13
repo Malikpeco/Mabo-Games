@@ -62,6 +62,41 @@ export interface PasswordResetCommand{
 }
 
 
+export interface UpdateCurrentUserProfileCommand {
+    username: string;
+    bio?: string | null;
+    countryId?: number | null;
+}
+
+
+export interface UserProfileAchievementDto {
+    name: string;
+    description?: string | null;
+    unlockedAt?: string | null;
+    imageURL?: string | null;
+}
+
+
+export interface UserRecentlyBoughtGameDto {
+    name: string;
+    coverImageURL?: string | null;
+}
+
+
+export interface GetUserProfileQueryDto {
+    username: string;
+    countryId?: number | null;
+    bio?: string | null;
+    profileImageURL?: string | null;
+    city?: string | null;
+    country?: string | null;
+    ownedGamesCount: number;
+    isOwnProfile: boolean;
+    achievements?: UserProfileAchievementDto[] | null;
+    recentlyBoughtGames?: UserRecentlyBoughtGameDto[] | null;
+}
+
+
 
 // === QUERIES (READ) ===
 

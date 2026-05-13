@@ -14,11 +14,19 @@ namespace Market.Application.Modules.Achievements.Commands.Update
             if (!currentUser.IsAdmin)
                 throw new Exception("You must be an admin to do this!");
 
+            var normalizedName = request.Name.Trim();
+
+            var duplicateExists = await context.Achievements
+                .AnyAsync(a => a.Id != request.Id && a.Name.ToLower() == normalizedName.ToLower(), ct);
+
+            if (duplicateExists)
+                throw new MarketConflictException($"Achievement with name '{normalizedName}' already exists.");
+
             var ach = await context.Achievements.FirstOrDefaultAsync(a => a.Id == request.Id, ct);
             if (ach is null)
                 throw new MarketNotFoundException("Achievement not found!");
 
-            ach.Name = request.Name;
+            ach.Name = normalizedName;
             ach.Description = request.Description;
             ach.ImageURL = request.ImageURL;
 

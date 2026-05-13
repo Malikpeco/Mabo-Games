@@ -3,7 +3,6 @@
 // MarketUserEntity.cs
 using Market.Domain.Common;
 using Market.Domain.Common.Attributes;
-
 namespace Market.Domain.Entities.Identity;
 
 public sealed class UserEntity : BaseEntity
@@ -31,8 +30,7 @@ public sealed class UserEntity : BaseEntity
     [PreserveString]
     public string? ProfileImageURL { get; set; }
 
-    [PreserveString]
-    public string? ProfileBio { get; set; }
+    [PreserveString]    public string? ProfileBio { get; set; }
     public int? CityId { get; set; }
     public CityEntity? City { get; set; }
     public int? CountryId {  get; set; }

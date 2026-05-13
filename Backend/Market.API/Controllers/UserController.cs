@@ -3,12 +3,16 @@ using Market.Application.Modules.Users.Commands.ChangePassword;
 using Market.Application.Modules.Users.Commands.ChangeUsername;
 using Market.Application.Modules.Users.Commands.PasswordReset;
 using Market.Application.Modules.Users.Commands.Register;
+using Market.Application.Modules.Users.Commands.UpdateCurrentUserProfile;
+using Market.Application.Modules.Users.Commands.UploadProfileImage;
 using Market.Application.Modules.Users.Commands.RequestPasswordResetBySecurityQuestion;
 using Market.Application.Modules.Users.Commands.ResetPassword;
 using Market.Application.Modules.Users.Dto;
 using Market.Application.Modules.Users.Queries.CheckRecoveryOptions;
+using Market.Application.Modules.Users.Queries.GetCurrentUserProfileQuery;
 using Market.Application.Modules.Users.Queries.GetUserProfileQuery;
 using Market.Application.Modules.Users.Queries.VerifyResetCode;
+using Market.Application.Modules.Screenshots.Commands.Create;
 
 namespace Market.API.Controllers
 {
@@ -67,6 +71,36 @@ namespace Market.API.Controllers
                 await sender.Send(new GetUserProfileQuery(username), ct);
 
             return Ok(resultDto);
+        }
+
+        [HttpGet("me")]
+        [Authorize]
+        public async Task<ActionResult<GetUserProfileQueryDto>> GetCurrentUserProfile(CancellationToken ct)
+        {
+            var resultDto = await sender.Send(new GetCurrentUserProfileQuery(), ct);
+
+            return Ok(resultDto);
+        }
+
+        [HttpPut("me")]
+        [Authorize]
+        public async Task<ActionResult<Unit>> UpdateCurrentUserProfile(UpdateCurrentUserProfileCommand command, CancellationToken ct)
+        {
+            await sender.Send(command, ct);
+
+            return Ok(new { message = "Profile has been updated." });
+        }
+
+        [HttpPost("me/profile-image")]
+        [Authorize]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> UploadImage(IFormFile imageFile, CancellationToken ct)
+        {
+            var command = new UploadProfileImageCommand() { File = imageFile };
+
+            var imageUrl = await sender.Send(command, ct);
+
+            return Ok(new { url = imageUrl });
         }
 
         [HttpGet("check-recovery-options")]

@@ -12,6 +12,8 @@ namespace Market.Application.Modules.Users.Dto
 
         public string Username { get; set; }
 
+        public int? CountryId { get; set; }
+
         public string? Bio { get; set; }
 
         public string? ProfileImageURL{ get; set; }

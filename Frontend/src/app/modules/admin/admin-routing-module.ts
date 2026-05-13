@@ -8,6 +8,7 @@ import { AdminGenresComponent } from './genres/admin-genres/admin-genres.compone
 import { AdminOrderDetailsComponent } from './orders/admin-order-details/admin-order-details.component';
 import { AdminOrdersComponent } from './orders/admin-orders/admin-orders.component';
 import { AdminGamesComponent } from './games/admin-games/admin-games.component';
+import { AdminAchievementsComponent } from './achievements/admin-achievements/admin-achievements.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,13 @@ const routes: Routes = [
         component: AdminGenresComponent,
       },
 
+      // Achievements panel
+      {
+        path: 'achievements',
+        component: AdminAchievementsComponent,
+      },
+
+
       // Ordrers panel
       {
         path: 'orders',
@@ -53,6 +61,7 @@ const routes: Routes = [
         path: 'orders/:id/details',
         component: AdminOrderDetailsComponent,
       },
+      
 
       // Default route back to games
       {

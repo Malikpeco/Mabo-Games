@@ -1,0 +1,108 @@
+.create-achievement-dialog {
+  color: #f3f5fb;
+  padding: 22px 24px;
+  box-sizing: border-box;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.dialog-header p {
+  margin: 6px 0 0;
+  color: #aeb6c4;
+}
+
+.dialog-form {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+}
+
+.dialog-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  > input,
+  > textarea {
+    border-radius: 10px;
+    border: 1px solid #2a2a2a;
+    background: #0f0f0f;
+    color: #f3f5fb;
+    padding: 0 12px;
+    outline: none;
+  }
+
+  > input {
+    height: 42px;
+  }
+
+  > textarea {
+    resize: vertical;
+    padding: 12px;
+    min-height: 110px;
+  }
+}
+
+.dialog-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.image-upload-field {
+  display: grid;
+  gap: 8px;
+}
+
+.image-preview {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+}
+
+.helper {
+  color: #aeb6c4;
+  font-size: 0.85rem;
+}
+
+.upload-error {
+  margin: 0;
+  color: #f08c8c;
+  font-size: 0.85rem;
+}
+
+.btn-secondary,
+.btn-primary {
+  min-width: 110px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #0f0f0f;
+  color: #f3f5fb;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #84ad69 0%, #6e9357 100%);
+  border-color: #668654;
+  color: #f3ffe9;
+}
+
+.btn-primary:disabled {
+  cursor: default;
+  opacity: 0.55;
+}

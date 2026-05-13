@@ -1,0 +1,168 @@
+<app-mabo-navbar></app-mabo-navbar>
+
+<div class="profile-page">
+  <ng-container *ngIf="isAuthenticated(); else signedOutState">
+    
+
+    <section class="profile-shell">
+      <header class="profile-card hero-card">
+        <div class="avatar-shell">
+          <div class="avatar avatar-hero" [class.avatar-has-image]="!!profile?.profileImageURL">
+            <img *ngIf="profile?.profileImageURL; else heroInitials" [src]="profile?.profileImageURL" [alt]="displayName + ' profile image'" />
+            <ng-template #heroInitials>{{ initials }}</ng-template>
+          </div>
+
+          <div class="avatar-copy" *ngIf="profile?.isOwnProfile">
+
+          </div>
+        </div>
+
+        <div class="hero-copy">
+          <div class="hero-title-row">
+            <div>
+              <p class="eyebrow">Player profile</p>
+              <h1>{{ displayName }}</h1>
+              <p class="hero-subtitle" *ngIf="profile?.isOwnProfile">{{ currentUser()?.email }}</p>
+              <p class="hero-country">{{ country || '' }}</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="detail-card edit-card" *ngIf="isEditing">
+        <div class="section-title">
+          <h2>Edit profile</h2>
+          <p>Update your username, bio, and country.</p>
+        </div>
+
+        <div class="image-editor" *ngIf="profile?.isOwnProfile">
+          <div class="image-editor-copy">
+            <p class="avatar-label">Profile picture</p>
+          </div>
+
+          <button
+            mat-stroked-button
+            type="button"
+            class="avatar-action avatar-action-muted"
+            [disabled]="isSaving"
+            (click)="openProfilePictureDialog()">
+            Change profile picture
+          </button>
+        </div>
+
+        <div class="edit-form">
+          <label class="field">
+            <span>Username</span>
+            <input type="text" [(ngModel)]="editUsername" maxlength="50" autocomplete="off" />
+          </label>
+
+          <label class="field">
+            <span>Country</span>
+            <app-country-dropdown
+              [initialCountryName]="selectedCountryName"
+              (countrySelected)="onCountrySelected($event)">
+            </app-country-dropdown>
+          </label>
+
+          <label class="field field-full">
+            <span>Bio</span>
+            <textarea [(ngModel)]="editBio" rows="5" maxlength="500"></textarea>
+          </label>
+        </div>
+
+        <p class="edit-error" *ngIf="editErrorMessage">{{ editErrorMessage }}</p>
+
+        <div class="edit-actions">
+          <button mat-button type="button" (click)="cancelEdit()" [disabled]="isSaving">Cancel</button>
+          <button mat-flat-button color="primary" type="button" (click)="saveProfile()" [disabled]="!canSave">
+            {{ isSaving ? 'Saving...' : 'Save changes' }}
+          </button>
+        </div>
+      </section>
+
+      <section class="detail-card">
+        <div class="section-title bio-title-row">
+          <h2>Bio</h2>
+
+          <button mat-stroked-button type="button" class="edit-button" *ngIf="!isEditing && profile?.isOwnProfile" (click)="startEdit()">
+            Edit profile
+          </button>
+        </div>
+
+        <div class="bio-content">
+          <p>{{ bio }}</p>
+        </div>
+      </section>
+
+      <section class="detail-card" *ngIf="!isEditing">
+        <div class="section-title">
+          <h2>Achievements</h2>
+        </div>
+
+        <div class="profile-list empty-state" *ngIf="(profile?.achievements?.length ?? 0) === 0">
+          <p>No achievements unlocked yet.</p>
+        </div>
+
+        <div class="profile-list achievements-list" *ngIf="(profile?.achievements?.length ?? 0) > 0">
+          <article class="profile-list-item achievement-item" *ngFor="let achievement of profile?.achievements">
+            <img class="item-thumbnail achievement-thumbnail" [src]="achievement.imageURL" [alt]="achievement.name" />
+
+            <div class="item-copy">
+              <h3>{{ achievement.name }}</h3>
+              <p>{{ achievement.description || 'Achievement unlocked.' }}</p>
+              <span>{{ achievement.unlockedAt | date: 'mediumDate' }}</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="detail-card" *ngIf="!isEditing">
+        <div class="section-title">
+          <h2>Recently bought games</h2>
+        </div>
+
+        <div class="profile-list empty-state" *ngIf="(profile?.recentlyBoughtGames?.length ?? 0) === 0">
+          <p>No recent purchases yet.</p>
+        </div>
+
+        <div class="profile-list games-list" *ngIf="(profile?.recentlyBoughtGames?.length ?? 0) > 0">
+          <article class="profile-list-item game-item" *ngFor="let game of profile?.recentlyBoughtGames">
+            <img class="item-thumbnail game-thumbnail" [src]="game.coverImageURL" [alt]="game.name" />
+
+            <div class="item-copy">
+              <h3>{{ game.name }}</h3>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="detail-card" *ngIf="isLoading">
+        <div class="section-title">
+          <h2>Loading profile</h2>
+          <p>Fetching your profile details.</p>
+        </div>
+      </section>
+
+      <section class="detail-card" *ngIf="!isLoading && errorMessage">
+        <div class="section-title">
+          <h2>Profile unavailable</h2>
+          <p>{{ errorMessage }}</p>
+        </div>
+      </section>
+    </section>
+  </ng-container>
+
+  <ng-template #signedOutState>
+    <section class="profile-shell guest-state">
+      <article class="detail-card guest-card">
+        <p class="eyebrow">Player profile</p>
+        <h1>Log in to view your account</h1>
+        <p class="guest-copy">
+          Create an account to access your player profile, track your game history, and more, or if you already have an account, log in to view your profile.
+        </p>
+
+        <a mat-flat-button color="primary" routerLink="/auth/login">Log in</a>
+      </article>
+    </section>
+  </ng-template>
+</div>

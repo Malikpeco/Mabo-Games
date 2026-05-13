@@ -19,6 +19,7 @@ public static class DynamicDataSeeder
         await SeedGamesAsync(context);
         await SeedGameGenresAsync(context);
         await SeedIGDBToken(context);
+        await SeedAchievementsAsync(context);
     }
 
     private static async Task SeedIGDBToken(DatabaseContext context)
@@ -99,6 +100,107 @@ public static class DynamicDataSeeder
 
         Console.WriteLine("Dynamic seed: Security Questions added.");
     }
+
+    private static async Task SeedAchievementsAsync(DatabaseContext context)
+    {
+        if (await context.Achievements.AnyAsync())
+            return;
+
+        var ach1 = new AchievementEntity
+        {
+           Name="First Blood",
+           Description="Purchase your first game",
+           ImageURL=""
+          
+        };
+
+        var ach2 = new AchievementEntity
+        {
+            Name = "Collector",
+            Description = "Own 10 games",
+            ImageURL = ""
+
+        };
+
+        var ach3 = new AchievementEntity
+        {
+            Name = "Hoarder ",
+            Description = "Own 100 games",
+            ImageURL = ""
+
+        };
+
+        var ach4 = new AchievementEntity
+        {
+            Name = "",
+            Description = "",
+            ImageURL = ""
+
+        };
+
+        var ach5 = new AchievementEntity
+        {
+            Name = "I know my taste",
+            Description = "Write a review for a game",
+            ImageURL = ""
+
+        };
+
+
+        var ach6 = new AchievementEntity
+        {
+            Name = "Day one",
+            Description = "Purchase a game within 24h of it coming out",
+            ImageURL = ""
+
+        };
+
+
+        var ach7 = new AchievementEntity
+        {
+            Name = "Wishes do come true",
+            Description = "Purchase a game from your wishlist",
+            ImageURL = ""
+
+        };
+
+
+        var ach8 = new AchievementEntity
+        {
+            Name = "Genre explorer",
+            Description = "Buy games form 5 different genres",
+            ImageURL = ""
+
+        };
+
+        var ach9 = new AchievementEntity
+        {
+            Name = "Fanboy",
+            Description = "Own 3 games from the same publisher",
+            ImageURL = ""
+
+        };
+
+        var ach10 = new AchievementEntity
+        {
+            Name = "Night Owl",
+            Description = "Purchase a game after midnight",
+            ImageURL = ""
+
+        };
+
+
+
+
+
+
+        context.Achievements.AddRange(ach1,ach2,ach3, ach4, ach5, ach6, ach7, ach8, ach9, ach10);
+        await context.SaveChangesAsync();
+
+        Console.WriteLine("Dynamic seed: Security Questions added.");
+    }
+
+
 
 
     private static async Task SeedUsersAsync(DatabaseContext context)
@@ -739,6 +841,11 @@ public static class DynamicDataSeeder
             await context.SaveChangesAsync();
             Console.WriteLine("Dynamic seed: Screenshots added.");
         }
+
+
+
+
+
     }
 
 

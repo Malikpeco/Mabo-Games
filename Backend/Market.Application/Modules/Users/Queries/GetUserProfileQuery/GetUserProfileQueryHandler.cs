@@ -22,6 +22,7 @@ namespace Market.Application.Modules.Users.Queries.GetUserProfileQuery
                 q.Select(x => new GetUserProfileQueryDto
                 {
                     Username = x.Username,
+                    CountryId = x.CountryId,
                     ProfileImageURL = x.ProfileImageURL,
                     Bio = x.ProfileBio,
                     City = x.City != null ? x.City.Name : null,

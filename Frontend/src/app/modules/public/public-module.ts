@@ -10,6 +10,9 @@ import { CartComponent } from './cart/cart.component';
 import { BeginCheckoutComponent } from './begin-checkout/begin-checkout.component';
 import { PaymentComponent } from './payment/payment.component';
 import { LibraryComponent } from './library/library.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UploadProfilePictureDialogModule } from './profile/upload-profile-picture-dialog/upload-profile-picture-dialog.module';
+import { CommonModule, DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -21,11 +24,15 @@ import { LibraryComponent } from './library/library.component';
     BeginCheckoutComponent,
     PaymentComponent,
     LibraryComponent,
+    ProfileComponent,
   ],
   imports: [
+    CommonModule,
     SharedModule,
+    UploadProfilePictureDialogModule,
     PublicRoutingModule,
     FormsModule,
+    DatePipe,
   ]
 })
 export class PublicModule { }

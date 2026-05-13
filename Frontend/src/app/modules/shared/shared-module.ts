@@ -14,6 +14,7 @@ import { MaboFooterComponent } from './components/mabo-footer/mabo-footer.compon
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { SharedPaginatorComponent } from './components/shared-paginator/shared-paginator.component';
+import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dropdown/country-dropdown.component';
 
 
 
@@ -27,7 +28,8 @@ import { SharedPaginatorComponent } from './components/shared-paginator/shared-p
     MaboFooterComponent,
     GameCardComponent,
     GameListComponent,
-    SharedPaginatorComponent
+    SharedPaginatorComponent,
+    CountryDropdownComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,8 @@ import { SharedPaginatorComponent } from './components/shared-paginator/shared-p
     MaboFooterComponent,
     GameCardComponent,
     GameListComponent,
-    SharedPaginatorComponent
+    SharedPaginatorComponent,
+    CountryDropdownComponent
   ]
 })
 export class SharedModule { }
