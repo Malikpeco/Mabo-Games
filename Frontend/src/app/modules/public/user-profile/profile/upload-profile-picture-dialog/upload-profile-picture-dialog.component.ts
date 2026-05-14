@@ -1,8 +1,8 @@
 import { Component, Inject, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
-import { UserApiService } from '../../../../api-services/users/users-api.service';
-import { ToasterService } from '../../../../core/services/toaster.service';
+import { UserApiService } from '../../../../../api-services/users/users-api.service';
+import { ToasterService } from '../../../../../core/services/toaster.service';
 
 export interface UploadProfilePictureDialogResult {
   updated: boolean;

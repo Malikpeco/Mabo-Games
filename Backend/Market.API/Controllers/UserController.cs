@@ -1,5 +1,7 @@
 ﻿using Market.Application.Modules.Users.Commands.ChangeBio;
+using Market.Application.Modules.Users.Commands.DeleteUser;
 using Market.Application.Modules.Users.Commands.ChangePassword;
+using Market.Application.Modules.Users.Commands.ChangePhoneNumber;
 using Market.Application.Modules.Users.Commands.ChangeUsername;
 using Market.Application.Modules.Users.Commands.PasswordReset;
 using Market.Application.Modules.Users.Commands.Register;
@@ -141,6 +143,23 @@ namespace Market.API.Controllers
 
             return Ok(new { message = "Password has been changed." });
 
+        }
+
+        [HttpPut("phone-number-change")]
+        public async Task<ActionResult<Unit>> ChangePhoneNumber(ChangePhoneNumberCommand command, CancellationToken ct)
+        {
+            await sender.Send(command, ct);
+
+            return Ok(new { message = "Phone number has been changed." });
+        }
+
+        [HttpPost("delete-account")]
+        [Authorize]
+        public async Task<ActionResult<Unit>> DeleteAccount(DeleteUserCommand command, CancellationToken ct)
+        {
+            await sender.Send(command, ct);
+
+            return Ok(new { message = "Account has been deleted." });
         }
 
         [HttpPut("profilebio-change")]
