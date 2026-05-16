@@ -13,7 +13,10 @@ import {
   RequestPasswordResetBySecurityQuestionCommand,
   PasswordResetCodeDto,
   GetUserProfileQueryDto,
-  UpdateCurrentUserProfileCommand
+  UpdateCurrentUserProfileCommand,
+  ChangePasswordCommand,
+  ChangePhoneNumberCommand,
+  DeleteUserCommand
 } from './users-api.model';
 
 
@@ -94,6 +97,18 @@ export class UserApiService {
 
   updateCurrentUserProfile(payload: UpdateCurrentUserProfileCommand): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/me`, payload);
+  }
+
+  changePassword(payload: ChangePasswordCommand): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/password-change`, payload);
+  }
+
+  changePhoneNumber(payload: ChangePhoneNumberCommand): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/phone-number-change`, payload);
+  }
+
+  deleteAccount(payload: DeleteUserCommand): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/delete-account`, payload);
   }
 
   uploadProfileImage(imageFile: File): Observable<void> {

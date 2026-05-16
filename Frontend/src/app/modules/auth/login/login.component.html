@@ -35,6 +35,10 @@
       formControlName="email"
     />
   </div>
+  <div class="error-message" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+    <small *ngIf="form.get('email')?.errors?.['required']">Email is required</small>
+    <small *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email address</small>
+  </div>
 
   <label for="password">Password</label>
   <div class="form-input">
@@ -44,6 +48,13 @@
       placeholder="Enter your password"
       formControlName="password"
     />
+  </div>
+  <div class="error-message" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+    <small *ngIf="form.get('password')?.errors?.['required']">Password is required</small>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <small>{{ errorMessage }}</small>
   </div>
 
   <div class="remember-forgot">

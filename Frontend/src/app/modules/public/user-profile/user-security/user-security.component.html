@@ -1,0 +1,233 @@
+﻿<app-mabo-navbar></app-mabo-navbar>
+
+<div class="security-page">
+  <section class="security-shell">
+    <header class="security-header">
+      <h1>Account Security</h1>
+      <p>Manage your password, security questions, and account settings.</p>
+    </header>
+
+    <!-- Change Password Section -->
+    <section class="detail-card" [class.collapsed]="!expandedSections.password">
+      <div class="section-title collapsible-header" (click)="toggleSection('password')">
+        <div class="header-info">
+          <h2>Change Password</h2>
+          <p>Update your account password to keep it secure.</p>
+        </div>
+        <mat-icon class="expand-icon">{{ expandedSections.password ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </div>
+
+      <div class="collapsible-content" *ngIf="expandedSections.password">
+        <form [formGroup]="passwordForm" class="security-form">
+          <label class="field">
+            <span>Current Password</span>
+            <input 
+              type="password" 
+              formControlName="currentPassword" 
+              placeholder="Enter your current password"
+              autocomplete="current-password" />
+          </label>
+
+          <label class="field">
+            <span>New Password</span>
+            <input 
+              type="password" 
+              formControlName="newPassword" 
+              placeholder="Enter a new password (minimum 6 characters)"
+              autocomplete="new-password" />
+          </label>
+
+          <div class="password-meter">
+            <app-password-strenght-meter [password]="newPasswordValue"></app-password-strenght-meter>
+          </div>
+
+          <label class="field">
+            <span>Confirm New Password</span>
+            <input 
+              type="password" 
+              formControlName="confirmNewPassword" 
+              placeholder="Confirm your new password"
+              autocomplete="new-password" />
+          </label>
+
+          <p class="form-error" *ngIf="passwordForm.hasError('passwordMismatch') && passwordForm.touched">
+            Passwords do not match.
+          </p>
+
+          <button 
+            mat-flat-button 
+            color="primary" 
+            type="button"
+            (click)="$event.stopPropagation(); changePassword()"
+            [disabled]="!passwordForm.valid || isChangingPassword">
+            {{ isChangingPassword ? 'Updating...' : 'Update Password' }}
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Phone Number Section -->
+    <section class="detail-card" [class.collapsed]="!expandedSections.phone">
+      <div class="section-title collapsible-header" (click)="toggleSection('phone')">
+        <div class="header-info">
+          <h2>Phone Number</h2>
+          <p>Manage your registered phone number for verification.</p>
+        </div>
+        <mat-icon class="expand-icon">{{ expandedSections.phone ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </div>
+
+      <div class="collapsible-content" *ngIf="expandedSections.phone">
+        <form [formGroup]="phoneNumberForm" class="security-form">
+          <label class="field">
+            <span>Phone Number</span>
+            <input 
+              type="tel" 
+              formControlName="phoneNumber" 
+              placeholder="e.g., +38761234567"
+              autocomplete="tel" />
+            <p class="field-hint">Format: +country code + number (minimum 10 digits)</p>
+          </label>
+
+          <button 
+            mat-flat-button 
+            color="primary" 
+            type="button"
+            (click)="$event.stopPropagation(); updatePhoneNumber()"
+            [disabled]="!phoneNumberForm.valid || isUpdatingPhoneNumber">
+            {{ isUpdatingPhoneNumber ? 'Updating...' : 'Update Phone Number' }}
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Security Questions Section -->
+    <section class="detail-card" [class.collapsed]="!expandedSections.security">
+      <div class="section-title collapsible-header" (click)="toggleSection('security')">
+        <div class="header-info">
+          <h2>Security Questions</h2>
+          <p>Add security questions to help recover your account if needed.</p>
+        </div>
+        <mat-icon class="expand-icon">{{ expandedSections.security ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </div>
+
+      <div class="collapsible-content" *ngIf="expandedSections.security">
+        <!-- Your Current Security Questions -->
+        <div class="subsection" *ngIf="userSecurityQuestions.length > 0">
+          <h3>Your Security Questions</h3>
+          <div class="question-list">
+            <article class="question-item" *ngFor="let question of userSecurityQuestions">
+              <div class="question-content">
+                <h4>{{ question.question }}</h4>
+              </div>
+              <button 
+                mat-icon-button 
+                type="button"
+                (click)="$event.stopPropagation(); removeSecurityQuestion(question.id)"
+                class="delete-button"
+                [title]="'Remove this security question'">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </article>
+          </div>
+        </div>
+
+        <!-- Add Security Question Form -->
+        <div class="subsection">
+          <h3>Add a Security Question</h3>
+          <form [formGroup]="securityQuestionForm" class="security-form">
+            <label class="field">
+              <span>Security Question</span>
+              <select formControlName="securityQuestionId">
+                <option value="">-- Select a question --</option>
+                <option 
+                  *ngFor="let question of getSecurityQuestionsNotAdded"
+                  [value]="question.id">
+                  {{ question.question }}
+                </option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Your Answer</span>
+              <input 
+                type="text" 
+                formControlName="securityQuestionAnswer" 
+                placeholder="Provide your answer"
+                autocomplete="off" />
+            </label>
+
+            <button 
+              mat-flat-button 
+              color="primary" 
+              type="button"
+              (click)="$event.stopPropagation(); addSecurityQuestion()"
+              [disabled]="!securityQuestionForm.valid || isAddingSecurityQuestion || getSecurityQuestionsNotAdded.length === 0">
+              {{ isAddingSecurityQuestion ? 'Adding...' : 'Add Security Question' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Delete Account Section -->
+    <section class="detail-card danger-zone" [class.collapsed]="!expandedSections.danger">
+      <div class="section-title collapsible-header" (click)="toggleSection('danger')">
+        <div class="header-info">
+          <h2>Danger Zone</h2>
+          <p>Irreversible actions that will affect your account.</p>
+        </div>
+        <mat-icon class="expand-icon">{{ expandedSections.danger ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </div>
+
+      <div class="collapsible-content" *ngIf="expandedSections.danger">
+        <div class="danger-action" *ngIf="!showDeleteConfirm">
+          <p>Permanently delete your account and all associated data.</p>
+          <button 
+            mat-stroked-button 
+            type="button"
+            (click)="$event.stopPropagation(); deleteAccount()"
+            class="delete-account-button">
+            Delete Account
+          </button>
+        </div>
+
+        <div class="danger-confirm" *ngIf="showDeleteConfirm">
+          <p class="confirm-warning">
+            ⚠️ This action cannot be undone. All your data will be permanently deleted, including:
+          </p>
+          <ul>
+            <li>Your profile and personal information</li>
+            <li>Game library and purchase history</li>
+            <li>Achievements and reviews</li>
+            <li>Security questions and account settings</li>
+          </ul>
+          <p class="confirm-prompt">Type "<strong>DELETE MY ACCOUNT</strong>" to confirm:</p>
+          
+          <input 
+            type="text" 
+            placeholder="Type to confirm"
+            class="confirm-input"
+            #deleteConfirmInput 
+            (click)="$event.stopPropagation()" />
+
+          <div class="confirm-actions">
+            <button 
+              mat-button 
+              type="button"
+              (click)="$event.stopPropagation(); cancelDeleteAccount()">
+              Cancel
+            </button>
+            <button 
+              mat-flat-button 
+              color="warn" 
+              type="button"
+              (click)="$event.stopPropagation(); confirmDeleteAccount(deleteConfirmInput.value)"
+              [disabled]="isDeletingAccount || deleteConfirmInput.value !== 'DELETE MY ACCOUNT'">
+              {{ isDeletingAccount ? 'Deleting...' : 'Yes, Delete My Account' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>

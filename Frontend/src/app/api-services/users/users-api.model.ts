@@ -61,11 +61,29 @@ export interface PasswordResetCommand{
     confirmNewPassword: string;
 }
 
+/**
+ * Command for PUT /password-change
+ * Corresponds to: ChangePasswordCommand.cs
+ */
+export interface ChangePasswordCommand {
+    oldPassword: string;
+    newPassword: string;
+    confirmNewPassword: string;
+}
+
+export interface ChangePhoneNumberCommand {
+    phoneNumber: string;
+}
+
+export interface DeleteUserCommand {
+    confirmationText: string;
+}
 
 export interface UpdateCurrentUserProfileCommand {
     username: string;
     bio?: string | null;
     countryId?: number | null;
+    phoneNumber?: string | null;
 }
 
 
@@ -90,6 +108,8 @@ export interface GetUserProfileQueryDto {
     profileImageURL?: string | null;
     city?: string | null;
     country?: string | null;
+    email?: string | null;
+    phoneNumber?: string | null;
     ownedGamesCount: number;
     isOwnProfile: boolean;
     achievements?: UserProfileAchievementDto[] | null;

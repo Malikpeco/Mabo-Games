@@ -23,10 +23,13 @@ export class LoginComponent extends BaseComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
     rememberMe: [false],
-  });
+  }, { updateOn: 'blur' });
 
   onSubmit(): void {
-    if (this.form.invalid || this.isLoading) return;
+    if (this.form.invalid || this.isLoading) {
+      this.form.markAllAsTouched();
+      return;
+    }
 
     this.startLoading();
 
@@ -43,10 +46,29 @@ export class LoginComponent extends BaseComponent {
         this.router.navigate([target]);
       },
       error: (err) => {
-        this.stopLoading('Invalid credentials. Please try again.');
+        this.stopLoading(this.resolveLoginErrorMessage(err));
         console.error('Login error:', err);
       },
     });
+  }
+
+  private resolveLoginErrorMessage(error: unknown): string {
+    const httpError = error as {
+      status?: number;
+      error?: { message?: string } | string;
+    };
+
+    if (httpError?.status === 401 || httpError?.status === 403) {
+      return 'Incorrect email or password.';
+    }
+
+    if (typeof httpError?.error === 'object' && httpError.error?.message) {
+      return httpError.error.message.includes('Pogrešni kredencijali')
+        ? 'Incorrect email or password.'
+        : httpError.error.message;
+    }
+
+    return 'Unable to sign in right now. Please try again.';
   }
 }
 

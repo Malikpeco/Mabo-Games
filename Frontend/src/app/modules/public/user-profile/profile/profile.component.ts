@@ -1,11 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
-import { CurrentUserService } from '../../../core/services/auth/current-user.service';
-import { CountryAutocompleteDto } from '../../../api-services/countries/countries-api.models';
-import { UserApiService } from '../../../api-services/users/users-api.service';
-import { GetUserProfileQueryDto, UpdateCurrentUserProfileCommand } from '../../../api-services/users/users-api.model';
-import { ToasterService } from '../../../core/services/toaster.service';
+import { CurrentUserService } from '../../../../core/services/auth/current-user.service';
+import { CountryAutocompleteDto } from '../../../../api-services/countries/countries-api.models';
+import { UserApiService } from '../../../../api-services/users/users-api.service';
+import { GetUserProfileQueryDto, UpdateCurrentUserProfileCommand } from '../../../../api-services/users/users-api.model';
+import { ToasterService } from '../../../../core/services/toaster.service';
 import { UploadProfilePictureDialogComponent, UploadProfilePictureDialogResult } from './upload-profile-picture-dialog/upload-profile-picture-dialog.component';
 
 @Component({
