@@ -84,9 +84,14 @@
         <div class="section-title bio-title-row">
           <h2>Bio</h2>
 
-          <button mat-stroked-button type="button" class="edit-button" *ngIf="!isEditing && profile?.isOwnProfile" (click)="startEdit()">
-            Edit profile
-          </button>
+          <div class="action-buttons" *ngIf="!isEditing && profile?.isOwnProfile">
+            <button mat-stroked-button type="button" class="edit-button" (click)="startEdit()">
+              Edit profile
+            </button>
+            <button mat-stroked-button type="button" class="edit-button" routerLink="/public/profile/security">
+              Security
+            </button>
+          </div>
         </div>
 
         <div class="bio-content">

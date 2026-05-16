@@ -209,6 +209,13 @@
   background: rgba(255, 255, 255, 0.14);
 }
 
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .edit-card {
   grid-column: 2;
 }
@@ -474,6 +481,19 @@
   .profile-list-item {
     align-items: flex-start;
   }
+
+  .bio-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .action-buttons {
+    width: 100%;
+  }
+
+  .action-buttons .edit-button {
+    width: 100%;
+  }
 }
 
 @media (max-width: 640px) {
@@ -509,5 +529,14 @@
   .avatar-action {
     flex: 1 1 100%;
     justify-content: center;
+  }
+
+  .action-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .action-buttons .edit-button {
+    width: 100%;
   }
 }

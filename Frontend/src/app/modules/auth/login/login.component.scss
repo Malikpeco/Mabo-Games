@@ -3,13 +3,13 @@ $primary-white: #F9F8F6;
 $text-dark: #1a1a1a;
 $text-light: #F9F8F6;
 $text-lighter: #6b7280;
-
+$error-light: #FFEAEA;
+$error-dark: #D93025;
 
 * {
     box-sizing: border-box;
     font-family: 'Newsreader', serif;
 }
-
 
 :host {
   display: flex;
@@ -74,7 +74,6 @@ $text-lighter: #6b7280;
     opacity: 0.9;
 }
 
-
 .login-form {
     flex: 1 1 48%;
     display: flex;
@@ -99,10 +98,7 @@ $text-lighter: #6b7280;
         height: 100px;
         background-color: $primary-black;
     }
-
 }
-
-
 
 .form-header {
     text-align: center;
@@ -110,11 +106,10 @@ $text-lighter: #6b7280;
 }
 
 #welcome-message {
-     color:$text-dark;
+     color: $text-dark;
     font-size: 45px;
     margin: 0 0 8px;
     font-weight: 700;
-
 }
 
 #login-instructions {
@@ -145,9 +140,20 @@ $text-lighter: #6b7280;
     }
 }
 
+.error-message {
+    background-color: $error-light;
+    padding: 8px 10px;
+    border-radius: 4px;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 10px;
 
-
-
+    small {
+        color: $error-dark;
+        font-size: 12px;
+        font-weight: 900;
+    }
+}
 
 .remember-forgot {
     display: flex;
@@ -202,12 +208,9 @@ $text-lighter: #6b7280;
     }
 }
 
-
 @media (max-width: 980px) {
     .login-container {
         flex-direction: column;
         width: min(92vw, 720px);
     }
-
-
 }

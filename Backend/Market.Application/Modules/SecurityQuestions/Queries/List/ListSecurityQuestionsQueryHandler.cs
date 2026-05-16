@@ -9,9 +9,6 @@ namespace Market.Application.Modules.SecurityQuestions.Queries.List
     {
         public async Task<PageResult<ListSecurityQuestionsQueryDto>> Handle(ListSecurityQuestionsQuery request,CancellationToken ct)
         {
-            if (!appCurrentUser.IsAdmin)
-                throw new MarketForbiddenException();
-
 
             var q = context.SecurityQuestions
                 .AsNoTracking();
