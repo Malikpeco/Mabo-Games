@@ -24,7 +24,7 @@ namespace Market.Application.Modules.UserNotifications.Commands.Broadcast
             var userIds = await context.Users
                 .Where(u=>!u.IsAdmin)
                 .Select(u => u.Id)
-            .ToListAsync(cancellationToken);
+                .ToListAsync(cancellationToken);
 
             var userNotifications = userIds.Select(userId => new UserNotificationsEntity
             {

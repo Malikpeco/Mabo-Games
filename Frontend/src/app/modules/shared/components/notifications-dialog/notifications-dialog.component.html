@@ -1,0 +1,31 @@
+<section class="create-notification-dialog">
+  <header class="dialog-header">
+    <h2>{{ titleText }}</h2>
+    <p>Compose a message for users.</p>
+  </header>
+
+  <form [formGroup]="form" class="dialog-form">
+    <label class="dialog-field">
+      <span>Title</span>
+      <input
+        type="text"
+        formControlName="title"
+        placeholder="Notification title"
+        maxlength="100" />
+    </label>
+
+    <label class="dialog-field">
+      <span>Content</span>
+      <textarea
+        formControlName="content"
+        placeholder="Content of notification"
+        rows="6"
+        maxlength="500"></textarea>
+    </label>
+
+    <div class="dialog-actions">
+      <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
+      <button type="button" class="btn-primary" [disabled]="!canSend" (click)="onSend()">{{ submitText }}</button>
+    </div>
+  </form>
+</section>
