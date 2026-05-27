@@ -1,7 +1,7 @@
 ﻿namespace Market.Application.Modules.UserNotifications.Queries.List
 {
-    public sealed class ListUserNotificationsQuery : BasePagedQuery<ListUserNotificationsQueryDto>
+    public sealed class ListUserNotificationsQuery : IRequest<List<ListUserNotificationsQueryDto>>
     {
-        // TODO: Add properties here
+        public bool? IsRead { get; init; } 
     }
 }

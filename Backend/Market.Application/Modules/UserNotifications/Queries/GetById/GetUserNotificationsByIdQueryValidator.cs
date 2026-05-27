@@ -4,7 +4,9 @@
     {
         public GetUserNotificationsByIdQueryValidator()
         {
-            // TODO: Add validation
+            RuleFor(x => x.Id)
+                .NotEmpty()
+                .GreaterThan(0);
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     public sealed class GetUserNotificationsByIdQuery : IRequest<GetUserNotificationsByIdQueryDto>
     {
-        // TODO: Add properties here
+        public int Id { get; init; }
+
     }
 }

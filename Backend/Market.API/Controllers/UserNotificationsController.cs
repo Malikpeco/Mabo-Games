@@ -12,7 +12,7 @@ namespace Market.API.Controllers
 {
     [ApiController]
     [Route("api/user-notifications")]
-    public class UserNotifications(ISender sender) : ControllerBase
+    public class UserNotificationsController(ISender sender) : ControllerBase
     {
         [HttpPost("NotifyAll")]
         public async Task<ActionResult<Unit>> Create(NotifyAllUsersCommand command, CancellationToken ct)
@@ -25,7 +25,6 @@ namespace Market.API.Controllers
         {
             return await sender.Send(new ClearReadUserNotificationsCommand(), ct);
         }
-
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<GetUserNotificationsByIdQueryDto>> GetById(int id, CancellationToken ct)

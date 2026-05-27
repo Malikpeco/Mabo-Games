@@ -4,7 +4,7 @@
     {
         public ListUserNotificationsQueryValidator()
         {
-            // TODO: Add validation
+            
         }
     }
 }

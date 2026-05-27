@@ -8,11 +8,11 @@ import { SendNotificationRequest } from './notifications-api.models';
   providedIn: 'root'
 })
 export class NotificationsApiService {
-  private readonly baseUrl = `${environment.apiUrl}/api/user-notificatios`;
+  private readonly baseUrl = `${environment.apiUrl}/api/user-notifications`;
   private http = inject(HttpClient);
 
   /**
-   * POST /user-notificatios/NotifyAll
+   * POST /user-notifications/NotifyAll
    * Sends an admin notification to users.
    */
   sendNotification(payload: SendNotificationRequest): Observable<void> {

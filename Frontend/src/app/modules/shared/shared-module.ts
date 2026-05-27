@@ -10,6 +10,8 @@ import { FitLoadingBarComponent } from './components/fit-loading-bar/fit-loading
 import { PasswordStrenghtMeterComponent } from './components/password-strenght-meter/password-strenght-meter/password-strenght-meter.component';
 import { TransitionLoadingComponent } from './components/transition-loading/transition-loading.component';
 import { MaboNavbarComponent } from './components/mabo-navbar/mabo-navbar.component';
+import { MaboNotificationsDropdownComponent } from './components/mabo-notifications-dropdown/mabo-notifications-dropdown.component';
+import { MaboNotificationPopupComponent } from './components/mabo-notification-popup/mabo-notification-popup.component';
 import { MaboFooterComponent } from './components/mabo-footer/mabo-footer.component';
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { GameListComponent } from './components/game-list/game-list.component';
@@ -25,6 +27,8 @@ import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dr
     PasswordStrenghtMeterComponent,
     TransitionLoadingComponent,
     MaboNavbarComponent,
+    MaboNotificationsDropdownComponent,
+    MaboNotificationPopupComponent,
     MaboFooterComponent,
     GameCardComponent,
     GameListComponent,
@@ -53,6 +57,8 @@ import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dr
     PasswordStrenghtMeterComponent,
     TransitionLoadingComponent,
     MaboNavbarComponent,
+    MaboNotificationsDropdownComponent,
+    MaboNotificationPopupComponent,
     MaboFooterComponent,
     GameCardComponent,
     GameListComponent,

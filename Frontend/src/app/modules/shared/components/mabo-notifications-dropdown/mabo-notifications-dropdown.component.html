@@ -1,0 +1,31 @@
+<div class="notifications-dropdown">
+  <div class="notifications-header">
+    <div class="notifications-heading">Notifications</div>
+
+    <button
+      *ngIf="hasReadNotifications"
+      type="button"
+      class="clear-read-button"
+      (click)="clearReadNotifications()"
+    >
+      Clear read
+    </button>
+  </div>
+
+  <div class="notifications-list">
+    <button
+      type="button"
+      class="notification-item"
+      *ngFor="let notification of notifications"
+      [class.unread]="notification.unread"
+      [class.read]="!notification.unread"
+      (click)="selectNotification(notification)"
+    >
+      <div class="notification-copy">
+        <div class="notification-title">{{ notification.title }}</div>
+        <div class="notification-message">{{ notification.message }}</div>
+      </div>
+      <div class="notification-time">{{ notification.time }}</div>
+    </button>
+  </div>
+</div>

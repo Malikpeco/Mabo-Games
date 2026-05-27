@@ -5,6 +5,8 @@ import { finalize } from 'rxjs/operators';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { NotificationsApiService } from '../../../../api-services/notifications/notifications-api.service';
 import { ToasterService } from '../../../../core/services/toaster.service';
+import { DialogButton } from '../../../shared/models/dialog-config.model';
+import { DialogHelperService } from '../../../shared/services/dialog-helper.service';
 
 @Component({
   selector: 'app-notifications-dialog',
@@ -17,6 +19,7 @@ export class NotificationsDialogComponent {
   private fb = inject(FormBuilder);
   private notificationsApi = inject(NotificationsApiService);
   private toaster = inject(ToasterService);
+  private dialog = inject(DialogHelperService);
   isSending = false;
 
   constructor(private dialogRef: MatDialogRef<NotificationsDialogComponent>) {}
@@ -36,6 +39,21 @@ export class NotificationsDialogComponent {
       return;
     }
 
+    this.dialog.confirm(
+      'Confirm send',
+      'Are you sure you want to send a notification to all users?',
+      undefined,
+      'send'
+    ).subscribe((response) => {
+      if (response?.button !== DialogButton.YES) {
+        return;
+      }
+
+      this.sendNotification();
+    });
+  }
+
+  private sendNotification(): void {
     const { title, content } = this.form.getRawValue();
     const trimmedTitle = (title ?? '').trim();
     const trimmedContent = (content ?? '').trim();
