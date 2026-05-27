@@ -1,5 +1,6 @@
 ﻿using Market.Domain.Common;
 using Market.Domain.Common.Attributes;
+using Market.Domain.Entities.Catalog;
 using Market.Domain.Entities.Identity;
 
 namespace Market.Domain.Entities
@@ -10,15 +11,14 @@ namespace Market.Domain.Entities
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public bool IsRead { get; set; }
         public DateTime SentAt { get; set; }
-        public int UserId { get; set; }
-        public UserEntity User { get; set; }
+
+        public IReadOnlyCollection<UserNotificationsEntity> UserNotifications { get; private set; } = new List<UserNotificationsEntity>();
+
 
         public NotificationEntity()
         {
-            IsRead = false;            // unread by default
-            SentAt = DateTime.UtcNow;  // timestamp when created
+            SentAt = DateTime.UtcNow;  
         }
     }
 }

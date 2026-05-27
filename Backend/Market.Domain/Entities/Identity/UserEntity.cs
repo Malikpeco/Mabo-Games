@@ -3,6 +3,7 @@
 // MarketUserEntity.cs
 using Market.Domain.Common;
 using Market.Domain.Common.Attributes;
+using Market.Domain.Entities.Catalog;
 namespace Market.Domain.Entities.Identity;
 
 public sealed class UserEntity : BaseEntity
@@ -41,9 +42,10 @@ public sealed class UserEntity : BaseEntity
     public IReadOnlyCollection<UserGameEntity> UserGames { get; private set; } = new List<UserGameEntity>();
     public IReadOnlyCollection<UserAchievementEntity> UserAchievements { get; private set; } = new List<UserAchievementEntity>();
     public IReadOnlyCollection<FavouriteEntity> Favourites { get; private set; } = new List<FavouriteEntity>();
-    public IReadOnlyCollection<NotificationEntity> Notifications { get; private set; } = new List<NotificationEntity>();
     public IReadOnlyCollection<OrderEntity> Orders { get; private set; } = new List<OrderEntity>();
     public IReadOnlyCollection<UserSecurityQuestionEntity> UserSecurityQuestions { get; private set; } = new List<UserSecurityQuestionEntity>();
+
+    public IReadOnlyCollection<UserNotificationsEntity> UserNotifications { get; private set; } = new List<UserNotificationsEntity>();
 
     public int TokenVersion { get; set; } = 0;// For global revocation
     public bool IsEnabled { get; set; }

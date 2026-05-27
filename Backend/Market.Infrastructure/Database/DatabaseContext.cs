@@ -27,6 +27,9 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<UserEntity> Users => Set<UserEntity>();
     public DbSet<UserGameEntity> UserGames  => Set<UserGameEntity>();
     public DbSet<UserSecurityQuestionEntity> UserSecurityQuestions  => Set<UserSecurityQuestionEntity>();
+
+    public DbSet<UserNotificationsEntity> UserNotifications => Set<UserNotificationsEntity>();
+
     public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
     public DbSet<PasswordResetTokenEntity> PasswordResetTokens => Set<PasswordResetTokenEntity>();
 
