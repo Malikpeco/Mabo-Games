@@ -71,7 +71,5 @@ namespace Market.API.Controllers
         }
 
 
-
-
     }
 }

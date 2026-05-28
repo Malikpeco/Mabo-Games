@@ -19,6 +19,7 @@ import { GenreListItemComponent } from './genres/genre-list-item/genre-list-item
 import { CreateGenreDialogComponent } from './genres/create-genre-dialog/create-genre-dialog.component';
 import { AdminAchievementsComponent } from './achievements/admin-achievements/admin-achievements.component';
 import { AchievementListItemComponent } from './achievements/achievement-list-item/achievement-list-item.component';
+import { NotificationsDialogComponent } from '../shared/components/notifications-dialog/notifications-dialog.component';
 
 
 
@@ -47,6 +48,7 @@ import { AchievementListItemComponent } from './achievements/achievement-list-it
   imports: [
     AdminRoutingModule,
     SharedModule,
+    NotificationsDialogComponent,
   ]
 })
 export class AdminModule { }

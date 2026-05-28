@@ -16,18 +16,18 @@ namespace Market.Infrastructure.Database.Configurations
                    .IsRequired()
                    .HasMaxLength(2000);
 
-            builder.Property(n => n.IsRead)
-                   .IsRequired();
-
-            
             builder.Property(n => n.SentAt)
                    .IsRequired();
 
-            builder.HasOne(n => n.User)
-                   .WithMany(u => u.Notifications)
-                   .HasForeignKey(n => n.UserId)
-                   .OnDelete(DeleteBehavior.Cascade)
-                   ;
+            builder
+            .HasMany(x => x.UserNotifications)
+            .WithOne(x => x.Notification)
+            .HasForeignKey(x => x.NotificationId)
+            ;
+
+
+
+
         }
     }
 }

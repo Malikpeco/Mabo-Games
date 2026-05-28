@@ -27,6 +27,9 @@ public interface IAppDbContext
     DbSet<UserEntity> Users { get; }
     DbSet<UserGameEntity> UserGames { get; }
     DbSet<UserSecurityQuestionEntity> UserSecurityQuestions { get; }
+
+    DbSet<UserNotificationsEntity> UserNotifications { get; }
+
     DbSet<RefreshTokenEntity> RefreshTokens { get; }
 
     DbSet<IGDBTokenEntity> IGDBTokens { get; }

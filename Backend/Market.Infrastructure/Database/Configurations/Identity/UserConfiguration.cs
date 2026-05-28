@@ -10,7 +10,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
 
         builder.Property(u => u.Username)
                .IsRequired()
-               .HasMaxLength(10000);
+               .HasMaxLength(30);
 
         builder.Property(u => u.PasswordHash)
                .IsRequired();
@@ -75,13 +75,6 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
                .HasForeignKey(f => f.UserId)
                .IsRequired();
 
-        builder.HasMany(u => u.Notifications)
-               .WithOne(n => n.User)
-               .HasForeignKey(n => n.UserId)
-               .IsRequired()
-               .OnDelete(DeleteBehavior.NoAction);
-
-
         builder.HasMany(u => u.Orders)
                .WithOne(o => o.User)
                .HasForeignKey(o => o.UserId)
@@ -93,6 +86,12 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
                .HasForeignKey(usq => usq.UserId)
                .IsRequired()
                ;
+
+        builder.HasMany(u => u.UserNotifications)
+          .WithOne(usq => usq.User)
+          .HasForeignKey(usq => usq.UserId)
+          .IsRequired()
+          ;
 
 
         builder.Property(x => x.IsAdmin)

@@ -7,6 +7,8 @@
         </div>
 
         <nav class="sidebar-nav">
+
+
             <div class="nav-group">
                 <button (click)="toggleGames()" class="nav-item-btn">
                     <span>Games</span>
@@ -42,6 +44,12 @@
                 <a routerLink="achievements" routerLinkActive="active" class="nav-item">
                     Achievements
                 </a>
+            </div>
+
+            <div class="nav-group">
+                <button type="button" class="nav-item-btn" (click)="openNotificationsDialog()">
+                    <span>Notifications</span>
+                </button>
             </div>
 
         </nav>

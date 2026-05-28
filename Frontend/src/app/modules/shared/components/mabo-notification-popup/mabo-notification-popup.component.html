@@ -1,0 +1,24 @@
+<div class="notification-backdrop" *ngIf="notification" (click)="close()">
+  <div class="notification-popup" (click)="$event.stopPropagation()">
+    <div class="notification-popup-header">
+      <div>
+        <div class="notification-popup-label">Notification</div>
+        <h2>{{ notification.title }}</h2>
+      </div>
+
+      <button type="button" class="popup-close" aria-label="Close notification" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="notification-popup-meta">
+      <span [class.unread]="notification.unread" [class.read]="!notification.unread">
+        {{ notification.unread ? 'Unread' : 'Read' }}
+      </span>
+      <span>{{ notification.time }}</span>
+    </div>
+
+    <p class="notification-popup-message">{{ notification.message }}</p>
+    <p class="notification-popup-content">{{ notification.content }}</p>
+  </div>
+</div>
