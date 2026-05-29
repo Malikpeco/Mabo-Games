@@ -110,82 +110,64 @@ public static class DynamicDataSeeder
         {
            Name="First Blood",
            Description="Purchase your first game",
-           ImageURL=""
-          
+           ImageURL= "https://i.ibb.co/3ywP4pdb/Icons-21.png"
+
         };
 
         var ach2 = new AchievementEntity
         {
             Name = "Collector",
             Description = "Own 10 games",
-            ImageURL = ""
+            ImageURL = "https://i.ibb.co/C5mNs4D5/Icons-23.png"
 
         };
 
         var ach3 = new AchievementEntity
         {
-            Name = "Hoarder ",
+            Name = "Hoarder",
             Description = "Own 100 games",
-            ImageURL = ""
+            ImageURL = "https://i.ibb.co/cnCGmtq/Icons-24.png"
 
         };
 
         var ach4 = new AchievementEntity
         {
-            Name = "",
-            Description = "",
-            ImageURL = ""
+            Name = "I know my taste",
+            Description = "Write a review for a game",
+            ImageURL = "https://i.ibb.co/RTdNZ4Gr/Icons-48.png"
 
         };
+
 
         var ach5 = new AchievementEntity
         {
-            Name = "I know my taste",
-            Description = "Write a review for a game",
-            ImageURL = ""
+            Name = "Critic",
+            Description = "Write 10 reviews",
+            ImageURL = "https://i.ibb.co/395wz3jR/Icons-50.png"
 
         };
-
 
         var ach6 = new AchievementEntity
         {
-            Name = "Day one",
-            Description = "Purchase a game within 24h of it coming out",
-            ImageURL = ""
+            Name = "Genre explorer",
+            Description = "Buy games from 5 different genres",
+            ImageURL = "https://i.ibb.co/SXY9L9Hk/Icons-11.png"
 
         };
-
 
         var ach7 = new AchievementEntity
         {
-            Name = "Wishes do come true",
-            Description = "Purchase a game from your wishlist",
-            ImageURL = ""
+            Name = "Fanboy",
+            Description = "Own 3 games from the same publisher",
+            ImageURL = "https://i.ibb.co/4nyL9zfz/Icons-25.png"
 
         };
-
 
         var ach8 = new AchievementEntity
         {
-            Name = "Genre explorer",
-            Description = "Buy games form 5 different genres",
-            ImageURL = ""
-
-        };
-
-        var ach9 = new AchievementEntity
-        {
-            Name = "Fanboy",
-            Description = "Own 3 games from the same publisher",
-            ImageURL = ""
-
-        };
-
-        var ach10 = new AchievementEntity
-        {
             Name = "Night Owl",
             Description = "Purchase a game after midnight",
-            ImageURL = ""
+            ImageURL = "https://i.ibb.co/XZdCfb9k/Icons-20.png"
 
         };
 
@@ -194,7 +176,7 @@ public static class DynamicDataSeeder
 
 
 
-        context.Achievements.AddRange(ach1,ach2,ach3, ach4, ach5, ach6, ach7, ach8, ach9, ach10);
+        context.Achievements.AddRange(ach1,ach2,ach3,ach4, ach5, ach6, ach7, ach8);
         await context.SaveChangesAsync();
 
         Console.WriteLine("Dynamic seed: Security Questions added.");

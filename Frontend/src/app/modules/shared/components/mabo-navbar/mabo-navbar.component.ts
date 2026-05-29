@@ -106,7 +106,6 @@ export class MaboNavbarComponent implements OnInit {
       },
       error: () => {
         this.notifications = [];
-        this.toaster.error('Unable to load notifications right now.');
       },
     });
   }

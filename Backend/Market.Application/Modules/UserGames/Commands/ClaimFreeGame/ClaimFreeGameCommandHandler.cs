@@ -1,8 +1,10 @@
+using Market.Application.Abstractions;
+using Market.Application.Common.Achievements;
 using Market.Domain.Entities;
 
 namespace Market.Application.Modules.UserGames.Commands.ClaimFreeGame
 {
-    public sealed class ClaimFreeGameCommandHandler(IAppDbContext context, IAppCurrentUser currentUser)
+    public sealed class ClaimFreeGameCommandHandler(IAppDbContext context, IAppCurrentUser currentUser,IAchievementSystem achievementSystem)
         : IRequestHandler<ClaimFreeGameCommand, int>
     {
         public async Task<int> Handle(ClaimFreeGameCommand request, CancellationToken ct)
@@ -36,8 +38,11 @@ namespace Market.Application.Modules.UserGames.Commands.ClaimFreeGame
             };
 
             context.UserGames.Add(userGame);
-
             await context.SaveChangesAsync(ct);
+
+
+
+            await achievementSystem.CheckEligibilityAsync(userId, AchievementTriggerType.GamePurchased, ct);
             return userGame.Id;
         }
     }
