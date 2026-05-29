@@ -1,4 +1,6 @@
-﻿using Market.Domain.Entities;
+﻿using Market.Application.Abstractions;
+using Market.Application.Common.Achievements;
+using Market.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Reviews.Commands.Create
 {
-    public sealed class CreateReviewCommandHandler(IAppCurrentUser currentUser, IAppDbContext context)
+    public sealed class CreateReviewCommandHandler(IAppCurrentUser currentUser, IAppDbContext context,IAchievementSystem achievementSystem)
         : IRequestHandler<CreateReviewCommand, Unit>
     {
         public async Task<Unit> Handle(CreateReviewCommand request, CancellationToken ct)
@@ -30,8 +32,12 @@ namespace Market.Application.Modules.Reviews.Commands.Create
             };
             context.Reviews.Add(review);
 
+
             await context.SaveChangesAsync(ct);
 
+
+
+            await achievementSystem.CheckEligibilityAsync(userGame.UserId, AchievementTriggerType.ReviewSubmitted, ct);
             return Unit.Value;
         }
     }

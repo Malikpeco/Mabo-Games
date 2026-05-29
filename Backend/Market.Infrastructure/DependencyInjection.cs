@@ -4,6 +4,8 @@ using Market.Application.Common.IGDB;
 using Market.Application.Common.ImageBB;
 using Market.Domain.Entities;
 using Market.Infrastructure.Common;
+using Market.Infrastructure.Common.AchievementsSystem;
+using Market.Infrastructure.Common.AchievementsSystem.Evaluators;
 using Market.Infrastructure.Database;
 using Market.Shared.Constants;
 using Market.Shared.Options;
@@ -69,10 +71,18 @@ public static class DependencyInjection
         services.Configure<IGDBSettings>(configuration.GetSection("IGDB"));
         services.AddHttpClient<IIGDBService, IGDBService>();
 
+
         // ImageBB 
         services.Configure<ImageBBSettings>(configuration.GetSection("ImageBB"));
         services.AddHttpClient<IBlobStorageService, BlobStorageService>();
 
+
+        //AchievementSystem
+        services.AddScoped<IAchievementSystem, AchievementsSystem>();
+
+        //Evaluators for the achievement system (AFTER MAKING ONE REGISTER IT!)
+        services.AddScoped<IAchievementEvaluator, ReviewAchievementEvaluator>();
+        services.AddScoped<IAchievementEvaluator, UserGamesAchievementEvaluator>();
 
 
         // Audit log interceptor 

@@ -1,4 +1,6 @@
-﻿using Market.Domain.Entities;
+﻿using Market.Application.Abstractions;
+using Market.Application.Common.Achievements;
+using Market.Domain.Entities;
 using Market.Domain.Entities.Catalog;
 using Stripe;
 using System;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Payments.Commands.ProcessStripeWebhook
 {
-    public sealed class ProcessStripeWebhookCommandHandler(IAppDbContext context)
+    public sealed class ProcessStripeWebhookCommandHandler(IAppDbContext context,IAchievementSystem achievementSystem)
         :IRequestHandler<ProcessStripeWebhookCommand, Unit>
     {
         public async Task<Unit> Handle(ProcessStripeWebhookCommand request, CancellationToken ct)
@@ -146,10 +148,10 @@ namespace Market.Application.Modules.Payments.Commands.ProcessStripeWebhook
                 context.CartItems.RemoveRange(cart.CartItems);
                 cart.TotalPrice = 0m;
             }
-
-
-
             await context.SaveChangesAsync(ct);
+
+
+            await achievementSystem.CheckEligibilityAsync(userId, AchievementTriggerType.GamePurchased, ct);
             return Unit.Value;
 
 
