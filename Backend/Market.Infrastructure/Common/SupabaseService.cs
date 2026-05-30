@@ -29,18 +29,22 @@ namespace Market.Infrastructure.Common
 
         }
 
-        public async Task<string> UploadFileAsync(Stream fileStream, string fileName, CancellationToken ct = default, bool upsert = false )
+        public async Task<string> UploadFileAsync(Stream fileStream, string fileName, CancellationToken ct = default)
         {
             var bucket = _settings.BucketName;
             var objectPath = fileName;
-            var url = $"{_settings.BaseUrl}/storage/v1/object/{bucket}/{objectPath}?upsert={(upsert ? "true" : "false")}";
+            var url = $"{_settings.BaseUrl}/storage/v1/object/{bucket}/{objectPath}";
 
             using var content = new MultipartFormDataContent();
             content.Add(new StreamContent(fileStream), "file", fileName);
 
 
             using var response = await _httpClient.PostAsync(url, content, ct);
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorBody = await response.Content.ReadAsStringAsync(ct);
+                throw new HttpRequestException($"UploadFileAsync failed. Status={(int)response.StatusCode}. Body={errorBody}");
+            }
 
             return objectPath;
         }

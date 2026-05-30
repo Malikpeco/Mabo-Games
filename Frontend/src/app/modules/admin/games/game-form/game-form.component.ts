@@ -10,6 +10,8 @@ import { DialogHelperService } from '../../../shared/services/dialog-helper.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScreenshotsApiService } from '../../../../api-services/screenshots/screenshots-api.service';
 import { firstValueFrom } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { FileUploadDialogComponent } from '../../../../shared/components/file-upload-dialog/file-upload-dialog.component';
 
 interface IgdbMediaOption {
   key: string;
@@ -27,6 +29,7 @@ export class GameFormComponent {
   private gamesApi = inject(GamesApiService);
   private screenshotsApi = inject(ScreenshotsApiService);
   private dialog = inject(DialogHelperService);
+  private matDialog = inject(MatDialog);
   private toaster = inject(ToasterService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -56,7 +59,10 @@ export class GameFormComponent {
   isFreeToPlay = false;
   isUploadingCover = false;
   isUploadingScreenshots = false;
+  isSelectingGameFile = false;
   isSaving = false;
+  selectedGameFile: File | null = null;
+  existingGameFilePath: string | null = null;
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -300,6 +306,57 @@ export class GameFormComponent {
     this.syncSelectedMediaToScreenshotSlots();
   }
 
+  openGameFileUploadDialog(): void {
+    const ref = this.matDialog.open(FileUploadDialogComponent, {
+      width: '560px',
+      maxWidth: 'calc(100vw - 24px)',
+      data: {
+        managedUploading: true,
+        title: 'Upload game file',
+        subtitle: 'Choose the game build/archive file admins should attach to this title.',
+        emptyStateTitle: 'Drop game file here',
+        emptyStateSubtitle: 'Any file type up to 5 MB.',
+        uploadButtonText: 'Use file',
+        uploadingText: 'Selecting...',
+        uploadIcon: 'upload_file',
+        acceptedFileTypes: ['*/*'],
+        maxFileSizeBytes: 5 * 1024 * 1024,
+        showImagePreview: false,
+      },
+    });
+
+    ref.componentInstance.fileSelected.subscribe((file: File) => {
+      this.isSelectingGameFile = true;
+      ref.componentInstance.errorMessage = '';
+
+      try {
+        this.selectedGameFile = file;
+        ref.close();
+      } catch {
+        ref.componentInstance.errorMessage = 'Could not select the chosen file.';
+      } finally {
+        this.isSelectingGameFile = false;
+      }
+    });
+  }
+
+  clearSelectedGameFile(): void {
+    this.selectedGameFile = null;
+  }
+
+  get selectedGameFileName(): string {
+    if (this.selectedGameFile) {
+      return this.selectedGameFile.name;
+    }
+
+    if (!this.existingGameFilePath) {
+      return '';
+    }
+
+    const fileName = this.existingGameFilePath.split(/[\\/]/).pop();
+    return fileName ?? this.existingGameFilePath;
+  }
+
   setActiveScreenshot(index: number): void {
     this.activeScreenshotIndex = index;
   }
@@ -357,6 +414,7 @@ export class GameFormComponent {
         this.publisherName = game.publisher?.name ?? '';
         this.selectedPublisherId = game.publisher?.id ?? null;
         this.coverPreviewUrl = game.coverImageURL ?? null;
+        this.existingGameFilePath = game.gameFilePath ?? null;
         this.releaseDate = this.toDateInputValue(game.releaseDate) || this.releaseDate;
 
         this.selectedGenres = (game.genres ?? []).map((genre) => ({
@@ -429,6 +487,7 @@ export class GameFormComponent {
       coverImageURL: coverCandidate,
       genreIds,
       screenshotUrls: validHttpUrls,
+      file: this.selectedGameFile,
     };
 
     const updatePayload: UpdateGameRequest = {
@@ -440,6 +499,7 @@ export class GameFormComponent {
       coverImageURL: coverCandidate,
       genreIds,
       screenshotUrls: validHttpUrls,
+      file: this.selectedGameFile,
     };
 
     this.isSaving = true;

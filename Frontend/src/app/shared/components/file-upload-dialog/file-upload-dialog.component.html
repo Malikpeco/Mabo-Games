@@ -4,7 +4,7 @@
     <p>{{ subtitle }}</p>
   </header>
 
-  <input #fileInput type="file" accept="image/png,image/jpeg" hidden (change)="onFileInputChange($event)" />
+  <input #fileInput type="file" [accept]="acceptedMimeTypes" hidden (change)="onFileInputChange($event)" />
 
   <div class="dialog-form">
     <label class="dialog-field">
@@ -17,11 +17,11 @@
         (dragover)="onDragOver($event)"
         (dragleave)="onDragLeave($event)"
         (drop)="onDrop($event)">
-        <ng-container *ngIf="previewUrl; else emptyState">
-          <img class="preview-image" [src]="previewUrl" alt="Selected image preview" />
+        <ng-container *ngIf="selectedFile; else emptyState">
+          <img *ngIf="previewUrl" class="preview-image" [src]="previewUrl" alt="Selected image preview" />
           <div class="drop-copy">
-            <strong>{{ selectedFile?.name }}</strong>
-            <span>Click to choose a different image, or drag and drop another image.</span>
+            <strong>{{ selectedFile.name }}</strong>
+            <span>Click to choose a different file, or drag and drop another file.</span>
           </div>
         </ng-container>
 

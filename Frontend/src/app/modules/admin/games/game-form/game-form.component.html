@@ -9,8 +9,6 @@
 		(searchCleared)="onIgdbSearchCleared()">
 	</app-igdb-search>
 
-
-
 	<form class="admin-games-add-form" (ngSubmit)="onSave()">
 		<div class="admin-games-add-grid">
 			<div class="admin-fields">
@@ -100,6 +98,42 @@
 							placeholder="0.00" />
 					</div>
 				</label>
+
+				<section class="game-file-section">
+					<span class="admin-field-label">Game File</span>
+
+					<div class="game-file-card">
+						<div class="game-file-meta" *ngIf="selectedGameFileName; else noGameFileSelected">
+							<strong>{{ selectedGameFileName }}</strong>
+							<span *ngIf="selectedGameFile">Will be uploaded on save.</span>
+							<span *ngIf="!selectedGameFile">Currently attached.</span>
+						</div>
+
+						<ng-template #noGameFileSelected>
+							<div class="game-file-meta game-file-meta--empty">
+								<strong>No file selected</strong>
+								<span>Choose a file to attach on save.</span>
+							</div>
+						</ng-template>
+
+						<div class="game-file-actions">
+							<button
+								type="button"
+								class="upload-button"
+								[disabled]="isSelectingGameFile"
+								(click)="openGameFileUploadDialog()">
+								{{ isSelectingGameFile ? 'Selecting...' : (selectedGameFileName ? 'Replace' : 'Select file') }}
+							</button>
+							<button
+								type="button"
+								class="clear-all-button"
+								*ngIf="selectedGameFile"
+								(click)="clearSelectedGameFile()">
+								Clear
+							</button>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 
@@ -169,7 +203,9 @@
 
 		<div class="form-actions">
 			<a routerLink="/admin/games" class="action-btn secondary">Cancel</a>
-			<button type="submit" class="action-btn primary" [disabled]="isSaving || isLoadingGame">{{ isLoadingGame ? 'Loading...' : (isSaving ? (isEditMode ? 'Updating...' : 'Saving...') : (isEditMode ? 'Update Game' : 'Save Game')) }}</button>
+			<button type="submit" class="action-btn primary" [disabled]="isSaving || isLoadingGame">
+				{{ isLoadingGame ? 'Loading...' : (isSaving ? (isEditMode ? 'Updating...' : 'Saving...') : (isEditMode ? 'Update Game' : 'Save Game')) }}
+			</button>
 		</div>
 	</form>
 </section>
