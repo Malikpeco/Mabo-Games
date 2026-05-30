@@ -51,12 +51,12 @@ namespace Market.Infrastructure.Common
 
         public async Task DeleteFileAsync(string filePath, CancellationToken ct = default)
         {
-            var bucket = _settings.BucketName; 
+            var bucket = _settings.BucketName;
 
             var url = $" {_settings.BaseUrl}/storage/v1/object/{bucket}/{filePath}";
-            using var response = await _httpClient.DeleteAsync(url, ct); 
-            
-            
+            using var response = await _httpClient.DeleteAsync(url, ct);
+
+
             if (!response.IsSuccessStatusCode)
             {
                 var errorBody = await response.Content.ReadAsStringAsync(ct);
@@ -69,31 +69,34 @@ namespace Market.Infrastructure.Common
         {
             var bucket = _settings.BucketName;
             var url = $"{_settings.BaseUrl}/storage/v1/object/sign/{bucket}/{filePath}";
-
-
             using var response = await _httpClient.PostAsJsonAsync(url, new { expiresIn = expiresInSeconds }, ct);
-
             if (!response.IsSuccessStatusCode)
             {
                 var errorBody = await response.Content.ReadAsStringAsync(ct);
                 throw new HttpRequestException($"GetSignedUrl failed. Status={(int)response.StatusCode}. Body={errorBody}");
             }
 
+            // ADD THIS
+            var rawJson = await response.Content.ReadAsStringAsync(ct);
+            Console.WriteLine($"[DEBUG] Supabase sign response: {rawJson}");
 
-            var responseData = await response.Content.ReadFromJsonAsync<SupabaseSignResponse>(cancellationToken: ct);
+            var responseData = JsonSerializer.Deserialize<SupabaseSignResponse>(rawJson);
 
-            var signedUrl = responseData?.SignedUrl ?? responseData?.Url;
+            var signedUrl = responseData?.SignedUrl;
             if (string.IsNullOrEmpty(signedUrl))
-            {
                 throw new InvalidOperationException("Unexpected signed URL response structure.");
-            }
 
-            return signedUrl;
+            var fullUrl = signedUrl.StartsWith("http")
+                ? signedUrl
+                : $"{_settings.BaseUrl}/storage/v1{signedUrl}";
+
+            return fullUrl;
         }
 
         private sealed record SupabaseSignResponse(
-            [property: JsonPropertyName("signed_url")] string? SignedUrl,
-            [property: JsonPropertyName("url")] string? Url
+            [property: JsonPropertyName("signedURL")] string? SignedUrl,
+            [property: JsonPropertyName("token")] string? Token,
+            [property: JsonPropertyName("path")] string? Path
         );
     }
 }

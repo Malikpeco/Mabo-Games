@@ -30,7 +30,6 @@ namespace Market.Application.Modules.Supabase.Queries
             if (!isOwner)
                 throw new MarketForbiddenException();
 
-
             return await supaBaseService.GetSignedUrlAsync(game.GameFilePath, 60, ct);
 
 

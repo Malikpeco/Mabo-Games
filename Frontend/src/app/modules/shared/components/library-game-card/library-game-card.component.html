@@ -1,0 +1,35 @@
+<div
+  class="library-game-card"
+  role="link"
+  tabindex="0"
+  (click)="onOpenGame()"
+  (keydown.enter)="onOpenGame()"
+  (keydown.space)="$event.preventDefault(); onOpenGame()"
+>
+  <button
+    type="button"
+    class="favourite-button"
+    [class.is-favourited]="isFavourite"
+    (click)="onFavouriteClick($event)"
+  >
+    {{ isFavourite ? '♥' : '♡' }}
+  </button>
+
+  <img class="game-card-img" [src]="getGameImage()" [alt]="userGame.game.name" />
+
+  <div class="game-card-meta">
+    <div class="game-card-title">{{ userGame.game.name }}</div>
+    <div class="game-card-sub">{{ userGame.game.publisherName }}</div>
+
+    <div class="game-card-bottom">
+      <button
+        type="button"
+        class="btn-download"
+        [disabled]="isDownloading"
+        (click)="onDownloadClick($event)"
+      >
+        {{ isDownloading ? 'Preparing...' : 'Download' }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -8,10 +8,8 @@ import { AuthFacadeService } from '../../../core/services/auth/auth-facade.servi
 import { CartsApiService } from '../../../api-services/carts/carts-api.service';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
-import { FavouritesApiService } from '../../../api-services/favourites/favourites-api.service';
 import { ReviewsApiService } from '../../../api-services/reviews/reviews-api.service';
 import { ListUserGamesRequest } from '../../../api-services/user-games/user-games-api.models';
-import { ListFavouritesQueryRequest } from '../../../api-services/favourites/favourites-api.models';
 
 @Component({
   selector: 'app-game-details',
@@ -29,12 +27,10 @@ implements OnInit{
   game:GameDetailsDto | null = null;
   isInCart = false;
   isInLibrary = false;
-  isInFavourites = false;
   cartsApi=inject(CartsApiService);
   userGamesApi=inject(UserGamesApiService);
   toaster=inject(ToasterService);
   location = inject(Location);
-  favouritesApi = inject(FavouritesApiService);
   reviewsApi = inject(ReviewsApiService);
   private currentUserService = inject(CurrentUserService);
   isAdmin = this.currentUserService.isAdmin;
@@ -75,7 +71,6 @@ implements OnInit{
     if (!this.isAuthenticated()) {
       this.isInCart = false;
       this.isInLibrary = false;
-      this.isInFavourites = false;
       return;
     }
 
@@ -103,19 +98,6 @@ implements OnInit{
         this.ownedUserGameId = null;
       }
     });
-
-    const favouritesRequest = new ListFavouritesQueryRequest();
-    favouritesRequest.paging.page = 1;
-    favouritesRequest.paging.pageSize = 100;
-
-    this.favouritesApi.listFavouritesQuery(favouritesRequest).subscribe({
-      next:res=>{
-        this.isInFavourites=res.items.some(f=>f.id===gameId);
-      },
-      error: () => {
-        this.isInFavourites = false;
-      }
-    })
   }
 
   activeScreenshotIndex: number | null = null;
@@ -254,22 +236,6 @@ addToLibrary(gameId: number): void {
     },
     error: err => {
       this.toaster.error(err?.error?.message ?? 'Failed to add game to library.');
-    }
-  });
-}
-
-addToFavourites(gameId:number):void{
-  this.favouritesApi.addToFavourites(gameId).subscribe({
-  next:(response)=>{
-    this.isInFavourites=true;
-  }    
-  })
-}
-
-removeFromFavourites(gameId:number):void{
-  this.favouritesApi.removeFromFavourites(gameId).subscribe({
-    next:()=>{
-      this.isInFavourites=false;
     }
   });
 }

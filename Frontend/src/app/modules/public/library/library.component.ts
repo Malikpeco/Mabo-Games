@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GenreDto } from '../../../api-services/genres/genres-api.models';
 import { GenresApiService } from '../../../api-services/genres/genres-api.service';
 import { StorefrontGameDto } from '../../../api-services/games/games-api.models';
+import { SupabaseApiService } from '../../../api-services/supabase/supabase-api.service';
 import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
 import { CurrentUserService } from '../../../core/services/auth/current-user.service';
 import {FavouritesApiService } from '../../../api-services/favourites/favourites-api.service';
@@ -21,6 +22,7 @@ export class LibraryComponent
   implements OnInit {
   private userGamesApi = inject(UserGamesApiService);
   private genresApi = inject(GenresApiService);
+  private supabaseApi = inject(SupabaseApiService);
   private favouritesApi = inject(FavouritesApiService);
   private currentUserService = inject(CurrentUserService);
   private router = inject(Router);
@@ -34,10 +36,14 @@ export class LibraryComponent
   filteredGames: ListUserGamesQueryDto[] = [];
   favouriteGameIds = new Set<number>();
   favouriteGames: ListUserGamesQueryDto[] = [];
+  downloadingGameId: number | null = null;
+  togglingFavouriteGameId: number | null = null;
 
   constructor() {
     super();
     this.request = new ListUserGamesRequest();
+    this.request.paging.page = 1;
+    this.request.paging.pageSize = 1000;
   }
 
 
@@ -88,8 +94,7 @@ export class LibraryComponent
   }
 
   onSearchChanged(): void {
-    this.request.paging.page = 1;
-    this.loadPagedData();
+    this.applyFilters();
   }
 
   isGenreSelected(id: number): boolean {
@@ -103,14 +108,12 @@ export class LibraryComponent
       this.selectedGenreIds.add(id);
     }
 
-    this.request.paging.page = 1;
-    this.loadPagedData();
+    this.applyFilters();
   }
 
   clearGenres(): void {
     this.selectedGenreIds.clear();
-    this.request.paging.page = 1;
-    this.loadPagedData();
+    this.applyFilters();
   }
 
   getGameImage(game: StorefrontGameDto): string {
@@ -129,8 +132,80 @@ export class LibraryComponent
     this.router.navigate(['/auth/login']);
   }
 
+  openGameDetails(gameId: number): void {
+    this.router.navigate(['/public/games', gameId]);
+  }
+
+  downloadGame(game: ListUserGamesQueryDto, event?: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    if (this.downloadingGameId === game.gameId) {
+      return;
+    }
+
+    this.downloadingGameId = game.gameId;
+
+    this.supabaseApi.getGameDownloadUrl(game.gameId).subscribe({
+      next: (downloadUrl) => {
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      },
+      error: (err) => {
+        console.error('Failed to get game download URL:', err);
+        this.downloadingGameId = null;
+      },
+      complete: () => {
+        this.downloadingGameId = null;
+      },
+    });
+  }
+
+  toggleFavourite(game: ListUserGamesQueryDto, event?: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    if (this.togglingFavouriteGameId === game.gameId) {
+      return;
+    }
+
+    this.togglingFavouriteGameId = game.gameId;
+
+    const request = this.favouriteGameIds.has(game.gameId)
+      ? this.favouritesApi.removeFromFavourites(game.gameId)
+      : this.favouritesApi.addToFavourites(game.gameId);
+
+    request.subscribe({
+      next: () => {
+        if (this.favouriteGameIds.has(game.gameId)) {
+          this.favouriteGameIds.delete(game.gameId);
+        } else {
+          this.favouriteGameIds.add(game.gameId);
+        }
+
+        this.updatePinnedFavourites();
+      },
+      error: (err) => {
+        console.error('Failed to update favourites:', err);
+        this.togglingFavouriteGameId = null;
+      },
+      complete: () => {
+        this.togglingFavouriteGameId = null;
+      },
+    });
+  }
+
   retry(): void {
     this.loadPagedData();
+  }
+
+  trackByGameId(_: number, game: ListUserGamesQueryDto): number {
+    return game.gameId;
   }
 
   private applyFilters(): void {

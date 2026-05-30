@@ -4,32 +4,12 @@
 
   <div class="library-layout" *ngIf="isAuthenticated(); else loginStateTpl">
     <aside class="sidebar">
-      <div class="panel">
-        <div class="panel-title-row">
-          <span>GENRES</span>
-          <span class="muted">{{ selectedGenreIds.size }}</span>
-        </div>
-
-        <div class="genre-list">
-          <label class="genre-item" *ngFor="let g of genres">
-            <input
-              type="checkbox"
-              [checked]="isGenreSelected(g.id)"
-              (change)="toggleGenre(g.id)"
-            />
-            <span class="genre-name">{{ g.name }}</span>
-          </label>
-        </div>
-
-        <button
-          class="btn-clear"
-          type="button"
-          (click)="clearGenres()"
-          *ngIf="selectedGenreIds.size > 0"
-        >
-          Clear
-        </button>
-      </div>
+      <app-genre-filter
+        [genres]="genres"
+        [selectedGenreIds]="selectedGenreIds"
+        (toggleGenre)="toggleGenre($event)"
+        (clearGenres)="clearGenres()"
+      ></app-genre-filter>
     </aside>
 
     <main class="content">
@@ -59,21 +39,15 @@
       <section class="favourites-section" *ngIf="!isLoading && favouriteGames.length > 0">
         <h2>Favourites</h2>
         <div class="games-grid">
-          <a
-          class="game-card"
-          *ngFor="let g of favouriteGames"
-          [routerLink]="['/public/games', g.gameId]"
-          >
-          <img class="game-card-img" [src]="getGameImage(g.game)" [alt]="g.game.name" />
-          
-          <div class="game-card-meta">
-            <div class="game-card-title">{{ g.game.name }}</div>
-            <div class="game-card-sub">{{ g.game.publisherName }}</div>
-            <div class="game-card-bottom">
-              <div class="game-card-price">{{ getPriceLabel(g.game) }}</div>
-            </div>
-          </div>
-        </a>
+          <app-library-game-card
+            *ngFor="let g of favouriteGames; trackBy: trackByGameId"
+            [userGame]="g"
+            [isFavourite]="favouriteGameIds.has(g.gameId)"
+            [isDownloading]="downloadingGameId === g.gameId"
+            (openGame)="openGameDetails($event)"
+            (toggleFavourite)="toggleFavourite($event)"
+            (downloadGame)="downloadGame($event)"
+          ></app-library-game-card>
       </div>
     </section>
     <br><br>
@@ -90,21 +64,15 @@
       </section>
 
       <div class="games-grid library-grid" *ngIf="!isLoading && !errorMessage && filteredGames.length > 0">
-        <a
-          class="game-card"
-          *ngFor="let g of filteredGames"
-          [routerLink]="['/public/games', g.gameId]"
-        >
-          <img class="game-card-img" [src]="getGameImage(g.game)" [alt]="g.game.name" />
-
-          <div class="game-card-meta">
-            <div class="game-card-title">{{ g.game.name }}</div>
-            <div class="game-card-sub">{{ g.game.publisherName }}</div>
-            <div class="game-card-bottom">
-              <div class="game-card-price">{{ getPriceLabel(g.game) }}</div>
-            </div>
-          </div>
-        </a>
+        <app-library-game-card
+          *ngFor="let g of filteredGames; trackBy: trackByGameId"
+          [userGame]="g"
+          [isFavourite]="favouriteGameIds.has(g.gameId)"
+          [isDownloading]="downloadingGameId === g.gameId"
+          (openGame)="openGameDetails($event)"
+          (toggleFavourite)="toggleFavourite($event)"
+          (downloadGame)="downloadGame($event)"
+        ></app-library-game-card>
       </div>
 
       <section class="state-card" *ngIf="!isLoading && !errorMessage && filteredGames.length === 0">

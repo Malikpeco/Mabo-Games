@@ -22,32 +22,12 @@
         </select>
       </div>
 
-      <div class="panel">
-        <div class="panel-title-row">
-          <span>GENRES</span>
-          <span class="muted"> {{ selectedGenreIds.size }}</span>
-        </div>
-
-        <div class="genre-list">
-          <label class="genre-item" *ngFor="let g of genres">
-            <input
-              type="checkbox"
-              [checked]="isGenreSelected(g.id)"
-              (change)="toggleGenre(g.id)"
-            />
-            <span class="genre-name">{{ g.name }}</span>
-          </label>
-        </div>
-
-        <button
-          class="btn-clear"
-          type="button"
-          (click)="clearGenres()"
-          *ngIf="selectedGenreIds.size > 0"
-        >
-          Clear
-        </button>
-      </div>
+      <app-genre-filter
+        [genres]="genres"
+        [selectedGenreIds]="selectedGenreIds"
+        (toggleGenre)="toggleGenre($event)"
+        (clearGenres)="clearGenres()"
+      ></app-genre-filter>
 
     </aside>
 
