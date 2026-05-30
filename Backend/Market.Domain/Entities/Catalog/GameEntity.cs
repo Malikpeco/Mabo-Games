@@ -18,6 +18,9 @@ namespace Market.Domain.Entities
         [PreserveString]
         public string? CoverImageURL { get; set; }
 
+        [NoAudit]
+        public string GameFilePath { get; set; }
+
 
         public IReadOnlyCollection<UserGameEntity> UserGames { get; internal set; } = new List<UserGameEntity>();
         public IReadOnlyCollection<FavouriteEntity> Favourites { get; internal set; } = new List<FavouriteEntity>();

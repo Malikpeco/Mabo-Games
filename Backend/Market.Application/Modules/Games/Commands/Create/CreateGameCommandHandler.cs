@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Games.Commands.Create
 {
-    public sealed class CreateGameCommandHandler(IAppDbContext context, IAppCurrentUser currentUser) : IRequestHandler<CreateGameCommand, int>
+    public sealed class CreateGameCommandHandler(IAppDbContext context, IAppCurrentUser currentUser,ISupaBaseService supaBaseService) 
+        : IRequestHandler<CreateGameCommand, int>
     {
         public async Task<int> Handle(CreateGameCommand request, CancellationToken ct)
         {
@@ -48,7 +49,11 @@ namespace Market.Application.Modules.Games.Commands.Create
             // 3. Add Screenshots (One-to-Many)
             foreach (var url in request.ScreenshotUrls)
                 game.AddScreenshot(url);
-            
+
+
+            using var fileStream = request.File.OpenReadStream();
+
+            game.GameFilePath = await supaBaseService.UploadFileAsync(fileStream, request.File.FileName, ct);
             
 
             context.Games.Add(game);

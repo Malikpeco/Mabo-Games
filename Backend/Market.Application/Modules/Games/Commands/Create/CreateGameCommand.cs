@@ -1,4 +1,5 @@
 ﻿using Market.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace Market.Application.Modules.Games.Commands.Create
         public int PublisherId { get; set; }
         public string? CoverImageURL { get; set; }
         public List<int> GenreIds { get; set; } = new(); 
-        public List<string> ScreenshotUrls { get; set; } = new(); 
+        public List<string> ScreenshotUrls { get; set; } = new();
+
+        public IFormFile File { get; set; }
 
     }
 }

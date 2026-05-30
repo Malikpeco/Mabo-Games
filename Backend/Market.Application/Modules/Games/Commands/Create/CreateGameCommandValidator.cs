@@ -8,6 +8,8 @@ namespace Market.Application.Modules.Games.Commands.Create
 {
     public sealed class CreateGameCommandValidator : AbstractValidator<CreateGameCommand>
     {
+
+        private const long _maxFileSize = 5 * 1024 * 1024; // 5MB
         public CreateGameCommandValidator()
         {
             RuleFor(g => g.Name)
@@ -17,7 +19,7 @@ namespace Market.Application.Modules.Games.Commands.Create
                 .GreaterThanOrEqualTo(0);
 
             RuleFor(g => g.ReleaseDate)
-                .LessThan(DateTime.UtcNow.AddDays(1 ));
+                .LessThan(DateTime.UtcNow.AddDays(1));
 
             RuleFor(g => g.PublisherId)
                 .GreaterThan(0);
@@ -28,6 +30,13 @@ namespace Market.Application.Modules.Games.Commands.Create
             RuleFor(g => g.CoverImageURL)
                 .NotEmpty().Matches(@"^https?://.*$")
                 .WithMessage("Must be a valid URL.");
+
+            RuleFor(x => x.File.Length)
+        .GreaterThan(0)
+        .WithMessage("File cannot be empty")
+        .LessThanOrEqualTo(_maxFileSize)
+        .WithMessage("File size must not exceed 5MB");
+
 
         }
     }

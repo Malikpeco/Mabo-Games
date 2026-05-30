@@ -25,6 +25,9 @@ namespace Market.Infrastructure.Database.Configurations
             builder.Property(g => g.ReleaseDate)
                    .IsRequired();
 
+            builder.Property(g =>g.GameFilePath)
+                .IsRequired();
+
             
             builder.HasOne(g => g.Publisher)
                    .WithMany(p => p.Games)
