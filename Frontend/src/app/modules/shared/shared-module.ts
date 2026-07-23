@@ -19,6 +19,7 @@ import { GenreFilterComponent } from './components/genre-filter/genre-filter.com
 import { GameListComponent } from './components/game-list/game-list.component';
 import { SharedPaginatorComponent } from './components/shared-paginator/shared-paginator.component';
 import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dropdown/country-dropdown.component';
+import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
 
 
 
@@ -37,7 +38,8 @@ import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dr
     GenreFilterComponent,
     GameListComponent,
     SharedPaginatorComponent,
-    CountryDropdownComponent
+    CountryDropdownComponent,
+    RecaptchaComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +71,8 @@ import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dr
     GenreFilterComponent,
     GameListComponent,
     SharedPaginatorComponent,
-    CountryDropdownComponent
+    CountryDropdownComponent,
+    RecaptchaComponent
   ]
 })
 export class SharedModule { }

@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseComponent } from '../../../core/components/base-classes/base-component';
 import { passwordMatchValidator } from '../../../core/validators/password-match.validator';
 import { RegisterUserCommand } from '../../../api-services/users/users-api.model';
 import { UserApiService } from '../../../api-services/users/users-api.service';
+import { RecaptchaComponent } from '../../shared/components/recaptcha/recaptcha.component';
 
 
 
@@ -19,6 +20,13 @@ export class RegisterComponent extends BaseComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private userApi = inject(UserApiService);
+
+  @ViewChild(RecaptchaComponent) recaptcha!: RecaptchaComponent;
+  recaptchaToken: string | null = null;
+
+  onCaptchaResolved(token: string | null): void {
+    this.recaptchaToken = token;
+  }
 
   form = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -39,6 +47,11 @@ export class RegisterComponent extends BaseComponent {
   onSubmit(): void {
   if (this.form.invalid || this.isLoading) return;
 
+  if (!this.recaptchaToken) {
+    this.stopLoading('Please complete the captcha challenge.');
+    return;
+  }
+
   this.startLoading();
 
   const payload: RegisterUserCommand = {
@@ -49,6 +62,7 @@ export class RegisterComponent extends BaseComponent {
     password: this.form.value.password ?? '',
     confirmPassword: this.form.value.confirmPassword ?? '',
     phoneNumber: this.form.value.phone || null,
+    recaptchaToken: this.recaptchaToken,
   };
 
   this.userApi.register(payload).subscribe({
@@ -59,6 +73,8 @@ export class RegisterComponent extends BaseComponent {
     error: (err) => {
       this.stopLoading('Registration failed. Please try again.');
       console.error('Registration error:', err);
+      this.recaptchaToken = null;
+      this.recaptcha?.reset();
     },
   });
 }

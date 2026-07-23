@@ -12,6 +12,7 @@ export interface RegisterUserCommand {
     password: string;
     confirmPassword: string;
     phoneNumber?: string | null;
+    recaptchaToken: string;
 }
 /**
  * Response for POST /register

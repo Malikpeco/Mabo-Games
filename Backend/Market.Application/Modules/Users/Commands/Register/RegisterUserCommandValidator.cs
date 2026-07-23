@@ -36,6 +36,10 @@ public sealed class RegisterUserCommandValidator : AbstractValidator<RegisterUse
             .Matches("^\\+?(\\d{1,3})?[-.\\s]?(\\(?\\d{3}\\)?[-.\\s]?)?(\\d[-.\\s]?){6,9}\\d$")
             .WithMessage("Please enter a valid phone number. Examples: +38761234567, +385981234567.")
             .When(x=> x.PhoneNumber is not null);
-            
+
+        RuleFor(x => x.RecaptchaToken)
+            .NotEmpty()
+            .WithMessage("Please complete the captcha challenge.");
+
     }
 }
