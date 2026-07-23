@@ -1,4 +1,4 @@
-﻿using Market.Domain.Entities;
+using Market.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 
@@ -337,6 +337,7 @@ public static class DynamicDataSeeder
         var g1 = new GenreEntity
         {
             Name = "Action",
+            
         };
 
         var g2 = new GenreEntity
@@ -407,7 +408,8 @@ public static class DynamicDataSeeder
             Price = 60.00m,
             ReleaseDate = new DateTime(2013, 9, 17),
             Description = "An open-world action-adventure game following three criminals in the fictional state of San Andreas.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg",
+            GameFilePath = "gameFile1.bin"
         };
 
         var gm2 = new GameEntity
@@ -417,7 +419,8 @@ public static class DynamicDataSeeder
             Price = 25.00m,
             ReleaseDate = new DateTime(2018, 9, 28),
             Description = "A football simulation game featuring realistic gameplay, official leagues and teams, and the conclusion of The Journey story mode.",
-            CoverImageURL = "https://legacymedia.sportsplatform.io/img/images/photos/003/757/965/75da9a20a992ae7b8b1d18f6ee3fb8a4_crop_north.jpg?w=802"
+            CoverImageURL = "https://legacymedia.sportsplatform.io/img/images/photos/003/757/965/75da9a20a992ae7b8b1d18f6ee3fb8a4_crop_north.jpg?w=802",
+            GameFilePath = "gameFile2.bin"
         };
 
         var gm3 = new GameEntity
@@ -427,7 +430,8 @@ public static class DynamicDataSeeder
             Price = 30.00m,
             ReleaseDate = new DateTime(2018, 10, 26),
             Description = "An epic tale of outlaw Arthur Morgan and the Van der Linde gang in the dying days of the Wild West.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg",
+            GameFilePath = "gameFile3.bin"
         };
 
         var gm4 = new GameEntity
@@ -437,7 +441,8 @@ public static class DynamicDataSeeder
             Price = 20.00m,
             ReleaseDate = new DateTime(2015, 5, 19),
             Description = "A story-driven open world RPG set in a visually stunning fantasy universe full of meaningful choices.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg"
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg",
+            GameFilePath = "gameFile4.bin"
         };
 
         var gm5 = new GameEntity
@@ -447,7 +452,8 @@ public static class DynamicDataSeeder
             Price = 27.50m,
             ReleaseDate = new DateTime(2020, 12, 10),
             Description = "An open-world action-adventure story set in Night City, a megalopolis obsessed with power and glamour.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg"
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg",
+            GameFilePath = "gameFile5.bin"
         };
 
         var gm6 = new GameEntity
@@ -457,7 +463,8 @@ public static class DynamicDataSeeder
             Price = 40.00m,
             ReleaseDate = new DateTime(2022, 2, 25),
             Description = "A vast action RPG world filled with mystery and danger, created by Hidetaka Miyazaki and George R. R. Martin.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg",
+            GameFilePath = "gameFile6.bin"
         };
 
         var gm7 = new GameEntity
@@ -467,7 +474,8 @@ public static class DynamicDataSeeder
             Price = 12.50m,
             ReleaseDate = new DateTime(2020, 9, 17),
             Description = "A rogue-like dungeon crawler where you defy the god of the dead while wielding mythic weapons.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg",
+            GameFilePath = "gameFile7.bin"
         };
 
 
@@ -479,7 +487,8 @@ public static class DynamicDataSeeder
             Price = 2.50m,
             ReleaseDate = new DateTime(2026, 1, 2),
             Description = "this is a test game boi",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbu.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbu.jpg",
+            GameFilePath = "gameFile8.bin"
         };
 
         var gm10 = new GameEntity
@@ -489,7 +498,8 @@ public static class DynamicDataSeeder
             Price = 30.00m,
             ReleaseDate = new DateTime(2018, 4, 20),
             Description = "A mythological action-adventure following Kratos in Norse lands.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
+            GameFilePath = "gameFile9"
         };
 
         var gm11 = new GameEntity
@@ -499,7 +509,8 @@ public static class DynamicDataSeeder
             Price = 45.00m,
             ReleaseDate = new DateTime(2022, 11, 9),
             Description = "The epic continuation of Kratos and Atreus’ Norse saga.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg",
+            GameFilePath = "gameFile10.bin"
         };
 
         var gm12 = new GameEntity
@@ -509,7 +520,8 @@ public static class DynamicDataSeeder
             Price = 35.00m,
             ReleaseDate = new DateTime(2020, 11, 10),
             Description = "An open-world Viking adventure set in Dark Ages England.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ed3.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ed3.jpg",
+            GameFilePath = "gameFile11.bin"
         };
 
         var gm13 = new GameEntity
@@ -519,7 +531,8 @@ public static class DynamicDataSeeder
             Price = 0.00m,
             ReleaseDate = new DateTime(2018, 10, 5),
             Description = "Explore ancient Greece in this vast open-world RPG.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/9/99/ACOdysseyCoverArt.png"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/9/99/ACOdysseyCoverArt.png",
+            GameFilePath = "gameFile12.bin"
         };
 
         var gm14 = new GameEntity
@@ -529,7 +542,8 @@ public static class DynamicDataSeeder
             Price = 42.50m,
             ReleaseDate = new DateTime(2023, 3, 24),
             Description = "A modern reimagining of the legendary survival horror game.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co6bo0.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co6bo0.jpg",
+            GameFilePath = "gameFile13.bin"
         };
 
         var gm15 = new GameEntity
@@ -539,7 +553,8 @@ public static class DynamicDataSeeder
             Price = 22.50m,
             ReleaseDate = new DateTime(2021, 5, 7),
             Description = "Survival horror set in a mysterious European village.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/2c/Resident_Evil_Village.png"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/2c/Resident_Evil_Village.png",
+            GameFilePath = "gameFile14.bin"
         };
 
         var gm16 = new GameEntity
@@ -549,7 +564,8 @@ public static class DynamicDataSeeder
             Price = 0.00m,
             ReleaseDate = new DateTime(2016, 4, 12),
             Description = "A challenging action RPG set in a dark fantasy world.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/b/bb/Dark_souls_3_cover_art.jpg"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/b/bb/Dark_souls_3_cover_art.jpg",
+            GameFilePath = "gameFile15.bin"
         };
 
         var gm17 = new GameEntity
@@ -559,7 +575,8 @@ public static class DynamicDataSeeder
             Price = 32.50m,
             ReleaseDate = new DateTime(2019, 3, 22),
             Description = "A precision-based action game set in feudal Japan.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/6/6e/Sekiro_art.jpg"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/6/6e/Sekiro_art.jpg",
+            GameFilePath = "gameFile16.bin"
         };
 
         var gm18 = new GameEntity
@@ -569,7 +586,8 @@ public static class DynamicDataSeeder
             Price = 50.00m,
             ReleaseDate = new DateTime(2023, 9, 6),
             Description = "A massive space RPG exploring the vastness of the universe.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co39vv.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co39vv.jpg",
+            GameFilePath = "gameFile17.bin"
         };
 
         var gm19 = new GameEntity
@@ -579,7 +597,8 @@ public static class DynamicDataSeeder
             Price = 15.00m,
             ReleaseDate = new DateTime(2011, 11, 11),
             Description = "An open-world fantasy RPG set in the land of Skyrim.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnw.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnw.jpg",
+            GameFilePath = "gameFile18.bin"
         };
 
         var gm20 = new GameEntity
@@ -589,7 +608,8 @@ public static class DynamicDataSeeder
             Price = 12.50m,
             ReleaseDate = new DateTime(2015, 11, 10),
             Description = "A post-apocalyptic RPG set in the ruins of Boston.",
-            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202009/2502/rB3GRFvdPmaALiGt89ysflQ4.jpg"
+            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202009/2502/rB3GRFvdPmaALiGt89ysflQ4.jpg",
+            GameFilePath = "gameFile19.bin"
         };
 
         var gm21 = new GameEntity
@@ -599,7 +619,8 @@ public static class DynamicDataSeeder
             Price = 22.50m,
             ReleaseDate = new DateTime(2020, 3, 20),
             Description = "Fast-paced demon-slaying FPS action.",
-            CoverImageURL = "https://www.theouterhaven.net/wp-content/uploads/2020/02/doom-eternal-2020-top-625x352-1.jpg"
+            CoverImageURL = "https://www.theouterhaven.net/wp-content/uploads/2020/02/doom-eternal-2020-top-625x352-1.jpg",
+            GameFilePath = "gameFile20.bin"
         };
 
         var gm22 = new GameEntity
@@ -609,7 +630,8 @@ public static class DynamicDataSeeder
             Price = 0.00m,
             ReleaseDate = new DateTime(2020, 3, 23),
             Description = "A VR return to the Half-Life universe.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/4/49/Half-Life_Alyx_Cover_Art.jpg"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/4/49/Half-Life_Alyx_Cover_Art.jpg",
+            GameFilePath = "gameFile21.bin"
         };
 
         var gm23 = new GameEntity
@@ -619,7 +641,8 @@ public static class DynamicDataSeeder
             Price = 20.00m,
             ReleaseDate = new DateTime(2017, 2, 28),
             Description = "An open-world action RPG in a post-apocalyptic world.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2una.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2una.jpg",
+            GameFilePath = "gameFile22.bin"
         };
 
         var gm24 = new GameEntity
@@ -629,7 +652,8 @@ public static class DynamicDataSeeder
             Price = 40.00m,
             ReleaseDate = new DateTime(2022, 2, 18),
             Description = "The continuation of Aloy’s journey in a dangerous frontier.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2gvu.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2gvu.jpg",
+            GameFilePath = "gameFile23.bin"
         };
 
         var gm25 = new GameEntity
@@ -639,7 +663,8 @@ public static class DynamicDataSeeder
             Price = 10.00m,
             ReleaseDate = new DateTime(2015, 9, 1),
             Description = "A tactical stealth game with an open-world design.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/8/8f/Metal_Gear_Solid_V_The_Phantom_Pain_cover.png"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/8/8f/Metal_Gear_Solid_V_The_Phantom_Pain_cover.png",
+            GameFilePath = "gameFile24.bin"
         };
 
         var gm26 = new GameEntity
@@ -649,7 +674,8 @@ public static class DynamicDataSeeder
             Price = 17.50m,
             ReleaseDate = new DateTime(2016, 10, 21),
             Description = "A World War I themed first-person shooter.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n9d.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n9d.jpg",
+            GameFilePath = "gameFile25.bin"
         };
 
         var gm27 = new GameEntity
@@ -659,7 +685,8 @@ public static class DynamicDataSeeder
             Price = 0.00m,
             ReleaseDate = new DateTime(2018, 11, 20),
             Description = "A WWII shooter focused on large-scale battles.",
-            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xbv.jpg"
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xbv.jpg",
+            GameFilePath = "gameFile26.bin"
         };
 
         var gm28 = new GameEntity
@@ -669,7 +696,8 @@ public static class DynamicDataSeeder
             Price = 22.50m,
             ReleaseDate = new DateTime(2019, 11, 8),
             Description = "A unique narrative-driven experience in a fractured world.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg"
+            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg",
+            GameFilePath = "gameFile27.bin"
         };
 
         context.Games.AddRange(gm1, gm2, gm3, gm4, gm5, gm6, gm7, gm9, gm10, gm11, gm12, gm13, gm14, gm15, gm16, gm17, gm18, gm19, gm20, gm21, gm22, gm23, gm24, gm25, gm26, gm27, gm28);

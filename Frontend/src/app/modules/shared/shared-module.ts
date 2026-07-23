@@ -14,6 +14,8 @@ import { MaboNotificationsDropdownComponent } from './components/mabo-notificati
 import { MaboNotificationPopupComponent } from './components/mabo-notification-popup/mabo-notification-popup.component';
 import { MaboFooterComponent } from './components/mabo-footer/mabo-footer.component';
 import { GameCardComponent } from './components/game-card/game-card.component';
+import { LibraryGameCardComponent } from './components/library-game-card/library-game-card.component';
+import { GenreFilterComponent } from './components/genre-filter/genre-filter.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { SharedPaginatorComponent } from './components/shared-paginator/shared-paginator.component';
 import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dropdown/country-dropdown.component';
@@ -31,6 +33,8 @@ import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dr
     MaboNotificationPopupComponent,
     MaboFooterComponent,
     GameCardComponent,
+    LibraryGameCardComponent,
+    GenreFilterComponent,
     GameListComponent,
     SharedPaginatorComponent,
     CountryDropdownComponent
@@ -61,6 +65,8 @@ import { CountryDropdownComponent } from '../admin/games/admin-shared/country-dr
     MaboNotificationPopupComponent,
     MaboFooterComponent,
     GameCardComponent,
+    LibraryGameCardComponent,
+    GenreFilterComponent,
     GameListComponent,
     SharedPaginatorComponent,
     CountryDropdownComponent

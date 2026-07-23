@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Market.Application.Modules.Games.Commands.Delete
 {
-    public sealed class DeleteGameCommandHandler(IAppDbContext context, IAppCurrentUser currentUser) : IRequestHandler<DeleteGameCommand, Unit>
+    public sealed class DeleteGameCommandHandler(IAppDbContext context, IAppCurrentUser currentUser,ISupaBaseService supaBaseService) : IRequestHandler<DeleteGameCommand, Unit>
     {
         public async Task<Unit> Handle(DeleteGameCommand request, CancellationToken ct)
         {
@@ -19,8 +19,9 @@ namespace Market.Application.Modules.Games.Commands.Delete
                 throw new MarketNotFoundException("Game doesnt exist");
 
             if (await context.UserGames.AnyAsync(ug => ug.GameId == game.Id, ct))
-                throw new MarketBusinessRuleException("422", "Cannot delete a game that a user owns. Delete the UserGame first.");
+                throw new MarketBusinessRuleException("422", "Cannot delete a game that a user owns.");
 
+            await supaBaseService.DeleteFileAsync(game.GameFilePath, ct);
 
             context.Games.Remove(game);
             await context.SaveChangesAsync(ct);

@@ -2,6 +2,7 @@
 using Market.Application.Common.Email;
 using Market.Application.Common.IGDB;
 using Market.Application.Common.ImageBB;
+using Market.Application.Common.Supabase;
 using Market.Domain.Entities;
 using Market.Infrastructure.Common;
 using Market.Infrastructure.Common.AchievementsSystem;
@@ -75,6 +76,11 @@ public static class DependencyInjection
         // ImageBB 
         services.Configure<ImageBBSettings>(configuration.GetSection("ImageBB"));
         services.AddHttpClient<IBlobStorageService, BlobStorageService>();
+
+        //SupaBase
+        services.Configure<SupabaseSettings>(configuration.GetSection("Supabase"));
+        services.AddHttpClient<ISupaBaseService, SupabaseService>();
+
 
 
         //AchievementSystem

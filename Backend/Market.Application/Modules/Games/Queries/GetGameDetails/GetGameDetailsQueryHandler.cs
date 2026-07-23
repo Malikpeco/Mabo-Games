@@ -23,6 +23,7 @@ namespace Market.Application.Modules.Games.Queries.GetGameDetails
                     ReleaseDate = g.ReleaseDate,
                     Description = g.Description,
                     CoverImageURL = g.CoverImageURL,
+                    GameFilePath = g.GameFilePath,
                     Publisher = new PublisherDto
                     {
                         Id = g.Publisher.Id,

@@ -10,7 +10,6 @@ namespace Market.API.Controllers
     [ApiController]
     public class ScreenshotsController(ISender sender) : ControllerBase
     {
-        [AllowAnonymous]
         [Consumes("multipart/form-data")]
         [HttpPost("upload")]
         public async Task<IActionResult> UploadImage(IFormFile imageFile, CancellationToken ct)

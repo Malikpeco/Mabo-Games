@@ -1,8 +1,9 @@
-﻿using Market.Domain.Entities;
+﻿using Market.Application.Modules.UserSecurityQuestions.Commands.Create;
+using Market.Domain.Entities;
 
 namespace Market.Application.Modules.Games.Commands.Update
 {
-    public sealed class UpdateGameCommandHandler(IAppDbContext context, IAppCurrentUser currentUser)
+    public sealed class UpdateGameCommandHandler(IAppDbContext context, IAppCurrentUser currentUser, ISupaBaseService supaBaseService )
         : IRequestHandler<UpdateGameCommand, Unit>
     {
         public async Task<Unit> Handle(UpdateGameCommand request, CancellationToken ct)
@@ -24,6 +25,11 @@ namespace Market.Application.Modules.Games.Commands.Update
 
             if (publisher is null)
                 throw new MarketNotFoundException("Publisher not found");
+
+            if (!string.IsNullOrWhiteSpace(game.GameFilePath))
+            {
+                await supaBaseService.DeleteFileAsync(game.GameFilePath, ct);
+            }
 
 
             game.Name = request.Name;
@@ -68,6 +74,10 @@ namespace Market.Application.Modules.Games.Commands.Update
                     ImageURL = url
                 });
             }
+
+            using var fileStream = request.File.OpenReadStream();
+
+            game.GameFilePath = await supaBaseService.UploadFileAsync(fileStream, request.File.FileName, ct);
 
             await context.SaveChangesAsync(ct);
             return Unit.Value;

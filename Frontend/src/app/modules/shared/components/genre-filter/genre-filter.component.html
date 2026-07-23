@@ -1,0 +1,26 @@
+<div class="panel">
+  <div class="panel-title-row">
+    <span>{{ title | uppercase }}</span>
+    <span class="muted">{{ selectedGenreIds.size }}</span>
+  </div>
+
+  <div class="genre-list">
+    <label class="genre-item" *ngFor="let g of genres">
+      <input
+        type="checkbox"
+        [checked]="isSelected(g.id)"
+        (change)="onToggleGenre(g.id)"
+      />
+      <span class="genre-name">{{ g.name }}</span>
+    </label>
+  </div>
+
+  <button
+    class="btn-clear"
+    type="button"
+    (click)="onClearGenres()"
+    *ngIf="selectedGenreIds.size > 0"
+  >
+    Clear
+  </button>
+</div>

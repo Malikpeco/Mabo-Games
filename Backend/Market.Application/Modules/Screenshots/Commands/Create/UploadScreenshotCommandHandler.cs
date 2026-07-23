@@ -5,10 +5,9 @@
     {
         public async Task<string> Handle(UploadScreenshotCommand request, CancellationToken cancellationToken)
         {
-            //NOTE TO SELF UNTAG AND MAKE RESTRICTED IN CONTROLLER
 
-            //if(!currentUser.IsAdmin)
-                //throw new MarketForbiddenException();
+           if(!currentUser.IsAdmin)
+                throw new MarketForbiddenException();
 
 
             using var fileStream=request.File.OpenReadStream();

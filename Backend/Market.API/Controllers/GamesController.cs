@@ -35,8 +35,8 @@ namespace Market.API.Controllers
         }
 
 
-
         //add new game
+        [Consumes("multipart/form-data")]
         [HttpPost]
         public async Task<ActionResult> Create(CreateGameCommand command, CancellationToken ct)
         {
@@ -46,6 +46,7 @@ namespace Market.API.Controllers
 
 
         //update existing game
+        [Consumes("multipart/form-data")]
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Update(UpdateGameCommand command, int id, CancellationToken ct)
         {

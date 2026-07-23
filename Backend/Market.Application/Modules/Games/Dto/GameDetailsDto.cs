@@ -15,6 +15,7 @@ namespace Market.Application.Modules.Games.Dto
         public DateTime ReleaseDate { get; init; }
         public string? Description { get; init; }
         public string? CoverImageURL { get; init; }
+        public string? GameFilePath { get; init; }
         public PublisherDto Publisher { get; init; } = default!;
         public IReadOnlyList<GameScreenshotsDto> Screenshots { get; init; } = new List<GameScreenshotsDto>();
         public IReadOnlyList<GameGenreDto> Genres { get; init; } = new List<GameGenreDto>();

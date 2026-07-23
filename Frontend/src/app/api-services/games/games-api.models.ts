@@ -61,6 +61,7 @@ export interface GameDetailsDto {
     releaseDate: string;
     description?: string;
     coverImageURL?: string;
+    gameFilePath?: string;
     publisher: PublisherDto;
     screenshots: GameScreenshotsDto[];
     genres: GameGenreDto[];
@@ -77,6 +78,7 @@ export interface CreateGameRequest {
     coverImageURL: string;
     genreIds: number[];
     screenshotUrls: string[];
+    file?: File | null;
 }
 
 export interface UpdateGameRequest {
@@ -88,6 +90,7 @@ export interface UpdateGameRequest {
     coverImageURL: string;
     genreIds: number[];
     screenshotUrls: string[];
+    file?: File | null;
 }
 
 
