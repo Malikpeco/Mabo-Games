@@ -64,7 +64,13 @@
             </div>
 
 
-            <button type="submit" class="signup-button" [disabled]="form.invalid || isLoading">
+            <app-recaptcha (resolved)="onCaptchaResolved($event)"></app-recaptcha>
+
+            <div *ngIf="errorMessage" class="error-message">
+                <small>{{ errorMessage }}</small>
+            </div>
+
+            <button type="submit" class="signup-button" [disabled]="form.invalid || isLoading || !recaptchaToken">
                 Sign Up
             </button>
 

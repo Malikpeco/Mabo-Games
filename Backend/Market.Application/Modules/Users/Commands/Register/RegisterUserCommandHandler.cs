@@ -1,18 +1,26 @@
 ﻿using Market.Application.Abstractions;
+using Market.Application.Common.Exceptions;
 using Market.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Market.Application.Modules.Users.Dto;
 
 namespace Market.Application.Modules.Users.Commands.Register;
 
-public sealed class RegisterUserCommandHandler(IAppDbContext context, IPasswordHasher<UserEntity> passwordHasher) 
+public sealed class RegisterUserCommandHandler(IAppDbContext context, IPasswordHasher<UserEntity> passwordHasher, IRecaptchaService recaptchaService)
     : IRequestHandler<RegisterUserCommand, RegisterUserResultDto>
 {
     public async Task<RegisterUserResultDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
+        bool captchaValid = await recaptchaService.VerifyAsync(request.RecaptchaToken, cancellationToken);
+
+        if (!captchaValid)
+        {
+            throw new MarketBusinessRuleException("400", "Captcha verification failed. Please try again.");
+        }
+
         bool exists = await context.Users.AnyAsync(x => x.Username == request.Username || x.Email==request.Email, cancellationToken);
 
-       
+
         if (exists)
         {
             throw new MarketConflictException("User with that username/email adress already exists");

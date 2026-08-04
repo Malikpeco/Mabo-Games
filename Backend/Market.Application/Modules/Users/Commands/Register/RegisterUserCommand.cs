@@ -25,7 +25,7 @@ namespace Market.Application.Modules.Users.Commands.Register
         [PreserveString]
         public string? PhoneNumber { get; set; }
 
-
+        required public string RecaptchaToken { get; set; }
 
     }
 }

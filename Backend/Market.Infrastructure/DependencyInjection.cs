@@ -2,6 +2,7 @@
 using Market.Application.Common.Email;
 using Market.Application.Common.IGDB;
 using Market.Application.Common.ImageBB;
+using Market.Application.Common.Recaptcha;
 using Market.Application.Common.Supabase;
 using Market.Domain.Entities;
 using Market.Infrastructure.Common;
@@ -80,6 +81,10 @@ public static class DependencyInjection
         //SupaBase
         services.Configure<SupabaseSettings>(configuration.GetSection("Supabase"));
         services.AddHttpClient<ISupaBaseService, SupabaseService>();
+
+        // reCAPTCHA
+        services.Configure<RecaptchaSettings>(configuration.GetSection("Recaptcha"));
+        services.AddHttpClient<IRecaptchaService, RecaptchaService>();
 
 
 
