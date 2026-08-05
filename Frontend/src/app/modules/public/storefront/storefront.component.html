@@ -2,94 +2,167 @@
 
 <div class="storefront-page">
 
-  <section class="carousel-section">
-    <h2>Featured</h2>
-  
-    <ng-container *ngIf="featuredGame as g; else favLoading" >
-      <div class="carousel">
-        <div class="slide"
-        [routerLink]="['/public/games', g.id ]">
-          <img class="slide-img" [src]="getGameImage(g)" [alt]="g.name"  />
-          <div class="slide-overlay">
-            <div class="slide-title">{{ g.name }}</div>
-            <div class="slide-sub">{{ g.publisherName }}</div>
-            <div class="slide-price">{{ g.price | number:'1.2-2' }} €</div>
+  <section class="hero-section">
+    <ng-container *ngIf="editorsPicks.length > 0; else heroEmpty">
+      <div class="hero-carousel">
+        <button
+          type="button"
+          class="hero-nav left"
+          (click)="prevHero()"
+          [disabled]="editorsPicks.length <= 1"
+          aria-label="Previous game"
+        >‹</button>
+
+        <div class="hero-slide" [routerLink]="['/public/games', editorsPicks[heroIndex].id]">
+          <img class="hero-img" [src]="getGameImage(editorsPicks[heroIndex])" [alt]="editorsPicks[heroIndex].name" />
+          <div class="hero-overlay">
+            <h2 class="hero-title">{{ editorsPicks[heroIndex].name }}</h2>
+            <div class="hero-genres">
+              <span class="genre" *ngFor="let g of editorsPicks[heroIndex].genres?.slice(0, 3)">{{ g.name }}</span>
+            </div>
+            <div class="hero-bottom">
+              <span class="hero-price">
+                {{ editorsPicks[heroIndex].price <= 0 ? 'Free' : (editorsPicks[heroIndex].price | number:'1.2-2') + ' €' }}
+              </span>
+              <button type="button" class="hero-buy" [routerLink]="['/public/games', editorsPicks[heroIndex].id]">Buy Now</button>
+            </div>
           </div>
         </div>
+
+        <button
+          type="button"
+          class="hero-nav right"
+          (click)="nextHero()"
+          [disabled]="editorsPicks.length <= 1"
+          aria-label="Next game"
+        >›</button>
+      </div>
+
+      <div class="hero-dots" *ngIf="editorsPicks.length > 1">
+        <button
+          type="button"
+          class="dot"
+          *ngFor="let g of editorsPicks; let i = index"
+          [class.active]="i === heroIndex"
+          (click)="goToHeroSlide(i)"
+          [attr.aria-label]="'Go to slide ' + (i + 1)"
+        ></button>
       </div>
     </ng-container>
-  
-    <ng-template #favLoading>
-      <div class="carousel-placeholder">Loading favourite...</div>
+
+    <ng-template #heroEmpty>
+      <div class="hero-placeholder">No editor's picks yet.</div>
     </ng-template>
   </section>
-  
 
 
-
-  <section class="carousel-section">
-    <h2>Newest Releases</h2>
-
-    <div class="carousel" *ngIf="newestGames.length > 0; else newestEmpty">
-      <!-- Left button -->
-      <button
-      type="button"
-      class="nav-btn left"
-      (click)="prevNewest()"
-      [disabled]="newestGames.length <= 1"
-      aria-label="Previous game"
-      >
-        ‹
-      </button>
-
-      <!-- Slide -->
-      <div class="slide" [routerLink]="['/public/games', newestGames[newestIndex].id ]">
-        <img
-          class="slide-img"
-          [src]="getGameImage(newestGames[newestIndex])"
-          [alt]="newestGames[newestIndex].name"
-        />
-
-        <!-- Overlay info -->
-        <div class="slide-overlay">
-          <div class="slide-title">{{ newestGames[newestIndex].name }}</div>
-          <div class="slide-sub">{{ newestGames[newestIndex].publisherName }}</div>
-          <div class="slide-price">{{ newestGames[newestIndex].price | number:'1.2-2' }} €</div>
-        </div>
-      </div>
-
-      <!-- Right button -->
-      <button
-        type="button"
-        class="nav-btn right"
-        (click)="nextNewest()"
-        [disabled]="newestGames.length <= 1"
-        aria-label="Next game"
-      >
-        ›
-      </button>
-    </div>
-
-    <ng-template #newestEmpty>
-      <div class="carousel-placeholder">No games yet.</div>
+  <section class="row-section">
+    <h2>Recently Added</h2>
+    <app-carousel-row
+      *ngIf="recentlyAddedGames.length > 0; else recentlyAddedEmpty"
+      [itemCount]="recentlyAddedGames.length"
+      [itemsPerPage]="4"
+      [(page)]="recentlyAddedPage"
+    >
+      <app-game-card-lg *ngFor="let g of pageItems(recentlyAddedGames, recentlyAddedPage, 4)" [game]="g"></app-game-card-lg>
+    </app-carousel-row>
+    <ng-template #recentlyAddedEmpty>
+      <div class="row-placeholder">No games yet.</div>
     </ng-template>
   </section>
-  
-  
-<section class="carousel-section">
-  <h2>Cheapest</h2>
-  <ng-container *ngIf="cheapestGames.length>0; else cheapestEmpty">
-    <div class="games-grid">
-      <app-game-card *ngFor="let g of cheapestGames" [game]="g"></app-game-card>
-    </div>
-  </ng-container>
-   <ng-template #cheapestEmpty>
-    <div class="carousel-placeholder">No cheap games yet.</div>
-  </ng-template>
-</section>
+
+
+  <section class="row-section">
+    <h2>Editor's Picks</h2>
+    <p class="row-sub">Games we think you'll love</p>
+    <app-carousel-row
+      *ngIf="editorsPicks.length > 0; else editorsPicksEmpty"
+      [itemCount]="editorsPicks.length"
+      [itemsPerPage]="4"
+      [(page)]="editorsPicksPage"
+    >
+      <app-game-card-lg *ngFor="let g of pageItems(editorsPicks, editorsPicksPage, 4)" [game]="g"></app-game-card-lg>
+    </app-carousel-row>
+    <ng-template #editorsPicksEmpty>
+      <div class="row-placeholder">No editor's picks yet.</div>
+    </ng-template>
+  </section>
+
+
+  <section class="row-section">
+    <h2>Top Rated This Week</h2>
+    <app-carousel-row
+      *ngIf="topRatedWeekGames.length > 0; else topRatedWeekEmpty"
+      [itemCount]="topRatedWeekGames.length"
+      [itemsPerPage]="4"
+      [(page)]="topRatedWeekPage"
+    >
+      <app-game-card-lg *ngFor="let g of pageItems(topRatedWeekGames, topRatedWeekPage, 4)" [game]="g"></app-game-card-lg>
+    </app-carousel-row>
+    <ng-template #topRatedWeekEmpty>
+      <div class="row-placeholder">No highly rated games this week yet.</div>
+    </ng-template>
+  </section>
+
+
+  <section class="row-section">
+    <h2>Under €5</h2>
+    <app-carousel-row
+      *ngIf="underFiveGames.length > 0; else underFiveEmpty"
+      [itemCount]="underFiveGames.length"
+      [itemsPerPage]="6"
+      [rows]="3"
+      [(page)]="underFivePage"
+    >
+      <app-game-card-sm *ngFor="let g of pageItems(underFiveGames, underFivePage, 6)" [game]="g"></app-game-card-sm>
+    </app-carousel-row>
+    <ng-template #underFiveEmpty>
+      <div class="row-placeholder">No games under €5 yet.</div>
+    </ng-template>
+  </section>
+
+
+  <section class="row-section">
+    <h2>Free to Play games</h2>
+    <app-carousel-row
+      *ngIf="freeGames.length > 0; else freeGamesEmpty"
+      [itemCount]="freeGames.length"
+      [itemsPerPage]="6"
+      [rows]="3"
+      [(page)]="freePage"
+    >
+      <app-game-card-sm *ngFor="let g of pageItems(freeGames, freePage, 6)" [game]="g"></app-game-card-sm>
+    </app-carousel-row>
+    <ng-template #freeGamesEmpty>
+      <div class="row-placeholder">No free games yet.</div>
+    </ng-template>
+  </section>
+
+
+  <section class="row-section">
+    <h2>Browse categories</h2>
+    <app-carousel-row
+      *ngIf="genres.length > 0"
+      [itemCount]="genres.length"
+      [itemsPerPage]="6"
+      [showDots]="false"
+      [(page)]="categoriesPage"
+    >
+      <a
+        class="category-tile"
+        *ngFor="let g of pageItems(genres, categoriesPage, 6)"
+        [routerLink]="['/public/browse-games']"
+        [queryParams]="{ genreId: g.id }"
+        [class.no-image]="!getGenreImage(g.name)"
+        [style.background-image]="getGenreImage(g.name) ? ('url(' + getGenreImage(g.name) + ')') : null"
+      >
+        <span class="category-name">{{ g.name }}</span>
+      </a>
+    </app-carousel-row>
+  </section>
 
 </div>
 
-    
+
 
 <app-mabo-footer></app-mabo-footer>

@@ -26,12 +26,6 @@ namespace Market.Application.Modules.Games.Commands.Update
             if (publisher is null)
                 throw new MarketNotFoundException("Publisher not found");
 
-            if (!string.IsNullOrWhiteSpace(game.GameFilePath))
-            {
-                await supaBaseService.DeleteFileAsync(game.GameFilePath, ct);
-            }
-
-
             game.Name = request.Name;
             game.Description = request.Description;
             game.Price = request.Price;
@@ -75,9 +69,16 @@ namespace Market.Application.Modules.Games.Commands.Update
                 });
             }
 
-            using var fileStream = request.File.OpenReadStream();
+            if (request.File is not null)
+            {
+                if (!string.IsNullOrWhiteSpace(game.GameFilePath))
+                {
+                    await supaBaseService.DeleteFileAsync(game.GameFilePath, ct);
+                }
 
-            game.GameFilePath = await supaBaseService.UploadFileAsync(fileStream, request.File.FileName, ct);
+                using var fileStream = request.File.OpenReadStream();
+                game.GameFilePath = await supaBaseService.UploadFileAsync(fileStream, request.File.FileName, ct);
+            }
 
             await context.SaveChangesAsync(ct);
             return Unit.Value;

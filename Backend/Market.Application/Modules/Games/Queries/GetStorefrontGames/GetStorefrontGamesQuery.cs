@@ -13,7 +13,9 @@ namespace Market.Application.Modules.Games.Queries.GetStorefrontGames
         public string? Search { get; init; }
 
         [PreserveString] //Im not sure what this does but im just letting it do its thing
-        public string? Sort { get; init; } 
+        public string? Sort { get; init; }
         public List<int>? GenreIds{ get; init; }
+        public decimal? MinPrice { get; init; }
+        public decimal? MaxPrice { get; init; }
     }
 }

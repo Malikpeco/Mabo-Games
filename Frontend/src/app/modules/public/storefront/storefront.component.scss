@@ -2,82 +2,105 @@
   min-height: 100vh;
   background-color: #121212;
   color: #fff;
+  padding-bottom: 40px;
 }
 
-.carousel-section{
-  max-width: 800px;
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-section{
+  max-width: 1080px;
   margin: 32px auto;
   padding: 0 16px;
 }
 
-.carousel-section h2 {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0 0 12px 0;
-}
-
-.carousel-placeholder{
-    height: 260px;
-    width: 100%;
-    border-radius: 14px;
-    background: #1e1e1e;
-    border: 1px solid #2a2a2a;
-}
-
-
-.carousel {
+.hero-carousel{
   position: relative;
-  height: 260px;
-  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-slide{
+  position: relative;
+  flex: 1 1 auto;
+  height: 340px;
+  border-radius: 10px;
   overflow: hidden;
   background: rgba(255,255,255,0.04);
+  cursor: pointer;
 }
 
-.slide {
-  position: relative;
+.hero-img{
   width: 100%;
   height: 100%;
-}
-
-
-.slide-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;       
+  object-fit: cover;
   display: block;
 }
 
-
-.slide-overlay {
+.hero-overlay{
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 14px;
-  background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+  padding: 24px;
+  background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,0) 70%);
 }
 
-
-.slide-title {
+.hero-title{
+  margin: 0 0 8px;
+  font-size: 28px;
   font-weight: 700;
+}
+
+.hero-genres{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.hero-genres .genre{
+  padding: 2px 8px;
+  border: 1px solid #575757;
+  border-radius: 3px;
+  font-size: 10px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #c9c9c9;
+}
+
+.hero-bottom{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-price{
   font-size: 18px;
+  font-weight: 600;
 }
 
-.slide-sub {
-  opacity: 0.8;
-  margin-top: 4px;
+.hero-buy{
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 4px;
+  background: #9bc326;
+  color: #12180a;
+  font: inherit;
   font-size: 13px;
-}
-
-.slide-price {
-  margin-top: 10px;
   font-weight: 700;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: background .15s ease;
 }
 
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.hero-buy:hover{
+  background: #aad42f;
+}
+
+.hero-nav{
+  flex: 0 0 auto;
   width: 42px;
   height: 42px;
   border-radius: 999px;
@@ -85,105 +108,138 @@
   cursor: pointer;
   font-size: 26px;
   line-height: 42px;
-  background: rgba(0,0,0,0.55);
-  color: white;
-  z-index: 10;
-  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  padding: 0;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  transition: background .15s ease, transform .15s ease;
 }
 
-.nav-btn:hover:not(:disabled){
-  background: rgba(255,255,255,0.14);
-  transform: translateY(-50%) scale(1.05);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.14);
+.hero-nav:hover:not(:disabled){
+  background: rgba(255,255,255,.14);
 }
 
-.nav-btn.left { left: 10px; }
-
-.nav-btn.right { right: 10px; }
-
-.nav-btn:disabled {
-  opacity: 0.35;
+.hero-nav:disabled{
+  opacity: .35;
   cursor: default;
 }
 
-.carousel-item {
-  min-width: 220px;
-  max-width: 220px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.04);
-  overflow: hidden;
+.hero-dots{
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
 }
 
-.game-img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  display: block;
-}
-
-.game-meta {
-  padding: 10px;
-}
-
-.game-title {
-  font-weight: 600;
-}
-
-.game-sub {
-  opacity: 0.7;
-  font-size: 12px;
-  margin-top: 2px;
-}
-
-.game-price {
-  margin-top: 8px;
-  font-weight: 600;
-}
-
-
-
-
-.games-grid{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-
-
-.slide:hover{
+.hero-dots .dot{
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255,255,255,.3);
   cursor: pointer;
-  transform: translateY(-1px);
-  
+  transition: background .15s ease, width .15s ease, border-radius .15s ease;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 900px) {
-  .games-grid{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.hero-dots .dot.active{
+  background: #9bc326;
+  width: 20px;
+  border-radius: 3px;
 }
 
-@media (max-width: 768px) {
-  .nav-center {
-    display: none; 
-  }
+.hero-placeholder{
+  height: 340px;
+  border-radius: 10px;
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+}
 
-  .carousel-placeholder {
-    height: 200px;
-  }
+/* ============================================================
+   ROW SECTIONS
+   ============================================================ */
+.row-section{
+  max-width: 1080px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
 
-  .games-grid{
-    grid-template-columns: 1fr;
-  }
+.row-section h2{
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.row-sub{
+  margin: 0 0 16px;
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.row-section app-carousel-row,
+.row-section .row-placeholder{
+  display: block;
+  margin-top: 16px;
+}
+
+.row-placeholder{
+  height: 160px;
+  border-radius: 10px;
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+}
+
+/* Big cards need a fixed column width so the carousel-row's grid can page them */
+app-game-card-lg{
+  display: block;
+  width: 220px;
+}
+
+/* Small cards get a fixed width to make the 2-per-row page layout consistent */
+app-game-card-sm{
+  display: block;
+  width: 380px;
+}
+
+/* ============================================================
+   BROWSE CATEGORIES
+   ============================================================ */
+.category-tile{
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 180px;
+  height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-color: #1e1e1e;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #2a2a2a;
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+.category-tile::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.15));
+}
+
+.category-tile.no-image{
+  background-image: linear-gradient(135deg, #2a2a2a, #171717) !important;
+}
+
+.category-tile:hover{
+  transform: translateY(-3px);
+  border-color: #575757;
+}
+
+.category-name{
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
 }

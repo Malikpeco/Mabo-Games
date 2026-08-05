@@ -13,11 +13,13 @@ public static class DynamicDataSeeder
 
         await SeedCountriesAsync(context);
         await SeedUsersAsync(context);
+        await SeedReviewUsersAsync(context);
         await SeedSecurityQuestionsAsync(context);
         await SeedPublishersAsync(context);
         await SeedGenresAsync(context);
         await SeedGamesAsync(context);
         await SeedGameGenresAsync(context);
+        await SeedGameReviewsAsync(context);
         await SeedIGDBToken(context);
         await SeedAchievementsAsync(context);
     }
@@ -235,6 +237,39 @@ public static class DynamicDataSeeder
         Console.WriteLine("Dynamic seed: demo users added.");
     }
 
+    private static async Task SeedReviewUsersAsync(DatabaseContext context)
+    {
+        if (await context.Users.AnyAsync(u => u.Username.StartsWith("Reviewer")))
+            return;
+
+        var hasher = new PasswordHasher<UserEntity>();
+        var reviewers = new List<UserEntity>();
+
+        for (int i = 1; i <= 5; i++)
+        {
+            var reviewer = new UserEntity
+            {
+                Username = $"Reviewer{i}",
+                Email = $"reviewer{i}@market.com",
+                FirstName = "Reviewer",
+                LastName = $"{i}",
+                IsAdmin = false,
+                IsEnabled = true,
+                CreationDate = DateTime.UtcNow,
+            };
+
+            reviewer.PasswordHash = hasher.HashPassword(reviewer, "Reviewer123!");
+            reviewer.Cart = new CartEntity { User = reviewer };
+
+            reviewers.Add(reviewer);
+        }
+
+        context.Users.AddRange(reviewers);
+        await context.SaveChangesAsync();
+
+        Console.WriteLine("Dynamic seed: Reviewer users added.");
+    }
+
     private static async Task SeedPublishersAsync(DatabaseContext context)
     {
         if (await context.Publishers.AnyAsync())
@@ -324,7 +359,62 @@ public static class DynamicDataSeeder
             CountryId = 204
         };
 
-        context.Publishers.AddRange(pub1, pub2, pub3, pub4, pub5, pub6, pub7, pub8, pub9, pub10, pub11, pub12, pub13, pub14);
+        var pub15 = new PublisherEntity
+        {
+            Name = "Poncle",
+            CountryId = 52
+        };
+
+        var pub16 = new PublisherEntity
+        {
+            Name = "Innersloth",
+            CountryId = 52
+        };
+
+        var pub17 = new PublisherEntity
+        {
+            Name = "PopCap Games",
+            CountryId = 52
+        };
+
+        var pub18 = new PublisherEntity
+        {
+            Name = "Playsaurus",
+            CountryId = 52
+        };
+
+        var pub19 = new PublisherEntity
+        {
+            Name = "Erabit Studios",
+            CountryId = 52
+        };
+
+        var pub20 = new PublisherEntity
+        {
+            Name = "Distractionware",
+            CountryId = 52
+        };
+
+        var pub21 = new PublisherEntity
+        {
+            Name = "Silver Dollar Games",
+            CountryId = 52
+        };
+
+        var pub22 = new PublisherEntity
+        {
+            Name = "Devolver Digital",
+            CountryId = 52
+        };
+
+        var pub23 = new PublisherEntity
+        {
+            Name = "Matthew Brown Games",
+            CountryId = 52
+        };
+
+        context.Publishers.AddRange(pub1, pub2, pub3, pub4, pub5, pub6, pub7, pub8, pub9, pub10, pub11, pub12, pub13, pub14,
+            pub15, pub16, pub17, pub18, pub19, pub20, pub21, pub22, pub23);
         await context.SaveChangesAsync();
 
         Console.WriteLine("Dynamic seed: Publishers added.");
@@ -405,7 +495,7 @@ public static class DynamicDataSeeder
         {
             Name = "Grand Theft Auto 'San Andreas'",
             PublisherId = 1,
-            Price = 60.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2013, 9, 17),
             Description = "An open-world action-adventure game following three criminals in the fictional state of San Andreas.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg",
@@ -416,7 +506,7 @@ public static class DynamicDataSeeder
         {
             Name = "FIFA 19",
             PublisherId = 2,
-            Price = 25.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2018, 9, 28),
             Description = "A football simulation game featuring realistic gameplay, official leagues and teams, and the conclusion of The Journey story mode.",
             CoverImageURL = "https://legacymedia.sportsplatform.io/img/images/photos/003/757/965/75da9a20a992ae7b8b1d18f6ee3fb8a4_crop_north.jpg?w=802",
@@ -427,7 +517,7 @@ public static class DynamicDataSeeder
         {
             Name = "Red Dead Redemption 2",
             PublisherId = 1,
-            Price = 30.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2018, 10, 26),
             Description = "An epic tale of outlaw Arthur Morgan and the Van der Linde gang in the dying days of the Wild West.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg",
@@ -438,7 +528,7 @@ public static class DynamicDataSeeder
         {
             Name = "The Witcher 3: Wild Hunt",
             PublisherId = 3,
-            Price = 20.00m,
+            Price = 39.99m,
             ReleaseDate = new DateTime(2015, 5, 19),
             Description = "A story-driven open world RPG set in a visually stunning fantasy universe full of meaningful choices.",
             CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg",
@@ -449,7 +539,7 @@ public static class DynamicDataSeeder
         {
             Name = "Cyberpunk 2077",
             PublisherId = 3,
-            Price = 27.50m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2020, 12, 10),
             Description = "An open-world action-adventure story set in Night City, a megalopolis obsessed with power and glamour.",
             CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg",
@@ -460,7 +550,7 @@ public static class DynamicDataSeeder
         {
             Name = "Elden Ring",
             PublisherId = 4,
-            Price = 40.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2022, 2, 25),
             Description = "A vast action RPG world filled with mystery and danger, created by Hidetaka Miyazaki and George R. R. Martin.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg",
@@ -471,7 +561,7 @@ public static class DynamicDataSeeder
         {
             Name = "Hades",
             PublisherId = 6,
-            Price = 12.50m,
+            Price = 24.99m,
             ReleaseDate = new DateTime(2020, 9, 17),
             Description = "A rogue-like dungeon crawler where you defy the god of the dead while wielding mythic weapons.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg",
@@ -484,7 +574,7 @@ public static class DynamicDataSeeder
         {
             Name = "Tomb Raider",
             PublisherId = 1,
-            Price = 2.50m,
+            Price = 19.99m,
             ReleaseDate = new DateTime(2026, 1, 2),
             Description = "this is a test game boi",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbu.jpg",
@@ -495,7 +585,7 @@ public static class DynamicDataSeeder
         {
             Name = "God of War",
             PublisherId = 5,
-            Price = 30.00m,
+            Price = 49.99m,
             ReleaseDate = new DateTime(2018, 4, 20),
             Description = "A mythological action-adventure following Kratos in Norse lands.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
@@ -506,7 +596,7 @@ public static class DynamicDataSeeder
         {
             Name = "God of War Ragnarök",
             PublisherId = 5,
-            Price = 45.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2022, 11, 9),
             Description = "The epic continuation of Kratos and Atreus’ Norse saga.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg",
@@ -517,7 +607,7 @@ public static class DynamicDataSeeder
         {
             Name = "Assassin's Creed Valhalla",
             PublisherId = 8,
-            Price = 35.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2020, 11, 10),
             Description = "An open-world Viking adventure set in Dark Ages England.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ed3.jpg",
@@ -528,7 +618,7 @@ public static class DynamicDataSeeder
         {
             Name = "Assassin's Creed Odyssey",
             PublisherId = 8,
-            Price = 0.00m,
+            Price = 39.99m,
             ReleaseDate = new DateTime(2018, 10, 5),
             Description = "Explore ancient Greece in this vast open-world RPG.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/9/99/ACOdysseyCoverArt.png",
@@ -539,7 +629,7 @@ public static class DynamicDataSeeder
         {
             Name = "Resident Evil 4 Remake",
             PublisherId = 9,
-            Price = 42.50m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2023, 3, 24),
             Description = "A modern reimagining of the legendary survival horror game.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co6bo0.jpg",
@@ -550,7 +640,7 @@ public static class DynamicDataSeeder
         {
             Name = "Resident Evil Village",
             PublisherId = 9,
-            Price = 22.50m,
+            Price = 39.99m,
             ReleaseDate = new DateTime(2021, 5, 7),
             Description = "Survival horror set in a mysterious European village.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/2c/Resident_Evil_Village.png",
@@ -561,7 +651,7 @@ public static class DynamicDataSeeder
         {
             Name = "Dark Souls III",
             PublisherId = 4,
-            Price = 0.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2016, 4, 12),
             Description = "A challenging action RPG set in a dark fantasy world.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/b/bb/Dark_souls_3_cover_art.jpg",
@@ -572,7 +662,7 @@ public static class DynamicDataSeeder
         {
             Name = "Sekiro: Shadows Die Twice",
             PublisherId = 4,
-            Price = 32.50m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2019, 3, 22),
             Description = "A precision-based action game set in feudal Japan.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/6/6e/Sekiro_art.jpg",
@@ -583,7 +673,7 @@ public static class DynamicDataSeeder
         {
             Name = "Starfield",
             PublisherId = 10,
-            Price = 50.00m,
+            Price = 69.99m,
             ReleaseDate = new DateTime(2023, 9, 6),
             Description = "A massive space RPG exploring the vastness of the universe.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co39vv.jpg",
@@ -594,7 +684,7 @@ public static class DynamicDataSeeder
         {
             Name = "The Elder Scrolls V: Skyrim",
             PublisherId = 10,
-            Price = 15.00m,
+            Price = 39.99m,
             ReleaseDate = new DateTime(2011, 11, 11),
             Description = "An open-world fantasy RPG set in the land of Skyrim.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnw.jpg",
@@ -605,7 +695,7 @@ public static class DynamicDataSeeder
         {
             Name = "Fallout 4",
             PublisherId = 10,
-            Price = 12.50m,
+            Price = 19.99m,
             ReleaseDate = new DateTime(2015, 11, 10),
             Description = "A post-apocalyptic RPG set in the ruins of Boston.",
             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202009/2502/rB3GRFvdPmaALiGt89ysflQ4.jpg",
@@ -616,7 +706,7 @@ public static class DynamicDataSeeder
         {
             Name = "DOOM Eternal",
             PublisherId = 10,
-            Price = 22.50m,
+            Price = 29.99m,
             ReleaseDate = new DateTime(2020, 3, 20),
             Description = "Fast-paced demon-slaying FPS action.",
             CoverImageURL = "https://www.theouterhaven.net/wp-content/uploads/2020/02/doom-eternal-2020-top-625x352-1.jpg",
@@ -627,7 +717,7 @@ public static class DynamicDataSeeder
         {
             Name = "Half-Life: Alyx",
             PublisherId = 11,
-            Price = 0.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2020, 3, 23),
             Description = "A VR return to the Half-Life universe.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/4/49/Half-Life_Alyx_Cover_Art.jpg",
@@ -638,7 +728,7 @@ public static class DynamicDataSeeder
         {
             Name = "Horizon Zero Dawn",
             PublisherId = 5,
-            Price = 20.00m,
+            Price = 19.99m,
             ReleaseDate = new DateTime(2017, 2, 28),
             Description = "An open-world action RPG in a post-apocalyptic world.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2una.jpg",
@@ -649,7 +739,7 @@ public static class DynamicDataSeeder
         {
             Name = "Horizon Forbidden West",
             PublisherId = 5,
-            Price = 40.00m,
+            Price = 59.99m,
             ReleaseDate = new DateTime(2022, 2, 18),
             Description = "The continuation of Aloy’s journey in a dangerous frontier.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2gvu.jpg",
@@ -660,7 +750,7 @@ public static class DynamicDataSeeder
         {
             Name = "Metal Gear Solid V: The Phantom Pain",
             PublisherId = 13,
-            Price = 10.00m,
+            Price = 19.99m,
             ReleaseDate = new DateTime(2015, 9, 1),
             Description = "A tactical stealth game with an open-world design.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/8/8f/Metal_Gear_Solid_V_The_Phantom_Pain_cover.png",
@@ -671,7 +761,7 @@ public static class DynamicDataSeeder
         {
             Name = "Battlefield 1",
             PublisherId = 2,
-            Price = 17.50m,
+            Price = 19.99m,
             ReleaseDate = new DateTime(2016, 10, 21),
             Description = "A World War I themed first-person shooter.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n9d.jpg",
@@ -682,7 +772,7 @@ public static class DynamicDataSeeder
         {
             Name = "Battlefield V",
             PublisherId = 2,
-            Price = 0.00m,
+            Price = 19.99m,
             ReleaseDate = new DateTime(2018, 11, 20),
             Description = "A WWII shooter focused on large-scale battles.",
             CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xbv.jpg",
@@ -693,14 +783,136 @@ public static class DynamicDataSeeder
         {
             Name = "Death Stranding",
             PublisherId = 5,
-            Price = 22.50m,
+            Price = 39.99m,
             ReleaseDate = new DateTime(2019, 11, 8),
             Description = "A unique narrative-driven experience in a fractured world.",
             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg",
             GameFilePath = "gameFile27.bin"
         };
 
-        context.Games.AddRange(gm1, gm2, gm3, gm4, gm5, gm6, gm7, gm9, gm10, gm11, gm12, gm13, gm14, gm15, gm16, gm17, gm18, gm19, gm20, gm21, gm22, gm23, gm24, gm25, gm26, gm27, gm28);
+        var gm29 = new GameEntity
+        {
+            Name = "Team Fortress 2",
+            PublisherId = 12,
+            Price = 0.00m,
+            ReleaseDate = new DateTime(2007, 10, 10),
+            Description = "A team-based multiplayer shooter with nine distinct mercenary classes.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg",
+            GameFilePath = "gameFile28.bin"
+        };
+
+        var gm30 = new GameEntity
+        {
+            Name = "Vampire Survivors",
+            PublisherId = 15,
+            Price = 4.99m,
+            ReleaseDate = new DateTime(2022, 10, 20),
+            Description = "A gothic horror roguelike where minimalist gameplay meets a rich world.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1794680/header.jpg",
+            GameFilePath = "gameFile29.bin"
+        };
+
+        var gm31 = new GameEntity
+        {
+            Name = "Among Us",
+            PublisherId = 16,
+            Price = 2.99m,
+            ReleaseDate = new DateTime(2018, 11, 16),
+            Description = "An online and local party game of teamwork and betrayal for 4-15 players in space.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/header.jpg",
+            GameFilePath = "gameFile30.bin"
+        };
+
+        var gm32 = new GameEntity
+        {
+            Name = "Plants vs. Zombies: Game of the Year Edition",
+            PublisherId = 17,
+            Price = 4.99m,
+            ReleaseDate = new DateTime(2011, 5, 26),
+            Description = "A tower-defense classic where zombies are hungry for brains and only your plants can stop them.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/3590/header.jpg",
+            GameFilePath = "gameFile31.bin"
+        };
+
+        var gm33 = new GameEntity
+        {
+            Name = "Peggle Deluxe",
+            PublisherId = 17,
+            Price = 4.99m,
+            ReleaseDate = new DateTime(2007, 3, 6),
+            Description = "55 fanciful levels with 10 mystical Magic Powers in a physics-based puzzle game.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/3480/header.jpg",
+            GameFilePath = "gameFile32.bin"
+        };
+
+        var gm34 = new GameEntity
+        {
+            Name = "Cookie Clicker",
+            PublisherId = 18,
+            Price = 4.99m,
+            ReleaseDate = new DateTime(2021, 8, 1),
+            Description = "An idle game about making cookies, endlessly.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1454400/header.jpg",
+            GameFilePath = "gameFile33.bin"
+        };
+
+        var gm35 = new GameEntity
+        {
+            Name = "20 Minutes Till Dawn",
+            PublisherId = 19,
+            Price = 4.99m,
+            ReleaseDate = new DateTime(2022, 4, 21),
+            Description = "A roguelike survival shooter where endless hordes of creatures lurk from the dark.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1966900/header.jpg",
+            GameFilePath = "gameFile34.bin"
+        };
+
+        var gm36 = new GameEntity
+        {
+            Name = "VVVVVV",
+            PublisherId = 20,
+            Price = 4.99m,
+            ReleaseDate = new DateTime(2010, 1, 11),
+            Description = "A platform game about exploring one simple mechanical idea: reversing gravity instead of jumping.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/70300/header.jpg",
+            GameFilePath = "gameFile35.bin"
+        };
+
+        var gm37 = new GameEntity
+        {
+            Name = "One Finger Death Punch",
+            PublisherId = 21,
+            Price = 4.99m,
+            ReleaseDate = new DateTime(2014, 4, 25),
+            Description = "A minimalist stick-figure beat-em-up with lightning fast combat using only two buttons.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/264200/header.jpg",
+            GameFilePath = "gameFile36.bin"
+        };
+
+        var gm38 = new GameEntity
+        {
+            Name = "Downwell",
+            PublisherId = 22,
+            Price = 2.99m,
+            ReleaseDate = new DateTime(2015, 10, 29),
+            Description = "A gungoggled, wellbound adventure into the depths of a well, shooting your way down.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/360740/header.jpg",
+            GameFilePath = "gameFile37.bin"
+        };
+
+        var gm39 = new GameEntity
+        {
+            Name = "Hexcells",
+            PublisherId = 23,
+            Price = 2.99m,
+            ReleaseDate = new DateTime(2013, 12, 16),
+            Description = "A minimalist logic puzzle game played on a field of hexagonal cells.",
+            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/265890/header.jpg",
+            GameFilePath = "gameFile38.bin"
+        };
+
+        context.Games.AddRange(gm1, gm2, gm3, gm4, gm5, gm6, gm7, gm9, gm10, gm11, gm12, gm13, gm14, gm15, gm16, gm17, gm18, gm19, gm20, gm21, gm22, gm23, gm24, gm25, gm26, gm27, gm28,
+            gm29, gm30, gm31, gm32, gm33, gm34, gm35, gm36, gm37, gm38, gm39);
         await context.SaveChangesAsync();
         Console.WriteLine("Dynamic seed: Games added.");
 
@@ -745,7 +957,18 @@ public static class DynamicDataSeeder
                 ["Metal Gear Solid V: The Phantom Pain"] = ["Action", "Strategy"],
                 ["Battlefield 1"] = ["Action", "Simulation"],
                 ["Battlefield V"] = ["Action", "Simulation"],
-                ["Death Stranding"] = ["Adventure", "Simulation"]
+                ["Death Stranding"] = ["Adventure", "Simulation"],
+                ["Team Fortress 2"] = ["Action"],
+                ["Vampire Survivors"] = ["Action", "Survival"],
+                ["Among Us"] = ["Strategy", "Simulation"],
+                ["Plants vs. Zombies: Game of the Year Edition"] = ["Strategy", "Simulation"],
+                ["Peggle Deluxe"] = ["Puzzle"],
+                ["Cookie Clicker"] = ["Simulation"],
+                ["20 Minutes Till Dawn"] = ["Action", "Survival"],
+                ["VVVVVV"] = ["Puzzle", "Adventure"],
+                ["One Finger Death Punch"] = ["Action"],
+                ["Downwell"] = ["Action", "Adventure"],
+                ["Hexcells"] = ["Puzzle"]
             };
 
             var gameGenres = new List<GameGenreEntity>();
@@ -851,12 +1074,88 @@ public static class DynamicDataSeeder
             await context.SaveChangesAsync();
             Console.WriteLine("Dynamic seed: Screenshots added.");
         }
-
-
-
-
-
     }
 
+    // Games that should qualify as Editor's Picks (top rated of all time): reviews are dated
+    // well outside the "last 7 days" window used by the Top Rated This Week section.
+    private static readonly string[] EditorsPickGameNames =
+    [
+        "Dark Souls III",
+        "Elden Ring",
+        "Cyberpunk 2077",
+        "DOOM Eternal",
+        "Half-Life: Alyx"
+    ];
 
+    // Random selection of games that should qualify for Top Rated This Week: highly rated
+    // with reviews dated within the last 7 days.
+    private static readonly string[] TopRatedThisWeekGameNames =
+    [
+        "Red Dead Redemption 2",
+        "The Witcher 3: Wild Hunt",
+        "God of War",
+        "Resident Evil Village",
+        "Horizon Zero Dawn"
+    ];
+
+    private static async Task SeedGameReviewsAsync(DatabaseContext context)
+    {
+        if (await context.Reviews.AnyAsync())
+            return;
+
+        var gameIdsByName = await context.Games
+            .Select(g => new { g.Id, g.Name })
+            .ToDictionaryAsync(g => g.Name, g => g.Id);
+
+        var reviewerIds = await context.Users
+            .Where(u => u.Username.StartsWith("Reviewer"))
+            .OrderBy(u => u.Username)
+            .Select(u => u.Id)
+            .ToListAsync();
+
+        if (reviewerIds.Count == 0)
+            return;
+
+        var ratings = new[] { 5f, 4.5f, 5f, 4.5f, 5f };
+        var userGames = new List<UserGameEntity>();
+
+        void AddReviews(string gameName, Func<int, DateTime> dateForIndex)
+        {
+            if (!gameIdsByName.TryGetValue(gameName, out var gameId))
+                return;
+
+            for (var i = 0; i < reviewerIds.Count; i++)
+            {
+                var reviewDate = dateForIndex(i);
+
+                userGames.Add(new UserGameEntity
+                {
+                    UserId = reviewerIds[i],
+                    GameId = gameId,
+                    PurchaseDate = reviewDate.AddDays(-1),
+                    Review = new ReviewEntity
+                    {
+                        Rating = ratings[i],
+                        Content = "Great game, highly recommended!",
+                        Date = reviewDate
+                    }
+                });
+            }
+        }
+
+        foreach (var gameName in EditorsPickGameNames)
+        {
+            AddReviews(gameName, i => DateTime.UtcNow.AddDays(-30 - i));
+        }
+
+        foreach (var gameName in TopRatedThisWeekGameNames)
+        {
+            AddReviews(gameName, i => DateTime.UtcNow.AddDays(-i));
+        }
+
+        context.UserGames.AddRange(userGames);
+        await context.SaveChangesAsync();
+
+        Console.WriteLine($"Dynamic seed: {userGames.Count} game reviews added.");
+    }
 }

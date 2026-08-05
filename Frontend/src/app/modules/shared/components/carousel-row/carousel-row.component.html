@@ -1,0 +1,34 @@
+<div class="carousel-row">
+  <button
+    type="button"
+    class="row-nav left"
+    *ngIf="pageCount > 1"
+    [disabled]="page === 0"
+    (click)="prev()"
+    aria-label="Previous"
+  >‹</button>
+
+  <div class="row-track" [style.--rows]="rows">
+    <ng-content></ng-content>
+  </div>
+
+  <button
+    type="button"
+    class="row-nav right"
+    *ngIf="pageCount > 1"
+    [disabled]="page >= pageCount - 1"
+    (click)="next()"
+    aria-label="Next"
+  >›</button>
+</div>
+
+<div class="row-dots" *ngIf="showDots && pageCount > 1">
+  <button
+    type="button"
+    class="dot"
+    *ngFor="let p of pages; let i = index"
+    [class.active]="i === page"
+    (click)="goToPage(i)"
+    [attr.aria-label]="'Go to page ' + (i + 1)"
+  ></button>
+</div>
