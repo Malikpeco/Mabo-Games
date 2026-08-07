@@ -1,6 +1,7 @@
 using Market.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Globalization;
+using static System.Net.WebRequestMethods;
 
 namespace Market.Infrastructure.Database.Seeders;
 
@@ -413,8 +414,26 @@ public static class DynamicDataSeeder
             CountryId = 52
         };
 
+        var pub24 = new PublisherEntity
+        {
+            Name = "Digital Extremes",
+            CountryId = 52
+        };
+
+        var pub25 = new PublisherEntity
+        {
+            Name = "Smartly Dressed Games",
+            CountryId = 52
+        };
+
+        var pub26 = new PublisherEntity
+        {
+            Name = "NetEase",
+            CountryId = 52
+        };
+
         context.Publishers.AddRange(pub1, pub2, pub3, pub4, pub5, pub6, pub7, pub8, pub9, pub10, pub11, pub12, pub13, pub14,
-            pub15, pub16, pub17, pub18, pub19, pub20, pub21, pub22, pub23);
+            pub15, pub16, pub17, pub18, pub19, pub20, pub21, pub22, pub23, pub24, pub25, pub26);
         await context.SaveChangesAsync();
 
         Console.WriteLine("Dynamic seed: Publishers added.");
@@ -498,7 +517,7 @@ public static class DynamicDataSeeder
             Price = 59.99m,
             ReleaseDate = new DateTime(2013, 9, 17),
             Description = "An open-world action-adventure game following three criminals in the fictional state of San Andreas.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lb9.jpg",
             GameFilePath = "gameFile1.bin"
         };
 
@@ -509,7 +528,7 @@ public static class DynamicDataSeeder
             Price = 59.99m,
             ReleaseDate = new DateTime(2018, 9, 28),
             Description = "A football simulation game featuring realistic gameplay, official leagues and teams, and the conclusion of The Journey story mode.",
-            CoverImageURL = "https://legacymedia.sportsplatform.io/img/images/photos/003/757/965/75da9a20a992ae7b8b1d18f6ee3fb8a4_crop_north.jpg?w=802",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co68bt.jpg",
             GameFilePath = "gameFile2.bin"
         };
 
@@ -531,7 +550,7 @@ public static class DynamicDataSeeder
             Price = 39.99m,
             ReleaseDate = new DateTime(2015, 5, 19),
             Description = "A story-driven open world RPG set in a visually stunning fantasy universe full of meaningful choices.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/coaarl.jpg",
             GameFilePath = "gameFile4.bin"
         };
 
@@ -542,7 +561,7 @@ public static class DynamicDataSeeder
             Price = 59.99m,
             ReleaseDate = new DateTime(2020, 12, 10),
             Description = "An open-world action-adventure story set in Night City, a megalopolis obsessed with power and glamour.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/coaih8.jpg",
             GameFilePath = "gameFile5.bin"
         };
 
@@ -564,7 +583,7 @@ public static class DynamicDataSeeder
             Price = 24.99m,
             ReleaseDate = new DateTime(2020, 9, 17),
             Description = "A rogue-like dungeon crawler where you defy the god of the dead while wielding mythic weapons.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/cob9kr.jpg",
             GameFilePath = "gameFile7.bin"
         };
 
@@ -588,7 +607,7 @@ public static class DynamicDataSeeder
             Price = 49.99m,
             ReleaseDate = new DateTime(2018, 4, 20),
             Description = "A mythological action-adventure following Kratos in Norse lands.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/cobkt6.jpg",
             GameFilePath = "gameFile9"
         };
 
@@ -599,7 +618,7 @@ public static class DynamicDataSeeder
             Price = 59.99m,
             ReleaseDate = new DateTime(2022, 11, 9),
             Description = "The epic continuation of Kratos and Atreus’ Norse saga.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/coba3d.jpg",
             GameFilePath = "gameFile10.bin"
         };
 
@@ -621,7 +640,7 @@ public static class DynamicDataSeeder
             Price = 39.99m,
             ReleaseDate = new DateTime(2018, 10, 5),
             Description = "Explore ancient Greece in this vast open-world RPG.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/9/99/ACOdysseyCoverArt.png",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2nul.jpg",
             GameFilePath = "gameFile12.bin"
         };
 
@@ -643,7 +662,7 @@ public static class DynamicDataSeeder
             Price = 39.99m,
             ReleaseDate = new DateTime(2021, 5, 7),
             Description = "Survival horror set in a mysterious European village.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/2c/Resident_Evil_Village.png",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/coab9q.jpg",
             GameFilePath = "gameFile14.bin"
         };
 
@@ -654,7 +673,7 @@ public static class DynamicDataSeeder
             Price = 59.99m,
             ReleaseDate = new DateTime(2016, 4, 12),
             Description = "A challenging action RPG set in a dark fantasy world.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/b/bb/Dark_souls_3_cover_art.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/cob9ed.jpg",
             GameFilePath = "gameFile15.bin"
         };
 
@@ -665,7 +684,7 @@ public static class DynamicDataSeeder
             Price = 59.99m,
             ReleaseDate = new DateTime(2019, 3, 22),
             Description = "A precision-based action game set in feudal Japan.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/6/6e/Sekiro_art.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2a23.jpg",
             GameFilePath = "gameFile16.bin"
         };
 
@@ -709,7 +728,7 @@ public static class DynamicDataSeeder
             Price = 29.99m,
             ReleaseDate = new DateTime(2020, 3, 20),
             Description = "Fast-paced demon-slaying FPS action.",
-            CoverImageURL = "https://www.theouterhaven.net/wp-content/uploads/2020/02/doom-eternal-2020-top-625x352-1.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1yc6.jpg",
             GameFilePath = "gameFile20.bin"
         };
 
@@ -720,7 +739,7 @@ public static class DynamicDataSeeder
             Price = 59.99m,
             ReleaseDate = new DateTime(2020, 3, 23),
             Description = "A VR return to the Half-Life universe.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/4/49/Half-Life_Alyx_Cover_Art.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co87vg.jpg",
             GameFilePath = "gameFile21.bin"
         };
 
@@ -753,7 +772,7 @@ public static class DynamicDataSeeder
             Price = 19.99m,
             ReleaseDate = new DateTime(2015, 9, 1),
             Description = "A tactical stealth game with an open-world design.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/8/8f/Metal_Gear_Solid_V_The_Phantom_Pain_cover.png",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v85.jpg",
             GameFilePath = "gameFile24.bin"
         };
 
@@ -786,7 +805,7 @@ public static class DynamicDataSeeder
             Price = 39.99m,
             ReleaseDate = new DateTime(2019, 11, 8),
             Description = "A unique narrative-driven experience in a fractured world.",
-            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/cobksf.jpg",
             GameFilePath = "gameFile27.bin"
         };
 
@@ -797,7 +816,7 @@ public static class DynamicDataSeeder
             Price = 0.00m,
             ReleaseDate = new DateTime(2007, 10, 10),
             Description = "A team-based multiplayer shooter with nine distinct mercenary classes.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co6rzl.jpg",
             GameFilePath = "gameFile28.bin"
         };
 
@@ -808,7 +827,7 @@ public static class DynamicDataSeeder
             Price = 4.99m,
             ReleaseDate = new DateTime(2022, 10, 20),
             Description = "A gothic horror roguelike where minimalist gameplay meets a rich world.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1794680/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co4bzv.jpg",
             GameFilePath = "gameFile29.bin"
         };
 
@@ -819,7 +838,7 @@ public static class DynamicDataSeeder
             Price = 2.99m,
             ReleaseDate = new DateTime(2018, 11, 16),
             Description = "An online and local party game of teamwork and betrayal for 4-15 players in space.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co3k9v.jpg",
             GameFilePath = "gameFile30.bin"
         };
 
@@ -830,7 +849,7 @@ public static class DynamicDataSeeder
             Price = 4.99m,
             ReleaseDate = new DateTime(2011, 5, 26),
             Description = "A tower-defense classic where zombies are hungry for brains and only your plants can stop them.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/3590/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co9n56.jpg",
             GameFilePath = "gameFile31.bin"
         };
 
@@ -841,7 +860,7 @@ public static class DynamicDataSeeder
             Price = 4.99m,
             ReleaseDate = new DateTime(2007, 3, 6),
             Description = "55 fanciful levels with 10 mystical Magic Powers in a physics-based puzzle game.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/3480/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2h9x.jpg",
             GameFilePath = "gameFile32.bin"
         };
 
@@ -852,7 +871,7 @@ public static class DynamicDataSeeder
             Price = 4.99m,
             ReleaseDate = new DateTime(2021, 8, 1),
             Description = "An idle game about making cookies, endlessly.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1454400/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co8e5m.jpg",
             GameFilePath = "gameFile33.bin"
         };
 
@@ -863,7 +882,7 @@ public static class DynamicDataSeeder
             Price = 4.99m,
             ReleaseDate = new DateTime(2022, 4, 21),
             Description = "A roguelike survival shooter where endless hordes of creatures lurk from the dark.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/1966900/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co4ti3.jpg",
             GameFilePath = "gameFile34.bin"
         };
 
@@ -874,7 +893,7 @@ public static class DynamicDataSeeder
             Price = 4.99m,
             ReleaseDate = new DateTime(2010, 1, 11),
             Description = "A platform game about exploring one simple mechanical idea: reversing gravity instead of jumping.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/70300/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co4ieg.jpg",
             GameFilePath = "gameFile35.bin"
         };
 
@@ -885,7 +904,7 @@ public static class DynamicDataSeeder
             Price = 4.99m,
             ReleaseDate = new DateTime(2014, 4, 25),
             Description = "A minimalist stick-figure beat-em-up with lightning fast combat using only two buttons.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/264200/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2h2c.jpg",
             GameFilePath = "gameFile36.bin"
         };
 
@@ -896,7 +915,7 @@ public static class DynamicDataSeeder
             Price = 2.99m,
             ReleaseDate = new DateTime(2015, 10, 29),
             Description = "A gungoggled, wellbound adventure into the depths of a well, shooting your way down.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/360740/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co284e.jpg",
             GameFilePath = "gameFile37.bin"
         };
 
@@ -907,12 +926,67 @@ public static class DynamicDataSeeder
             Price = 2.99m,
             ReleaseDate = new DateTime(2013, 12, 16),
             Description = "A minimalist logic puzzle game played on a field of hexagonal cells.",
-            CoverImageURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/265890/header.jpg",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/co248b.jpg",
             GameFilePath = "gameFile38.bin"
         };
 
+        var gm40 = new GameEntity
+        {
+            Name = "Warframe",
+            PublisherId = 24,
+            Price = 0.00m,
+            ReleaseDate = new DateTime(2013, 3, 25),
+            Description = "A free-to-play cooperative third-person shooter where players control members of the Tenno, a race of ancient warriors, wielding powerful biomechanical Warframes.",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/cocase.jpg",
+            GameFilePath = "gameFile39.bin"
+        };
+
+        var gm41 = new GameEntity
+        {
+            Name = "Counter-Strike 2",
+            PublisherId = 12,
+            Price = 0.00m,
+            ReleaseDate = new DateTime(2023, 9, 27),
+            Description = "A free-to-play multiplayer tactical shooter and the successor to Counter-Strike: Global Offensive, rebuilt on the Source 2 engine.",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/coaczd.jpg",
+            GameFilePath = "gameFile40.bin"
+        };
+
+        var gm42 = new GameEntity
+        {
+            Name = "Unturned",
+            PublisherId = 25,
+            Price = 0.00m,
+            ReleaseDate = new DateTime(2017, 7, 7),
+            Description = "A free-to-play open-world survival game where players scavenge, build, and fight to survive a zombie apocalypse.",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/coaary.jpg",
+            GameFilePath = "gameFile41.bin"
+        };
+
+        var gm43 = new GameEntity
+        {
+            Name = "Once Human",
+            PublisherId = 26,
+            Price = 0.00m,
+            ReleaseDate = new DateTime(2024, 7, 9),
+            Description = "A free-to-play open-world survival game set in a fractured reality overrun by cosmic horrors, blending crafting, base-building, and combat.",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/cocleq.jpg",
+            GameFilePath = "gameFile42.bin"
+        };
+
+        var gm44 = new GameEntity
+        {
+            Name = "Dota 2",
+            PublisherId = 12,
+            Price = 0.00m,
+            ReleaseDate = new DateTime(2013, 7, 9),
+            Description = "A free-to-play multiplayer online battle arena game where two teams of five battle to destroy the opposing team's Ancient.",
+            CoverImageURL = "https://images.igdb.com/igdb/image/upload/t_cover_big/cobfk4.jpg",
+            GameFilePath = "gameFile43.bin"
+        };
+
         context.Games.AddRange(gm1, gm2, gm3, gm4, gm5, gm6, gm7, gm9, gm10, gm11, gm12, gm13, gm14, gm15, gm16, gm17, gm18, gm19, gm20, gm21, gm22, gm23, gm24, gm25, gm26, gm27, gm28,
-            gm29, gm30, gm31, gm32, gm33, gm34, gm35, gm36, gm37, gm38, gm39);
+            gm29, gm30, gm31, gm32, gm33, gm34, gm35, gm36, gm37, gm38, gm39, gm40, gm41, gm42, gm43, gm44);
         await context.SaveChangesAsync();
         Console.WriteLine("Dynamic seed: Games added.");
 
@@ -968,7 +1042,12 @@ public static class DynamicDataSeeder
                 ["VVVVVV"] = ["Puzzle", "Adventure"],
                 ["One Finger Death Punch"] = ["Action"],
                 ["Downwell"] = ["Action", "Adventure"],
-                ["Hexcells"] = ["Puzzle"]
+                ["Hexcells"] = ["Puzzle"],
+                ["Warframe"] = ["Action", "Role-Playing (RPG)"],
+                ["Counter-Strike 2"] = ["Action", "Strategy"],
+                ["Unturned"] = ["Survival", "Open-World"],
+                ["Once Human"] = ["Survival", "Open-World"],
+                ["Dota 2"] = ["Strategy", "Action"]
             };
 
             var gameGenres = new List<GameGenreEntity>();
@@ -1001,83 +1080,271 @@ public static class DynamicDataSeeder
             var ss1 = new ScreenshotEntity
             {
                 GameId = 3,
-                ImageURL = "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar3qms.jpg"
             };
 
             var ss2 = new ScreenshotEntity
             {
                 GameId = 9,
-                ImageURL = "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2018/01/img_5a6791a231406.jpg"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar4u6w.jpg"
             };
 
             var ss3 = new ScreenshotEntity
             {
                 GameId = 5,
-                ImageURL = "https://www.escapistmagazine.com/wp-content/uploads/2019/07/GOW-Feature-Image.jpg"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar3m0i.jpg"
             };
 
             var ss4 = new ScreenshotEntity
             {
                 GameId = 1,
-                ImageURL = "https://www.igta5.com/images/official-screenshot-cant-touch-this.jpg"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/arqzf.jpg"
             };
 
             var ss5 = new ScreenshotEntity
             {
                 GameId = 6,
-                ImageURL = "https://cdn.mos.cms.futurecdn.net/8gWTFzyHLQXnTGiVhRLeea.jpg"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/scagdm.jpg"
             };
 
             var ss6 = new ScreenshotEntity
             {
                 GameId = 7,
-                ImageURL = "https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000033131/dbc8c55a21688b446a5c57711b726956483a14ef8c5ddb861f897c0595ccb6b5"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar10j1.jpg"
             };
 
             var ss7 = new ScreenshotEntity
             {
                 GameId = 4,
-                ImageURL = "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/ad9240e088f953a84aee814034c50a6a92bf4516/header.jpg?t=1765462356"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar3lzk.jpg"
             };
 
             var ss8 = new ScreenshotEntity
             {
                 GameId = 2,
-                ImageURL = "https://static.standard.co.uk/s3fs-public/thumbnails/image/2018/09/06/16/easportsfifa19.jpg?width=1200"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar27mk.jpg"
             };
-
+           
             var ss9 = new ScreenshotEntity
             {
                 GameId = 1,
-                ImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg"
-            };
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/scgoqe.jpg"
+            }
+        ;
 
             var ss10 = new ScreenshotEntity
             {
                 GameId = 18,
-                ImageURL = "https://www.newgamenetwork.com/app/uploads/2025/10/starfield_07_3.jpg"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar91m.jpg"
             };
 
             var ss11 = new ScreenshotEntity
             {
                 GameId = 11,
-                ImageURL = "https://gamingbolt.com/wp-content/uploads/2022/10/god-of-war-ragnarok-image.jpg"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar746.jpg"
             };
 
             var ss12 = new ScreenshotEntity
             {
                 GameId = 14,
-                ImageURL = "https://img.playstationtrophies.org/images/monthly_2024_02/screenshots/16476/re4_ge_01_51b1e450-b26b-4e8a-891c-cb68a8138fa6.jpg"
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar814.jpg"
             };
 
-            context.Screenshots.AddRange(ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8, ss9, ss10, ss11, ss12);
+            var ss13 = new ScreenshotEntity
+            {
+                GameId = 8,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar5jg4.jpg"
+            };
+
+            var ss14 = new ScreenshotEntity
+            {
+                GameId = 10,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar3se9.jpg"
+            };
+
+            var ss15 = new ScreenshotEntity
+            {
+                GameId = 12,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/gaynboyx7mlsgoudkh8a.jpg"
+            };
+
+            var ss16 = new ScreenshotEntity
+            {
+                GameId = 13,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar1xhu.jpg"
+            };
+
+            var ss17 = new ScreenshotEntity
+            {
+                GameId = 15,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/v2pavwp088owka1apo7i.jpg"
+            };
+
+            var ss18 = new ScreenshotEntity
+            {
+                GameId = 16,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ozcogbafdzztevnidcvt.jpg"
+            };
+
+            var ss19 = new ScreenshotEntity
+            {
+                GameId = 17,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ygiajg3ypevvmhoo0cea.jpg"
+            };
+
+            var ss20 = new ScreenshotEntity
+            {
+                GameId = 19,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar103h.jpg"
+            };
+
+            var ss21 = new ScreenshotEntity
+            {
+                GameId = 20,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar6dy.jpg"
+            };
+
+            var ss22 = new ScreenshotEntity
+            {
+                GameId = 21,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar6d8.jpg"
+            };
+
+            var ss23 = new ScreenshotEntity
+            {
+                GameId = 22,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/llwixfa0dy8fpex3tcwr.jpg"
+            };
+
+            var ss24 = new ScreenshotEntity
+            {
+                GameId = 23,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/sc8c96.jpg"
+            };
+
+            var ss25 = new ScreenshotEntity
+            {
+                GameId = 24,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar546.jpg"
+            };
+
+            var ss26 = new ScreenshotEntity
+            {
+                GameId = 25,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar482.jpg"
+            };
+
+            var ss27 = new ScreenshotEntity
+            {
+                GameId = 26,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/meerv4jrmm8orqlmk3dk.jpg"
+            };
+
+            var ss28 = new ScreenshotEntity
+            {
+                GameId = 27,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar3s0u.jpg"
+            };
+
+            var ss29 = new ScreenshotEntity
+            {
+                GameId = 28,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/scnb82.jpg"
+            };
+
+            var ss30 = new ScreenshotEntity
+            {
+                GameId = 29,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar42su.jpg"
+            };
+
+            var ss31 = new ScreenshotEntity
+            {
+                GameId = 30,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar63op.jpg"
+            };
+
+            var ss32 = new ScreenshotEntity
+            {
+                GameId = 31,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar8c0.jpg"
+            };
+
+            var ss33 = new ScreenshotEntity
+            {
+                GameId = 32,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/arnz6.jpg"
+            };
+
+            var ss34 = new ScreenshotEntity
+            {
+                GameId = 33,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar11pk.jpg"
+            };
+
+            var ss35 = new ScreenshotEntity
+            {
+                GameId = 34,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar1mbz.jpg"
+            };
+
+            var ss36 = new ScreenshotEntity
+            {
+                GameId = 35,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/arct2.jpg"
+            };
+
+            var ss37 = new ScreenshotEntity
+            {
+                GameId = 37,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar6vt.jpg"
+            };
+
+            var ss38 = new ScreenshotEntity
+            {
+                GameId = 38,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar5u9i.jpg"
+            };
+
+            var ss39 = new ScreenshotEntity
+            {
+                GameId = 39,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar6595.jpg"
+            };
+
+            var ss40 = new ScreenshotEntity
+            {
+                GameId = 40,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar439t.jpg"
+            };
+
+            var ss41 = new ScreenshotEntity
+            {
+                GameId = 41,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar69q9.jpg"
+            };
+
+            var ss42 = new ScreenshotEntity
+            {
+                GameId = 42,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar6cdn.jpg"
+            };
+
+            var ss43 = new ScreenshotEntity
+            {
+                GameId = 43,
+                ImageURL = "https://images.igdb.com/igdb/image/upload/t_1080p/ar31xh.jpg"
+            };
+
+            context.Screenshots.AddRange(ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8, ss9, ss10, ss11, ss12,
+                ss13, ss14, ss15, ss16, ss17, ss18, ss19, ss20, ss21, ss22, ss23, ss24, ss25, ss26, ss27, ss28,
+                ss29, ss30, ss31, ss32, ss33, ss34, ss35, ss36, ss37, ss38, ss39, ss40, ss41, ss42, ss43);
             await context.SaveChangesAsync();
             Console.WriteLine("Dynamic seed: Screenshots added.");
         }
     }
 
-    // Games that should qualify as Editor's Picks (top rated of all time): reviews are dated
-    // well outside the "last 7 days" window used by the Top Rated This Week section.
+
     private static readonly string[] EditorsPickGameNames =
     [
         "Dark Souls III",
@@ -1087,8 +1354,6 @@ public static class DynamicDataSeeder
         "Half-Life: Alyx"
     ];
 
-    // Random selection of games that should qualify for Top Rated This Week: highly rated
-    // with reviews dated within the last 7 days.
     private static readonly string[] TopRatedThisWeekGameNames =
     [
         "Red Dead Redemption 2",
