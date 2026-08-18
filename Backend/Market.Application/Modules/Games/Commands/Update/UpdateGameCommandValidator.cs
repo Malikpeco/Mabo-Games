@@ -27,11 +27,14 @@ namespace Market.Application.Modules.Games.Commands.Update
                 .Matches(@"^https?://.*$")
                 .WithMessage("Must be a valid URL.");
 
-            RuleFor(x => x.File.Length)
+            When(x => x.File is not null, () =>
+            {
+                RuleFor(x => x.File!.Length)
                     .GreaterThan(0)
                     .WithMessage("File cannot be empty")
                     .LessThanOrEqualTo(_maxFileSize)
                     .WithMessage("File size must not exceed 5MB");
+            });
 
         }
     }

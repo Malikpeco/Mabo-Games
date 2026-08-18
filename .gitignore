@@ -541,3 +541,5 @@ http-client.private.env.json
 .idea/.cache/.Apifox_Helper
 .idea/ApifoxUploaderProjectSetting.xml
 .claude
+Frontend/package-lock.json
+Backend/Market.API/appsettings.json

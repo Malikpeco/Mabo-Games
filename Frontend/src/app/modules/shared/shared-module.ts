@@ -13,7 +13,9 @@ import { MaboNavbarComponent } from './components/mabo-navbar/mabo-navbar.compon
 import { MaboNotificationsDropdownComponent } from './components/mabo-notifications-dropdown/mabo-notifications-dropdown.component';
 import { MaboNotificationPopupComponent } from './components/mabo-notification-popup/mabo-notification-popup.component';
 import { MaboFooterComponent } from './components/mabo-footer/mabo-footer.component';
-import { GameCardComponent } from './components/game-card/game-card.component';
+import { GameCardLgComponent } from './components/game-card-lg/game-card-lg.component';
+import { GameCardSmComponent } from './components/game-card-sm/game-card-sm.component';
+import { CarouselRowComponent } from './components/carousel-row/carousel-row.component';
 import { LibraryGameCardComponent } from './components/library-game-card/library-game-card.component';
 import { GenreFilterComponent } from './components/genre-filter/genre-filter.component';
 import { GameListComponent } from './components/game-list/game-list.component';
@@ -33,7 +35,9 @@ import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
     MaboNotificationsDropdownComponent,
     MaboNotificationPopupComponent,
     MaboFooterComponent,
-    GameCardComponent,
+    GameCardLgComponent,
+    GameCardSmComponent,
+    CarouselRowComponent,
     LibraryGameCardComponent,
     GenreFilterComponent,
     GameListComponent,
@@ -66,7 +70,9 @@ import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
     MaboNotificationsDropdownComponent,
     MaboNotificationPopupComponent,
     MaboFooterComponent,
-    GameCardComponent,
+    GameCardLgComponent,
+    GameCardSmComponent,
+    CarouselRowComponent,
     LibraryGameCardComponent,
     GenreFilterComponent,
     GameListComponent,

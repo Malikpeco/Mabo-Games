@@ -1,0 +1,15 @@
+<a class="card-lg" [routerLink]="['/public/games', game.id]">
+  <div class="card-lg__art">
+    <img [src]="getGameImage()" [alt]="game.name" />
+  </div>
+  <div class="card-lg__body">
+    <h3 class="card-lg__title">{{ game.name }}</h3>
+    <p class="card-lg__publisher">{{ game.publisherName }}</p>
+    <div class="card-lg__meta">
+      <div class="genres">
+        <span class="genre" *ngFor="let g of game.genres.slice(0, 2)">{{ g.name }}</span>
+      </div>
+      <span class="price" [class.price--free]="isFree">{{ priceLabel }}</span>
+    </div>
+  </div>
+</a>

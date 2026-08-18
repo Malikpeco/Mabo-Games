@@ -1,0 +1,66 @@
+.carousel-row{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.row-track{
+  --rows: 1;
+  flex: 1 1 auto;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--rows), auto);
+  column-gap: 14px;
+  row-gap: 14px;
+  justify-content: center;
+}
+
+.row-nav{
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 36px;
+  text-align: center;
+  padding: 0;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  transition: background .15s ease, transform .15s ease;
+}
+
+.row-nav:hover:not(:disabled){
+  background: rgba(255,255,255,0.16);
+}
+
+.row-nav:disabled{
+  opacity: .3;
+  cursor: default;
+}
+
+.row-dots{
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: background .15s ease, width .15s ease, border-radius .15s ease;
+}
+
+.dot.active{
+  background: #9bc326;
+  width: 18px;
+  border-radius: 3px;
+}

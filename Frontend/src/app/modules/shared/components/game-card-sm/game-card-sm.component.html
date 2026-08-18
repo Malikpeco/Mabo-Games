@@ -1,0 +1,17 @@
+<a class="card-sm" [routerLink]="['/public/games', game.id]">
+  <div class="card-sm__art">
+    <img [src]="getGameImage()" [alt]="game.name" />
+  </div>
+  <div class="card-sm__body">
+    <h3 class="card-sm__title">{{ game.name }}</h3>
+    <div class="card-sm__meta">
+      <div class="genres">
+        <span class="genre" *ngFor="let g of game.genres.slice(0, 2)">{{ g.name }}</span>
+      </div>
+      <div class="card-sm__meta-right">
+        <span class="price" [class.price--free]="isFree">{{ priceLabel }}</span>
+        <button class="btn-play" type="button" *ngIf="isFree">Play now</button>
+      </div>
+    </div>
+  </div>
+</a>

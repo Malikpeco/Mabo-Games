@@ -6,6 +6,8 @@ export class GetStorefrontGamesRequest extends BasePagedQuery{
     search?:string | null;
     sort?: string | null;
     genreIds?:number[] | null;
+    minPrice?: number | null;
+    maxPrice?: number | null;
 }
 
 export interface GameScreenshotsDto{
@@ -28,6 +30,8 @@ export interface StorefrontGameDto{
     publisherName:string;
     screenshots: GameScreenshotsDto[];
     genres: GenreDto[];
+    averageRating: number;
+    reviewCount: number;
 }
 
 export interface ReviewDto{

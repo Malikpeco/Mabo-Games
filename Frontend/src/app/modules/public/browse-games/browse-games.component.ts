@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CurrentUserService } from '../../../core/services/auth/current-user.service';
 import { AuthFacadeService } from '../../../core/services/auth/auth-facade.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GamesApiService } from '../../../api-services/games/games-api.service';
 import { StorefrontGameDto } from '../../../api-services/games/games-api.models';
 import { GenresApiService } from '../../../api-services/genres/genres-api.service';
@@ -24,6 +24,7 @@ export class BrowseGamesComponent {
   
   private authFacadeService = inject(AuthFacadeService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   
   private gamesApi = inject(GamesApiService);
   private genresApi = inject(GenresApiService);
@@ -63,6 +64,14 @@ export class BrowseGamesComponent {
     this.genresApi.list({ paging: { page: 1, pageSize: 1000 } }).subscribe(res=>{
       this.genres = res.items ?? [];
     });
+
+    const genreIdParam = this.route.snapshot.queryParamMap.get('genreId');
+    if (genreIdParam) {
+      const genreId = Number(genreIdParam);
+      if (!Number.isNaN(genreId)) {
+        this.selectedGenreIds.add(genreId);
+      }
+    }
 
     this.reload();
   }

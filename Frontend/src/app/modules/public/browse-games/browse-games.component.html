@@ -62,7 +62,7 @@
 
       <!-- Grid -->
       <div class="games-grid" *ngIf="filteredGames.length > 0; else empty">
-        <app-game-card *ngFor="let g of filteredGames" [game]="g"></app-game-card>
+        <app-game-card-lg *ngFor="let g of filteredGames" [game]="g"></app-game-card-lg>
       </div>
 
       <ng-template #empty>
