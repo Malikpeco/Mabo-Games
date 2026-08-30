@@ -114,10 +114,10 @@ stripe login
 
 #### Start Webhook Forwarding
 
-Run this in a separate terminal:
+Run this in a separate terminal (use `--skip-ssl-validation` for ASP.NET Core dev HTTPS, or forward to the HTTP port `http://localhost:5177/api/webhooks/stripe`):
 
 ```bash
-stripe listen --forward-to https://localhost:7260/api/webhooks/stripe
+stripe listen --forward-to https://localhost:7260/api/webhooks/stripe --skip-ssl-validation
 ```
 
 Stripe will output a webhook secret (`whsec_...`).

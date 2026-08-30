@@ -5,13 +5,21 @@
     <section class="payment-card" *ngIf="!isSuccessMode; else successTpl">
       <h1>Redirecting to Stripe</h1>
       <p *ngIf="!errorMessage">Preparing your checkout...</p>
-      <p *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
+      <div class="actions" *ngIf="errorMessage">
+        <a class="btn btn-secondary" routerLink="/public/cart">Back to Cart</a>
+      </div>
     </section>
 
     <ng-template #successTpl>
       <section class="payment-card">
-        <h1>Payment successful</h1>
-        <p>Your purchase is complete. Returning to library...</p>
+        <h1>{{ errorMessage ? 'Payment Status' : 'Payment Successful! 🎮' }}</h1>
+        <p *ngIf="!errorMessage">{{ statusMessage }}</p>
+        <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
+        <div class="actions" *ngIf="errorMessage">
+          <a class="btn btn-primary" routerLink="/public/library">Go to Library</a>
+          <a class="btn btn-secondary" routerLink="/public/cart">Go to Cart</a>
+        </div>
       </section>
     </ng-template>
   </section>

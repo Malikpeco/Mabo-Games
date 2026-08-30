@@ -1,4 +1,4 @@
-﻿using Market.Application.Common.Behaviors;
+using Market.Application.Common.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -22,6 +22,9 @@ public static class DependencyInjection
 
         // TimeProvider — if used by handlers
         services.AddSingleton(TimeProvider.System);
+
+        // Order Fulfillment Service
+        services.AddScoped<Market.Application.Abstractions.IOrderFulfillmentService, Market.Application.Modules.Payments.Services.OrderFulfillmentService>();
 
         return services;
     }

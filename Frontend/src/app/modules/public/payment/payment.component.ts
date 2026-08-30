@@ -17,6 +17,8 @@ export class PaymentComponent implements OnInit {
   private paymentsApi = inject(PaymentsApiService);
 
   isSuccessMode = false;
+  isVerifying = false;
+  statusMessage = '';
   errorMessage = '';
 
   ngOnInit(): void {
@@ -35,13 +37,8 @@ export class PaymentComponent implements OnInit {
             return;
           }
 
-          const stripeWindow = window.open(response.checkoutUrl, '_blank');
-          if (!stripeWindow) {
-            window.location.href = response.checkoutUrl;
-            return;
-          }
-
-          this.router.navigate(['/public/browse-games']);
+          // Direct redirect to Stripe Checkout
+          window.location.href = response.checkoutUrl;
         },
         error: err => {
           this.errorMessage = err?.error?.message ?? 'Payment could not start.';
@@ -50,6 +47,36 @@ export class PaymentComponent implements OnInit {
   }
 
   private handleSuccessReturn(): void {
+    const sessionId = this.route.snapshot.queryParamMap.get('session_id');
+
+    if (!sessionId) {
+      this.statusMessage = 'Your purchase is complete. Returning to library...';
+      this.finalizeRedirect();
+      return;
+    }
+
+    this.isVerifying = true;
+    this.statusMessage = 'Confirming your payment and updating your library...';
+
+    this.paymentsApi.confirmStripeSession(sessionId).subscribe({
+      next: response => {
+        this.isVerifying = false;
+        if (response.isSuccess) {
+          this.statusMessage = 'Payment confirmed! Redirecting to your library...';
+          this.finalizeRedirect();
+        } else {
+          this.errorMessage = response.message ?? 'Payment confirmation was unsuccessful.';
+        }
+      },
+      error: () => {
+        this.isVerifying = false;
+        this.statusMessage = 'Purchase completed. Returning to your library...';
+        this.finalizeRedirect();
+      }
+    });
+  }
+
+  private finalizeRedirect(): void {
     const openerWindow = window.opener;
     if (openerWindow && !openerWindow.closed) {
       try {
@@ -60,10 +87,12 @@ export class PaymentComponent implements OnInit {
 
       setTimeout(() => {
         window.close();
-      }, 250);
+      }, 600);
       return;
     }
 
-    this.router.navigate(['/public/library']);
+    setTimeout(() => {
+      this.router.navigate(['/public/library']);
+    }, 600);
   }
 }
