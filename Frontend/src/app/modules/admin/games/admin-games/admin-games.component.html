@@ -27,6 +27,63 @@
 					aria-label="Search games" />
 			</div>
 
+			<div class="admin-games-filters-shell" #filtersShell>
+				<button
+					type="button"
+					class="admin-games-filters-toggle custom-select-shell"
+					[class.has-active]="activeFilterCount > 0"
+					(click)="toggleFiltersPanel()"
+					aria-label="Toggle filters">
+					<mat-icon class="admin-tool-icon">filter_list</mat-icon>
+					<span>Advanced filter</span>
+					<span class="admin-games-filters-badge" [class.is-visible]="activeFilterCount > 0" [attr.aria-hidden]="activeFilterCount === 0">{{ activeFilterCount }}</span>
+				</button>
+
+				<div class="admin-games-filters-panel" *ngIf="filtersOpen">
+					<div class="admin-games-filters-panel-header">
+						<span>Advanced filter</span>
+						<button type="button" class="admin-games-filters-clear" *ngIf="activeFilterCount > 0" (click)="clearAllFilters()">Clear all</button>
+					</div>
+
+					<div class="admin-games-filters-group">
+						<span class="admin-games-filters-label">Price range (EUR)</span>
+						<div class="admin-games-price-range">
+							<input
+								type="number"
+								min="0"
+								step="0.01"
+								placeholder="Min"
+								[ngModel]="minPrice"
+								(ngModelChange)="onMinPriceChange($event)"
+								aria-label="Minimum price" />
+							<span>-</span>
+							<input
+								type="number"
+								min="0"
+								step="0.01"
+								placeholder="Max"
+								[ngModel]="maxPrice"
+								(ngModelChange)="onMaxPriceChange($event)"
+								aria-label="Maximum price" />
+						</div>
+					</div>
+
+					<div class="admin-games-filters-group">
+						<span class="admin-games-filters-label">Genres</span>
+						<div class="admin-games-genre-list">
+							<label class="admin-games-genre-item" *ngFor="let genre of genres">
+								<input
+									type="checkbox"
+									[checked]="isGenreSelected(genre.id)"
+									(change)="toggleGenre(genre.id)" />
+								<span>{{ genre.name }}</span>
+							</label>
+							<span class="admin-games-filters-empty" *ngIf="genres.length === 0">No genres available.</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="admin-games-size-shell custom-select-shell">
 				<mat-icon class="admin-tool-icon">format_list_numbered</mat-icon>
 				<select

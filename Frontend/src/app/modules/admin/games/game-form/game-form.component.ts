@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { GamesApiService } from '../../../../api-services/games/games-api.service';
 import { CreateGameRequest, UpdateGameRequest } from '../../../../api-services/games/games-api.models';
 import { GetIgdbGameDetailsDto } from '../../../../api-services/igdb/igdb-api.models';
@@ -19,6 +20,34 @@ interface IgdbMediaOption {
   kind: 'Screenshot' | 'Artwork' | 'Upload';
 }
 
+// Mirrors the "at least one genre" rule enforced by CreateGameCommandValidator/UpdateGameCommandValidator.
+function atLeastOneGenreValidator(control: AbstractControl): ValidationErrors | null {
+  const ids = control.value as number[] | null;
+  return ids && ids.length > 0 ? null : { required: true };
+}
+
+// Mirrors the file requirement enforced by CreateGameCommandValidator (required, non-empty, <= max size)
+// and UpdateGameCommandValidator (optional, but non-empty and <= max size when provided).
+function gameFileValidator(isEditMode: () => boolean, maxSizeBytes: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const file = control.value as File | null;
+
+    if (!file) {
+      return isEditMode() ? null : { required: true };
+    }
+
+    if (file.size <= 0) {
+      return { empty: true };
+    }
+
+    if (file.size > maxSizeBytes) {
+      return { maxSize: true };
+    }
+
+    return null;
+  };
+}
+
 @Component({
   selector: 'app-game-form',
   standalone: false,
@@ -26,6 +55,9 @@ interface IgdbMediaOption {
   styleUrl: './game-form.component.scss',
 })
 export class GameFormComponent {
+  private static readonly maxFileSizeBytes = 5 * 1024 * 1024; // 5MB, matches BE validators
+
+  private fb = inject(FormBuilder);
   private gamesApi = inject(GamesApiService);
   private screenshotsApi = inject(ScreenshotsApiService);
   private dialog = inject(DialogHelperService);
@@ -39,12 +71,18 @@ export class GameFormComponent {
   editingGameId: number | null = null;
   isLoadingGame = false;
 
-  gameTitle = '';
-  releaseDate = new Date().toISOString().slice(0, 10);
-  publisherName = '';
-  price: number | null = null;
-  description = '';
+  form = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    releaseDate: [new Date().toISOString().slice(0, 10), [Validators.required]],
+    price: [0, [Validators.required, Validators.min(0)]],
+    description: [''],
+    publisherId: [null as number | null, [Validators.required]],
+    genreIds: [[] as number[], [atLeastOneGenreValidator]],
+    coverImageURL: ['', [Validators.required, Validators.pattern(/^https?:\/\/.*$/i)]],
+    file: [null as File | null, [gameFileValidator(() => this.isEditMode, GameFormComponent.maxFileSizeBytes)]],
+  });
 
+  publisherName = '';
   selectedGenres: GenreDto[] = [];
   selectedGenreNames: string[] = [];
   coverPreviewUrl: string | null = null;
@@ -55,7 +93,6 @@ export class GameFormComponent {
   uploadedMediaOptions: IgdbMediaOption[] = [];
   selectedMediaUrls: string[] = [];
 
-  selectedPublisherId: number | null = null;
   isFreeToPlay = false;
   isUploadingCover = false;
   isUploadingScreenshots = false;
@@ -80,10 +117,21 @@ export class GameFormComponent {
 
     this.isEditMode = true;
     this.editingGameId = routeId;
+    // Re-run the file validator now that isEditMode is true (it was evaluated once at form construction).
+    this.form.get('file')?.updateValueAndValidity();
     this.loadGameForEdit(routeId);
   }
 
   ngOnDestroy(): void {}
+
+  hasError(controlName: string, errorType?: string): boolean {
+    const control = this.form.get(controlName);
+    if (!control || !control.touched) {
+      return false;
+    }
+
+    return errorType ? control.hasError(errorType) : control.invalid;
+  }
 
   onIgdbSearchCleared(): void {
     this.igdbMediaOptions = [];
@@ -92,19 +140,20 @@ export class GameFormComponent {
   }
 
   onPublisherSelected(publisher: PublisherAutocompleteDto | null): void {
-    if (!publisher) {
-      this.selectedPublisherId = null;
-      this.publisherName = '';
-      return;
-    }
+    const publisherId = publisher?.id ?? null;
+    this.publisherName = publisher?.name ?? '';
 
-    this.selectedPublisherId = publisher.id;
-    this.publisherName = publisher.name;
+    this.form.get('publisherId')?.setValue(publisherId);
+    this.form.get('publisherId')?.markAsTouched();
   }
 
   onGenresChanged(genres: GenreDto[]): void {
     this.selectedGenres = genres ?? [];
     this.selectedGenreNames = this.selectedGenres.map((genre) => genre.name);
+
+    const genreIds = this.selectedGenres.map((genre) => genre.id).filter((id): id is number => id > 0);
+    this.form.get('genreIds')?.setValue(genreIds);
+    this.form.get('genreIds')?.markAsTouched();
   }
 
   onIgdbDetailsSelected(details: GetIgdbGameDetailsDto): void {
@@ -112,22 +161,24 @@ export class GameFormComponent {
   }
 
   private applyIgdbDetails(details: GetIgdbGameDetailsDto): void {
-    this.gameTitle = details.name ?? this.gameTitle;
+    this.form.get('name')?.setValue(details.name ?? this.form.get('name')?.value ?? '');
 
     if (details.releaseDate) {
       const parsedReleaseDate = this.toDateInputValue(details.releaseDate);
       if (parsedReleaseDate) {
-        this.releaseDate = parsedReleaseDate;
+        this.form.get('releaseDate')?.setValue(parsedReleaseDate);
       }
     }
 
     if (details.summary?.trim()) {
-      this.description = details.summary;
+      this.form.get('description')?.setValue(details.summary);
     }
 
     if (details.publisher?.trim()) {
       this.publisherName = details.publisher;
-      this.selectedPublisherId = null;
+      // IGDB only gives us a publisher name, not a real publisher id from our DB, so the field
+      // is left invalid on purpose until the admin actually picks/creates a matching publisher.
+      this.form.get('publisherId')?.setValue(null);
     }
 
     const incomingGenres = (details.genres ?? [])
@@ -137,6 +188,7 @@ export class GameFormComponent {
     if (incomingGenres.length > 0) {
       this.selectedGenreNames = incomingGenres;
       this.selectedGenres = [];
+      this.form.get('genreIds')?.setValue([]);
     }
 
     if (details.coverUrl) {
@@ -223,6 +275,17 @@ export class GameFormComponent {
       const firstFilledIndex = this.screenshotPreviews.findIndex((item) => item !== null);
       this.activeScreenshotIndex = firstFilledIndex === -1 ? 0 : firstFilledIndex;
     }
+
+    this.syncCoverImageControl();
+  }
+
+  // CoverImageURL isn't backed by a single input - it falls back to the first selected
+  // screenshot/artwork when no explicit cover was uploaded/picked. Recompute it here so the
+  // "coverImageURL" form control (and its validators) always reflect what will actually be sent.
+  private syncCoverImageControl(): void {
+    const validHttpUrls = this.selectedMediaUrls.filter((url) => /^https?:\/\//i.test(url));
+    const coverCandidate = this.coverPreviewUrl ?? validHttpUrls[0] ?? '';
+    this.form.get('coverImageURL')?.setValue(coverCandidate);
   }
 
   private getAllMediaOptions(): IgdbMediaOption[] {
@@ -246,6 +309,8 @@ export class GameFormComponent {
       }
 
       this.coverPreviewUrl = response.url;
+      this.syncCoverImageControl();
+      this.form.get('coverImageURL')?.markAsTouched();
     } catch {
       this.toaster.error('Cover upload failed. Please try again.');
     } finally {
@@ -331,6 +396,8 @@ export class GameFormComponent {
 
       try {
         this.selectedGameFile = file;
+        this.form.get('file')?.setValue(file);
+        this.form.get('file')?.markAsTouched();
         ref.close();
       } catch {
         ref.componentInstance.errorMessage = 'Could not select the chosen file.';
@@ -342,6 +409,8 @@ export class GameFormComponent {
 
   clearSelectedGameFile(): void {
     this.selectedGameFile = null;
+    this.form.get('file')?.setValue(null);
+    this.form.get('file')?.markAsTouched();
   }
 
   get selectedGameFileName(): string {
@@ -367,13 +436,14 @@ export class GameFormComponent {
 
   onFreeToPlayChange(isChecked: boolean): void {
     this.isFreeToPlay = isChecked;
-    if (this.isFreeToPlay) {
-      this.price = 0;
-    }
-  }
+    const priceControl = this.form.get('price');
 
-  get effectivePrice(): number | null {
-    return this.isFreeToPlay ? 0 : this.price;
+    if (this.isFreeToPlay) {
+      priceControl?.setValue(0);
+      priceControl?.disable();
+    } else {
+      priceControl?.enable();
+    }
   }
 
   private toDateInputValue(value: string | null | undefined): string {
@@ -390,11 +460,12 @@ export class GameFormComponent {
   }
 
   private getReleaseDateIso(): string {
-    if (!this.releaseDate) {
+    const releaseDate = this.form.get('releaseDate')?.value;
+    if (!releaseDate) {
       return new Date().toISOString();
     }
 
-    const parsed = new Date(`${this.releaseDate}T00:00:00`);
+    const parsed = new Date(`${releaseDate}T00:00:00`);
     if (Number.isNaN(parsed.getTime())) {
       return new Date().toISOString();
     }
@@ -407,21 +478,32 @@ export class GameFormComponent {
 
     this.gamesApi.getById(gameId).subscribe({
       next: (game) => {
-        this.gameTitle = game.name ?? '';
-        this.description = game.description ?? '';
-        this.price = Number(game.price ?? 0);
-        this.isFreeToPlay = this.price === 0;
+        const price = Number(game.price ?? 0);
+
+        this.form.patchValue({
+          name: game.name ?? '',
+          description: game.description ?? '',
+          price,
+          releaseDate: this.toDateInputValue(game.releaseDate) || this.form.get('releaseDate')?.value,
+        });
+
+        this.isFreeToPlay = price === 0;
+        if (this.isFreeToPlay) {
+          this.form.get('price')?.disable();
+        }
+
         this.publisherName = game.publisher?.name ?? '';
-        this.selectedPublisherId = game.publisher?.id ?? null;
+        this.form.get('publisherId')?.setValue(game.publisher?.id ?? null);
+
         this.coverPreviewUrl = game.coverImageURL ?? null;
         this.existingGameFilePath = game.gameFilePath ?? null;
-        this.releaseDate = this.toDateInputValue(game.releaseDate) || this.releaseDate;
 
         this.selectedGenres = (game.genres ?? []).map((genre) => ({
           id: genre.id,
           name: genre.name,
         }));
         this.selectedGenreNames = this.selectedGenres.map((genre) => genre.name);
+        this.form.get('genreIds')?.setValue(this.selectedGenres.map((genre) => genre.id));
 
         const existingScreenshotUrls = (game.screenshots ?? [])
           .map((item) => item.imageURL)
@@ -450,41 +532,25 @@ export class GameFormComponent {
       return;
     }
 
-    const gameName = this.gameTitle.trim();
-    if (gameName.length < 2) {
-      this.toaster.error('Please enter a valid game title.');
+    this.form.markAllAsTouched();
+
+    if (this.form.invalid) {
+      this.toaster.error('Please fix the highlighted fields before saving.');
       return;
     }
 
-    if (this.effectivePrice === null || this.effectivePrice < 0) {
-      this.toaster.error('Please enter a valid price.');
-      return;
-    }
-
-    if (!this.selectedPublisherId || this.selectedPublisherId <= 0) {
-      this.toaster.error('Please choose a publisher from the dropdown.');
-      return;
-    }
-
-    const genreIds = this.selectedGenres
-      .map((genre) => genre.id)
-      .filter((id): id is number => id > 0);
-
-    if (genreIds.length === 0) {
-      this.toaster.error('Please select at least one genre.');
-      return;
-    }
-
+    const raw = this.form.getRawValue();
+    const gameName = (raw.name ?? '').trim();
+    const genreIds = (raw.genreIds ?? []).filter((id): id is number => id > 0);
     const validHttpUrls = this.selectedMediaUrls.filter((url) => /^https?:\/\//i.test(url));
-    const coverCandidate = this.coverPreviewUrl ?? validHttpUrls[0] ?? '';
 
     const createPayload: CreateGameRequest = {
       name: gameName,
-      price: this.effectivePrice,
-      description: this.description?.trim() || undefined,
+      price: raw.price ?? 0,
+      description: raw.description?.trim() || undefined,
       releaseDate: this.getReleaseDateIso(),
-      publisherId: this.selectedPublisherId,
-      coverImageURL: coverCandidate,
+      publisherId: raw.publisherId!,
+      coverImageURL: raw.coverImageURL ?? '',
       genreIds,
       screenshotUrls: validHttpUrls,
       file: this.selectedGameFile,
@@ -492,11 +558,11 @@ export class GameFormComponent {
 
     const updatePayload: UpdateGameRequest = {
       name: gameName,
-      price: this.effectivePrice,
-      description: this.description?.trim() || undefined,
+      price: raw.price ?? 0,
+      description: raw.description?.trim() || undefined,
       releaseDate: this.getReleaseDateIso(),
-      publisherId: this.selectedPublisherId,
-      coverImageURL: coverCandidate,
+      publisherId: raw.publisherId!,
+      coverImageURL: raw.coverImageURL ?? '',
       genreIds,
       screenshotUrls: validHttpUrls,
       file: this.selectedGameFile,
