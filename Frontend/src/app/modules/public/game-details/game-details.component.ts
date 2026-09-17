@@ -10,6 +10,7 @@ import { ToasterService } from '../../../core/services/toaster.service';
 import { UserGamesApiService } from '../../../api-services/user-games/user-games-api.service';
 import { ReviewsApiService } from '../../../api-services/reviews/reviews-api.service';
 import { ListUserGamesRequest } from '../../../api-services/user-games/user-games-api.models';
+import { APP_LOCALE } from '../../../core/constants/locale';
 
 @Component({
   selector: 'app-game-details',
@@ -131,7 +132,7 @@ get priceLabel(): string {
 
   return this.game.price <= 0
     ? 'Free'
-    : new Intl.NumberFormat('en-US', {
+    : new Intl.NumberFormat(APP_LOCALE, {
       style: 'currency',
       currency: 'EUR',
       minimumFractionDigits: 2,

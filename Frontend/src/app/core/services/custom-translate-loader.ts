@@ -7,6 +7,6 @@ export class CustomTranslateLoader implements TranslateLoader {
   }
 
   getTranslation(lang: string): Observable<any> {
-    return this.http.get(`/i18n/${lang}.json`); // Folder za prevode
+    return this.http.get(`/i18n/${lang}.json`); // Folder for translations
   }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ListOrdersQueryDto } from '../../../../api-services/orders/orders-api.models';
+import { APP_LOCALE } from '../../../../core/constants/locale';
 
 @Component({
   selector: 'app-order-list-item',
@@ -14,11 +15,11 @@ export class OrderListItemComponent {
 
   get formattedDate(): string {
     const date = new Date(this.order.orderDate);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    return date.toLocaleDateString(APP_LOCALE, { year: 'numeric', month: 'short', day: 'numeric' });
   }
 
   get formattedTotal(): string {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR' }).format(this.order.totalAmount);
+    return new Intl.NumberFormat(APP_LOCALE, { style: 'currency', currency: 'EUR' }).format(this.order.totalAmount);
   }
 
   get statusBadgeClass(): string {

@@ -41,6 +41,7 @@ public sealed class MarketExceptionHandler(
         ctx.Response.StatusCode = ex switch
         {
             MarketNotFoundException => StatusCodes.Status404NotFound,
+            MarketForbiddenException forbidden => forbidden.StatusCode,
             MarketConflictException or MarketBusinessRuleException => StatusCodes.Status409Conflict,
             ValidationException => StatusCodes.Status400BadRequest,
             _ => StatusCodes.Status500InternalServerError

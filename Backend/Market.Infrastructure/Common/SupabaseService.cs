@@ -53,7 +53,7 @@ namespace Market.Infrastructure.Common
         {
             var bucket = _settings.BucketName;
 
-            var url = $" {_settings.BaseUrl}/storage/v1/object/{bucket}/{filePath}";
+            var url = $"{_settings.BaseUrl}/storage/v1/object/{bucket}/{filePath}";
             using var response = await _httpClient.DeleteAsync(url, ct);
 
 
@@ -76,9 +76,7 @@ namespace Market.Infrastructure.Common
                 throw new HttpRequestException($"GetSignedUrl failed. Status={(int)response.StatusCode}. Body={errorBody}");
             }
 
-            // ADD THIS
             var rawJson = await response.Content.ReadAsStringAsync(ct);
-            Console.WriteLine($"[DEBUG] Supabase sign response: {rawJson}");
 
             var responseData = JsonSerializer.Deserialize<SupabaseSignResponse>(rawJson);
 

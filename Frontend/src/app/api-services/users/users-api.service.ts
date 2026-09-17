@@ -20,7 +20,7 @@ import {
 } from './users-api.model';
 
 
-//NOTE TO SELF. Pripazi koji http saljes, da li je put, get itd...
+//NOTE TO SELF. Watch which http verb you're sending, whether it's put, get, etc...
 
 @Injectable({
   providedIn: 'root'

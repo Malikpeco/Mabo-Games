@@ -62,7 +62,7 @@ public partial class Program
                     policy =>
                     {
                         policy
-                            .WithOrigins("http://localhost:4200", "https://localhost:4200", "https://localhost:50870") // kao string array može i više URL-ova
+                            .WithOrigins("http://localhost:4200", "https://localhost:4200", "https://localhost:50870") // this is a string array, so it can hold multiple URLs
                             .AllowAnyHeader()
                             .AllowAnyMethod()
                             .AllowCredentials();
@@ -86,7 +86,7 @@ public partial class Program
             app.UseMiddleware<RequestResponseLoggingMiddleware>();
             app.UseExceptionHandler();
             app.UseHttpsRedirection();
-            // UseCors ide prije UseAuthorization i UseAuthentification
+            // UseCors must go before UseAuthentication and UseAuthorization
             app.UseCors("AllowAngularDev");
 
             app.UseAuthentication();
@@ -102,8 +102,8 @@ public partial class Program
         }
         catch (HostAbortedException)
         {
-            // EF Core tools abortiraju host nakon što uzmu DbContext.
-            // Ovo nije runtime greška – samo tiho izađi.
+            // EF Core tools abort the host after they grab the DbContext.
+            // This isn't a runtime error - just exit quietly.
             Log.Information("Host aborted by EF Core tooling (design-time) - its ok.");
         }
         catch (Exception ex)

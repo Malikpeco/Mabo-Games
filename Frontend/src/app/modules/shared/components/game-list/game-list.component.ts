@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StorefrontGameDto } from '../../../../api-services/games/games-api.models';
+import { APP_LOCALE } from '../../../../core/constants/locale';
 
 @Component({
   selector: 'app-game-list',
@@ -34,7 +35,7 @@ export class GameListComponent {
       return 'N/A';
     }
 
-    return new Intl.DateTimeFormat('en-GB', {
+    return new Intl.DateTimeFormat(APP_LOCALE, {
       day: '2-digit',
       month: 'short',
       year: 'numeric',
