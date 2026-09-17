@@ -4,8 +4,8 @@
     {
         public async Task<GetIGDBGameDetailsDto> Handle(GetIGDBGameDetailsQuery request, CancellationToken ct)
         {
-            //if (!currentUser.IsAdmin)
-            //   throw new MarketForbiddenException();
+            if (!currentUser.IsAdmin)
+                throw new MarketForbiddenException();
 
             return await igdbService.GetGameDetailsAsync(request.GameId, ct);
 

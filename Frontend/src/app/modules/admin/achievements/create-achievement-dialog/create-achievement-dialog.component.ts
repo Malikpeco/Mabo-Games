@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Inject, NgZone, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { FileUploadDialogComponent } from '../../../../shared/components/file-upload-dialog/file-upload-dialog.component';
 import { AchievementsApiService } from '../../../../api-services/achievements/achievements-api.service';
@@ -22,14 +22,20 @@ export interface CreateAchievementDialogResult {
 @Component({
   selector: 'app-create-achievement-dialog',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create-achievement-dialog.component.html',
   styleUrl: './create-achievement-dialog.component.scss',
 })
 export class CreateAchievementDialogComponent {
-  name = '';
-  description = '';
-  imageURL = '';
+  private fb = inject(FormBuilder);
+
+  // Mirrors CreateAchievementCommandValidator/UpdateAchievementCommandValidator (Name/ImageURL NotEmpty).
+  form = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    description: [''],
+    imageURL: ['', [Validators.required]],
+  });
+
   uploadErrorMessage = '';
   mode: 'create' | 'edit' = 'create';
   private matDialog = inject(MatDialog);
@@ -41,10 +47,21 @@ export class CreateAchievementDialogComponent {
     private dialogRef: MatDialogRef<CreateAchievementDialogComponent, CreateAchievementDialogResult | null>,
     @Inject(MAT_DIALOG_DATA) public data: CreateAchievementDialogData,
   ) {
-    this.name = data.initialName ?? '';
-    this.description = data.initialDescription ?? '';
-    this.imageURL = data.initialImageURL ?? '';
+    this.form.patchValue({
+      name: data.initialName ?? '',
+      description: data.initialDescription ?? '',
+      imageURL: data.initialImageURL ?? '',
+    });
     this.mode = data.mode ?? 'create';
+  }
+
+  hasError(controlName: string, errorType?: string): boolean {
+    const control = this.form.get(controlName);
+    if (!control || !control.touched) {
+      return false;
+    }
+
+    return errorType ? control.hasError(errorType) : control.invalid;
   }
 
   close(): void {
@@ -52,23 +69,23 @@ export class CreateAchievementDialogComponent {
   }
 
   save(): void {
-    const name = this.name.trim();
-    const description = this.description.trim();
-    const imageURL = this.imageURL.trim();
+    this.form.markAllAsTouched();
 
-    if (!name || !imageURL) {
+    if (this.form.invalid) {
       return;
     }
 
+    const { name, description, imageURL } = this.form.getRawValue();
+
     this.dialogRef.close({
-      name,
-      description,
-      imageURL,
+      name: (name ?? '').trim(),
+      description: (description ?? '').trim(),
+      imageURL: (imageURL ?? '').trim(),
     });
   }
 
-  get canSave(): boolean {
-    return this.name.trim().length >= 2 && this.imageURL.trim().length > 0;
+  get imageURL(): string {
+    return this.form.get('imageURL')?.value ?? '';
   }
 
   openUploadDialog(): void {
@@ -90,7 +107,9 @@ export class CreateAchievementDialogComponent {
         const uploadedUrl = await firstValueFrom(this.achievementsApi.uploadImage(form));
         this.zone.run(() => {
           if (typeof uploadedUrl === 'string') {
-            this.imageURL = this.unwrapQuotedJsonString(uploadedUrl).trim();
+            const imageURL = this.unwrapQuotedJsonString(uploadedUrl).trim();
+            this.form.get('imageURL')?.setValue(imageURL);
+            this.form.get('imageURL')?.markAsTouched();
             this.uploadErrorMessage = '';
           }
 

@@ -1,8 +1,10 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { StorefrontGameDto } from '../../../../api-services/games/games-api.models';
 import { GamesApiService } from '../../../../api-services/games/games-api.service';
+import { GenreDto } from '../../../../api-services/genres/genres-api.models';
+import { GenresApiService } from '../../../../api-services/genres/genres-api.service';
 import { DialogHelperService } from '../../../shared/services/dialog-helper.service';
 import { DialogButton } from '../../../shared/models/dialog-config.model';
 
@@ -14,10 +16,14 @@ import { DialogButton } from '../../../shared/models/dialog-config.model';
 })
 export class AdminGamesComponent implements OnInit, OnDestroy {
   private gamesApi = inject(GamesApiService);
+  private genresApi = inject(GenresApiService);
   private router = inject(Router);
   private dialog = inject(DialogHelperService);
   private searchDebounceTimer?: ReturnType<typeof setTimeout>;
+  private priceDebounceTimer?: ReturnType<typeof setTimeout>;
   private requestSeq = 0;
+
+  @ViewChild('filtersShell') filtersShellRef?: ElementRef<HTMLElement>;
 
   games: StorefrontGameDto[] = [];
   searchTerm = '';
@@ -35,6 +41,13 @@ export class AdminGamesComponent implements OnInit, OnDestroy {
   pageSizeOptions: number[] = [10, 25, 50, 100];
   totalCount = 0;
 
+  filtersOpen = false;
+  genres: GenreDto[] = [];
+  private genresLoaded = false;
+  selectedGenreIds = new Set<number>();
+  minPrice: number | null = null;
+  maxPrice: number | null = null;
+
   get totalPages(): number {
     return Math.max(1, Math.ceil(this.totalCount / this.pageSize));
   }
@@ -47,6 +60,10 @@ export class AdminGamesComponent implements OnInit, OnDestroy {
     return this.games;
   }
 
+  get activeFilterCount(): number {
+    return this.selectedGenreIds.size + (this.minPrice != null ? 1 : 0) + (this.maxPrice != null ? 1 : 0);
+  }
+
   ngOnInit(): void {
     this.loadGames();
   }
@@ -54,6 +71,9 @@ export class AdminGamesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.searchDebounceTimer) {
       clearTimeout(this.searchDebounceTimer);
+    }
+    if (this.priceDebounceTimer) {
+      clearTimeout(this.priceDebounceTimer);
     }
   }
 
@@ -65,7 +85,10 @@ export class AdminGamesComponent implements OnInit, OnDestroy {
       .storefront({
         paging: { page: this.page, pageSize: this.pageSize },
         sort: this.sort,
-        search: this.searchTerm.trim() || null
+        search: this.searchTerm.trim() || null,
+        genreIds: this.selectedGenreIds.size ? Array.from(this.selectedGenreIds) : null,
+        minPrice: this.minPrice,
+        maxPrice: this.maxPrice,
       })
       .subscribe({
         next: (res) => {
@@ -132,6 +155,93 @@ export class AdminGamesComponent implements OnInit, OnDestroy {
     this.searchDebounceTimer = setTimeout(() => {
       this.loadGames();
     }, 250);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.filtersOpen) return;
+
+    const target = event.target as Node | null;
+    if (target && !this.filtersShellRef?.nativeElement.contains(target)) {
+      this.filtersOpen = false;
+    }
+  }
+
+  toggleFiltersPanel(): void {
+    this.filtersOpen = !this.filtersOpen;
+
+    if (this.filtersOpen && !this.genresLoaded) {
+      this.genresLoaded = true;
+      this.genresApi.list({ paging: { page: 1, pageSize: 1000 } }).subscribe({
+        next: (res) => {
+          this.genres = res.items ?? [];
+        },
+        error: () => {
+          this.genresLoaded = false;
+          this.genres = [];
+        },
+      });
+    }
+  }
+
+  isGenreSelected(id: number): boolean {
+    return this.selectedGenreIds.has(id);
+  }
+
+  toggleGenre(id: number): void {
+    if (this.selectedGenreIds.has(id)) {
+      this.selectedGenreIds.delete(id);
+    } else {
+      this.selectedGenreIds.add(id);
+    }
+
+    this.page = 1;
+    this.loadGames();
+  }
+
+  clearGenres(): void {
+    if (this.selectedGenreIds.size === 0) return;
+    this.selectedGenreIds.clear();
+    this.page = 1;
+    this.loadGames();
+  }
+
+  onMinPriceChange(value: string): void {
+    this.minPrice = value === '' ? null : Math.max(0, Number(value));
+    this.debouncePriceChange();
+  }
+
+  onMaxPriceChange(value: string): void {
+    this.maxPrice = value === '' ? null : Math.max(0, Number(value));
+    this.debouncePriceChange();
+  }
+
+  clearPriceRange(): void {
+    if (this.minPrice == null && this.maxPrice == null) return;
+    this.minPrice = null;
+    this.maxPrice = null;
+    this.page = 1;
+    this.loadGames();
+  }
+
+  clearAllFilters(): void {
+    this.selectedGenreIds.clear();
+    this.minPrice = null;
+    this.maxPrice = null;
+    this.page = 1;
+    this.loadGames();
+  }
+
+  private debouncePriceChange(): void {
+    this.page = 1;
+
+    if (this.priceDebounceTimer) {
+      clearTimeout(this.priceDebounceTimer);
+    }
+
+    this.priceDebounceTimer = setTimeout(() => {
+      this.loadGames();
+    }, 400);
   }
 
   onEditGame(game: StorefrontGameDto): void {

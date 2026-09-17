@@ -5,6 +5,7 @@ import { ToasterService } from '../../../../core/services/toaster.service';
 import { NotificationItem } from '../notification-item.model';
 import { UserNotificationsApiService } from '../../../../api-services/user-notifications/user-notifications-api.service';
 import { UserNotificationDto } from '../../../../api-services/user-notifications/user-notifications-api.models';
+import { APP_LOCALE } from '../../../../core/constants/locale';
 
 @Component({
   selector: 'app-mabo-navbar',
@@ -139,7 +140,7 @@ export class MaboNavbarComponent implements OnInit {
       return sentAt;
     }
 
-    return new Intl.DateTimeFormat('en', {
+    return new Intl.DateTimeFormat(APP_LOCALE, {
       dateStyle: 'medium',
       timeStyle: 'short',
     }).format(date);

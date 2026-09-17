@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { OrdersApiService } from '../../../../api-services/orders/orders-api.service';
 import { OrderDetailsDto } from '../../../../api-services/orders/orders-api.models';
+import { APP_LOCALE } from '../../../../core/constants/locale';
 
 @Component({
   selector: 'app-admin-order-details',
@@ -58,7 +59,7 @@ export class AdminOrderDetailsComponent implements OnInit {
   }
 
   formatCurrency(value: number): string {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR' }).format(value);
+    return new Intl.NumberFormat(APP_LOCALE, { style: 'currency', currency: 'EUR' }).format(value);
   }
 
   get statusClass(): string {

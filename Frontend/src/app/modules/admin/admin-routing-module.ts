@@ -9,6 +9,7 @@ import { AdminOrderDetailsComponent } from './orders/admin-order-details/admin-o
 import { AdminOrdersComponent } from './orders/admin-orders/admin-orders.component';
 import { AdminGamesComponent } from './games/admin-games/admin-games.component';
 import { AdminAchievementsComponent } from './achievements/admin-achievements/admin-achievements.component';
+import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashboard.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,12 @@ const routes: Routes = [
     path: '',
     component: AdminPanelComponent,
     children: [
+
+      // Dashboard
+      {
+        path: 'dashboard',
+        component: AdminDashboardComponent,
+      },
 
       // Games Panel
       {
@@ -63,10 +70,10 @@ const routes: Routes = [
       },
       
 
-      // Default route back to games
+      // Default route
       {
         path: '',
-        redirectTo: 'games',
+        redirectTo: 'dashboard',
         pathMatch: 'full',
       },
 

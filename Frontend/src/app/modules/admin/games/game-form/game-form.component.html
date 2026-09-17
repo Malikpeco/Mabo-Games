@@ -9,37 +9,39 @@
 		(searchCleared)="onIgdbSearchCleared()">
 	</app-igdb-search>
 
-	<form class="admin-games-add-form" (ngSubmit)="onSave()">
+	<form class="admin-games-add-form" [formGroup]="form" (ngSubmit)="onSave()">
 		<div class="admin-games-add-grid">
 			<div class="admin-fields">
 				<label class="admin-field">
 					<span class="admin-field-label">Game Title</span>
 					<input
 						type="text"
-						name="gameTitle"
-						[(ngModel)]="gameTitle"
+						formControlName="name"
 						class="admin-input"
 						placeholder="Enter game title"
 						autocomplete="off" />
+					<span class="field-error" *ngIf="hasError('name', 'required')">Game title is required.</span>
+					<span class="field-error" *ngIf="hasError('name', 'minlength')">Game title must be at least 2 characters.</span>
 				</label>
 
 				<label class="admin-field">
 					<span class="admin-field-label">Release Date</span>
 					<input
 						type="date"
-						name="releaseDate"
-						[(ngModel)]="releaseDate"
+						formControlName="releaseDate"
 						class="admin-input"
 						max="9999-12-31" />
+					<span class="field-error" *ngIf="hasError('releaseDate', 'required')">Release date is required.</span>
 				</label>
 
 				<label class="admin-field">
 					<span class="admin-field-label">Publisher</span>
 					<app-publisher-dropdown
-						[initialPublisherId]="selectedPublisherId"
+						[initialPublisherId]="form.get('publisherId')?.value ?? null"
 						[initialPublisherName]="publisherName"
 						(publisherSelected)="onPublisherSelected($event)">
 					</app-publisher-dropdown>
+					<span class="field-error" *ngIf="hasError('publisherId')">Please choose a publisher from the dropdown.</span>
 				</label>
 
 				<label class="admin-field">
@@ -54,6 +56,7 @@
 							<span>{{ genre.name }}</span>
 						</label>
 					</div>
+					<span class="field-error" *ngIf="hasError('genreIds')">Please select at least one genre.</span>
 				</label>
 			</div>
 
@@ -71,6 +74,7 @@
 					<span>{{ isUploadingCover ? 'Uploading cover...' : 'Upload cover' }}</span>
 				</label>
 				<p class="size-hint">Recommended size: 264 × 374 px</p>
+				<span class="field-error" *ngIf="hasError('coverImageURL')">Add a cover image by uploading one or picking media below.</span>
 
 				<label class="admin-field admin-price-field">
 					<span class="admin-field-label">Price</span>
@@ -89,14 +93,14 @@
 						<span>EUR</span>
 						<input
 							type="number"
-							name="price"
-							[(ngModel)]="price"
+							formControlName="price"
 							class="admin-input admin-price-input"
-							[disabled]="isFreeToPlay"
 							min="0"
 							step="0.01"
 							placeholder="0.00" />
 					</div>
+					<span class="field-error" *ngIf="hasError('price', 'required')">Price is required.</span>
+					<span class="field-error" *ngIf="hasError('price', 'min')">Price cannot be negative.</span>
 				</label>
 
 				<section class="game-file-section">
@@ -133,6 +137,9 @@
 							</button>
 						</div>
 					</div>
+					<span class="field-error" *ngIf="hasError('file', 'required')">Please attach a game file.</span>
+					<span class="field-error" *ngIf="hasError('file', 'maxSize')">File size must not exceed 5MB.</span>
+					<span class="field-error" *ngIf="hasError('file', 'empty')">Selected file is empty.</span>
 				</section>
 			</div>
 		</div>
@@ -140,8 +147,7 @@
 		<label class="admin-field admin-description-field">
 			<span class="admin-field-label">Description</span>
 			<textarea
-				name="description"
-				[(ngModel)]="description"
+				formControlName="description"
 				class="admin-textarea"
 				rows="8"
 				placeholder="Write a short game description for the store page..."></textarea>

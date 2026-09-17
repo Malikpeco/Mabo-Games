@@ -4,21 +4,23 @@
     <p>{{ subtitleText }}</p>
   </header>
 
-  <div class="dialog-form">
+  <div class="dialog-form" [formGroup]="form">
     <label class="dialog-field">
       <span>Name</span>
       <input
         type="text"
-        [(ngModel)]="name"
+        formControlName="name"
         placeholder="Achievement name"
         autocomplete="off"
         maxlength="100" />
+      <span class="field-error" *ngIf="hasError('name', 'required')">Achievement name is required.</span>
+      <span class="field-error" *ngIf="hasError('name', 'minlength')">Achievement name must be at least 2 characters.</span>
     </label>
 
     <label class="dialog-field">
       <span>Description</span>
       <textarea
-        [(ngModel)]="description"
+        formControlName="description"
         placeholder="Achievement description"
         rows="4"
         maxlength="500"></textarea>
@@ -31,12 +33,13 @@
         <button type="button" class="btn-secondary" (click)="openUploadDialog()">Upload image</button>
         <span *ngIf="!imageURL" class="helper">No image uploaded</span>
       </div>
+      <span class="field-error" *ngIf="hasError('imageURL')">An image is required.</span>
       <p class="upload-error" *ngIf="uploadErrorMessage">{{ uploadErrorMessage }}</p>
     </label>
   </div>
 
   <footer class="dialog-actions">
     <button type="button" class="btn-secondary" (click)="close()">Cancel</button>
-    <button type="button" class="btn-primary" [disabled]="!canSave" (click)="save()">{{ submitText }}</button>
+    <button type="button" class="btn-primary" [disabled]="form.invalid" (click)="save()">{{ submitText }}</button>
   </footer>
 </section>

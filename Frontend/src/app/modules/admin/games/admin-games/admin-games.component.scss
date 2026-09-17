@@ -18,7 +18,8 @@
 
 .admin-games-search-shell,
 .admin-games-size-shell,
-.admin-games-sort-shell {
+.admin-games-sort-shell,
+.admin-games-filters-toggle {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -143,6 +144,152 @@
 .admin-games-sort option:checked {
 	background: #25262b;
 	color: #ffffff;
+}
+
+.admin-games-filters-shell {
+	position: relative;
+}
+
+.admin-games-filters-toggle {
+	appearance: none;
+	-webkit-appearance: none;
+	font: inherit;
+	cursor: pointer;
+	color: #f3f5fb;
+	font-size: 0.95rem;
+	white-space: nowrap;
+}
+
+.admin-games-filters-toggle:hover,
+.admin-games-filters-toggle:focus-visible {
+	border-color: #39404d;
+	background: #121417;
+	color: #f3f5fb;
+	outline: none;
+}
+
+.admin-games-filters-toggle::after {
+	display: none;
+}
+
+.admin-games-filters-toggle.has-active {
+	border-color: #7ecf43;
+}
+
+.admin-games-filters-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 18px;
+	height: 18px;
+	padding: 0 5px;
+	border-radius: 999px;
+	background: #7ecf43;
+	color: #0f0f0f;
+	font-size: 0.72rem;
+	font-weight: 700;
+	visibility: hidden;
+}
+
+.admin-games-filters-badge.is-visible {
+	visibility: visible;
+}
+
+.admin-games-filters-panel {
+	position: absolute;
+	top: calc(100% + 8px);
+	left: 0;
+	z-index: 10;
+	width: 280px;
+	max-width: min(320px, 90vw);
+	border-radius: 12px;
+	border: 1px solid #2a2a2a;
+	background: #121417;
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.admin-games-filters-panel-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #f3f5fb;
+}
+
+.admin-games-filters-clear {
+	background: none;
+	border: none;
+	color: #8892a4;
+	font-size: 0.8rem;
+	cursor: pointer;
+	padding: 0;
+
+	&:hover {
+		color: #f3f5fb;
+	}
+}
+
+.admin-games-filters-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.admin-games-filters-label {
+	font-size: 0.78rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #8892a4;
+}
+
+.admin-games-price-range {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: #8892a4;
+
+	input {
+		width: 100%;
+		height: 36px;
+		border-radius: 8px;
+		border: 1px solid #2a2a2a;
+		background: #0f0f0f;
+		color: #f3f5fb;
+		padding: 0 10px;
+		font-size: 0.9rem;
+		outline: none;
+
+		&:focus {
+			border-color: #7ecf43;
+		}
+	}
+}
+
+.admin-games-genre-list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	max-height: 220px;
+	overflow-y: auto;
+}
+
+.admin-games-genre-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.88rem;
+	color: #d6dae2;
+	cursor: pointer;
+}
+
+.admin-games-filters-empty {
+	font-size: 0.85rem;
+	color: #8892a4;
 }
 
 .admin-games-search::placeholder {

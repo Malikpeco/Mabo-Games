@@ -1,0 +1,156 @@
+<section class="admin-dashboard-page">
+	<header class="admin-dashboard-header">
+		<h1>Dashboard</h1>
+	</header>
+
+	<div class="dashboard-state" *ngIf="isLoading">Loading dashboard...</div>
+	<div class="dashboard-state" *ngIf="!isLoading && loadError">Could not load dashboard data. Please try again later.</div>
+
+	<ng-container *ngIf="!isLoading && !loadError && summary as s">
+		<div class="kpi-row">
+			<div class="kpi-tile">
+				<span class="kpi-label">Total revenue</span>
+				<span class="kpi-value">{{ formatCurrency(s.totalRevenue) }}</span>
+			</div>
+
+			<div class="kpi-tile">
+				<span class="kpi-label">Paid orders</span>
+				<span class="kpi-value">{{ s.totalOrders }}</span>
+				<span class="kpi-delta" *ngIf="s.ordersThisWeek > 0">+{{ s.ordersThisWeek }} this week</span>
+			</div>
+
+			<div class="kpi-tile">
+				<span class="kpi-label">Registered users</span>
+				<span class="kpi-value">{{ s.totalUsers }}</span>
+			</div>
+
+			<div class="kpi-tile">
+				<span class="kpi-label">Games in catalog</span>
+				<span class="kpi-value">{{ s.totalGames }}</span>
+			</div>
+		</div>
+
+		<section class="dashboard-panel">
+			<div class="dashboard-panel-header dashboard-panel-header--with-filter">
+				<div class="panel-title-group">
+					<h2>Revenue</h2>
+					<span class="panel-subtitle">{{ activeRangeLabel }}</span>
+				</div>
+
+				<div class="period-filter-shell" #filterShell>
+					<button type="button" class="period-filter-toggle" (click)="toggleFilterPanel()">
+						<mat-icon class="admin-tool-icon">date_range</mat-icon>
+						<span>Filter by period</span>
+					</button>
+
+					<div class="period-filter-panel" *ngIf="filterPanelOpen">
+						<div class="period-filter-panel-header">
+							<span>Filter by period</span>
+							<button type="button" class="period-filter-reset" (click)="resetFilter()">Reset</button>
+						</div>
+
+						<div class="period-preset-grid">
+							<button type="button" class="period-preset-chip" [class.active]="draftPreset === 'week'" (click)="selectDraftPreset('week')">Past week</button>
+							<button type="button" class="period-preset-chip" [class.active]="draftPreset === 'month'" (click)="selectDraftPreset('month')">Past month</button>
+							<button type="button" class="period-preset-chip" [class.active]="draftPreset === 'year'" (click)="selectDraftPreset('year')">Past year</button>
+						</div>
+
+						<div class="period-range-row">
+							<label class="period-range-field">
+								<span>Start</span>
+								<input type="date" [(ngModel)]="draftFromDate" [min]="earliestSelectableDate" [max]="draftToDate || todayInputValue" (change)="onDraftDateChange()" />
+							</label>
+							<label class="period-range-field">
+								<span>End</span>
+								<input type="date" [(ngModel)]="draftToDate" [min]="draftFromDate" [max]="todayInputValue" (change)="onDraftDateChange()" />
+							</label>
+						</div>
+
+						<button type="button" class="period-filter-confirm" [disabled]="!draftFromDate || !draftToDate" (click)="applyFilter()">Confirm</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="range-total-revenue">
+				<span class="range-total-label">Total revenue in this period</span>
+				<span class="range-total-value">{{ formatCurrency(rangeTotalRevenue) }}</span>
+			</div>
+
+			<div class="revenue-chart-wrap" [class.is-refreshing]="isChartLoading" *ngIf="revenueChartOptions as chartOpts; else noRevenue">
+				<apx-chart
+					[series]="chartOpts.series"
+					[chart]="chartOpts.chart"
+					[xaxis]="chartOpts.xaxis"
+					[yaxis]="chartOpts.yaxis"
+					[stroke]="chartOpts.stroke"
+					[dataLabels]="chartOpts.dataLabels"
+					[grid]="chartOpts.grid"
+					[tooltip]="chartOpts.tooltip"
+					[fill]="chartOpts.fill"
+					[colors]="chartOpts.colors">
+				</apx-chart>
+			</div>
+
+			<ng-template #noRevenue>
+				<p class="dashboard-empty">No paid orders in this range yet.</p>
+			</ng-template>
+		</section>
+
+		<div class="dashboard-columns">
+			<section class="dashboard-panel">
+				<div class="dashboard-panel-header">
+					<h2>Top selling games</h2>
+				</div>
+
+				<div class="top-games-list" *ngIf="s.topSellingGames.length; else noTopGames">
+					<div class="top-game-row" *ngFor="let game of s.topSellingGames; let i = index; trackBy: trackByIndex">
+						<span class="top-game-name">{{ game.name }}</span>
+						<div class="top-game-bar-shell">
+							<div
+								class="top-game-bar"
+								[class]="'rank-' + i"
+								[style.width.%]="(game.unitsSold / maxTopSellingUnits) * 100">
+							</div>
+						</div>
+						<span class="top-game-value">{{ game.unitsSold }} sold</span>
+						<span class="top-game-revenue">{{ formatCurrency(game.revenue) }}</span>
+					</div>
+				</div>
+
+				<ng-template #noTopGames>
+					<p class="dashboard-empty">No sales yet.</p>
+				</ng-template>
+			</section>
+
+			<section class="dashboard-panel">
+				<div class="dashboard-panel-header">
+					<h2>Recent orders</h2>
+				</div>
+
+				<div class="recent-orders-table" *ngIf="s.recentOrders.length; else noOrders">
+					<div class="recent-orders-row recent-orders-head">
+						<span>User</span>
+						<span>Date</span>
+						<span>Status</span>
+						<span class="align-end">Amount</span>
+					</div>
+
+					<button
+						type="button"
+						class="recent-orders-row recent-orders-item"
+						*ngFor="let order of s.recentOrders; trackBy: trackByIndex"
+						(click)="goToOrder(order.id)">
+						<span class="order-username">{{ order.username }}</span>
+						<span>{{ formatShortDate(order.date) }}</span>
+						<span class="order-status" [class]="'status-' + order.status.toLowerCase()">{{ order.status }}</span>
+						<span class="align-end">{{ formatCurrency(order.totalAmount) }}</span>
+					</button>
+				</div>
+
+				<ng-template #noOrders>
+					<p class="dashboard-empty">No orders yet.</p>
+				</ng-template>
+			</section>
+		</div>
+	</ng-container>
+</section>
