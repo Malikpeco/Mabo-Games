@@ -1,0 +1,478 @@
+.admin-dashboard-page {
+	padding: 24px;
+	color: #f3f5fb;
+}
+
+.admin-dashboard-header {
+	margin-bottom: 20px;
+}
+
+.admin-dashboard-header h1 {
+	margin: 0;
+	font-size: 1.9rem;
+}
+
+.admin-dashboard-header p {
+	margin: 6px 0 0;
+	color: rgba(255, 255, 255, 0.78);
+}
+
+.dashboard-state,
+.dashboard-empty {
+	color: rgba(255, 255, 255, 0.7);
+	padding: 14px 0;
+}
+
+// ── KPI row ──────────────────────────────────────────────────────────────
+
+.kpi-row {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 14px;
+	margin-bottom: 20px;
+}
+
+.kpi-tile {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 16px 18px;
+	border-radius: 12px;
+	border: 1px solid #2a2a2a;
+	background: #0f0f0f;
+}
+
+.kpi-label {
+	font-size: 0.78rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #8892a4;
+}
+
+.kpi-value {
+	font-size: 1.7rem;
+	font-weight: 700;
+	color: #f3f5fb;
+}
+
+.kpi-delta {
+	font-size: 0.8rem;
+	color: #7ecf43;
+}
+
+// ── Panels ───────────────────────────────────────────────────────────────
+
+.dashboard-panel {
+	border-radius: 12px;
+	border: 1px solid #2a2a2a;
+	background: #0f0f0f;
+	padding: 18px 20px;
+	margin-bottom: 20px;
+}
+
+.dashboard-panel-header h2 {
+	margin: 0 0 14px;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.dashboard-panel-header--with-filter {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.dashboard-panel-header--with-filter h2 {
+	margin: 0;
+}
+
+.panel-title-group {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+}
+
+.panel-subtitle {
+	font-size: 0.82rem;
+	color: #8892a4;
+}
+
+.dashboard-columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+
+// ── Revenue period filter (popover) ─────────────────────────────────────
+
+.period-filter-shell {
+	position: relative;
+}
+
+.period-filter-toggle {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	height: 36px;
+	padding: 0 14px;
+	border-radius: 10px;
+	border: 1px solid #2a2a2a;
+	background: #0f0f0f;
+	color: #f3f5fb;
+	font-size: 0.85rem;
+	appearance: none;
+	-webkit-appearance: none;
+	font: inherit;
+	cursor: pointer;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+
+	&:hover,
+	&:focus-visible {
+		border-color: #39404d;
+		background: #121417;
+		outline: none;
+	}
+}
+
+.period-filter-panel {
+	position: absolute;
+	top: calc(100% + 8px);
+	right: 0;
+	z-index: 10;
+	width: 360px;
+	max-width: min(360px, 90vw);
+	box-sizing: border-box;
+	border-radius: 12px;
+	border: 1px solid #2a2a2a;
+	background: #121417;
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.period-filter-panel-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.92rem;
+	font-weight: 600;
+	color: #f3f5fb;
+}
+
+.period-filter-reset {
+	background: none;
+	border: none;
+	color: #8892a4;
+	font-size: 0.78rem;
+	cursor: pointer;
+	padding: 0;
+
+	&:hover {
+		color: #f3f5fb;
+	}
+}
+
+.period-preset-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 6px;
+}
+
+.period-preset-chip {
+	box-sizing: border-box;
+	height: 32px;
+	width: 100%;
+	padding: 0 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 999px;
+	border: 1px solid #2a2a2a;
+	background: #0f0f0f;
+	color: #8892a4;
+	font-size: 0.74rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+	transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+
+	&:hover {
+		border-color: #39404d;
+		color: #f3f5fb;
+	}
+
+	&.active {
+		border-color: #7ecf43;
+		color: #7ecf43;
+		background: rgba(126, 207, 67, 0.1);
+	}
+}
+
+.period-range-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.period-range-field {
+	flex: 1 1 145px;
+	min-width: 145px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	font-size: 0.75rem;
+	color: #8892a4;
+
+	input {
+		box-sizing: border-box;
+		height: 34px;
+		width: 100%;
+		min-width: 0;
+		border-radius: 8px;
+		border: 1px solid #2a2a2a;
+		background: #0f0f0f;
+		color: #f3f5fb;
+		padding: 0 8px;
+		font-size: 0.78rem;
+		outline: none;
+		color-scheme: dark;
+
+		&:focus {
+			border-color: #7ecf43;
+		}
+	}
+}
+
+.period-filter-confirm {
+	height: 38px;
+	border-radius: 8px;
+	border: 1px solid #668654;
+	background: linear-gradient(180deg, #84ad69 0%, #6e9357 100%);
+	color: #f3ffe9;
+	font-size: 0.88rem;
+	font-weight: 600;
+	cursor: pointer;
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+}
+
+.range-total-revenue {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	text-align: center;
+	margin: 4px 0 10px;
+}
+
+.range-total-label {
+	font-size: 0.78rem;
+	color: #8892a4;
+}
+
+.range-total-value {
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: #7ecf43;
+}
+
+// ── Revenue chart ────────────────────────────────────────────────────────
+
+.revenue-chart-wrap {
+	position: relative;
+	width: 100%;
+	transition: opacity 0.2s ease;
+
+	&.is-refreshing {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}
+
+// ── Top selling games ────────────────────────────────────────────────────
+
+.top-games-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.top-game-row {
+	display: grid;
+	grid-template-columns: 120px 1fr auto auto;
+	align-items: center;
+	gap: 12px;
+	padding: 4px 0;
+	border-radius: 8px;
+	transition: background-color 0.15s ease;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	&:hover .top-game-bar {
+		filter: brightness(1.2);
+	}
+}
+
+.top-game-name {
+	font-size: 0.88rem;
+	color: #f3f5fb;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.top-game-bar-shell {
+	height: 16px;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.05);
+	overflow: hidden;
+}
+
+.top-game-bar {
+	height: 100%;
+	background: #7ecf43;
+	border-radius: 0 4px 4px 0;
+	transition: filter 0.15s ease;
+
+	&.rank-0 { opacity: 1; }
+	&.rank-1 { opacity: 0.85; }
+	&.rank-2 { opacity: 0.7; }
+	&.rank-3 { opacity: 0.55; }
+	&.rank-4 { opacity: 0.4; }
+}
+
+.top-game-value {
+	font-size: 0.8rem;
+	color: #8892a4;
+	white-space: nowrap;
+}
+
+.top-game-revenue {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: #f3f5fb;
+	white-space: nowrap;
+	min-width: 72px;
+	text-align: right;
+}
+
+// ── Recent orders ────────────────────────────────────────────────────────
+
+.recent-orders-table {
+	display: flex;
+	flex-direction: column;
+}
+
+.recent-orders-row {
+	display: grid;
+	grid-template-columns: 1fr 80px 90px 100px;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 6px;
+	font-size: 0.85rem;
+}
+
+.recent-orders-head {
+	color: #8892a4;
+	font-size: 0.72rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	border-bottom: 1px solid #2a2a2a;
+}
+
+.recent-orders-item {
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #1a1d22;
+	background: transparent;
+	color: #f3f5fb;
+	cursor: pointer;
+	text-align: left;
+	font: inherit;
+	transition: background-color 0.15s ease;
+
+	&:hover,
+	&:focus-visible {
+		background: rgba(255, 255, 255, 0.04);
+		outline: none;
+	}
+
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.order-username {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.align-end {
+	text-align: right;
+}
+
+.order-status {
+	padding: 3px 10px;
+	border-radius: 6px;
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: capitalize;
+	width: fit-content;
+
+	&.status-pending {
+		background: #ffc107;
+		color: #000;
+	}
+
+	&.status-paid {
+		background: #28a745;
+		color: #fff;
+	}
+
+	&.status-cancelled {
+		background: #dc3545;
+		color: #fff;
+	}
+}
+
+@media (max-width: 900px) {
+	.admin-dashboard-page {
+		padding: 16px;
+	}
+
+	.kpi-row {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.dashboard-columns {
+		grid-template-columns: 1fr;
+	}
+
+	.top-game-row {
+		grid-template-columns: 90px 1fr auto;
+	}
+
+	.top-game-revenue {
+		display: none;
+	}
+
+	.recent-orders-row {
+		grid-template-columns: 1fr 70px 80px;
+	}
+
+	.recent-orders-row span:nth-child(2) {
+		display: none;
+	}
+}

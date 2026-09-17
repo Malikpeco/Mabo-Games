@@ -21,6 +21,7 @@ public static class DynamicDataSeeder
         await SeedGamesAsync(context);
         await SeedGameGenresAsync(context);
         await SeedGameReviewsAsync(context);
+        await SeedPurchaseHistoryAsync(context);
         await SeedIGDBToken(context);
         await SeedAchievementsAsync(context);
     }
@@ -1422,5 +1423,99 @@ public static class DynamicDataSeeder
         await context.SaveChangesAsync();
 
         Console.WriteLine($"Dynamic seed: {userGames.Count} game reviews added.");
+    }
+
+    private static readonly string[] DemoUserGameNames =
+    [
+        "The Witcher 3: Wild Hunt",
+        "Hades",
+        "Elden Ring",
+        "Vampire Survivors"
+    ];
+
+    // Attaches a completed order (+ order item + payment) for a game a user already owns
+    // (or is about to own), so purchase/order history and library ownership stay consistent.
+    private static OrderEntity BuildPaidOrder(
+        int userId,
+        GameEntity game,
+        DateTime purchaseDate,
+        List<OrderItemEntity> orderItemsOut,
+        List<PaymentEntity> paymentsOut)
+    {
+        var order = new OrderEntity
+        {
+            UserId = userId,
+            Date = purchaseDate,
+            TotalAmount = game.Price,
+            OrderStatus = "Paid",
+        };
+
+        orderItemsOut.Add(new OrderItemEntity { Order = order, Game = game, Price = game.Price });
+        paymentsOut.Add(new PaymentEntity
+        {
+            Order = order,
+            PaymentStatus = "Paid",
+            Total = game.Price,
+            Date = purchaseDate,
+        });
+
+        return order;
+    }
+
+    private static async Task SeedPurchaseHistoryAsync(DatabaseContext context)
+    {
+        if (await context.Orders.AnyAsync())
+            return;
+
+        var orders = new List<OrderEntity>();
+        var orderItems = new List<OrderItemEntity>();
+        var payments = new List<PaymentEntity>();
+        var demoUserGames = new List<UserGameEntity>();
+
+        // "User" demo account - 4 purchased games, spread across the last ~7 months so
+        // the dashboard's week/month/year filters all have something to show.
+        var demoUser = await context.Users.FirstOrDefaultAsync(u => u.Email == "user@market.com");
+        if (demoUser is not null)
+        {
+            var demoGames = await context.Games
+                .Where(g => DemoUserGameNames.Contains(g.Name))
+                .ToListAsync();
+
+            var demoPurchaseOffsets = new[] { 2, 10, 40, 200 };
+
+            for (var i = 0; i < demoGames.Count; i++)
+            {
+                var game = demoGames[i];
+                var purchaseDate = DateTime.UtcNow.AddDays(-demoPurchaseOffsets[i % demoPurchaseOffsets.Length]);
+
+                orders.Add(BuildPaidOrder(demoUser.Id, game, purchaseDate, orderItems, payments));
+                demoUserGames.Add(new UserGameEntity
+                {
+                    UserId = demoUser.Id,
+                    GameId = game.Id,
+                    PurchaseDate = purchaseDate,
+                });
+            }
+        }
+
+        // Reviewers - every game a reviewer already owns (and reviewed) gets backed by a
+        // real completed purchase, using the same date as their existing library entry.
+        var reviewerUserGames = await context.UserGames
+            .Include(ug => ug.Game)
+            .Where(ug => ug.User.Username.StartsWith("Reviewer"))
+            .ToListAsync();
+
+        foreach (var userGame in reviewerUserGames)
+        {
+            orders.Add(BuildPaidOrder(userGame.UserId, userGame.Game, userGame.PurchaseDate, orderItems, payments));
+        }
+
+        context.Orders.AddRange(orders);
+        context.OrderItems.AddRange(orderItems);
+        context.Payments.AddRange(payments);
+        context.UserGames.AddRange(demoUserGames);
+        await context.SaveChangesAsync();
+
+        Console.WriteLine($"Dynamic seed: {orders.Count} purchase orders added.");
     }
 }

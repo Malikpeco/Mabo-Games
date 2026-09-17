@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import {SharedModule} from '../shared/shared-module';
 import { AdminRoutingModule } from './admin-routing-module';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
@@ -20,14 +21,16 @@ import { CreateGenreDialogComponent } from './genres/create-genre-dialog/create-
 import { AdminAchievementsComponent } from './achievements/admin-achievements/admin-achievements.component';
 import { AchievementListItemComponent } from './achievements/achievement-list-item/achievement-list-item.component';
 import { NotificationsDialogComponent } from '../shared/components/notifications-dialog/notifications-dialog.component';
+import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashboard.component';
 
 
 
 
 @NgModule({
-  declarations: [ 
-    AdminPanelComponent, 
-    AdminGamesComponent, 
+  declarations: [
+    AdminPanelComponent,
+    AdminDashboardComponent,
+    AdminGamesComponent,
     AdminGenresComponent, 
     AdminPublishersComponent, 
     AdminOrdersComponent, 
@@ -49,6 +52,7 @@ import { NotificationsDialogComponent } from '../shared/components/notifications
     AdminRoutingModule,
     SharedModule,
     NotificationsDialogComponent,
+    NgApexchartsModule,
   ]
 })
 export class AdminModule { }

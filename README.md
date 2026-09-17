@@ -27,13 +27,13 @@ Full-stack online game store built with ASP.NET Core 8 and Angular.
 - Stripe checkout flow (create order + redirect to Stripe + success return)
 - User library page with search and genre filters
 - Favourites support (add/remove favourites and highlight favourites in library)
-
-### Features To Be Implemented
-
-- Admin dashboard functionality
+- Admin dashboard with revenue, order, and top-selling-games overview
 - Notifications system
 - Achievements system
 - User profile page
+
+### Features To Be Implemented
+
 - Light mode
 ---
 
